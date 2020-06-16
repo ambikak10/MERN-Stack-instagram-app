@@ -6,9 +6,9 @@ const mongoose = require('mongoose');
 
 const db = require('./config/keys').mongoURI;
 
-
-mongoose.set("useFindAndModify", false);
-mongoose.set("useCreateIndex", true);
+ mongoose.set("useUnifiedTopology", true); //to avoid deprecation warnings
+ mongoose.set("useFindAndModify", false);
+ mongoose.set("useCreateIndex", true);
 
 //connect to mongodb
 //DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version.To use the new parser, pass option { useNewUrlParser: true } 
