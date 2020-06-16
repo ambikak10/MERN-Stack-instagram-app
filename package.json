@@ -4,7 +4,7 @@
   "description": "social media app",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
+    "start": "node server js",
     "server": "nodemon server"
   },
   "author": "team 2",
@@ -14,7 +14,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.18",
+    "mongoose": "^5.9.19",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "validator": "^13.1.1"
