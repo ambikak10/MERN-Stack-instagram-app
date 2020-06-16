@@ -1,7 +1,12 @@
 const express = require('express'); 
-const mongoose = require('mongoose');
 const app = express(); 
 const mongoose = require('mongoose');
+const bodyparser = require('body-parser');
+const users = require('./routes/api/users');
+
+//Body parser configuration
+app.use(bodyparser.urlencoded({extended: false}));
+app.use(bodyparser.json());
 
 //db config
 
@@ -18,17 +23,11 @@ mongoose
   .then(() => console.log("Mongodb connected"))
   .catch((err) => console.log(err));
 
-//db config
-const db= require('./config/keys').mongoURI;
-
-//connect to mongodb
-//DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version.To use the new parser, pass option { useNewUrlParser: true } 
-mongoose.connect(db, { useNewUrlParser: true })
-  .then(() => console.log("Mongodb connected"))
-  .catch(err => console.log(err));
-
 //First route
 app.get('/', (req, res) => res.send('Hello'));
+
+//Use routes
+app.use('/api/users', users);
 
 const port = 7000;
 
