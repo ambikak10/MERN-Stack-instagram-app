@@ -1,6 +1,22 @@
 const express = require('express'); 
 const mongoose = require('mongoose');
 const app = express(); 
+const mongoose = require('mongoose');
+
+//db config
+
+const db = require('./config/keys').mongoURI;
+
+ mongoose.set("useUnifiedTopology", true); //to avoid deprecation warnings
+ mongoose.set("useFindAndModify", false);
+ mongoose.set("useCreateIndex", true);
+
+//connect to mongodb
+//DeprecationWarning: current URL string parser is deprecated, and will be removed in a future version.To use the new parser, pass option { useNewUrlParser: true } 
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => console.log("Mongodb connected"))
+  .catch((err) => console.log(err));
 
 //db config
 const db= require('./config/keys').mongoURI;
