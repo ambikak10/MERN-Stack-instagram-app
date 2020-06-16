@@ -1,6 +1,12 @@
 const express = require('express'); 
 const app = express(); 
 const mongoose = require('mongoose');
+const bodyparser = require('body-parser');
+const users = require('./routes/api/users');
+
+//Body parser configuration
+app.use(bodyparser.urlencoded({extended: false}));
+app.use(bodyparser.json());
 
 //db config
 
@@ -19,6 +25,9 @@ mongoose
 
 //First route
 app.get('/', (req, res) => res.send('Hello'));
+
+//Use routes
+app.use('/api/users', users);
 
 const port = 7000;
 
