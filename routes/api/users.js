@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-const express = require('express');
-const gravatar = require('gravatar');
-const bcrypt = require('bcryptjs');
-=======
 const express = require("express");
 const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
->>>>>>> 757de0d151d16936cea8f09960f76fa9d77fdcf6
 const router = express.Router();
 const User = require("../../models/User");
 const keys = require('../../config/keys');
@@ -16,27 +10,6 @@ const passport = require('passport');
 // @route   POST api/users/signup
 // @desc    Register user
 // @access  Public
-<<<<<<< HEAD
-router.post('/signup', (req, res) => {
-  User.findOne({ email: req.body.email })
-    .then(user => {
-      if (user) {
-        return res.status(400).json({ email: 'Email already exists' });
-      } else {
-        const avatar = gravatar.url(req.body.email, {
-          s: '200',
-          r: 'pg',
-          d: 'mm'
-        });
-
-        const newUser = new User({
-          name: req.body.name,
-          email: req.body.email,
-          avatar,
-          password: req.body.password
-        });
-
-=======
 router.post("/signup", (req, res) => {
   User.findOne({ email: req.body.email })
     .then((user) => {
@@ -56,7 +29,6 @@ router.post("/signup", (req, res) => {
           password: req.body.password,
         });
 
->>>>>>> 757de0d151d16936cea8f09960f76fa9d77fdcf6
         bcrypt.genSalt(10, (err, salt) => {
           if (err) throw err;
 
@@ -72,13 +44,8 @@ router.post("/signup", (req, res) => {
         });
       }
     })
-<<<<<<< HEAD
-    .catch(err => console.log(err));
-})
-=======
     .catch((err) => console.log(err));
 });
->>>>>>> 757de0d151d16936cea8f09960f76fa9d77fdcf6
 
 // @route   POST api/users/login
 // @desc    Login user
