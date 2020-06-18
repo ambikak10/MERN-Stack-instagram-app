@@ -9,9 +9,13 @@ const passport = require('passport');
 app.use(bodyparser.urlencoded({extended: false}));
 app.use(bodyparser.json());
 
-//Passport Configuration
+
+//Passport configuration
 app.use(passport.initialize());
 require('./config/passport')(passport);
+
+
+//db config
 
 //db config
 const db = require('./config/keys').mongoURI;
