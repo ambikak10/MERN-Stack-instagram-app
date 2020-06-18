@@ -3,13 +3,17 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
 const users = require('./routes/api/users');
+const passport = require('passport');
 
 //Body parser configuration
 app.use(bodyparser.urlencoded({extended: false}));
 app.use(bodyparser.json());
 
-//db config
+//Passport Configuration
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
+//db config
 const db = require('./config/keys').mongoURI;
 
  mongoose.set("useUnifiedTopology", true); //to avoid deprecation warnings
