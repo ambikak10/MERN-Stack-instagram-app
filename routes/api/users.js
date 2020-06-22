@@ -1,16 +1,25 @@
-const express = require("express");
-const gravatar = require("gravatar");
-const bcrypt = require("bcryptjs");
+const express = require('express');
+const gravatar = require('gravatar');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
-const User = require("../../models/User");
+const User = require('../../models/User');
 const keys = require('../../config/keys');
 const passport = require('passport');
+const validateSignupInput = require('../../validation/sign-up');
+const validateLoginInput = require("../../validation/login");
 
 // @route   POST api/users/signup
 // @desc    Register user
 // @access  Public
-router.post("/signup", (req, res) => {
+router.post('/signup', (req, res) => {
+  // Validation
+  const { errors, isValid } = validateSignupInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   User.findOne({ email: req.body.email })
     .then((user) => {
       if (user) {
@@ -52,6 +61,13 @@ router.post("/signup", (req, res) => {
 // @access  Public
 
 router.post('/login', (req,res) => {
+  //Validation
+  const { errors, isValid } = validateLoginInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   const email = req.body.email;
   const password = req.body.password;
   
@@ -91,7 +107,7 @@ router.post('/login', (req,res) => {
 router.get('/current',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    return res.json({ msg: 'Success' });
+    return res.json(req.user);
   })
 
 module.exports = router;
