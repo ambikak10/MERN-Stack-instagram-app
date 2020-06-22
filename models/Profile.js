@@ -13,15 +13,6 @@ const ProfileSchema = new Schema({
   gender: {
     type: String,
   },
-  name: {
-    type: String
-  },
-  avatar: {
-    type: String
-  },
-  email: {
-    type: String
-  },
   phone: {
     type: String,
   },

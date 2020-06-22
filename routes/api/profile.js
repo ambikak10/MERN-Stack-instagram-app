@@ -24,12 +24,6 @@ router.post('/', passport.authenticate("jwt", {session: false}), (req,res) => {
   //get fields
   const profileFields = {};
   profileFields.user = req.user.id;
-  User.findById(req.user.id).then((user =>{ 
-    profileFields.name = user.name;
-    profileFields.email= user.email;
-    profileFields.avatar= user.avatar;
-  }))
- 
   if (req.body.handle) profileFields.handle = req.body.handle;
   if (req.body.gender) profileFields.gender = req.body.gender;
   if (req.body.phone) profileFields.phone = req.body.phone;
@@ -72,7 +66,7 @@ router.post('/', passport.authenticate("jwt", {session: false}), (req,res) => {
 // @desc    Get current users profile
 // @access  Private
 router.get(
-  "/",
+  '/',
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const errors = {};
