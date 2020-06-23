@@ -84,4 +84,33 @@ router.get(
   }
 );
 
+// @route   DELETE api/profile
+// @desc    Delete current user and profile
+// @access  Private
+router.delete("/",
+  passport.authenticate("jwt", {session: false}),
+  (req, res) => {
+    Profile.findOneAndRemove({user: req.user.id})
+      .then(() => {
+        User.findOneAndRemove({ _id: req.user.id})
+          .then(() => res.json({ success: true }))
+      });
+  }
+);
+
+// @route   GET api/profile/followers/:profile_id
+// @desc    Get list of user's followers
+// @access  Public
+router.get("/followers/:profile_id", (req, res) => {
+  Profile.findById(req.params.profile_id)
+    .then(profile => {
+      if (profile) {
+        return res.json(profile.followers);
+      } else {
+        return res.json({profilenotfound: "No profile found"});
+      }
+    })
+    .catch(err => console.log(err));
+});
+
 module.exports = router;
