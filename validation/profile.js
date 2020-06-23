@@ -10,8 +10,11 @@ module.exports = function validateProfileInput(data){
   if (isEmpty(data.handle)) {
     errors.handle = "Profile handle is required";
   }
-  if (!Validator.isMobilePhone(data.phone)){
-    errors.phone = "Invalid phone number"
+
+  if (!isEmpty(data.phone)) {
+    if (!Validator.isMobilePhone(data.phone)){
+      errors.phone = "Invalid phone number";
+    }
   }
   
   if (!isEmpty(data.website)) {
