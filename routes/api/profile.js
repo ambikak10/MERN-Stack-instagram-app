@@ -113,6 +113,21 @@ router.get("/followers/:profile_id", (req, res) => {
     .catch(err => console.log(err));
 });
 
+// @route   GET api/profile/following/:profile_id
+// @desc    Get list of user's following
+// @access  Public
+router.get("/following/:profile_id", (req, res) => {
+  Profile.findById(req.params.profile_id)
+    .then(profile => {
+      if (profile) {
+        return res.json(profile.following);
+      } else {
+        return res.json({ profilenotfound: "No profile found" });
+      }
+    })
+    .catch(err => console.log(err));
+});
+
 // @route   GET api/profile/handle/:handle
 // @desc    Get profile by handle
 // @access  Public
@@ -152,7 +167,26 @@ router.get("/all", (req, res) => {
     .catch((err) => res.status(404).json({ profile: "There are no profiles" }));
 });
 
+// @route   GET api/profile/user/:user_id
+// @desc    Get profile by user ID
+// @access  Public
 
+router.get("/user/:user_id", (req, res) => {
+  const errors = {};
+
+  Profile.findOne({ user: req.params.user_id })
+    .populate("user", ["name", "avatar"])
+    .then((profile) => {
+      if (!profile) {
+        errors.noprofile = "There is no profile for this user";
+        res.status(404).json(errors);
+      }
+      res.json(profile);
+    })
+    .catch((err) =>
+      res.status(404).json({ profile: "There is no profile for this user" })
+    );
+});
 
 
 module.exports = router;
