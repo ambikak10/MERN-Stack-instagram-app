@@ -188,5 +188,74 @@ router.get("/user/:user_id", (req, res) => {
     );
 });
 
+// @route   POST api/profile/follow/:profile_id
+// @desc    Follow profile
+// @access  Private
+router.post(
+  "/follow/:profile_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then((profile) => {
+      Profile.findById(req.params.id)
+        .then((profile) => {
+          if (
+            profile.followers.filter((follow) => follow.user.toString() === req.user.id)
+              .length > 0
+          ) {
+            return res
+              .status(400)
+              .json({ alreadyfollowed: "User already follow this profile" });
+          }
+
+          // Add user id to followers array
+          profile.followers.unshift({ user: req.user.id });
+          
+
+          profile.save().then((profile) => res.json(profile));
+        })
+        .catch((err) =>
+          res.status(404).json({ profilenotfound: "No profile found" })
+        );
+    });
+  }
+);
+  
+
+// @route   POST api/profile/unfollow/:profile_id
+// @desc    Unfollow profile
+// @access  Private
+router.post(
+  "/unfollow/:profile_id",
+  passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+      Profile.findOne({ user: req.user.id }).then((profile) => {
+       Profile.findById(req.params.id)
+          .then((profile) => {
+            if (
+              profile.followers.filter((follow) => follow.user.toString() === req.user.id)
+              .length === 0
+            ) {
+            return res
+              .status(400)
+              .json({ notfollowed: "You have not yet followed this profile" });
+          }
+
+          // Get remove index
+          const removeIndex = profile.followers
+            .map((item) => item.user.toString())
+            .indexOf(req.user.id);
+
+          // Splice out of array
+          profile.followers.splice(removeIndex, 1);
+
+          // Save
+          profile.save().then((profile) => res.json(profile));
+        })
+        .catch((err) =>
+          res.status(404).json({ profilenotfound: "No profile found" })
+        );
+    });
+  }
+);
 
 module.exports = router;
