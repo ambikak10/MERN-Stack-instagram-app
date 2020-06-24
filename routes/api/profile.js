@@ -29,8 +29,6 @@ router.post('/', passport.authenticate("jwt", {session: false}), (req,res) => {
   if (req.body.phone) profileFields.phone = req.body.phone;
   if (req.body.bio) profileFields.bio = req.body.bio;
   if (req.body.website) profileFields.website = req.body.website;
-  // if (req.body.following) profileFields.following = req.body.following;
-  // if (req.body.followers) profileFields.followers = req.body.followers;
 
   // Social
   profileFields.social = {};
@@ -195,8 +193,7 @@ router.post(
   "/follow/:profile_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id }).then((profile) => {
-      Profile.findById(req.params.id)
+    Profile.findById(req.params.profile_id)
         .then((profile) => {
           if (
             profile.followers.filter((follow) => follow.user.toString() === req.user.id)
@@ -204,14 +201,17 @@ router.post(
           ) {
             return res
               .status(400)
-              .json({ alreadyfollowed: "User already follow this profile" });
+              .json({ alreadyfollowed: "User already follows this profile" });
           }
-
-          // Add user id to followers array
+         // Add user id to followers array
           profile.followers.unshift({ user: req.user.id });
-          
+          profile.save();
+          // .then((profile) => res.json(profile)); sending res.json more than once resulted in error 'http headers are already written to the client browser' in terminal, hence removed and added at the end.
 
-          profile.save().then((profile) => res.json(profile));
+          //Find your profile
+          Profile.findOne({ user: req.user.id }).then(myProfile => {
+          myProfile.following.unshift({ user: profile.user }); //add user id of the person you are following to your following list.
+          myProfile.save().then(myProfile => res.json([{ following: myProfile.following }, { followers: profile.followers }]));
         })
         .catch((err) =>
           res.status(404).json({ profilenotfound: "No profile found" })
@@ -219,43 +219,38 @@ router.post(
     });
   }
 );
-  
 
 // @route   POST api/profile/unfollow/:profile_id
 // @desc    Unfollow profile
 // @access  Private
-router.post(
-  "/unfollow/:profile_id",
-  passport.authenticate("jwt", { session: false }),
-    (req, res) => {
-      Profile.findOne({ user: req.user.id }).then((profile) => {
-       Profile.findById(req.params.id)
-          .then((profile) => {
-            if (
-              profile.followers.filter((follow) => follow.user.toString() === req.user.id)
-              .length === 0
-            ) {
-            return res
-              .status(400)
-              .json({ notfollowed: "You have not yet followed this profile" });
-          }
 
-          // Get remove index
-          const removeIndex = profile.followers
-            .map((item) => item.user.toString())
-            .indexOf(req.user.id);
+router.post('/unfollow/:profile_id', passport.authenticate("jwt", { session: false }), (req, res) => {
 
-          // Splice out of array
-          profile.followers.splice(removeIndex, 1);
+  Profile.findById(req.params.profile_id).then((profile) => {
+    if (profile.followers.filter(follower => follower.user.toString() === req.user.id).length === 0) {
+      return res.status(400).json({ msg: 'You have not yet followed this profile' });
+    }
 
-          // Save
-          profile.save().then((profile) => res.json(profile));
-        })
-        .catch((err) =>
-          res.status(404).json({ profilenotfound: "No profile found" })
-        );
-    });
-  }
-);
+    // Get the index of my id in the 'followers' array of another user 
+    const removeIndex1 = profile.followers.map(follower => follower.user.toString().indexOf(req.user.id));
+    // Splice out of array
+    profile.followers.splice(removeIndex1, 1);
+     // Save
+    profile.save().then(profile => console.log(profile.followers));
+  });
+
+  Profile.findOne({ user: req.user.id }).then((myProfile) => {
+    // Get the index of id of another user in my 'following' array list 
+    const removeIndex2 = myProfile.following.map(follow => follow.user.toString().indexOf(profile.user));
+    myProfile.following.splice(removeIndex2, 1);
+    myProfile.save().then(myProfile => res.json({msg: 'You unfollowed this person'}))
+
+  }).
+    catch((err) => {
+      console.error(err.message);
+      res.status(404).json({ profilenotfound: "No profile found" })
+    })
+
+});
 
 module.exports = router;
