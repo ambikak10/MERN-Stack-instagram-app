@@ -5,6 +5,7 @@ const bodyparser = require('body-parser');
 const users = require('./routes/api/users');
 const passport = require('passport');
 const profile = require('./routes/api/profile');
+const posts = require('./routes/api/posts');
 
 //Body parser configuration
 app.use(bodyparser.urlencoded({extended: false}));
@@ -35,7 +36,7 @@ app.get('/', (req, res) => res.send('Hello'));
 //Use routes
 app.use('/api/users', users);
 app.use('/api/profile', profile);
-//app.use('/api/post', posts);
+app.use('/api/posts', posts);
 
 const port = 7000;
 
