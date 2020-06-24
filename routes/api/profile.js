@@ -243,7 +243,7 @@ router.post('/unfollow/:profile_id', passport.authenticate("jwt", { session: fal
     // Get the index of id of another user in my 'following' array list 
     const removeIndex2 = myProfile.following.map(follow => follow.user.toString().indexOf(profile.user));
     myProfile.following.splice(removeIndex2, 1);
-    myProfile.save().then(myProfile => res.json(myProfile.following))
+    myProfile.save().then(myProfile => res.json({msg: 'You unfollowed this person'}))
 
   }).
     catch((err) => {
