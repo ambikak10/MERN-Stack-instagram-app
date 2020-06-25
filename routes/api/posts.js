@@ -44,6 +44,16 @@ router.get('/', passport.authenticate("jwt", { session: false }), (req, res) => 
     .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
 });
 
+// @route   GET api/posts
+// @desc    Get posts
+// @access  Public
+router.get("/", (req, res) => {
+  Post.find()
+    .sort({ date: -1 })
+    .then((posts) => res.json(posts))
+    .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
+});
+
 // @route   POST api/posts/like/:post_id
 // @desc    Like post
 // @access  Private
