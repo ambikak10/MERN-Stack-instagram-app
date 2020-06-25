@@ -23,16 +23,14 @@ router.post('/',
     const newPost = new Post({
       text: req.body.text,
       image: req.body.image,
-      user: req.user.id
+      user: req.user.id,
+      name: req.user.name,
+      avatar:req.user.avatar
     });
-    User.findById(req.user.id).then(user => {
-       newPost.name = user.name;
-       newPost.avatar = user.avatar;
-       newPost.save().then(post => {
-        res.json(post);
-       })
-    });
-   });
+      newPost.save().then(post =>
+      res.json(post));
+    
+  });
  
 
 // @route   GET api/posts
