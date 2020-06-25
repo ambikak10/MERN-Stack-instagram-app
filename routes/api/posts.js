@@ -32,16 +32,19 @@ router.post('/',
     
   });
  
+// @route   GET api/posts
+// @desc    Get  all posts
+// @access  Public
+router.get("/", (req, res) => {
+  Post.find()
+    .sort({ date: -1 })
+    .then((posts) => res.json(posts))
+    .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
+});
 
 // @route   GET api/posts
 // @desc    get all posts of a user
 // @access  Private
-
-// @route   GET api/posts
-// @desc    Get posts
-// @access  Public
-router.get("/", (req, res) => {
-  Post.find()
 router.get('/', passport.authenticate("jwt", { session: false }), (req, res) => {
   Post.find({ user: req.user.id })
     .sort({ date: -1 })
@@ -79,7 +82,9 @@ router.delete(
 
           // Delete
           post.remove().then(() => res.json({ success: true }));
-          
+        })
+    })   
+  })  
 // @route   POST api/posts/like/:post_id
 // @desc    Like post
 // @access  Private
