@@ -54,7 +54,7 @@ const PostSchema = new Schema({
     type: String,
     required: true
   },
-  tagged: [
+  tag: [
     {
       user: {
         type: Schema.Types.ObjectId,
