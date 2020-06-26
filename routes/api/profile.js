@@ -232,7 +232,7 @@ router.post('/unfollow/:profile_id', passport.authenticate("jwt", { session: fal
     }
 
     // Get the index of my id in the 'followers' array of another user 
-    const removeIndex1 = profile.followers.map(follower => follower.user.toString().indexOf(req.user.id));
+    const removeIndex1 = profile.followers.map(follower => follower.user.toString()).indexOf(req.user.id);
     // Splice out of array
     profile.followers.splice(removeIndex1, 1);
      // Save
@@ -241,7 +241,7 @@ router.post('/unfollow/:profile_id', passport.authenticate("jwt", { session: fal
 
   Profile.findOne({ user: req.user.id }).then((myProfile) => {
     // Get the index of id of another user in my 'following' array list 
-    const removeIndex2 = myProfile.following.map(follow => follow.user.toString().indexOf(profile.user));
+    const removeIndex2 = myProfile.following.map(follow => follow.user.toString()).indexOf(profile.user);
     myProfile.following.splice(removeIndex2, 1);
     myProfile.save().then(myProfile => res.json({msg: 'You unfollowed this person'}))
 

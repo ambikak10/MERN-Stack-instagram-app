@@ -53,7 +53,7 @@ const ProfileSchema = new Schema({
     {
       postId: {
         type: Schema.Types.ObjectId,
-        ref: "users"
+        ref: "post"
       }
     }
   ]

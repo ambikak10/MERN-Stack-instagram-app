@@ -22,14 +22,14 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  tagged: [
-    {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: "users"
-      }
-    }
-  ]
+  // tagged: [
+  //   {
+  //     user: {
+  //       type: Schema.Types.ObjectId,
+  //       ref: "users"
+  //     }
+  //   }
+  // ]
 });
 
 module.exports = User = mongoose.model('users', UserSchema);
