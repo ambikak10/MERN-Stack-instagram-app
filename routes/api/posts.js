@@ -55,6 +55,7 @@ router.get('/', passport.authenticate("jwt", { session: false }), (req, res) => 
 // @route   GET api/posts/:id
 // @desc    Get post by id
 // @access  Public
+
 router.get("/:id", (req, res) => {
   Post.findById(req.params.id)
     .then((post) => res.json(post))
@@ -116,6 +117,51 @@ router.post(
   }
 );
 
+// @route   POST /api/posts/:post_id/tag/:user_id
+// @desc    tag a user to post
+// @access  Private
+router.post(
+  "/:post_id/tag/:user_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Post.findById(req.params.post_id).then(post => {
+      if (post.tag.filter(tag => tag.user.toString() === req.params.user_id).length > 0) {
+        return res.status(400).json({ msg: 'this person is already tagged' });
+      }
+      post.tag.unshift({ user: req.params.user_id });
+      post.save().then(post => res.json(post));
+      Profile.findOne({ user: req.params.user_id }).then(othersProfile => {
+        othersProfile.tagged.unshift({ postId: req.params.post_id });
+        othersProfile.save().then(() => {
+          //  res.json({ msg: 'success' });
+          console.log(othersProfile);
+        });
+      });
+    }).catch((err) =>
+      res.status(500).json({ msg: "Server Error" }));
+  });
+// @route   POST /api/posts/:post_id/untag/:user_id
+// @desc    untag user
+// @access  Private
+router.post('/:post_id/untag/:user_id', passport.authenticate("jwt", { session: false }), (req, res) => {
+  Post.findById(req.params.post_id).then(post => {
+    if (post.tag.filter(tag => tag.user.toString() === req.params.user_id).length === 0) {
 
+      return res.status(400).json({ msg: 'You have not tagged this person' });
+    }
 
+    const removeIndex1 = post.tag.map(tag => tag.user.toString().indexOf(req.params.user_id));
+    post.tag.splice(removeIndex1, 1);
+    post.save().then(() => console.log(post));
+    Profile.findOne({ user: req.params.user_id }).then(othersProfile => {
+      const removeIndex2 = othersProfile.tagged.map(tagged => tagged.postId.toString().indexOf(req.params.post_id));
+      othersProfile.tagged.splice(removeIndex2, 1);
+      othersProfile.save().then(othersProfile => res.json({ msg: othersProfile }))
+    })
+  }).catch((err) => {
+    console.log(err.message);
+    res.status(500).json({ msg: "Server Error" })
+  });
+});
 module.exports = router;
+

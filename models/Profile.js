@@ -48,7 +48,15 @@ const ProfileSchema = new Schema({
     facebook: {
       type: String
     }
-  }
+  },
+  tagged: [
+    {
+      postId: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+      }
+    }
+  ]
 });
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);
