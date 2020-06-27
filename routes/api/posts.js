@@ -80,12 +80,12 @@ router.delete(
               .status(401)
               .json({ notauthorized: "User not authorized" });
           }
-
           // Delete
           post.remove().then(() => res.json({ success: true }));
         })
     })   
   })  
+
 // @route   POST api/posts/like/:post_id
 // @desc    Like post
 // @access  Private
@@ -176,6 +176,7 @@ router.post(
     }).catch((err) =>
       res.status(500).json({ msg: "Server Error" }));
   });
+
 // @route   POST /api/posts/:post_id/untag/:user_id
 // @desc    untag user
 // @access  Private
@@ -225,6 +226,42 @@ router.get("/user/tagged",
       .catch(err => console.log(err));
   }
 );
+
+
+// @route   POST api/posts/comment/:postid
+// @desc    Add comment to post
+// @access  Private
+router.post(
+  "/comment/:post_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validatePostInput(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      // If any errors, send 400 with errors object
+      return res.status(400).json(errors);
+    }
+
+    Post.findById(req.params.post_id)
+      .then((post) => {
+        const newComment = {
+          text: req.body.text,
+          name: req.body.name,
+          avatar: req.body.avatar,
+          user: req.user.id,
+        };
+
+        // Add to comments array
+        post.comments.unshift(newComment);
+
+        // Save
+        post.save().then((post) => res.json(post));
+      })
+      .catch((err) => res.status(404).json({ postnotfound: "No post found" }));
+  }
+);
+
 
 module.exports = router;
 
