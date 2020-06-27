@@ -6,6 +6,7 @@ const Post = require("../../models/Post");
 const Profile = require("../../models/Profile");
 const validatePostInput = require("../../validation/post");
 const User = require("../../models/User");
+const validateComment = require("../../validation/comment");
 
 // @route   POST api/posts
 // @desc    Create post
@@ -227,6 +228,40 @@ router.get("/user/tagged",
   }
 );
 
+// @route   POST api/posts/comment/:post_id
+// @desc    Add comment to post
+// @access  Private
+router.post(
+  "/comment/:post_id",
+  passport.authenticate("jwt", { session: false }), 
+  (req, res) => {
+    const { errors, isValid } = validateComment(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      // If any errors, send 400 with errors object
+      return res.status(400).json(errors);
+    }
+
+    Post.findById(req.params.post_id)
+      .then((post) => {
+        const newComment = {
+          text: req.body.text,
+          name: req.user.name,
+          avatar: req.user.avatar,
+          user: req.user.id,
+        };
+
+        // Add to comments array
+        post.comments.unshift(newComment);
+
+        // Save
+
+        post.save().then((post) => res.json(post));
+      })
+      .catch((err) => res.status(404).json({ postnotfound: "No post found" }));
+  }
+);
 
 // @route   DELETE api/posts/comment/:id/:comment_id
 // @desc    Remove comment from post
@@ -255,37 +290,6 @@ router.delete(
 
         // Splice comment out of array
         post.comments.splice(removeIndex, 1);
-      });
-  });
-
-// @route   POST api/posts/comment/:post_id
-// @desc    Add comment to post
-// @access  Private
-router.post(
-  "/comment/:post_id",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body);
-
-    // Check Validation
-    if (!isValid) {
-      // If any errors, send 400 with errors object
-      return res.status(400).json(errors);
-    }
-
-    Post.findById(req.params.post_id)
-      .then((post) => {
-        const newComment = {
-          text: req.body.text,
-          name: req.body.name,
-          avatar: req.body.avatar,
-          user: req.user.id,
-        };
-
-        // Add to comments array
-        post.comments.unshift(newComment);
-
-        // Save
 
         post.save().then((post) => res.json(post));
       })
