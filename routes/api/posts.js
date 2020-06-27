@@ -255,9 +255,10 @@ router.delete(
 
         // Splice comment out of array
         post.comments.splice(removeIndex, 1);
+      });
+  });
 
-
-// @route   POST api/posts/comment/:postid
+// @route   POST api/posts/comment/:post_id
 // @desc    Add comment to post
 // @access  Private
 router.post(
