@@ -112,9 +112,6 @@ router.post("/:conversation_id", passport.authenticate("jwt", {session:false}), 
           if(conversation.participants.filter(participant => 
             
             participant.toString() === req.user.id).length == 0){
-            // console.log(conversation.participants);
-            // console.log(req.user.id);
-           
             return res
             .status(401)
             .json({ notauthorized: "User not authorized" });
