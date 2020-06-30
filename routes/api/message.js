@@ -30,14 +30,24 @@ router.post("/",
         .catch(err => console.log(err));
     });
 
-    
-    const newConversation = new Conversation({
-      participants: req.body.participants
-    })
+    //Sort array
+    req.body.participants.sort();
 
-    newConversation.save()
-      .then(conversation => res.json(conversation))
-      .catch(err => console.log(err));
+    //Check if list participants have existed in conversation collection - if no, create new conversation and save to database
+    Conversation.findOne({participants: req.body.participants})
+      .then(conversation => {
+        if (conversation) {
+          return res.status(400).json({participants: "Participants list has existed"});
+        }
+
+        const newConversation = new Conversation({
+          participants: req.body.participants
+        })
+    
+        newConversation.save()
+          .then(conversation => res.json(conversation))
+          .catch(err => console.log(err));
+      });
   }
 );
 
