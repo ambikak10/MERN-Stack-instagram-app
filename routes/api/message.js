@@ -139,7 +139,7 @@ router.delete(
           return res.status(400).json({ noconversationfound: "No conversation found" });
         }
        
-        // Check if the user is authorized to delete the conversation
+        // Check if the user is authorized to delete the message
         if (conversation.participants.filter(participant =>
 
           participant.toString() === req.user.id).length == 0) {
