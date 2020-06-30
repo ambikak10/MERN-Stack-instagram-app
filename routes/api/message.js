@@ -102,14 +102,19 @@ router.post("/:conversation_id", passport.authenticate("jwt", {session:false}), 
     "/:conversation_id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
+    
       Conversation.findById(req.params.conversation_id)
-        .then((conversation) => {
-          // Check to see if conversation exists
+      .then(conversation => {
           if (!conversation) {
             return res.status(400).json({ noconversationfound: "No conversation found" });
           }
           // Check if the user is authorized to delete the conversation
-          if(conversation.participants.map(participant => participant === req.user.id).length == 0){
+          if(conversation.participants.filter(participant => 
+            
+            participant.toString() === req.user.id).length == 0){
+            // console.log(conversation.participants);
+            // console.log(req.user.id);
+           
             return res
             .status(401)
             .json({ notauthorized: "User not authorized" });
@@ -120,7 +125,7 @@ router.post("/:conversation_id", passport.authenticate("jwt", {session:false}), 
           
     .catch((err) => {
       console.log(err.message);
-      res.status(500).json({ msg: "Server Error" });
+      res.status(404).json({ msg: "Server Error" });
     });
     });
 // @route   DELETE /api/message/:conversation_id/:message_id
