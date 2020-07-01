@@ -149,16 +149,17 @@ router.delete(
           return res.status(400).json({ noconversationfound: "No conversation found" });
         }
        
-        // Check if the user is authorized to delete the message
-        if (conversation.participants.filter(participant =>
+        // // Check if the user is authorized to delete the message
+        // if (conversation.messages.filter(message =>
 
-          participant.toString() === req.user.id).length == 0) {
+        //   message.user.toString() === req.user.id).length == 0) {
 
-          return res
-            .status(401)
-            .json({ notauthorized: "User not authorized" });
-        }
-         // Check to see if message exists
+        //   return res
+        //     .status(401)
+        //     .json({ notauthorized: "User not authorized" });
+        // }
+
+        // Check to see if message exists
         if (
           conversation.messages.filter(
             (message) => message._id.toString() === req.params.message_id
@@ -168,6 +169,12 @@ router.delete(
             .status(404)
             .json({ msg: "Message does not exist" });
         }
+        // Check if the user is authorized to delete the message
+        if (conversation.messages.filter(message => message._id.toString() === req.params.message_id && message.user.toString() === req.user.id).length === 0) {
+          return res
+            .status(401)
+            .json({ notauthorized: "User not authorized" });
+        }
 
         // Get remove index
         const removeIndex = conversation.messages
@@ -176,7 +183,7 @@ router.delete(
 
         // Splice comment out of array
         conversation.messages.splice(removeIndex, 1);
-
+        
         conversation.save().then((conversation) => res.json(conversation));
       }).catch((err) => {
     console.log(err.message);
