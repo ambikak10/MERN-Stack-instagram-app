@@ -21,7 +21,7 @@ export class profile extends Component {
               <h2 class='HandleName'>
                 HandleName
                 <span>
-                  <input type='button' class='btn' value='Edit profile' />
+                  <input type='button' class='btn profileButton' value='Edit profile' />
                 </span>
               </h2>
               <p class='textsize'>

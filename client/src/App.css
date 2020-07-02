@@ -1,3 +1,7 @@
+.App {
+  background-color: #fafafa;
+  justify-content: center;
+}
 .margin {
   display: flex;
   justify-content:center;
@@ -22,10 +26,10 @@
   width: 350px;
   /* height: 500px; */
 }
-input {
+/* input {
   border: 1px solid;
   margin-top: 20px;
-}
+} */
 #one {
   width: 40%;
   float: left;
