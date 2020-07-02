@@ -21,12 +21,13 @@ class Login extends Component {
                     className='form-control'
                     placeholder='Email Address'
                     name='email'
+                    style={{marginBottom: "20px"}}
                   />
                   <input
                     type='password'
                     className='form-control'
                     placeholder='Password'
-                    name='email'
+                    name='password'
                   />
                   <input
                     type='submit'

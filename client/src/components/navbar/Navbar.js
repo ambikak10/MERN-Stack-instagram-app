@@ -26,17 +26,17 @@ export class navbar extends Component {
               <ul>
                 <li>
                   <Link to='#'>
-                    <i className='fa fa-home' aria-hidden='true'></i>
+                    <i className='fa fa-home navbarIcon' aria-hidden='true'></i>
                   </Link>
                 </li>
                 <li>
                   <Link to='#'>
-                    <i className='fa fa-compass' aria-hidden='true'></i>
+                    <i className='fa fa-compass navbarIcon' aria-hidden='true'></i>
                   </Link>
                 </li>
                 <li>
                   <Link to='#'>
-                    <i className='fa fa-heart-o' aria-hidden='true'></i>
+                    <i className='fa fa-heart-o navbarIcon' aria-hidden='true'></i>
                   </Link>
                 </li>
                 <li>

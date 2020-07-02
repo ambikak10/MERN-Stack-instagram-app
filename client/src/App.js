@@ -4,6 +4,7 @@ import './App.css';
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import Profile from "./components/profile/Profile";
+import EditProfile from "./components/profile/EditProfile";
 
 class App extends Component {
   render() {
@@ -14,9 +15,10 @@ class App extends Component {
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/' component={Login} />
           <Route exact path='/profile' component={Profile} />
-   
+          <Route exact path="/edit-profile" component={EditProfile}/>
         </div>
       </Router>
+
     );
   }
 }
