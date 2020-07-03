@@ -19,15 +19,19 @@ ul {
   font-size: 1.5em;
   
 }
-a:hover {
-    text-decoration: none;  
-}
-
 .search{
   width:200px;
   margin: auto;
+  position: relative;
+  color: #aaa;
 }
-.avatar {
+.search input { text-indent: 32px;}
+.search .fa-search { 
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.navbarIcon {
   border-radius: 50%;
   width: 25px;
   /* margin-top: 8px;
@@ -35,17 +39,12 @@ a:hover {
   
 }
 @media (max-width: 767px) {
-  .logo{
-    width:100px;
-  }
-  i {
-    font-size: 1.5em;
-    margin-top: 15px;
-    margin-right:2px;
-    
-  }
-  .avatar {
+
+  .navbarIcon {
     width: 1.5em;
-    margin-top: 22px; 
+    margin-top: 23px; 
   }
+  .avatar{
+  font-size: 1.1em;
+ }
 }

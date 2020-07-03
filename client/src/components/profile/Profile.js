@@ -14,14 +14,22 @@ export class profile extends Component {
           <div className='margin'>
             <div>
               <Link to=''>
-                <img className='profile-photo' alt='profile-photo' src={avatar} />
+                <img
+                  className='profile-photo'
+                  alt='profile-photo'
+                  src={avatar}
+                />
               </Link>
             </div>
             <div className='d-flex flex-column space'>
               <h2 className='HandleName'>
                 HandleName
                 <span>
-                  <input type='button' className='btn profileButton' value='Edit profile' />
+                  <input
+                    type='button'
+                    className='btn profileButton'
+                    value='Edit profile'
+                  />
                 </span>
               </h2>
               <p className='textsize'>
@@ -49,102 +57,131 @@ export class profile extends Component {
           <div className='profileTabs icons'>
             <Link to=''>
               <i className='fa fa-picture-o' aria-hidden='true'>
-                <span style={{marginLeft: "5px", fontFamily: "sans-serif"}}>POSTS</span>
+                <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
+                  POSTS
+                </span>
               </i>
             </Link>
 
             <Link to=''>
               <i className='fa fa-bookmark-o' aria-hidden='true'>
-                <span style={{marginLeft: "5px", fontFamily: "sans-serif"}}>SAVED</span>
+                <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
+                  SAVED
+                </span>
               </i>
             </Link>
             <Link to=''>
-              <i
-                className='far fa-user-circle' aria-hidden='true'>
-                <span style={{marginLeft: "5px", fontFamily: "sans-serif"}}>TAGGED</span>
+              <i className='far fa-user-circle' aria-hidden='true'>
+                <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
+                  TAGGED
+                </span>
               </i>
             </Link>
           </div>
 
-          <div className='img-grid'>
-            <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-              <figure>
-                <img
-                  src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                  alt=''
-                />
-              </figure>
-            </Link>
+          <section className='row hover-effect'>
+            <div class='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
+              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+                <figure>
+                  <img
+                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
+                    alt=''
+                  />
+                </figure>
+              </Link>
+            </div>
 
-            <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-              <figure>
-                <img
-                  src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                  alt=''
-                />
-              </figure>
-            </Link>
+            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
+              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+                <figure>
+                  <img
+                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
+                    alt=''
+                  />
+                </figure>
+              </Link>
+            </div>
 
-            <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-              <figure>
-                <img
-                  src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                  alt=''
-                />
-              </figure>
-            </Link>
+            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
+              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+                <figure>
+                  <img
+                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
+                    alt=''
+                  />
+                </figure>
+              </Link>
+            </div>
 
-            <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-              <figure>
-                <img
-                  src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                  alt=''
-                />
-              </figure>
-            </Link>
-            <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-              <figure>
-                <img
-                  src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                  alt=''
-                />
-              </figure>
-            </Link>
-            <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-              <figure>
-                <img
-                  src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                  alt=''
-                />
-              </figure>
-            </Link>
-            <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-              <figure>
-                <img
-                  src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                  alt=''
-                />
-              </figure>
-            </Link>
-            <Link href='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-              <figure>
-                <img
-                  src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                  alt=''
-                />
-              </figure>
-            </Link>
-            <Link href='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-              <figure>
-                <img
-                  src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                  alt=''
-                />
-              </figure>
-            </Link>
+            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
+              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+                <figure>
+                  <img
+                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
+                    alt=''
+                  />
+                </figure>
+              </Link>
+            </div>
+
+            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
+              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+                <figure>
+                  <img
+                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
+                    alt=''
+                  />
+                </figure>
+              </Link>
+            </div>
+
+            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
+              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+                <figure>
+                  <img
+                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
+                    alt=''
+                  />
+                </figure>
+              </Link>
+            </div>
+
+            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
+              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+                <figure>
+                  <img
+                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
+                    alt=''
+                  />
+                </figure>
+              </Link>
+            </div>
+
+            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
+              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+                <figure>
+                  <img
+                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
+                    alt=''
+                  />
+                </figure>
+              </Link>
+            </div>
+
+            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
+              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+                <figure>
+                  <img
+                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
+                    alt=''
+                  />
+                </figure>
+              </Link>
+            </div>
+            </section>
           </div>
         </div>
-      </div>
+      
     );
   }
 }
