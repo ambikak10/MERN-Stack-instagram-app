@@ -4,10 +4,11 @@
  border-radius: 50%;
  width: 150px;
 }
-.margin {
+.profileTabs {
   display: flex;
-  padding-top: 20px;
+  /* padding-top: 20px; */
   justify-content: center;
+  margin-bottom: 40px;
 }
 .space{
   margin: 0 10% 0 6%; 
@@ -40,13 +41,14 @@
 }
 .horizontalLine {
   margin-top: 55px;
+  color: #dbdbdb;
 }
 .icons i{
   font-size: 0.9em; 
-  color: gray;
-  font-family: Helvetica, Arial, sans-serif;
+  color: #8e8e8e;
+  /* font-family: Helvetica, Arial, sans-serif; */
   display: flex;
-  margin-top: -20px;
+  /* margin-top: -20px; */
   margin-right: 70px;
 }
 
