@@ -15,7 +15,7 @@ export class Navbar extends Component {
           <Link className='navbar-brand' to='#'>
             <img className='logo' alt='Instagram' src={logo} />
           </Link>
-          <div className='search' style={{display: "inline-block"}}>
+          <div className='search' style={{ display: "inline-block" }}>
             <span className='fa fa-search d-none d-xl-block'></span>
             <input
               className='d-none d-xl-block form-control   form-control-sm'
@@ -40,8 +40,42 @@ export class Navbar extends Component {
               </Link>
             </li>
             <li>
+              {/* Conditional rendering of dropdown -- on click to do in react*/}
               <Link to='#'>
-                <img className='avatar navbarIcon' src={avatar} alt='Avatar' />
+                <section className='avatar-wrapper'>
+                  <img
+                    className='avatar navbarIcon'
+                    src={avatar}
+                    alt='Avatar'
+                  />
+                  <div className='log-toolContainer'>
+                    <div className='log-popover'>
+                      <Link to='#'>
+                        <i
+                          className='fa fa-user-circle-o'
+                          aria-hidden='true'
+                          style={{ marginRight: "8px" }}
+                        ></i>
+                        Profile
+                      </Link>
+                      <Link to='#'>
+                        <i
+                          className='fa fa-bookmark-o'
+                          style={{ marginRight: "8px", marginBottom: "1px" }}
+                          aria-hidden='true'
+                        ></i>
+                        Saved
+                      </Link>
+                      <hr
+                        className='lineTopMargin'
+                        style={{ marginTop: "1px" }}
+                      />
+                      <Link to='#' style={{ marginTop: "-15px" }}>
+                        Log out
+                      </Link>
+                    </div>
+                  </div>
+                </section>
               </Link>
             </li>
           </ul>

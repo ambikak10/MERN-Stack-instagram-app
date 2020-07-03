@@ -10,68 +10,68 @@ export class profile extends Component {
       <div>
         {/* <Navbar /> */}
 
-        <div className='container'>
-          <div className='margin'>
+        <div className="container">
+          <div className="margin">
             <div>
-              <Link to=''>
+              <Link to="">
                 <img
-                  className='profile-photo'
-                  alt='profile-photo'
+                  className="profile-photo"
+                  alt="profile-photo"
                   src={avatar}
                 />
               </Link>
             </div>
-            <div className='d-flex flex-column space'>
-              <h2 className='HandleName'>
+            <div className="d-flex flex-column space">
+              <h2 className="HandleName">
                 HandleName
                 <span>
                   <input
-                    type='button'
-                    className='btn profileButton'
-                    value='Edit profile'
+                    type="button"
+                    className="btn profileButton"
+                    value="Edit profile"
                   />
                 </span>
               </h2>
-              <p className='textsize'>
+              <p className="textsize">
                 <span>
-                  <Link to='#'>
+                  <Link to="#">
                     <b>2</b> posts
                   </Link>
                   &nbsp; &nbsp; &nbsp;&nbsp;
-                  <Link to='#'>
+                  <Link to="#">
                     <b>200</b> followers
                   </Link>
                   &nbsp; &nbsp; &nbsp;
-                  <Link to='#'>
+                  <Link to="#">
                     <b>20</b> following
                   </Link>
                 </span>
               </p>
-              <p className='profileName'>
+              <p className="profileName">
                 <strong>username</strong>
               </p>
             </div>
           </div>
-          <hr className='horizontalLine' />
+          <hr className="horizontalLine" />
 
-          <div className='profileTabs icons'>
-            <Link to=''>
-              <i className='fa fa-picture-o' aria-hidden='true'>
+          <div className="profileTabs icons">
+            <Link to="">
+              <i className="fa fa-picture-o" aria-hidden="true">
                 <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
                   POSTS
                 </span>
               </i>
             </Link>
 
-            <Link to=''>
-              <i className='fa fa-bookmark-o' aria-hidden='true'>
+            <Link to="">
+              <i className="fa fa-bookmark-o" aria-hidden="true">
                 <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
                   SAVED
                 </span>
               </i>
             </Link>
-            <Link to=''>
-              <i className='far fa-user-circle' aria-hidden='true'>
+            <Link to="">
+              <i className="far fa-user-circle"aria-hidden="true">
                 <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
                   TAGGED
                 </span>
@@ -79,101 +79,101 @@ export class profile extends Component {
             </Link>
           </div>
 
-          <section className='row hover-effect'>
-            <div class='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
+          <section className="row hover-effect">
+            <div class="col-lg-4 col-md-6 col-xs-12 col-xxs-12">
               <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
                 <figure>
                   <img
-                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                    alt=''
+                    src="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg"
+                    alt=""
                   />
                 </figure>
               </Link>
             </div>
 
-            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+            <div className="col-lg-4 col-md-6 col-xs-12 col-xxs-12">
+              <Link to="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg">
                 <figure>
                   <img
-                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                    alt=''
+                    src="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg"
+                    alt=""
                   />
                 </figure>
               </Link>
             </div>
 
-            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+            <div className="col-lg-4 col-md-6 col-xs-12 col-xxs-12">
+              <Link to="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg">
                 <figure>
                   <img
-                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                    alt=''
+                    src="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg"
+                    alt=""
                   />
                 </figure>
               </Link>
             </div>
 
-            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+            <div className="col-lg-4 col-md-6 col-xs-12 col-xxs-12">
+              <Link to="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg">
                 <figure>
                   <img
-                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                    alt=''
+                    src="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg"
+                    alt=""
                   />
                 </figure>
               </Link>
             </div>
 
-            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
+            <div className="col-lg-4 col-md-6 col-xs-12 col-xxs-12">
               <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
                 <figure>
                   <img
-                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                    alt=''
+                    src="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg"
+                    alt=""
                   />
                 </figure>
               </Link>
             </div>
 
-            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+            <div className="col-lg-4 col-md-6 col-xs-12 col-xxs-12">
+              <Link to="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg">
                 <figure>
                   <img
-                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                    alt=''
+                    src="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg"
+                    alt=""
                   />
                 </figure>
               </Link>
             </div>
 
-            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+            <div className="col-lg-4 col-md-6 col-xs-12 col-xxs-12">
+              <Link to="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg">
                 <figure>
                   <img
-                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                    alt=''
+                    src="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg"
+                    alt=""
                   />
                 </figure>
               </Link>
             </div>
 
-            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+            <div className="col-lg-4 col-md-6 col-xs-12 col-xxs-12">
+              <Link to="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg">
                 <figure>
                   <img
-                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                    alt=''
+                    src="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg"
+                    alt=""
                   />
                 </figure>
               </Link>
             </div>
 
-            <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+            <div className="col-lg-4 col-md-6 col-xs-12 col-xxs-12">
+              <Link to="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg">
                 <figure>
                   <img
-                    src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                    alt=''
+                    src="https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg"
+                    alt=""
                   />
                 </figure>
               </Link>
