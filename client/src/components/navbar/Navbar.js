@@ -16,7 +16,7 @@ export class Navbar extends Component {
             <img className='logo' alt='Instagram' src={logo} />
           </Link>
           <div className='search' style={{display: "inline-block"}}>
-            <span class='fa fa-search d-none d-xl-block'></span>
+            <span className='fa fa-search d-none d-xl-block'></span>
             <input
               className='d-none d-xl-block form-control   form-control-sm'
               type='search'
