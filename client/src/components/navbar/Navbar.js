@@ -4,7 +4,7 @@ import logo from "../../img/logo.png";
 import avatar from "../../img/avatar.png";
 import { Link } from "react-router-dom";
 
-export class navbar extends Component {
+export class Navbar extends Component {
   render() {
     return (
       <nav className='navbar navbar-light navbar-expand-lg' style={{backgroundColor: "white", padding: "0px"}}>
@@ -53,4 +53,4 @@ export class navbar extends Component {
   }
 }
 
-export default navbar;
+export default Navbar;
