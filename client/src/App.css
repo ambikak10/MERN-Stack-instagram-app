@@ -1,4 +1,45 @@
 .App {
+  background-color: #fafafa;
+  justify-content: center;
+}
+.margin {
+  display: flex;
+  justify-content:center;
+  padding-top: 50px;
+  background-color: #fafafa;
+}
+.logo {
+  width: 70%;
+  /* margin-top: -60px; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px
+}
+.card {
+  height: 100%;
+}
+.card-body {
+  padding-top: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
+  width: 350px;
+  /* height: 500px; */
+}
+/* input {
+  border: 1px solid;
+  margin-top: 20px;
+} */
+#one {
+  width: 40%;
+  float: left;
+}
+#two {
+  width: 40%;
+  float: right;
+}
+#or {
+  margin-top: 30px;
   text-align: center;
 }
 
