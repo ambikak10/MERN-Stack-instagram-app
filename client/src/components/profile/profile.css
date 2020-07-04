@@ -92,34 +92,33 @@
   }
 } */
 
-/*media queries*/
+
+/******Media Queries*****/
+
 @media (max-width: 767px) {
 
-  .logo{
+  /* .logo{
     width:100px;
-  }
-  i {
-    font-size: 1.5em;
-    margin-top: 15px;
-    margin-right:2px;
-    
-  }
-  .avatar {
+  } */
+  /* i {
+    font-size: 0.9em;
+    margin-right:2px; 
+  } */
+  /* .avatar {
     width: 1.5em;
     margin-top: 22px; 
-  }
+  } */
   .profile-photo{
   margin-top: 30px; 
   margin-left: 60px;
   width: 180px;
   margin-right: 30px;
   }
-  .icons a i{
+  /* .icons a i{
   margin-right: 8px;
-  }
-  
-  .space h2{
-    font-size: 6vw;
+  } */
+  .space h2 {
+  font-size: 6vw;
   }
   .space input {
    margin-top: 10px;

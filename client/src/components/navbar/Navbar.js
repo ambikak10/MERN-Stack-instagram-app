@@ -13,7 +13,7 @@ export class Navbar extends Component {
       >
         <div className="container">
           <Link className="navbar-brand" to="#">
-            <img className="logo" alt="Instagram" src={logo} />
+            <img className="logo-navbar" alt="Instagram" src={logo} />
           </Link>
           <div
             className="search d-none d-xl-block d-lg-block d-md-block"
