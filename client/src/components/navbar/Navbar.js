@@ -4,57 +4,51 @@ import logo from "../../img/logo.png";
 import avatar from "../../img/avatar.png";
 import { Link } from "react-router-dom";
 
-export class navbar extends Component {
+export class Navbar extends Component {
   render() {
     return (
-      <div>
-        <div>
-          <nav className='navbar navbar-light bg-light navbar-expand-lg'>
-            <div className='container'>
-              <Link className='navbar-brand'to='#'>
-                <img
-                  className='logo'
-                  alt='Instagram'
-                  src={logo}
-                />
+      <nav
+        className='navbar navbar-light navbar-expand-lg'
+        style={{ backgroundColor: "white", padding: "0px" }}
+      >
+        <div className='container'>
+          <Link className='navbar-brand' to='#'>
+            <img className='logo' alt='Instagram' src={logo} />
+          </Link>
+          <div className='search' style={{display: "inline-block"}}>
+            <span className='fa fa-search d-none d-xl-block'></span>
+            <input
+              className='d-none d-xl-block form-control   form-control-sm'
+              type='search'
+              placeholder='Search..'
+            />
+          </div>
+          <ul style={{ marginTop: "auto", marginBottom: "auto" }}>
+            <li>
+              <Link to='#'>
+                <i className='fa fa-home navbarIcon' aria-hidden='true'></i>
               </Link>
-              <input
-                className='fad fa-search search d-none d-xl-block form-control   form-control-sm'
-                type='search'
-                placeholder='Search..'
-              />
-              <ul>
-                <li>
-                  <Link to='#'>
-                    <i className='fa fa-home navbarIcon' aria-hidden='true'></i>
-                  </Link>
-                </li>
-                <li>
-                  <Link to='#'>
-                    <i className='fa fa-compass navbarIcon' aria-hidden='true'></i>
-                  </Link>
-                </li>
-                <li>
-                  <Link to='#'>
-                    <i className='fa fa-heart-o navbarIcon' aria-hidden='true'></i>
-                  </Link>
-                </li>
-                <li>
-                  <Link to='#'>
-                    <img
-                      className='avatar'
-                      src={avatar}
-                      alt='Avatar'
-                    />
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </nav>
+            </li>
+            <li>
+              <Link to='#'>
+                <i className='fa fa-compass navbarIcon' aria-hidden='true'></i>
+              </Link>
+            </li>
+            <li>
+              <Link to='#'>
+                <i className='fa fa-heart-o navbarIcon' aria-hidden='true'></i>
+              </Link>
+            </li>
+            <li>
+              <Link to='#'>
+                <img className='avatar navbarIcon' src={avatar} alt='Avatar' />
+              </Link>
+            </li>
+          </ul>
         </div>
-      </div>
+      </nav>
     );
   }
 }
 
-export default navbar;
+export default Navbar;
