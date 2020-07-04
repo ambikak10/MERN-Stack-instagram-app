@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import "./navbar.css";
 import logo from "../../img/logo.png";
 import avatar from "../../img/avatar.png";
@@ -8,69 +8,69 @@ export class Navbar extends Component {
   render() {
     return (
       <nav
-        className='navbar navbar-light navbar-expand-lg'
+        className="navbar navbar-light navbar-expand-lg"
         style={{ backgroundColor: "white", padding: "0px" }}
       >
-        <div className='container'>
-          <Link className='navbar-brand' to='#'>
-            <img className='logo' alt='Instagram' src={logo} />
+        <div className="container">
+          <Link className="navbar-brand" to="#">
+            <img className="logo" alt="Instagram" src={logo} />
           </Link>
-          <div className='search' style={{ display: "inline-block" }}>
-            <span className='fa fa-search d-none d-xl-block'></span>
+          <div className="search" style={{ display: "inline-block" }}>
+            <span className="fa fa-search d-none d-xl-block"></span>
             <input
-              className='d-none d-xl-block form-control   form-control-sm'
-              type='search'
-              placeholder='Search..'
+              className="d-none d-xl-block form-control   form-control-sm"
+              type="search"
+              placeholder="Search.."
             />
           </div>
           <ul style={{ marginTop: "auto", marginBottom: "auto" }}>
             <li>
-              <Link to='#'>
-                <i className='fa fa-home navbarIcon' aria-hidden='true'></i>
+              <Link to="#">
+                <i className="fa fa-home navbarIcon" aria-hidden="true"></i>
               </Link>
             </li>
             <li>
-              <Link to='#'>
-                <i className='fa fa-compass navbarIcon' aria-hidden='true'></i>
+              <Link to="#">
+                <i className="fa fa-compass navbarIcon" aria-hidden="true"></i>
               </Link>
             </li>
             <li>
-              <Link to='#'>
-                <i className='fa fa-heart-o navbarIcon' aria-hidden='true'></i>
+              <Link to="#">
+                <i className="fa fa-heart-o navbarIcon" aria-hidden="true"></i>
               </Link>
             </li>
             <li>
               {/* Conditional rendering of dropdown -- on click to do in react*/}
-              <Link to='#'>
-                <section className='avatar-wrapper'>
+              <Link to="#">
+                <section className="avatar-wrapper">
                   <img
-                    className='avatar navbarIcon'
+                    className="avatar navbarIcon"
                     src={avatar}
-                    alt='Avatar'
+                    alt="Avatar"
                   />
-                  <div className='log-toolContainer'>
-                    <div className='log-popover'>
-                      <Link to='#'>
+                  <div className="log-toolContainer">
+                    <div className="log-popover">
+                      <Link to="#">
                         <i
-                          className='fa fa-user-circle-o'
-                          aria-hidden='true'
+                          className="fa fa-user"
+                          aria-hidden="true"
                           style={{ marginRight: "8px" }}
                         ></i>
                         Profile
                       </Link>
-                      <Link to='#'>
+                      <Link to="#">
                         <i
-                          className='fa fa-bookmark-o'
+                          className="fa fa-bookmark-o"
                           style={{ marginRight: "8px", marginBottom: "1px" }}
-                          aria-hidden='true'
+                          aria-hidden="true"
                         ></i>
                         Saved
                       </Link>
                       <hr
-                        className='lineTopMargin'
+                        className="lineTopMargin"
                         style={{ marginTop: "1px" }}
                       />
-                      <Link to='#' style={{ marginTop: "-15px" }}>
+                      <Link to="#" style={{ marginTop: "-15px" }}>
                         Log out
                       </Link>
                     </div>
