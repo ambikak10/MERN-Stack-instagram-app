@@ -15,10 +15,12 @@ export class Navbar extends Component {
           <Link className="navbar-brand" to="#">
             <img className="logo" alt="Instagram" src={logo} />
           </Link>
-          <div className="search" style={{ display: "inline-block" }}>
-            <span className="fa fa-search d-none d-xl-block"></span>
+          <div
+            className="search d-none d-xl-block d-lg-block d-md-block"
+          >
+            <span className="fa fa-search"></span>
             <input
-              className="d-none d-xl-block form-control   form-control-sm"
+              className="form-control form-control-sm"
               type="search"
               placeholder="Search.."
             />
