@@ -8,7 +8,7 @@ export class profile extends Component {
   render() {
     return (
       <div>
-        {/* <Navbar /> */}
+        <Navbar />
 
         <div className="container">
           <div className="margin">
