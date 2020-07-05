@@ -12,7 +12,7 @@
   right: 0;
   /* width: 100%; */
  }
- /* .child span {
+ .close {
   float: right;
  }
  .child button:focus {
@@ -21,7 +21,7 @@
  .child button {
   outline:none;
   background-color: white;
- } */
+ } 
 #parent {
   width: 1000px;
   height: 600px; 
@@ -180,10 +180,10 @@
 } 
 #wrapper {
   text-align: center;
-  margin-top: 30px;
+  margin-top: -20px;
 }
-#wrapper a {
-  margin: 10px;
+#wrapper Link {
+  margin: 0px;
 }
 #wrapper textarea{
   width: 400px;
@@ -192,7 +192,8 @@
 }
 .size-of-image {
   width: 90vw;
-  height: 600px;
+  height: 500px;
+  margin-left: 30px;
  }
 /* .delete-post i {
   float: center;

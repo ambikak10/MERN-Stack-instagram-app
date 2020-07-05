@@ -7,8 +7,8 @@ class post extends Component {
   render() {
     return (
       <div id='parent'>
-        <div class='child'>
-          <span><button><i class="fa fa-times" aria-hidden="true"></i></button></span>
+        <div className='child'>
+          <span class="close"><button><i class="fa fa-times" aria-hidden="true"></i></button></span>
           <div className='container-post'>
             <img
               className='size-of-image'
@@ -38,11 +38,11 @@ class post extends Component {
                   </div>
                   <div class='col-lg-10'>
                     <div id='col-space'>
-                      <a class='handlename-post' href=''>
+                      <Link class='handlename-post'to=''>
                         HandleName
-                      </a>
+                      </Link>
                       <span class='textStyle-comment'>
-                        &nbsp;Post description
+                        &nbsp; Post description
                       </span>
                     </div>
                   </div>
@@ -60,7 +60,7 @@ class post extends Component {
                         user1
                       </Link>
                       <span className='textStyle-comment'>
-                        &nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing
+                        &nbsp; Lorem ipsum dolor sit amet, consectetur adipiscing
                         elit, sed do eiusmod tempor incididunt ut labore et
                         dolore magna aliqua. Ut enim ad minim veniam, quis
                         nostrud exercitation ullamco laboris nisi ut aliquip ex
