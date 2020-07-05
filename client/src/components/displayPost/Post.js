@@ -6,13 +6,14 @@ import avatar from "../../img/avatar.png";
 class post extends Component {
   render() {
     return (
-      <html>
-        <body>
+      <div id='parent'>
+        <div class='child'>
+          <span><button><i class="fa fa-times" aria-hidden="true"></i></button></span>
           <div className='container-post'>
             <img
               className='size-of-image'
-              width='600'
-              height='600'
+              // width='600'
+              // height='600'
               src='https://images.unsplash.com/photo-1462216589242-9e3e00a47a48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=966&q=80'
             />
 
@@ -237,8 +238,8 @@ class post extends Component {
               <button className='post'>Post</button>
             </section>
           </div>
-        </body>
-      </html>
+        </div>
+      </div>
     );
   }
 }

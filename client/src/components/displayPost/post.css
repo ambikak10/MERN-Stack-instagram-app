@@ -1,13 +1,37 @@
-html, body {
+/* html, body {
   height: 100%;
   background-color: #f3f0f0;
-}
+} */
+.child {
+  height: 100%; 
+  position: absolute;
+  margin:auto; 
+  top: 0;
+  bottom:0;
+  left: 0;
+  right: 0;
+  /* width: 100%; */
+ }
+ /* .child span {
+  float: right;
+ }
+ .child button:focus {
+  outline: none;
+ }
+ .child button {
+  outline:none;
+  background-color: white;
+ } */
+#parent {
+  width: 1000px;
+  height: 600px; 
+} 
 .container-post {
   height:100%;
   display:flex;
   justify-content: center;
-  align-items: center;
-  position: relative;
+  align-items: center; 
+  position: relative; 
   z-index: 2;
 }
 .size-of-image {
@@ -107,20 +131,20 @@ html, body {
 .comment-wrapper section {
   margin-bottom: 10px;
 } */
-.post {
+ .post {
   display: inline;
   color: rgba(var(--d69,0,149,246),1);
   cursor: pointer;
   font-weight: 600;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,    Arial, sans-serif;
-  font-size: 14px;
-  background-color:  rgb(250, 248, 248);
+  font-size: 14px; 
+  /* background-color:  rgb(250, 248, 248); */
   border: none;
   position: relative;
   bottom: 30px;
   outline:none;
   background-color: white;
-} 
+}
 #footer button:focus {
   outline: none;
   color: rgb(50, 50, 243);
@@ -168,7 +192,7 @@ html, body {
 }
 .size-of-image {
   width: 90vw;
-  height: 500px;
+  height: 600px;
  }
 /* .delete-post i {
   float: center;
