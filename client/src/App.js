@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import Profile from "./components/profile/Profile";
 import EditProfile from "./components/profile/EditProfile";
+import Footer from "./components/footer/Footer";
 import Navbar from './components/navbar/Navbar';
 import Post from "./components/displayPost/Post";
 
