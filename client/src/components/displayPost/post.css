@@ -151,7 +151,7 @@ html, body {
   justify-content: flex-start;
   align-items: center;
   display: inline-block; 
-  margin-top: -80px;
+  /* margin-top: -80px; */
   margin-left: -60px;
 } 
 #wrapper {

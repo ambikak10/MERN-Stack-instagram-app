@@ -16,15 +16,11 @@ class post extends Component {
               src='https://images.unsplash.com/photo-1462216589242-9e3e00a47a48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=966&q=80'
             />
 
-            <div className='style'>
+            <div className='style d-none d-xl-block'>
               <Link to='#'>
                 <img className='avatar-icon' src={avatar} alt='Avatar' />
               </Link>
-              <Link
-                to=''
-                className='name-of-account'
-              
-              >
+              <Link to='' className='name-of-account'>
                 HandleName
               </Link>
               <hr style={{ marginBottom: "10px" }} />
@@ -63,7 +59,6 @@ class post extends Component {
                         user1
                       </Link>
                       <span className='textStyle-comment'>
-                       
                         &nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing
                         elit, sed do eiusmod tempor incididunt ut labore et
                         dolore magna aliqua. Ut enim ad minim veniam, quis
@@ -101,7 +96,6 @@ class post extends Component {
                         user2
                       </Link>
                       <span className='textStyle-comment'>
-                      
                         &nbsp; Lorem ipsum dolor sit amet, consectetur
                         adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -197,8 +191,8 @@ class post extends Component {
             <section className='section-only-mobile d-xl-none'>
               <Link to='' class='delete-post'>
                 <i
+                  style={{ fontSize: "1.5em" }}
                   className='fa fa-heart-o'
-                  class='delete-post'
                   aria-hidden='true'
                 ></i>
               </Link>
