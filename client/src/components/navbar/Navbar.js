@@ -12,12 +12,12 @@ export class Navbar extends Component {
         style={{ backgroundColor: "white", padding: "0px" }}
       >
         <div className="container">
-          <Link className="navbar-brand" to="#">
-            <img className="logo-navbar" alt="Instagram" src={logo} />
-          </Link>
-          <div
-            className="search d-none d-xl-block d-lg-block d-md-block"
-          >
+         
+            <Link className="navbar-brand" to="#">
+              <img className="logo-navbar" alt="Instagram" src={logo} />
+            </Link>
+        
+          <div className="search d-none d-xl-block d-lg-block d-md-block">
             <span className="fa fa-search"></span>
             <input
               className="form-control form-control-sm"
