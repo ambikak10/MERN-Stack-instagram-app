@@ -1,7 +1,8 @@
-/* html, body {
+html, body > #root > div {
   height: 100%;
-  background-color: #f3f0f0;
-} */
+  /* background-color: #f3f0f0; */
+  background-color: rgba(0,0,0,.5);
+}
 .child {
   height: 100%; 
   position: absolute;
@@ -10,22 +11,27 @@
   bottom:0;
   left: 0;
   right: 0;
-  /* width: 100%; */
+  /* width: 100%;*/
  }
- .close {
+ 
+ .close > button {
   float: right;
+  background-color: rgba(0,0,0,.5);
  }
- .child button:focus {
+ .close button {
   outline: none;
+  border: transparent;
+  color: white;
+  /* background-color: rgba(0,0,0,.5); */
  }
- .child button {
+ /* .child button {
   outline:none;
   background-color: white;
- } 
-#parent {
+ }  */
+/* #parent {
   width: 1000px;
-  height: 600px; 
-} 
+  height: 100%; 
+}  */
 .container-post {
   height:100%;
   display:flex;
@@ -171,19 +177,25 @@
  }
 }
 @media  (min-width: 300px) and (max-width: 700px) { 
+  html, body > #root > div {
+    background-color: white;
+  }
 .section-only-mobile {
   justify-content: flex-start;
   align-items: center;
   display: inline-block; 
   /* margin-top: -80px; */
   margin-left: -60px;
+
 } 
 #wrapper {
   text-align: center;
-  margin-top: -20px;
+  margin-top: 20px;
+  /* height: 100%;
+  background-color: rgba(0,0,0,.5); */
 }
-#wrapper Link {
-  margin: 0px;
+#wrapper i {
+  margin: 10px;
 }
 #wrapper textarea{
   width: 400px;
