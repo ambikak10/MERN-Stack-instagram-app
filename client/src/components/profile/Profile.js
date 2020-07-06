@@ -9,7 +9,7 @@ export class profile extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
 
         <div className='container'>
           <div className='margin'>
@@ -26,11 +26,11 @@ export class profile extends Component {
               <h2 className='HandleName'>
                 HandleName
                 <span>
-                  <input
+                  <Link
+                    to="/edit-profile"
                     type='button'
                     className='btn profileButton'
-                    value='Edit profile'
-                  />
+                  >Edit profile</Link>
                 </span>
               </h2>
               <p className='textsize'>
@@ -181,7 +181,7 @@ export class profile extends Component {
             </div>
           </section>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

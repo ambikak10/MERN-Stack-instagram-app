@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import avatar from "../../img/avatar.png";
+import { Link } from "react-router-dom";
 
 class EditProfile extends Component {
 
   render() {
     return (
       <div style={{width: "70%", paddingTop: "30px", marginLeft: "auto", marginRight: "auto"}}>
-        <div className="card">
+        <div className="card" style={{width: "100%", height: "100%"}}>
           <div className='card-body' style={{width: "70%", marginLeft: "auto", marginRight: "auto"}}>
             <h3>Edit Profile</h3>
             <hr style={{marginBottom: "20px"}}/>
@@ -70,7 +71,7 @@ class EditProfile extends Component {
                 <label className="col-lg-3 col-form-label">Twitter</label>
                 <div className="input-group col-lg-9" style={{paddingRight: "0px", paddingLeft: "0px"}}>
                   <div className="input-group-prepend">
-                    <span className="input-group-text">
+                    <span className="input-group-text" style={{height: "30px"}}>
                       <i className="fab fa-twitter"></i>
                     </span>
                   </div>
@@ -82,7 +83,7 @@ class EditProfile extends Component {
                 <label className="col-lg-3 col-form-label">Facebook</label>
                 <div className="input-group col-lg-9" style={{paddingRight: "0px", paddingLeft: "0px"}}>
                   <div className="input-group-prepend">
-                    <span className="input-group-text">
+                    <span className="input-group-text" style={{height: "30px"}}>
                       <i className="fab fa-facebook"></i>
                     </span>
                   </div>
@@ -94,7 +95,7 @@ class EditProfile extends Component {
                 <label className="col-lg-3 col-form-label">Youtube</label>
                 <div className="input-group col-lg-9" style={{paddingRight: "0px", paddingLeft: "0px"}}>
                   <div className="input-group-prepend">
-                    <span className="input-group-text">
+                    <span className="input-group-text" style={{height: "30px"}}>
                       <i className="fab fa-youtube"></i>
                     </span>
                   </div>
@@ -108,7 +109,7 @@ class EditProfile extends Component {
                     className='btn btn-primary'
                     style={{marginRight: "10px"}}
                   />
-                <button className="btn btn-secondary">Cancel</button>
+                <Link to="/profile" className="btn btn-secondary">Cancel</Link>
               </div>
             </form>
           </div>

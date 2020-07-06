@@ -111,6 +111,10 @@
   top: 100%;
   left: 0;
   transform: translateX(calc(-50% + 25.5px));
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
 }
   .avatar-wrapper {
   padding-right: 45px;
