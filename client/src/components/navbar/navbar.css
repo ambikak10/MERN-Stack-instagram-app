@@ -37,7 +37,7 @@
   /* margin-top: 8px;
   margin-left: 4px; */ 
 }
-.log-popover {
+/* .log-popover {
   visibility: visible;
   z-index: 460;
   display: block;
@@ -87,7 +87,7 @@
   height: 0;
   width: 0;
   position: absolute;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .log-popover:after {
@@ -119,14 +119,14 @@
   .avatar-wrapper {
   padding-right: 45px;
   position: relative;
-}
+} */
 
 /******Media Queries*****/
 
 @media (max-width: 767px) {
 .navbarIcon {
   width: 1.5em;
-  margin-top: 23px; 
+  margin-top: 10px; 
   }
   .avatar {
   font-size: 1.1em;
