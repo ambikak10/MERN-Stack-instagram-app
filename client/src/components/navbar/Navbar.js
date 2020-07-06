@@ -41,18 +41,23 @@ export class Navbar extends Component {
               </Link>
             </li>
 
-            {/* to be shown only once the user logs In */}
             <li>
+              <Link to='/profile'>
+                <img className='avatar navbarIcon' src={avatar} alt='Avatar' />
+              </Link>
+            </li>
+
+            {/* to be shown only once the user logs In */}
+            <li style={{marginTop: "10px"}}>
               <Link
                 to='/'
-                style={{
-                  fontSize: "0.9em",
-                  fontFamily: "sans-serif",
-                  color: "black",
-                }}
+                // style={{
+                //   fontSize: "0.9em",
+                //   fontFamily: "sans-serif",
+                //   color: "black",
+                // }}
               >
-                <img className='avatar navbarIcon' src={avatar} alt='Avatar' />
-                <span style={{marginLeft:"-10px"}}>Log out</span>
+                <span className="navbarIcon" style={{fontSize: "0.9em"}}>Log out</span>
               </Link>
             </li>
           </ul>
