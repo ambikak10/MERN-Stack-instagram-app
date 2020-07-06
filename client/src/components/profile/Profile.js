@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import avatar from "../../img/avatar.png";
 import "./profile.css";
+import Footer from "../../components/footer/Footer";
 
 export class profile extends Component {
   render() {
     return (
       <div>
-        {/* <Navbar /> */}
+        <Navbar />
 
         <div className='container'>
           <div className='margin'>
@@ -178,10 +179,10 @@ export class profile extends Component {
                 </figure>
               </Link>
             </div>
-            </section>
-          </div>
+          </section>
         </div>
-      
+        <Footer />
+      </div>
     );
   }
 }

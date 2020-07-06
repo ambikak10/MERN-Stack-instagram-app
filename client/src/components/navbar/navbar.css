@@ -1,13 +1,13 @@
 .navbar {
-border-bottom: 1px solid rgb(236, 234, 234);
+  border-bottom: 1px solid rgb(236, 234, 234);
 }
 
-.logo {
+.logo-navbar {
   width: 120px;
   margin: auto;
 }
 
-ul {
+.navbar ul {
   display: flex;
   list-style: none;
 }
@@ -19,7 +19,7 @@ ul {
   font-size: 1.5em;
   
 }
-.search{
+.search {
   width:200px;
   margin: auto;
   position: relative;
@@ -35,16 +35,99 @@ ul {
   border-radius: 50%;
   width: 25px;
   /* margin-top: 8px;
-  margin-left: 4px; */
-  
+  margin-left: 4px; */ 
 }
-@media (max-width: 767px) {
+.log-popover {
+  visibility: visible;
+  z-index: 460;
+  display: block;
+  overflow: visible;
+  top: 121px;
+  left: 375.063px;
+  bottom: 10px;
+  transition: opacity 0.2s linear;
+  color: #333333;
+  min-width: 130px;
+  box-sizing: border-box;
+  outline: none;
+  max-width: 100%;
+  max-height: 120px;
+  min-height: 2rem;
+  overflow: hidden;
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 0.625rem 1.875rem 0 rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+}
 
-  .navbarIcon {
-    width: 1.5em;
-    margin-top: 23px; 
+.log-popover a {
+  color: black;
+  padding: 6px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.log-popover a:hover {
+  background-color: #f0f0f0;
+}
+
+.log-popover a:active,
+.log-popover a:focus {
+  background: #e8eff6;
+  outline: 1px dotted #000000;
+  outline-offset: -2px;
+}
+
+.log-popover:after,
+.log-popover:before {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.log-popover:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-bottom-color: #fff;
+  border-width: 10px;
+  margin-left: -10px;
+}
+
+.log-popover:before {
+  border-color: rgba(51, 51, 51, 0);
+  border-bottom-color: #333333;
+  border-width: 11px;
+  margin-left: -11px;
+}
+
+.log-toolContainer {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  transform: translateX(calc(-50% + 25.5px));
+}
+  .avatar-wrapper {
+  padding-right: 45px;
+  position: relative;
+}
+
+/******Media Queries*****/
+
+@media (max-width: 767px) {
+.navbarIcon {
+  width: 1.5em;
+  margin-top: 23px; 
   }
-  .avatar{
+  .avatar {
   font-size: 1.1em;
  }
+  /* .search {
+   display: inline-block;
+  } */
 }
