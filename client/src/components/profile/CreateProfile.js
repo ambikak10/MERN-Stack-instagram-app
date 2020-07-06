@@ -1,24 +1,16 @@
 import React, { Component } from 'react'
-import avatar from "../../img/avatar.png";
 import { Link } from "react-router-dom";
 
-class EditProfile extends Component {
+class CreateProfile extends Component {
 
   render() {
     return (
       <div className="profile-form-container">
         <div className="card profile-form-card">
           <div className='card-body profile-form-card-body'>
-            <h3>Edit Profile</h3>
+            <h3>Create Profile</h3>
             <hr className="profile-form-horizontal-line"/>
 
-            <div className="row" style={{marginBottom: "20px"}}>
-              <div className="col-lg-3">
-                <img className="rounded-circle" src={avatar} alt="avatar" style={{width: "50px"}} />
-              </div>
-              <h6 className="col-lg-9" style={{paddingLeft: "0"}}>HandleName</h6>
-            </div>
-            
             <form action=''>
               <div className='form-group row'>
                 <label className="col-lg-3 col-form-label">Username</label>
@@ -102,7 +94,7 @@ class EditProfile extends Component {
                   <input type="text" className="form-control" placeholder="YouTube URL" name="youtube" />
                 </div>
               </div>
-
+              
               <div style={{marginTop: "30px"}}>
                 <input
                     type='submit'
@@ -110,7 +102,7 @@ class EditProfile extends Component {
                     className='btn btn-primary'
                     style={{marginRight: "10px"}}
                   />
-                <Link to="/profile" className="btn btn-secondary">Cancel</Link>
+                <Link to="" className="btn btn-secondary">Cancel</Link>
               </div>
             </form>
           </div>
@@ -120,4 +112,4 @@ class EditProfile extends Component {
   }
 }
 
-export default EditProfile;
+export default CreateProfile;
