@@ -4,7 +4,8 @@
 }
 .margin { 
   margin-top: 50px; 
-  justify-content:center;  
+  justify-content:center;
+  display: flex;
   }
 
 .mobile{
@@ -91,6 +92,13 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+a:active {
+  opacity: .5;
 }
 
 @media (prefers-reduced-motion: no-preference) {

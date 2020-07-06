@@ -43,14 +43,14 @@ export class Navbar extends Component {
             </li>
             <li>
               {/* Conditional rendering of dropdown -- on click to do in react*/}
-              <Link to="#">
-                <section className="avatar-wrapper">
+              <div className="dropdown">
+                <section className="avatar-wrapper dropdown-toggle" id="profileDropDownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <img
                     className="avatar navbarIcon"
                     src={avatar}
                     alt="Avatar"
                   />
-                  <div className="log-toolContainer">
+                  <div className="log-toolContainer dropdown-menu" aria-labelledby="profileDropDownMenu">
                     <div className="log-popover">
                       <Link to="#">
                         <i
@@ -78,7 +78,7 @@ export class Navbar extends Component {
                     </div>
                   </div>
                 </section>
-              </Link>
+              </div>
             </li>
           </ul>
         </div>

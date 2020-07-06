@@ -15,13 +15,13 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-          {/* <Navbar /> */}
+          <Navbar />
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/' component={Login} />
           <Route exact path='/profile' component={Profile} />
           <Route exact path='/edit-profile' component={EditProfile} />
           <Route exact path='/post' component={Post} />
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </Router>
     );

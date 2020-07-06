@@ -188,9 +188,10 @@ class post extends Component {
                       ></i>
                     </Link>
 
-                    <p className="textStyle-date">
-                      MARCH 24 &nbsp; <span>21 Likes</span>
-                    </p>
+                    <div className="textStyle-date">
+                      <div style={{fontWeight: "600", fontSize: "1.4em", color: "black"}}>21 Likes</div>
+                      <div>MARCH 24</div>
+                    </div>
                   </section>
                   <hr />
                   <textarea
