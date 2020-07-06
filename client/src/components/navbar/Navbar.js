@@ -12,7 +12,7 @@ export class Navbar extends Component {
         style={{ backgroundColor: "white", padding: "0px" }}
       >
         <div className='container'>
-          <Link className='navbar-brand' to='#'>
+          <Link className='navbar-brand' to=''>
             <img className='logo-navbar' alt='Instagram' src={logo} />
           </Link>
 
@@ -40,16 +40,21 @@ export class Navbar extends Component {
                 <i className='fa fa-heart-o navbarIcon' aria-hidden='true'></i>
               </Link>
             </li>
+
+            {/* to be shown only once the user logs In */}
             <li>
-              <li>
-                <Link to='#'>
-                  <img
-                    className='avatar navbarIcon'
-                    src={avatar}
-                    alt='Avatar'
-                  />
-                </Link>
-              </li>
+              <Link
+                to='/'
+                style={{
+                  fontSize: "0.9em",
+                  fontFamily: "sans-serif",
+                  color: "black",
+                }}
+              >
+                {" "}
+                <img className='avatar navbarIcon' src={avatar} alt='Avatar' />
+                <span style={{marginLeft:"-10px"}}>Log out</span>
+              </Link>
             </li>
           </ul>
         </div>
