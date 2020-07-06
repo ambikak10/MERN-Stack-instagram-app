@@ -51,7 +51,6 @@ export class Navbar extends Component {
                   color: "black",
                 }}
               >
-                {" "}
                 <img className='avatar navbarIcon' src={avatar} alt='Avatar' />
                 <span style={{marginLeft:"-10px"}}>Log out</span>
               </Link>
