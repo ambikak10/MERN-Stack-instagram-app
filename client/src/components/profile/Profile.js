@@ -82,7 +82,7 @@ export class profile extends Component {
 
           <section className='row hover-effect'>
             <div class='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-              <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
+              <Link to='/post'>
                 <figure>
                   <img
                     src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
