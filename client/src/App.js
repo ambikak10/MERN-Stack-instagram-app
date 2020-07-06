@@ -9,6 +9,7 @@ import Footer from "./components/footer/Footer";
 import Navbar from './components/navbar/Navbar';
 import Post from "./components/displayPost/Post";
 import CreateProfile from "./components/profile/CreateProfile";
+import CreatePost from "./components/displayPost/CreatePost";
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
           <Route exact path='/edit-profile' component={EditProfile} />
           <Route exact path='/post' component={Post} />
           <Route exact path='/create-profile' component={CreateProfile} />
+          <Route exact path='/create-post' component={CreatePost} />
           <Footer />
         </div>
       </Router>
