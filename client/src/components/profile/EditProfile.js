@@ -23,7 +23,7 @@ class EditProfile extends Component {
               <div className='form-group row'>
                 <label className="col-lg-3 col-form-label">Username</label>
                 <input
-                  type='username'
+                  type='text'
                   className='form-control col-lg-9'
                   name='username'
                 />
@@ -32,7 +32,7 @@ class EditProfile extends Component {
               <div className='form-group row'>
                 <label className="col-lg-3 col-form-label">Website</label>
                 <input
-                  type='website'
+                  type='text'
                   className='form-control col-lg-9'
                   name='website'
                 />
@@ -41,7 +41,7 @@ class EditProfile extends Component {
               <div className='form-group row'>
                 <label className="col-lg-3 col-form-label">Bio</label>
                 <textarea
-                  type='bio'
+                  type='text'
                   className='form-control col-lg-9'
                   name='bio'
                 />
@@ -50,7 +50,7 @@ class EditProfile extends Component {
               <div className='form-group row'>
                 <label className="col-lg-3 col-form-label">Phone</label>
                 <input
-                  type='phone'
+                  type='number'
                   className='form-control col-lg-9'
                   name='phone'
                 />
@@ -59,7 +59,7 @@ class EditProfile extends Component {
               <div className='form-group row'>
                 <label className="col-lg-3 col-form-label">Gender</label>
                 <input
-                  type='gender'
+                  type='text'
                   className='form-control col-lg-9'
                   name='gender'
                 />
