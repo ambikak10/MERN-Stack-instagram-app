@@ -1,4 +1,3 @@
-
 .profile-photo {
  border-radius: 50%;
  width: 150px;
@@ -28,18 +27,16 @@
 .textsize a{
   font-size:18px;
   color: black;
- 
 }
 .textsize a:hover{
   background: transparent;
 }
 .profileName {
   font-size: 18px; 
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  
+  font-family: Roboto, Helvetica, Arial, sans-serif;  
 }
 .horizontalLine {
-  margin-top: 55px;
+  margin-top: 100px;
   color: #dbdbdb;
 }
 .icons i{
@@ -50,8 +47,24 @@
   /* margin-top: -20px; */
   margin-right: 70px;
 }
-
-
+.fa-facebook-square {
+  color: #3b5998;
+  font-size: 1.5em;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+.fa-youtube-play {
+  font-size: 1.5em;
+  margin-top: 10px;
+  margin-right: 20px;
+  color: #ff0000;
+}
+.fa-twitter {
+  font-size: 1.5em;
+  margin-top: 10px;
+  margin-right: 20px;
+  color: #00acee;
+}
 /* .img-grid {
   font-size: 0;
 }

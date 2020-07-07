@@ -27,10 +27,12 @@ export class profile extends Component {
                 HandleName
                 <span>
                   <Link
-                    to="/edit-profile"
+                    to='/edit-profile'
                     type='button'
                     className='btn profileButton'
-                  >Edit profile</Link>
+                  >
+                    Edit profile
+                  </Link>
                 </span>
               </h2>
               <p className='textsize'>
@@ -51,6 +53,33 @@ export class profile extends Component {
               <p className='profileName'>
                 <strong>username</strong>
               </p>
+              <br />
+              {/* rendered only if user has information */}
+
+              <div style={{ wordBreak: "break-all", marginTop: "-40px" }}>
+                developer developer developer developer developer
+              </div>
+              <span>
+                <Link
+                  to='https://www.youtube.com/'
+                  style={{ color: "rgba(var(--fe0,0,55,107),1)" }}
+                >
+                  https://www.youtube.com/
+                </Link>
+              </span>
+
+              {/* Social network Links */}
+              <span>
+                <Link to="user's facebook link from API">
+                  <i class='fa fa-facebook-square'></i>
+                </Link>
+                <Link to="user's youtube link from API">
+                  <i class='fa fa-youtube-play youtube' aria-hidden='true'></i>
+                </Link>
+                <Link to="user's twitter link from API">
+                  <i class='fa fa-twitter' aria-hidden='true'></i>
+                </Link>
+              </span>
             </div>
           </div>
           <hr className='horizontalLine' />
