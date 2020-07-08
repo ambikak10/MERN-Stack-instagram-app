@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import logo from '../../img/logo.png';
+import logo from "../../img/logo.png";
 import mobile from "../../img/mobile.png";
 import Footer from "../../components/footer/Footer";
-
 
 class Login extends Component {
   render() {

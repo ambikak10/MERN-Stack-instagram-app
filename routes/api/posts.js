@@ -168,10 +168,16 @@ router.post(
       post.tag.unshift({ user: req.params.user_id });
       post.save().then(post => res.json(post));
       Profile.findOne({ user: req.params.user_id }).then(othersProfile => {
-        othersProfile.tagged.unshift({ postId: req.params.post_id });
+        const taggedPost = {
+          image: post.image,
+          postId: req.params.post_id
+        }; 
+      //  console.log(post.image);
+        // othersProfile.tagged.unshift({ postId: req.params.post_id });
+        othersProfile.tagged.unshift(taggedPost);
         othersProfile.save().then(() => {
-          //  res.json({ msg: 'success' });
-          console.log(othersProfile);
+           res.json({ msg: 'success' });
+          // console.log(othersProfile);
         });
       });
     }).catch((err) =>
@@ -208,7 +214,7 @@ router.post('/:post_id/untag/:user_id', passport.authenticate("jwt", { session: 
 router.get("/user/tagged",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    console.log(req.user.id);
+    // console.log(req.user.id);
     Profile.findOne({user: req.user.id})
       .populate({
         path: "tagged",

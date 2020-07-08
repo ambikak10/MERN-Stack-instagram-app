@@ -125,11 +125,11 @@
 
 @media (max-width: 767px) {
 .navbarIcon {
-  width: 1.5em;
+  width: 0.5em;
   margin-top: 10px; 
   }
   .avatar {
-  font-size: 1.1em;
+  font-size: 3.2em;
  }
   /* .search {
    display: inline-block;
