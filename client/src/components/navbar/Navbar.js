@@ -31,7 +31,7 @@ export class Navbar extends Component {
               </Link>
             </li>
             <li>
-              <Link to='#'>
+              <Link to='/explore'>
                 <i className='fa fa-compass navbarIcon' aria-hidden='true'></i>
               </Link>
             </li>

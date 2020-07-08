@@ -116,6 +116,41 @@
 .profile-form-input-group-text {
   height: 30px;
 }
+.profile-card-outer {
+  width: 120px; 
+  height: 180px; 
+  align-items: center; 
+  margin-right: 1em; 
+  margin-top: 1em;
+}
+.profile-card-avatar {
+  padding: 3px;
+  border: 0.5px solid #dbdbdb;
+  width: 87px;
+}
+.profile-card-button-follow {
+  background-color: #0095f6;
+  color: white;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+.profile-card-button-unfollow {
+  background-color: lightgrey;
+  color: black;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+.profile-card-card-footer {
+  padding: .75rem 1.25rem;
+}
+.profile-card-truncate-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  text-align: center;
+}
 
 /******Media Queries*****/
 

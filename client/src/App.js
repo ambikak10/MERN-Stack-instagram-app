@@ -10,6 +10,7 @@ import Navbar from './components/navbar/Navbar';
 import Post from "./components/displayPost/Post";
 import CreateProfile from "./components/profile/CreateProfile";
 import CreatePost from "./components/displayPost/CreatePost";
+import Profiles from "./components/profile/Profiles";
 
 class App extends Component {
   render() {
@@ -25,6 +26,7 @@ class App extends Component {
           <Route exact path='/post' component={Post} />
           <Route exact path='/create-profile' component={CreateProfile} />
           <Route exact path='/create-post' component={CreatePost} />
+          <Route exact path='/explore' component={Profiles}/>
           <Footer />
         </div>
       </Router>
