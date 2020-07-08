@@ -148,7 +148,7 @@
   font-weight: 500;
 }
 .profile-card-button-unfollow {
-  background-color: lightgrey;
+  border: 0.5px solid #dbdbdb;
   color: black;
   font-size: 0.9em;
   font-weight: 500;
