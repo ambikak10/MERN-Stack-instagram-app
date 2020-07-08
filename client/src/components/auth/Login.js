@@ -1,21 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import logo from '../../img/logo.png';
+import logo from "../../img/logo.png";
 import mobile from "../../img/mobile.png";
 import Footer from "../../components/footer/Footer";
-
 
 class Login extends Component {
   render() {
     return (
       <div className='margin'>
-        <img
-          className='mobile d-none d-xl-block d-lg-block d-md-block'
-          src={mobile}
-        />
+        <img className='mobile' src={mobile} />
         <div className='d-flex flex-column'>
-          <div className='card' id='loginCard'>
-            <div className='card-body' id='loginCardBody'>
+          <div className='card'>
+            <div className='card-body'>
               <img className='logo' src={logo} alt='instagram' />
               <br />
               <br />
@@ -24,14 +20,12 @@ class Login extends Component {
                   <input
                     type='email'
                     className='form-control'
-                    id='loginFormControl'
                     placeholder='Email'
                     name='email'
                   />
                   <input
                     type='password'
                     className='form-control'
-                    id='loginFormControl'
                     placeholder='Password'
                     name='password'
                   />
@@ -40,7 +34,7 @@ class Login extends Component {
               </form>
               <div id='or'>
                 <hr id='one' />
-                <span style={{margin: "10px"}}>OR</span>
+                <span>OR</span>
                 <hr id='two' />
               </div>
               <p className='more-info'>
