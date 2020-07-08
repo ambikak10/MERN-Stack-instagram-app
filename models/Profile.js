@@ -67,8 +67,11 @@ const ProfileSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "post",
       },
-    },
-  ],
+      image: {
+        type: String
+      }
+    }
+  ]
 });
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

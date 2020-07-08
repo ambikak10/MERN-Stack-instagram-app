@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./navbar.css";
 import logo from "../../img/logo.png";
 import avatar from "../../img/avatar.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 export class Navbar extends Component {
   render() {

@@ -207,7 +207,7 @@ class post extends Component {
             </div>
           </div>
 
-          {/* section only for mobiles - to be rendered conditionally*/}
+          {/* section only for mobiles*/}
 
           <div id='wrapper'>
             <section className='section-only-mobile d-xl-none'>
