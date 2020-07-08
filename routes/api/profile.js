@@ -189,6 +189,41 @@ router.get("/user/:user_id", (req, res) => {
 // @route   POST api/profile/follow/:profile_id
 // @desc    Follow profile
 // @access  Private
+// router.post(
+//   "/follow/:profile_id",
+//   passport.authenticate("jwt", { session: false }),
+//   (req, res) => {
+//     Profile.findById(req.params.profile_id)
+//         .then((profile) => {
+//           if (
+//             profile.followers.filter((follow) => follow.user.toString() === req.user.id)
+//               .length > 0
+//           ) {
+//             return res
+//               .status(400)
+//               .json({ alreadyfollowed: "User already follows this profile" });
+//           }
+//          // Add user id to followers array
+//           profile.followers.unshift({ user: req.user.id });
+//           profile.save();
+//           // .then((profile) => res.json(profile)); sending res.json more than once resulted in error 'http headers are already written to the client browser' in terminal, hence removed and added at the end.
+
+//           //Find your profile
+//           Profile.findOne({ user: req.user.id }).then(myProfile => {
+//           myProfile.following.unshift({ user: profile.user }); //add user id of the person you are following to your following list.
+//           myProfile.save().then(myProfile => res.json([{ following: myProfile.following }, { followers: profile.followers }]));
+//         })
+//         .catch((err) =>
+//           res.status(404).json({ profilenotfound: "No profile found" })
+//         );
+//     });
+//   }
+// );
+
+
+// @route   POST api/profile/follow/:profile_id
+// @desc    Follow profile
+// @access  Private
 router.post(
   "/follow/:profile_id",
   passport.authenticate("jwt", { session: false }),
@@ -203,19 +238,42 @@ router.post(
               .status(400)
               .json({ alreadyfollowed: "User already follows this profile" });
           }
-         // Add user id to followers array
-          profile.followers.unshift({ user: req.user.id });
+         
+     
+          const newFollower = {
+            user: req.user.id,
+            name: req.user.name,
+            avatar: req.user.avatar
+          };
+          profile.followers.unshift(newFollower);
           profile.save();
           // .then((profile) => res.json(profile)); sending res.json more than once resulted in error 'http headers are already written to the client browser' in terminal, hence removed and added at the end.
-
-          //Find your profile
-          Profile.findOne({ user: req.user.id }).then(myProfile => {
-          myProfile.following.unshift({ user: profile.user }); //add user id of the person you are following to your following list.
-          myProfile.save().then(myProfile => res.json([{ following: myProfile.following }, { followers: profile.followers }]));
-        })
-        .catch((err) =>
-          res.status(404).json({ profilenotfound: "No profile found" })
-        );
+  
+     
+        User.findById(profile.user)
+          .then((otherUser) => {
+              Profile.findOne({ user: req.user.id }).then((myProfile) => {
+                
+                const newFollow = {
+                  user: profile.user,
+                  name: otherUser.name,
+                  avatar: otherUser.avatar
+                };
+                myProfile.following.unshift(newFollow); //add user id, name and avatar of the person you are following to your following list.
+                myProfile
+                  .save()
+                  .then((myProfile) =>
+                    res.json([
+                      { following: myProfile.following },
+                      { followers: profile.followers },
+                    ])
+                  );
+              });
+            })
+            .catch((err) => {
+            console.log(err);
+              res.status(404).json({ profilenotfound: "No profile found" })
+            });
     });
   }
 );

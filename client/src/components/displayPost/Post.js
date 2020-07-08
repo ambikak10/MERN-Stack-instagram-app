@@ -8,13 +8,12 @@ class post extends Component {
     return (
       <div className='parent'>
         <div className='child'>
-       
-            <span class='close'>
-              <button>
-                <i class='fa fa-times' aria-hidden='true'></i>
-              </button>
-            </span>
-         
+          <span class='close'>
+            <button>
+              <i class='fa fa-times' aria-hidden='true'></i>
+            </button>
+          </span>
+
           <div className='container-post'>
             <img
               className='size-of-image'
@@ -161,6 +160,13 @@ class post extends Component {
                       aria-hidden='true'
                     ></i>
                   </Link>
+                  <Link to='' class='delete-post'>
+                    <i
+                      style={{ fontSize: "1.5em" }}
+                      className='fa fa-bookmark-o'
+                      aria-hidden='true'
+                    ></i>
+                  </Link>
 
                   {/* delete post */}
                   <Link to='' className='delete-post'>
@@ -201,7 +207,7 @@ class post extends Component {
             </div>
           </div>
 
-          {/* section only for mobiles - to be rendered conditionally*/}
+          {/* section only for mobiles*/}
 
           <div id='wrapper'>
             <section className='section-only-mobile d-xl-none'>
@@ -224,6 +230,13 @@ class post extends Component {
                 <i
                   style={{ fontSize: "1.5em" }}
                   className='far fa-user-circle'
+                  aria-hidden='true'
+                ></i>
+              </Link>
+              <Link to='' class='delete-post'>
+                <i
+                  style={{ fontSize: "1.5em" }}
+                  className='fa fa-bookmark-o'
                   aria-hidden='true'
                 ></i>
               </Link>

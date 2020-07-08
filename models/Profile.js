@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const ProfileSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: "users",
   },
   handle: {
     type: String,
-    required: true
+    required: true,
   },
   gender: {
     type: String,
@@ -17,16 +17,22 @@ const ProfileSchema = new Schema({
     type: String,
   },
   bio: {
-    type: String
+    type: String,
   },
   website: {
-    type: String
+    type: String,
   },
   following: [
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: 'users'
+        ref: "users",
+      },
+      name: {
+        type: String,
+      },
+      avatar: {
+        type: String,
       }
     }
   ],
@@ -34,26 +40,35 @@ const ProfileSchema = new Schema({
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: 'users'
+        ref: "users",
+      },
+      name: {
+        type: String,
+      },
+      avatar: {
+        type: String,
       }
     }
   ],
   social: {
     youtube: {
-      type: String
+      type: String,
     },
     twitter: {
-      type: String
+      type: String,
     },
     facebook: {
-      type: String
-    }
+      type: String,
+    },
   },
   tagged: [
     {
       postId: {
         type: Schema.Types.ObjectId,
-        ref: "post"
+        ref: "post",
+      },
+      image: {
+        type: String
       }
     }
   ]
