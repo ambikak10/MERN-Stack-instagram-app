@@ -77,7 +77,7 @@ export class profile extends Component {
                   <i class='fa fa-youtube-play youtube' aria-hidden='true'></i>
                 </Link>
                 <Link to="user's twitter link from API">
-                  <i class='fa fa-twitter' aria-hidden='true'></i>
+                  <i class='fa fa-twitter twitter' aria-hidden='true'></i>
                 </Link>
               </span>
             </div>
