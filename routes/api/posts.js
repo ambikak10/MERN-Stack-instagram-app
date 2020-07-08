@@ -176,7 +176,7 @@ router.post(
         // othersProfile.tagged.unshift({ postId: req.params.post_id });
         othersProfile.tagged.unshift(taggedPost);
         othersProfile.save().then(() => {
-          //  res.json({ msg: 'success' });
+           res.json({ msg: 'success' });
           // console.log(othersProfile);
         });
       });
