@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import defaultImage from "../../img/defaultImage.jpg";
 
 class CreatePost extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class CreatePost extends Component {
           <div className="col-md-4 col-sm-12 d-flex flex-column">
             <input type="file" onChange={this.uploadImage} style={{marginBottom: "20px", marginTop: "10px"}}/>
             <img src={this.state.image} style={{width: "100%"}}/>
-            {this.state.showDefault && <div className="create-post-default-image-style"></div>}
+            {this.state.showDefault && <img src={defaultImage} className="create-post-default-image-style" alt="default image"/>}
           </div>
           <div className="d-flex flex-column col-md-8 col-sm-12">
             <p style={{fontSize: "1.75rem"}}>Create New Post</p>
@@ -49,7 +50,7 @@ class CreatePost extends Component {
                     className='btn btn-primary'
                     style={{marginRight: "10px"}}
                   />
-                <Link to="" className="btn btn-secondary">Cancel</Link>
+                <Link to="/profile" className="btn btn-secondary">Cancel</Link>
               </div>
             </form>
           </div>
