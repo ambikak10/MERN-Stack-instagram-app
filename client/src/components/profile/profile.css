@@ -8,7 +8,7 @@
   justify-content: center;
   margin-bottom: 40px;
 }
-.space{
+.space {
   margin: 0 10% 0 6%; 
 }
 .HandleName {
@@ -21,10 +21,10 @@
  border:  1px solid rgb(218, 215, 215);
 
 }
-.textsize{
+.textsize {
   margin-top: 10px;
 }
-.textsize a{
+.textsize a {
   font-size:18px;
   color: black;
 }
@@ -39,7 +39,7 @@
   margin-top: 100px;
   color: #dbdbdb;
 }
-.icons i{
+.icons i {
   font-size: 0.9em; 
   color: #8e8e8e;
   /* font-family: Helvetica, Arial, sans-serif; */
