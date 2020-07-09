@@ -20,11 +20,11 @@ class followers extends Component {
 
               <div className='container'>
                 <div
-                  className='row'
+                  className='row spaceMargin'
                   // style={{ marginBottom: "10px" }}
                   // style={{position: "relative"}}
                 >
-                  <div className='col-sm-3 col-md-3 col-lg-3'>
+                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <Link to='#'>
                       <img
                         className='followers-avatar-icon'
@@ -34,14 +34,20 @@ class followers extends Component {
                     </Link>
                   </div>
 
-                  <div className='col-sm-6 col-md-6 col-lg-6'>
-                    <Link to='#' class='fontStyleSizeColor'>
+                  <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
+                    <Link
+                      to='#'
+                      class='fontStyleSizeColor'
+                      style={{ marginLeft: "-50px" }}
+                    >
                       HandleName
                     </Link>
-                    <div style={{ marginTop: "-4px" }}>Name</div>
+                    <div style={{ marginTop: "-4px", marginLeft: "-50px" }}>
+                      Name
+                    </div>
                   </div>
 
-                  <div className='col-sm-3 col-md-3 col-lg-3'>
+                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn btn-primary'
                       style={{
@@ -49,16 +55,17 @@ class followers extends Component {
                         // right: "0",
                         // marginRight: "10px",
                         // height: "35px",
-                        // lineHeight: "2px",
+                        lineHeight: "2px",
                         // marginTop: "0px",
                         float: "right",
+                        height: "30px",
                       }}
                     >
                       Follow
                     </button>
                   </div>
 
-                  {/* <div className='col-sm-2 col-xxs-2 col-md-2 col-lg-2'>
+                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <Link to='#'>
                       <img
                         className='followers-avatar-icon'
@@ -68,14 +75,20 @@ class followers extends Component {
                     </Link>
                   </div>
 
-                  <div className='col-sm-6 col-xxs-6 col-md-6 col-lg-6'>
-                    <Link to='#' class='fontStyleSizeColor'>
+                  <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
+                    <Link
+                      to='#'
+                      class='fontStyleSizeColor'
+                      style={{ marginLeft: "-50px" }}
+                    >
                       HandleName
                     </Link>
-                    <div style={{ marginTop: "-4px" }}>Name</div>
+                    <div style={{ marginTop: "-4px", marginLeft: "-50px" }}>
+                      Name
+                    </div>
                   </div>
 
-                  <div className='col-sm-4 col-xxs-4 col-md-4 col-lg-4'>
+                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn btn-primary'
                       style={{
@@ -83,14 +96,15 @@ class followers extends Component {
                         // right: "0",
                         // marginRight: "10px",
                         // height: "35px",
-                        // lineHeight: "2px",
+                        lineHeight: "2px",
                         // marginTop: "0px",
                         float: "right",
+                        height: "30px",
                       }}
                     >
                       Follow
                     </button>
-                  </div> */}
+                  </div>
                 </div>
               </div>
               {/* followers-container ends */}

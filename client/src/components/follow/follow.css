@@ -56,10 +56,9 @@
 }
 .followers-avatar-icon {
   border-radius: 50%;
-  width: 35px;
-  /* margin-top:-8px; */
-  margin-left: 15px;
-  margin-right: 12px;
+  width: 40px;
+  /* margin-left: 0px; */
+  margin-right: 2px;
 }
 .fontStyleSizeColor {
   font-size: 15px;
@@ -67,9 +66,6 @@
   font-family: inherit;
   font-weight: 600;
 }
-/* .col-md-7 {
-  margin-top: -10px;
-} */
-/* .spaceBelow {
-  margin-bottom: 50px;
-} */
+.spaceMargin {
+  margin-top: -8px;
+}
