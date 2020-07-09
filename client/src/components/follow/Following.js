@@ -94,7 +94,7 @@ class following extends Component {
                     >
                       Following
                     </button>
-                  </div>{" "}
+                  </div>
                   <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <Link to='#'>
                       <img
@@ -129,7 +129,7 @@ class following extends Component {
                     >
                       Following
                     </button>
-                  </div>{" "}
+                  </div>
                   <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <Link to='#'>
                       <img
@@ -164,7 +164,7 @@ class following extends Component {
                     >
                       Following
                     </button>
-                  </div>{" "}
+                  </div>
                   <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <Link to='#'>
                       <img
@@ -199,7 +199,7 @@ class following extends Component {
                     >
                       Following
                     </button>
-                  </div>{" "}
+                  </div>
                   <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <Link to='#'>
                       <img
@@ -234,7 +234,7 @@ class following extends Component {
                     >
                       Following
                     </button>
-                  </div>{" "}
+                  </div>
                   <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <Link to='#'>
                       <img
