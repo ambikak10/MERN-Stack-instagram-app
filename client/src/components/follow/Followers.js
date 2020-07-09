@@ -4,6 +4,19 @@ import { Link } from "react-router-dom";
 import avatar from "../../img/avatar.png";
 
 class followers extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = { isToggleOn: true };
+
+  //   this.handleClick = this.handleClick.bind(this);
+  // }
+
+  // handleClick() {
+  //   this.setState(function (prevState) {
+  //     return { isToggleOn: !prevState.isToggleOn };
+  //   });
+  // }
+
   render() {
     return (
       <div className='first'>
@@ -60,8 +73,9 @@ class followers extends Component {
                         float: "right",
                         height: "30px",
                       }}
-                    >
-                      Follow
+                      // onClick={this.handleClick}
+                    > Follow
+                      {/* {this.state.isToggleOn ? "Follow" : "Following"} */}
                     </button>
                   </div>
 
