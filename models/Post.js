@@ -61,6 +61,14 @@ const PostSchema = new Schema({
         ref: "users"
       }
     }
+  ],
+  saved: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+      }
+    }
   ]
 });
 
