@@ -41,7 +41,7 @@ export class profile extends Component {
                     <b>2</b> posts
                   </Link>
                   &nbsp; &nbsp; &nbsp;&nbsp;
-                  <Link to='followers'>
+                  <Link to='/followers'>
                     <b>200</b> followers
                   </Link>
                   &nbsp; &nbsp; &nbsp;
