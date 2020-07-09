@@ -60,7 +60,7 @@ class followers extends Component {
                     </div>
                   </div>
 
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn btn-primary'
                       style={{
@@ -74,7 +74,9 @@ class followers extends Component {
                         height: "30px",
                       }}
                       // onClick={this.handleClick}
-                    > Follow
+                    >
+                      {" "}
+                      Follow
                       {/* {this.state.isToggleOn ? "Follow" : "Following"} */}
                     </button>
                   </div>
@@ -102,7 +104,7 @@ class followers extends Component {
                     </div>
                   </div>
 
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn btn-primary'
                       style={{
@@ -143,7 +145,7 @@ class followers extends Component {
                     </div>
                   </div>
 
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn btn-primary'
                       style={{
@@ -183,7 +185,7 @@ class followers extends Component {
                     </div>
                   </div>
 
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn btn-primary'
                       style={{
@@ -223,7 +225,7 @@ class followers extends Component {
                     </div>
                   </div>
 
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn btn-primary'
                       style={{
@@ -263,7 +265,7 @@ class followers extends Component {
                     </div>
                   </div>
 
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn btn-primary'
                       style={{
@@ -303,7 +305,7 @@ class followers extends Component {
                     </div>
                   </div>
 
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn btn-primary'
                       style={{

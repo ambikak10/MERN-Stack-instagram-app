@@ -46,7 +46,7 @@ class following extends Component {
                       Name
                     </div>
                   </div>
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn'
                       style={{
@@ -81,7 +81,7 @@ class following extends Component {
                       Name
                     </div>
                   </div>
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn'
                       style={{
@@ -116,7 +116,7 @@ class following extends Component {
                       Name
                     </div>
                   </div>
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn'
                       style={{
@@ -151,7 +151,7 @@ class following extends Component {
                       Name
                     </div>
                   </div>
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn'
                       style={{
@@ -186,7 +186,7 @@ class following extends Component {
                       Name
                     </div>
                   </div>
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn'
                       style={{
@@ -221,7 +221,7 @@ class following extends Component {
                       Name
                     </div>
                   </div>
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn'
                       style={{
@@ -256,7 +256,7 @@ class following extends Component {
                       Name
                     </div>
                   </div>
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn'
                       style={{
@@ -291,7 +291,7 @@ class following extends Component {
                       Name
                     </div>
                   </div>
-                  <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
                       className='btn'
                       style={{
