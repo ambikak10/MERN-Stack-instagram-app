@@ -22,7 +22,6 @@ class following extends Component {
               <div className='container scrolling'>
                 <div
                   className='row'
-                  // style={{ marginBottom: "10px" }}
                   // style={{position: "relative"}}
                 >
                   <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>

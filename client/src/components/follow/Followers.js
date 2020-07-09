@@ -75,7 +75,7 @@ class followers extends Component {
                       }}
                       // onClick={this.handleClick}
                     >
-                      {" "}
+                    
                       Follow
                       {/* {this.state.isToggleOn ? "Follow" : "Following"} */}
                     </button>
@@ -108,12 +108,7 @@ class followers extends Component {
                     <button
                       className='btn btn-primary'
                       style={{
-                        // position: "absolute",
-                        // right: "0",
-                        // marginRight: "10px",
-                        // height: "35px",
                         lineHeight: "2px",
-                        // marginTop: "0px",
                         float: "right",
                         height: "30px",
                       }}
@@ -149,12 +144,7 @@ class followers extends Component {
                     <button
                       className='btn btn-primary'
                       style={{
-                        // position: "absolute",
-                        // right: "0",
-                        // marginRight: "10px",
-                        // height: "35px",
                         lineHeight: "2px",
-                        // marginTop: "0px",
                         float: "right",
                         height: "30px",
                       }}
@@ -189,12 +179,7 @@ class followers extends Component {
                     <button
                       className='btn btn-primary'
                       style={{
-                        // position: "absolute",
-                        // right: "0",
-                        // marginRight: "10px",
-                        // height: "35px",
                         lineHeight: "2px",
-                        // marginTop: "0px",
                         float: "right",
                         height: "30px",
                       }}
@@ -229,12 +214,7 @@ class followers extends Component {
                     <button
                       className='btn btn-primary'
                       style={{
-                        // position: "absolute",
-                        // right: "0",
-                        // marginRight: "10px",
-                        // height: "35px",
                         lineHeight: "2px",
-                        // marginTop: "0px",
                         float: "right",
                         height: "30px",
                       }}
@@ -269,13 +249,8 @@ class followers extends Component {
                     <button
                       className='btn btn-primary'
                       style={{
-                        // position: "absolute",
-                        // right: "0",
-                        // marginRight: "10px",
-                        // height: "35px",
-                        lineHeight: "2px",
-                        // marginTop: "0px",
-                        float: "right",
+                       lineHeight: "2px",
+                       float: "right",
                         height: "30px",
                       }}
                     >
@@ -309,12 +284,7 @@ class followers extends Component {
                     <button
                       className='btn btn-primary'
                       style={{
-                        // position: "absolute",
-                        // right: "0",
-                        // marginRight: "10px",
-                        // height: "35px",
                         lineHeight: "2px",
-                        // marginTop: "0px",
                         float: "right",
                         height: "30px",
                       }}
