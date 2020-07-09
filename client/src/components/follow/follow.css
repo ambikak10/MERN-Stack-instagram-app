@@ -67,5 +67,17 @@
   font-weight: 600;
 }
 .spaceMargin {
-  margin-top: -8px;
+  margin-top: 5px;
+  padding-bottom: 5px;
+}
+@media (max-width: 576px) {
+  .col-xxs-3, .col-xxs-6 {
+  float: left;
+  }           
+.col-sm-3{
+width:25%;
+ }
+.col-sm-6{
+width:50%;
+ }
 }

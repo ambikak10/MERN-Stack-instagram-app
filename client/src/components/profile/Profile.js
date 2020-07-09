@@ -37,9 +37,9 @@ export class profile extends Component {
               </h2>
               <p className='textsize'>
                 <span>
-                  <Link to='#'>
+                  {/* <Link to='#'> */}
                     <b>2</b> posts
-                  </Link>
+                  {/* </Link> */}
                   &nbsp; &nbsp; &nbsp;&nbsp;
                   <Link to='followers'>
                     <b>200</b> followers
@@ -60,13 +60,14 @@ export class profile extends Component {
                 developer developer developer developer 
               </div>
               <span>
-                <Link
-                  to='https://www.youtube.com/'
+                <a
+                  href='https://www.youtube.com/'
                   style={{ color: "rgba(var(--fe0,0,55,107),1)" }}
                 >
                   https://www.youtube.com/
-                </Link>
-              </span>
+                </a>
+              </span>  
+              {/* link somehow doesn't connect to external websites, so chnaged to anchor tag above */}
 
               {/* Social network Links */}
               <span>
