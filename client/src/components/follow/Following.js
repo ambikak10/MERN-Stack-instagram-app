@@ -19,7 +19,7 @@ class following extends Component {
               </span>
               <hr />
 
-              <div className='container'>
+              <div className='container scrolling'>
                 <div
                   className='row'
                   // style={{ marginBottom: "10px" }}

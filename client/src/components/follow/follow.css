@@ -68,7 +68,12 @@
 }
 .spaceMargin {
   margin-top: 5px;
-  padding-bottom: 5px;
+  padding-bottom: 10px;
+}
+.scrolling {
+  overflow-y: auto;
+  /* overflow-y: scroll; */
+  max-height: 318px;
 }
 @media (max-width: 576px) {
   .col-xxs-3, .col-xxs-6 {

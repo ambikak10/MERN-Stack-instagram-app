@@ -131,7 +131,7 @@
 } */
 .comment-wrapper {
   overflow-y: auto;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   height: 350px;
   overflow-x: hidden;
 }
