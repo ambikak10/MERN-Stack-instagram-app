@@ -11,7 +11,7 @@ class following extends Component {
         <div className='second'>
           <div className='third'>
             <div className='followers-container'>
-              <h5>Followers </h5>
+              <h5>Following </h5>
               <span>
                 <Link to='/profile' class='X'>
                   X
@@ -50,19 +50,16 @@ class following extends Component {
 
                   <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
-                      className='btn btn-primary'
+                      className='btn'
                       style={{
-                        // position: "absolute",
-                        // right: "0",
-                        // marginRight: "10px",
-                        // height: "35px",
-                        lineHeight: "2px",
-                        // marginTop: "0px",
+                        backgroundColor: "transparent",
+                        border: "1px solid rgb(218, 215, 215)",
+                        lineHeight: "2.2px",
                         float: "right",
                         height: "30px",
                       }}
                     >
-                      Follow
+                      Following
                     </button>
                   </div>
 
@@ -91,19 +88,16 @@ class following extends Component {
 
                   <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
                     <button
-                      className='btn btn-primary'
+                      className='btn'
                       style={{
-                        // position: "absolute",
-                        // right: "0",
-                        // marginRight: "10px",
-                        // height: "35px",
-                        lineHeight: "2px",
-                        // marginTop: "0px",
+                        backgroundColor: "transparent",
+                        border: "1px solid rgb(218, 215, 215)",
+                        lineHeight: "2.2px",
                         float: "right",
                         height: "30px",
                       }}
                     >
-                      Follow
+                      Following
                     </button>
                   </div>
                 </div>
