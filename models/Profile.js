@@ -71,6 +71,17 @@ const ProfileSchema = new Schema({
         type: String
       }
     }
+  ],
+  saved: [
+    {
+      postId: {
+        type: Schema.Types.ObjectId,
+        ref: "post",
+      },
+      image: {
+        type: String
+      }
+    }
   ]
 });
 

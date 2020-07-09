@@ -303,6 +303,97 @@ router.delete(
   }
 );
 
+// @route   POST api/posts/save/:post_id
+// @desc    Save post
+// @access  Private
+router.post(
+  "/save/:post_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then((profile) => {
+      if (profile) {
+        Post.findById(req.params.post_id)
+        .then((post) => {
+          if (
+            post.saved.filter((save) => save.user.toString() === req.user.id)
+              .length > 0
+          ) {
+            return res
+              .status(400)
+              .json({ alreadysaved: "User already saved this post" });
+          }
+
+          // Add user id to likes array
+          post.saved.unshift({ user: req.user.id });
+
+          //Create new savedPost and add to profile.saved array
+          const savedPost = {
+            postId: post._id,
+            image: post.image
+          }
+          profile.saved.unshift(savedPost);
+          profile.save();
+          post.save().then((post) => res.json(post));
+        })
+        .catch((err) =>
+          res.status(404).json({ postnotfound: "No post found" })
+        );
+      } else {
+        return res.status(404).json({noprofilefound: "No profile found"});
+      }
+    });
+  }
+);
+
+// @route   POST api/posts/unsave/:post_id
+// @desc    Unsave post
+// @access  Private
+router.post(
+  "/unsave/:post_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id }).then((profile) => {
+      if (profile) {
+        Post.findById(req.params.post_id)
+        .then((post) => {
+          if (
+            post.saved.filter((save) => save.user.toString() === req.user.id)
+              .length === 0
+          ) {
+            return res
+              .status(400)
+              .json({ nosaved: "You have not yet saved this post" });
+          }
+
+          // Get remove index
+          const removeIndex = post.saved
+            .map((item) => item.user.toString())
+            .indexOf(req.user.id);
+
+          // Splice out of array
+          post.saved.splice(removeIndex, 1);
+           
+          //Splice out of profile array
+          const removeIndex2 = profile.saved
+            .map(item => item.postId.toString())
+            .indexOf(post._id);
+          
+          profile.saved.splice(removeIndex2,1);
+          profile.save();
+          // Save
+          post.save().then((post) => res.json(post));
+        })
+        .catch((err) =>
+          res.status(404).json({ postnotfound: "No post found" })
+        );
+      } else {
+        return res.status(404).json({noprofilefound: "No profile found"});
+      }
+    });
+  }
+);
+
+
 
 module.exports = router;
 
