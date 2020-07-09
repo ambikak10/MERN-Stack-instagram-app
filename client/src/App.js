@@ -10,6 +10,8 @@ import Navbar from './components/navbar/Navbar';
 import Post from "./components/displayPost/Post";
 import CreateProfile from "./components/profile/CreateProfile";
 import CreatePost from "./components/displayPost/CreatePost";
+import followers from "./components/follow/Followers";
+import following from "./components/follow/Following";
 
 class App extends Component {
   render() {
@@ -25,6 +27,8 @@ class App extends Component {
           <Route exact path='/post' component={Post} />
           <Route exact path='/create-profile' component={CreateProfile} />
           <Route exact path='/create-post' component={CreatePost} />
+          <Route exact path='/followers' component={followers} />
+          <Route exact path='/following' component={following} />
           <Footer />
         </div>
       </Router>

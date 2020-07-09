@@ -41,11 +41,11 @@ export class profile extends Component {
                     <b>2</b> posts
                   </Link>
                   &nbsp; &nbsp; &nbsp;&nbsp;
-                  <Link to='#'>
+                  <Link to='followers'>
                     <b>200</b> followers
                   </Link>
                   &nbsp; &nbsp; &nbsp;
-                  <Link to='#'>
+                  <Link to='/following'>
                     <b>20</b> following
                   </Link>
                 </span>
@@ -57,7 +57,7 @@ export class profile extends Component {
               {/* rendered only if user has information */}
 
               <div style={{ wordBreak: "break-all", marginTop: "-40px" }}>
-                developer developer developer developer developer
+                developer developer developer developer 
               </div>
               <span>
                 <Link
