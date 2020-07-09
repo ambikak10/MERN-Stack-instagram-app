@@ -37,9 +37,9 @@ export class profile extends Component {
               </h2>
               <p className='textsize'>
                 <span>
-                  {/* <Link to='#'> */}
+                  <Link to='#'>
                     <b>2</b> posts
-                  {/* </Link> */}
+                  </Link>
                   &nbsp; &nbsp; &nbsp;&nbsp;
                   <Link to='followers'>
                     <b>200</b> followers
