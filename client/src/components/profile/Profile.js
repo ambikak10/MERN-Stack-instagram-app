@@ -57,7 +57,7 @@ export class profile extends Component {
               {/* rendered only if user has information */}
 
               <div style={{ wordBreak: "break-all", marginTop: "-40px" }}>
-                developer developer developer developer 
+                developer developer developer developer
               </div>
               <span>
                 <a
@@ -66,20 +66,20 @@ export class profile extends Component {
                 >
                   https://www.youtube.com/
                 </a>
-              </span>  
-              {/* link somehow doesn't connect to external websites, so chnaged to anchor tag above */}
+              </span>
+              {/* link somehow doesn't connect to external websites, so chnaged to anchor tag  */}
 
               {/* Social network Links */}
               <span>
-                <Link to="user's facebook link from API">
+                <a href='https://www.facebook.com/'>
                   <i class='fa fa-facebook-square'></i>
-                </Link>
-                <Link to="user's youtube link from API">
+                </a>
+                <a href="user's youtube link from API">
                   <i class='fa fa-youtube-play youtube' aria-hidden='true'></i>
-                </Link>
-                <Link to="user's twitter link from API">
+                </a>
+                <a href="user's twitter link from API">
                   <i class='fa fa-twitter twitter' aria-hidden='true'></i>
-                </Link>
+                </a>
               </span>
             </div>
           </div>
