@@ -187,6 +187,14 @@
   align-items: center;
   display: inline-block;
 }
+.container-post {
+  background-color: white;
+  position: static;
+  margin-top: 0px;
+  }
+.child {
+  background-color: white;
+  }
 #wrapper {
   text-align: center;
  }
@@ -198,7 +206,8 @@
   .container-post {
    background-color: white;
    position: static;
-   margin-top: 50px;
+   margin-top: -40px;
+   margin-left: 20px;
   }
   .child {
    background-color: white;
@@ -207,8 +216,8 @@
   justify-content: flex-start;
   align-items: center;
   display: inline-block; 
-  /* margin-top: -80px; */
-  margin-left: -60px;
+  margin-top: -50px; 
+  margin-left: -70px;
 } 
 #wrapper {
   text-align: center;

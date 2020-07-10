@@ -22,7 +22,7 @@ class post extends Component {
               src='https://images.unsplash.com/photo-1462216589242-9e3e00a47a48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=966&q=80'
             />
 
-            <div className='style d-none d-xl-block'>
+            <div className='style d-none d-xl-block d-md-none d-lg-none d-sm-none '>
               <Link to='#'>
                 <img className='avatar-icon' src={avatar} alt='Avatar' />
               </Link>
