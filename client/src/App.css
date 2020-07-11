@@ -130,3 +130,6 @@ a:active {
     transform: rotate(360deg);
   }
 }
+.form-control::placeholder {
+  color: #bbb !important;
+}
