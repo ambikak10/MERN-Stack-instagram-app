@@ -21,7 +21,7 @@
 }
 .card {
   margin-top: 30px;
-  height: 450px;
+  height: 100%;
   width:350px;
   border: 0.5px solid;
   border-color: lightgrey;
