@@ -31,6 +31,7 @@ class Signup extends Component {
       //fullname: this.state.fullname,
       //username: this.state.username,
       password: this.state.password,
+      password2: this.state.password2,
     };
 
     axios
@@ -62,7 +63,7 @@ class Signup extends Component {
                     value={this.state.name}
                     onChange={this.onChange}
                   />
-                  {errors.fullname && (
+                  {errors.name && (
                     <div className="invalid-feedback">{errors.name}</div>
                   )}
                 </div>

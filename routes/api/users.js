@@ -32,9 +32,10 @@ router.post('/signup', (req, res) => {
         });
 
         const newUser = new User({
+          name: req.body.name,
           email: req.body.email,
-          username: req.body.username,
-          fullname: req.body.fullname,
+          //username: req.body.username,
+          //fullname: req.body.fullname,
           avatar,
           password: req.body.password,
         });
