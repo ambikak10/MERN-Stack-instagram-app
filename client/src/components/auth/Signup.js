@@ -8,10 +8,12 @@ class Signup extends Component {
   constructor() {
     super();
     this.state = {
+      name: "",
       email: "",
-      fullname: "",
-      username: "",
+      //fullname: "",
+      //username: "",
       password: "",
+      password2: "",
       errors: {},
     };
     this.onChange = this.onChange.bind(this);
@@ -24,9 +26,10 @@ class Signup extends Component {
     e.preventDefault();
 
     const newUser = {
+      name: this.state.name,
       email: this.state.email,
-      fullname: this.state.fullname,
-      username: this.state.username,
+      //fullname: this.state.fullname,
+      //username: this.state.username,
       password: this.state.password,
     };
 
@@ -50,6 +53,21 @@ class Signup extends Component {
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   <input
+                    type="text"
+                    className={classnames("form-control form-control-lg", {
+                      "is-invalid": errors.name,
+                    })}
+                    placeholder="Full Name"
+                    name="name"
+                    value={this.state.name}
+                    onChange={this.onChange}
+                  />
+                  {errors.fullname && (
+                    <div className="invalid-feedback">{errors.name}</div>
+                  )}
+                </div>
+                <div className="form-group">
+                  <input
                     type="email"
                     className={classnames("form-control form-control-lg", {
                       "is-invalid": errors.email,
@@ -63,7 +81,7 @@ class Signup extends Component {
                     <div className="invalid-feedback">{errors.email}</div>
                   )}
                 </div>
-                <div className="form-group">
+                {/* /* <div className="form-group">
                   <input
                     type="text"
                     className={classnames("form-control form-control-lg", {
@@ -92,7 +110,7 @@ class Signup extends Component {
                   {errors.username && (
                     <div className="invalid-feedback">{errors.username}</div>
                   )}
-                </div>
+                </div>  */}
                 <div className="form-group">
                   <input
                     type="password"
@@ -106,6 +124,21 @@ class Signup extends Component {
                   />
                   {errors.password && (
                     <div className="invalid-feedback">{errors.password}</div>
+                  )}
+                </div>
+                <div className="form-group">
+                  <input
+                    type="password"
+                    className={classnames("form-control form-control-lg", {
+                      "is-invalid": errors.password2,
+                    })}
+                    placeholder="Password2"
+                    name="password2"
+                    value={this.state.password2}
+                    onChange={this.onChange}
+                  />
+                  {errors.password2 && (
+                    <div className="invalid-feedback">{errors.password2}</div>
                   )}
                 </div>
                 <input type="submit" value="sign up" className="button" />
