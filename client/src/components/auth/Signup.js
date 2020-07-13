@@ -142,7 +142,7 @@ class Signup extends Component {
                     <div className="invalid-feedback">{errors.password2}</div>
                   )}
                 </div>
-                <input type="submit" value="sign up" className="button" />
+                <input type="submit" value="Sign up" className="button" />
               </form>
               <p className="terms">
                 By signing up,you agree to our{" "}

@@ -13,27 +13,32 @@ import CreatePost from "./components/displayPost/CreatePost";
 import Followers from "./components/follow/Followers";
 import Following from "./components/follow/Following";
 import Profiles from "./components/profile/Profiles";
+//redux
+import { Provider } from "react-redux";
+import store from "./store";
 
 class App extends Component {
   render() {
    
     return (
-      <Router>
-        <div className='App'>
-          <Navbar />
-          <Route exact path='/signup' component={Signup} />
-          <Route exact path='/' component={Login} />
-          <Route exact path='/profile' component={Profile} />
-          <Route exact path='/edit-profile' component={EditProfile} />
-          <Route exact path='/post' component={Post} />
-          <Route exact path='/create-profile' component={CreateProfile} />
-          <Route exact path='/create-post' component={CreatePost} />
-          <Route exact path='/followers' component={Followers} />
-          <Route exact path='/following' component={Following} />
-          <Route exact path='/explore' component={Profiles}/>
-          <Footer />
-        </div>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <div className='App'>
+            <Navbar />
+            <Route exact path='/signup' component={Signup} />
+            <Route exact path='/' component={Login} />
+            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/edit-profile' component={EditProfile} />
+            <Route exact path='/post' component={Post} />
+            <Route exact path='/create-profile' component={CreateProfile} />
+            <Route exact path='/create-post' component={CreatePost} />
+            <Route exact path='/followers' component={Followers} />
+            <Route exact path='/following' component={Following} />
+            <Route exact path='/explore' component={Profiles} />
+            <Footer />
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }
