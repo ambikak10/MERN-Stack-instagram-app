@@ -108,6 +108,13 @@ export class profile extends Component {
                 </span>
               </i>
             </Link>
+            <Link to='/create-post'>
+              <i className='fa fa-upload' aria-hidden='true'>
+                <span style={{ marginLeft: "5px", fontFamily: "sans-serif", fontWeight: "200"}}>
+                  ADD POST
+                </span>
+              </i>
+            </Link>
           </div>
 
           <section className='row hover-effect'>
