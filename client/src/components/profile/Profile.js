@@ -93,7 +93,19 @@ export class profile extends Component {
                 </span>
               </i>
             </Link>
-
+            <Link to='/create-post'>
+              <i class="far fa-plus-square">
+                <span
+                  style={{
+                    marginLeft: "5px",
+                    fontFamily: "sans-serif",
+                    fontWeight: "200",
+                  }}
+                >
+                  ADD POST
+                </span>
+              </i>
+            </Link>
             <Link to=''>
               <i className='fa fa-bookmark-o' aria-hidden='true'>
                 <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
@@ -105,13 +117,6 @@ export class profile extends Component {
               <i className='far fa-user-circle' aria-hidden='true'>
                 <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
                   TAGGED
-                </span>
-              </i>
-            </Link>
-            <Link to='/create-post'>
-              <i className='fa fa-upload' aria-hidden='true'>
-                <span style={{ marginLeft: "5px", fontFamily: "sans-serif", fontWeight: "200"}}>
-                  ADD POST
                 </span>
               </i>
             </Link>
