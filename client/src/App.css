@@ -15,9 +15,10 @@
   margin-right: 20px;
 }
 .logo {
-  width: 70%;
-  display: block; 
-  
+  width: 75%;
+  display: inline-block;
+  margin-left: 40px;
+  margin-bottom: 15px;
 }
 .card {
   margin-top: 30px;
@@ -33,6 +34,7 @@
   padding-left: 40px;
   padding-right: 40px;
   width: 300px;
+  text-align: center;
 }
 .form-control{  
   width:260px;
@@ -45,15 +47,15 @@
   margin-bottom: 7px;
 }
 
+
 .button{
   width:265px;
   height:30px;
-  background-color: rgb(168, 217, 248);
+  /*background-color: cornflowerblue;*/
   margin-top: 10px;
   border:None;
-  color:white;
+  color: black;
 }
-
 #one {
   width: 40%;
   float: left;
@@ -62,11 +64,12 @@
   width: 40%;
   float: right;
 }
+
 #or {
-  margin-top: 30px;
   text-align: center;
   color:rgb(109, 109, 109);
   font-size: 12px;
+  font-weight: 500;
 }
 .more-info{
   margin-top: 20px;

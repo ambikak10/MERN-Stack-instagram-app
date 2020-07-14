@@ -9,9 +9,7 @@ class Signup extends Component {
     super();
     this.state = {
       name: "",
-      email: "",
-      //fullname: "",
-      //username: "",
+      email: "",      
       password: "",
       password2: "",
       errors: {},
@@ -27,9 +25,7 @@ class Signup extends Component {
 
     const newUser = {
       name: this.state.name,
-      email: this.state.email,
-      //fullname: this.state.fullname,
-      //username: this.state.username,
+      email: this.state.email,      
       password: this.state.password,
       password2: this.state.password2,
     };
@@ -42,6 +38,8 @@ class Signup extends Component {
 
   render() {
     const {errors} = this.state;
+    const { email, password } = this.state;
+    const enabled = email.length > 0 && password.length > 0;
     return (
       <div className="margin">
         <div className="d-flex flex-column">
@@ -82,36 +80,6 @@ class Signup extends Component {
                     <div className="invalid-feedback">{errors.email}</div>
                   )}
                 </div>
-                {/* /* <div className="form-group">
-                  <input
-                    type="text"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.fullname,
-                    })}
-                    placeholder="Full Name"
-                    name="fullname"
-                    value={this.state.fullname}
-                    onChange={this.onChange}
-                  />
-                  {errors.fullname && (
-                    <div className="invalid-feedback">{errors.fullname}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.username,
-                    })}
-                    placeholder="Username"
-                    name="username"
-                    value={this.state.username}
-                    onChange={this.onChange}
-                  />
-                  {errors.username && (
-                    <div className="invalid-feedback">{errors.username}</div>
-                  )}
-                </div>  */}
                 <div className="form-group">
                   <input
                     type="password"
@@ -142,8 +110,20 @@ class Signup extends Component {
                     <div className="invalid-feedback">{errors.password2}</div>
                   )}
                 </div>
-                <input type="submit" value="Sign up" className="button" />
+                <input
+                  type="submit"
+                  value="Sign up"
+                  disabled={!enabled}
+                  style={{
+                    width: "265px",
+                    height: "30px",
+                    marginTop: "10px",
+                    border: "None",
+                    
+                  }}
+                />
               </form>
+              <br />
               <p className="terms">
                 By signing up,you agree to our{" "}
                 <b>Terms, Data Policy and Cookies Policy.</b>
