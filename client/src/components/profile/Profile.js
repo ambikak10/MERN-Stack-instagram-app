@@ -99,7 +99,6 @@ export class profile extends Component {
                   style={{
                     marginLeft: "5px",
                     fontFamily: "sans-serif",
-                    fontWeight: "200",
                   }}
                 >
                   ADD POST
