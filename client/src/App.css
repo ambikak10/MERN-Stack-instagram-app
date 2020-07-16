@@ -48,14 +48,21 @@
 }
 
 
-.button{
+.authButton{
   width:265px;
   height:30px;
   /*background-color: cornflowerblue;*/
   margin-top: 10px;
   border:None;
-  color: black;
+  /* color: black; */
+  color:white;
+  background-color: #0095f6;
 }
+
+input:disabled {
+  background-color: #b2dffc;
+}
+
 #one {
   width: 40%;
   float: left;

@@ -38,8 +38,8 @@ class Signup extends Component {
 
   render() {
     const {errors} = this.state;
-    const { email, password } = this.state;
-    const enabled = email.length > 0 && password.length > 0;
+    const { email, password, name, password2 } = this.state;
+    const enabled = email.length > 0 && password.length > 0 && name.length > 0 && password2.length > 0;
     return (
       <div className="margin">
         <div className="d-flex flex-column">
@@ -114,13 +114,14 @@ class Signup extends Component {
                   type="submit"
                   value="Sign up"
                   disabled={!enabled}
-                  style={{
-                    width: "265px",
-                    height: "30px",
-                    marginTop: "10px",
-                    border: "None",
+                  // style={{
+                  //   width: "265px",
+                  //   height: "30px",
+                  //   marginTop: "10px",
+                  //   border: "None",
                     
-                  }}
+                  // }}
+                  className="authButton"
                 />
               </form>
               <br />
