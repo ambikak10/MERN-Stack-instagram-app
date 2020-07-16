@@ -10,7 +10,7 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",     
+      email: "",
       password: "",
       errors: {},
     };
@@ -23,10 +23,9 @@ class Login extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const newUser = {      
-      email: this.state.email,      
+    const newUser = {
+      email: this.state.email,
       password: this.state.password,
-      
     };
 
     axios
@@ -34,23 +33,25 @@ class Login extends Component {
       .then((res) => console.log(res))
       .catch((err) => this.setState({ errors: err.response.data }));
   }
-
-  render() {
+    render() {
     const { errors } = this.state;
+    const { email, password } = this.state;
+    const enabled = email.length > 0 && password.length > 0;
     return (
-      <div className='margin'>
-        <img className='mobile' src={mobile} />
-        <div className='d-flex flex-column'>
-          <div className='card'>
-            <div className='card-body'>
-              <img className='logo' src={logo} alt='instagram' />
+      <div className="margin">
+        <img className="mobile" src={mobile} />
+        <div className="d-flex flex-column">
+          <div className="card">
+            <div className="card-body">
+              <img className="logo" src={logo} alt="instagram" />
               <br />
               <br />
               <form onSubmit={this.onSubmit}>
-                <div className='form-group'>
+                <div className="form-group">
                   <input
                     type="email"
-                    className={classnames("form-control form-control-lg", {
+                    id="myText"
+                    className={classnames("form-control", {
                       "is-invalid": errors.email,
                     })}
                     placeholder="Email"
@@ -61,11 +62,11 @@ class Login extends Component {
                   {errors.email && (
                     <div className="invalid-feedback">{errors.email}</div>
                   )}
-                  </div>
+                </div>
                 <div className="form-group">
                   <input
                     type="password"
-                    className={classnames("form-control form-control-lg", {
+                    className={classnames("form-control ", {
                       "is-invalid": errors.password,
                     })}
                     placeholder="Password"
@@ -77,17 +78,30 @@ class Login extends Component {
                     <div className="invalid-feedback">{errors.password}</div>
                   )}
                 </div>
-                  <input type='submit' value='Log In' className='button' />                
+
+                <input
+                  type="submit"
+                  value="Log In"
+                  disabled={!enabled}
+                  style={{
+                    width: "265px",
+                    height: "30px",
+                    marginTop: "10px",
+                    border: "None",                    
+                  }}
+                />
               </form>
-              <div id='or'>
-                <hr id='one' />
-                <span>OR</span>
-                <hr id='two' />
+              <br />
+              <div>
+                <hr id="one" />
+                <span id="or">OR</span>
+                <hr id="two" />
               </div>
-              <p className='more-info'>
+              <br />
+              <p className="more-info">
                 Don't have an account? &nbsp;
                 <span>
-                  <Link to='/signup'>Sign up</Link>
+                  <Link to="/signup">Sign up</Link>
                 </span>
               </p>
             </div>
