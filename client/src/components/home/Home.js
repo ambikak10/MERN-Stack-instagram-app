@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../../components/navbar/Navbar";
 import avatar from "../../img/avatar.png"
-
 import "./home.css"; 
 
 export class home extends Component {
@@ -25,9 +23,9 @@ export class home extends Component {
          render() {
            return (
              <div className="container">
-               <div className="row">
-                 <div className="col-sm-6">
-                   <div className="card">
+                <div className="row">
+                 <div className="col-sm-6"> 
+                   <div className="card-home">
                      <div className="card-header">
                        <Link to="#">
                          <img
@@ -147,10 +145,9 @@ export class home extends Component {
                        </div>
                      </div>
                    </div>
-                 </div>
+                 </div> 
                  <div className="col-sm-6">
-                   <div
-                     className="card"
+                   <div className="card-home"
                      style={{
                        marginTop: "20px",
                        backgroundColor: "#fafafa",
@@ -256,7 +253,7 @@ export class home extends Component {
                      </div>
                    </div>
                  </div>
-               </div>
+               </div> 
              </div>
            );
          }
