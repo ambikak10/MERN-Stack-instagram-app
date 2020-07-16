@@ -93,7 +93,18 @@ export class profile extends Component {
                 </span>
               </i>
             </Link>
-
+            <Link to='/create-post'>
+              <i class="far fa-plus-square">
+                <span
+                  style={{
+                    marginLeft: "5px",
+                    fontFamily: "sans-serif",
+                  }}
+                >
+                  ADD POST
+                </span>
+              </i>
+            </Link>
             <Link to=''>
               <i className='fa fa-bookmark-o' aria-hidden='true'>
                 <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
