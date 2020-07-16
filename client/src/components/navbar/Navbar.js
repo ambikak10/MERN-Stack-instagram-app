@@ -26,7 +26,7 @@ export class Navbar extends Component {
           </div>
           <ul style={{ marginTop: "auto", marginBottom: "auto" }}>
             <li>
-              <Link to='#'>
+              <Link to='/home'>
                 <i className='fa fa-home navbarIcon' aria-hidden='true'></i>
               </Link>
             </li>
