@@ -230,6 +230,9 @@ router.post(
   (req, res) => {
     Profile.findById(req.params.profile_id)
         .then((profile) => {
+          if (!profile) {
+            return res.status(404).json({noprofile: "No profile found"})
+          }
           if (
             profile.followers.filter((follow) => follow.user.toString() === req.user.id)
               .length > 0
@@ -285,6 +288,9 @@ router.post(
 router.post('/unfollow/:profile_id', passport.authenticate("jwt", { session: false }), (req, res) => {
 
   Profile.findById(req.params.profile_id).then((profile) => {
+    if (!profile) {
+      return res.status(404).json({noprofile: "No profile found"});
+    }
     if (profile.followers.filter(follower => follower.user.toString() === req.user.id).length === 0) {
       return res.status(400).json({ msg: 'You have not yet followed this profile' });
     }
@@ -295,7 +301,6 @@ router.post('/unfollow/:profile_id', passport.authenticate("jwt", { session: fal
     profile.followers.splice(removeIndex1, 1);
      // Save
     profile.save().then(profile => console.log(profile.followers));
-  });
 
   Profile.findOne({ user: req.user.id }).then((myProfile) => {
     // Get the index of id of another user in my 'following' array list 
@@ -308,7 +313,36 @@ router.post('/unfollow/:profile_id', passport.authenticate("jwt", { session: fal
       console.error(err.message);
       res.status(404).json({ profilenotfound: "No profile found" })
     })
-
+    
+  });
 });
+
+// @route   GET api/profile/suggestions
+// @desc    Get suggestion list for current profile
+// @access  Private
+router.get("/suggestions",
+  passport.authenticate("jwt", {session: false}),
+  (req, res) => {
+    Profile.findOne({user: req.user.id})
+      .then(profile => {
+        if (profile) {
+          let following = profile.following.map(item => item.user.toString());
+          Profile.find()
+            .then(profiles => {
+              let suggestion = profiles.filter(p => {
+                if (following.indexOf(p.user.toString()) === -1 && p.id !== profile.id) {
+                  return true;
+                }
+              });
+              return res.json(suggestion);
+            })
+            .catch(err => console.log(err))
+        } else {
+          return res.status(404).json({ profilenotfound: "No profile found"});
+        }
+      })
+      .catch(err => console.log(err))
+  }
+)
 
 module.exports = router;
