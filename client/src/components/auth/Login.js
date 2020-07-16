@@ -83,12 +83,13 @@ class Login extends Component {
                   type="submit"
                   value="Log In"
                   disabled={!enabled}
-                  style={{
-                    width: "265px",
-                    height: "30px",
-                    marginTop: "10px",
-                    border: "None",                    
-                  }}
+                  // style={{
+                  //   width: "265px",
+                  //   height: "30px",
+                  //   marginTop: "10px",
+                  //   border: "None",                    
+                  // }}
+                  className="authButton"
                 />
               </form>
               <br />

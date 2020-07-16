@@ -14,6 +14,10 @@ a:active {
   opacity: .5;
 }
 
+input:disabled {
+  background-color: #b2dffc;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

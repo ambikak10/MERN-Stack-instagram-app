@@ -118,9 +118,10 @@
   width: 70%;
   margin-left: auto;
   margin-right: auto;
+  text-align: left;
 }
 .profile-form-horizontal-line {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .profile-form-input-group {
   padding-right: 0px;
@@ -163,6 +164,9 @@
   -webkit-line-clamp: 1; /* number of lines to show */
   -webkit-box-orient: vertical;
   text-align: center;
+}
+.profile-form-row {
+  margin-right: 0px;
 }
 
 /******Media Queries*****/
