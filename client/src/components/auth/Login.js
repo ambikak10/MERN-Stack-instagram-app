@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../img/logo.png";
 import mobile from "../../img/mobile.png";
-import Footer from "../../components/footer/Footer";
 import axios from 'axios'
 import classnames from 'classnames';
+import "./login.css"; 
 
 class Login extends Component {
   constructor() {
@@ -108,7 +108,6 @@ class Login extends Component {
             </div>
           </div>
         </div>
-        {/* <Footer /> */}
       </div>
     );
   }

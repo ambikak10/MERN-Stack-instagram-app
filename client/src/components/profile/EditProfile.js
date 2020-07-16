@@ -9,7 +9,7 @@ class EditProfile extends Component {
       <div className="profile-form-container">
         <div className="card profile-form-card">
           <div className='card-body profile-form-card-body'>
-            <h3>Edit Profile</h3>
+            <h3 style={{textAlign: "center"}}>Edit Profile</h3>
             <hr className="profile-form-horizontal-line"/>
 
             <div className="row" style={{marginBottom: "20px"}}>
@@ -20,7 +20,7 @@ class EditProfile extends Component {
             </div>
             
             <form action=''>
-              <div className='form-group row'>
+              <div className='form-group row profile-form-row'>
                 <label className="col-lg-3 col-form-label">Username</label>
                 <input
                   type='text'
@@ -29,7 +29,7 @@ class EditProfile extends Component {
                 />
               </div>
 
-              <div className='form-group row'>
+              <div className='form-group row profile-form-row'>
                 <label className="col-lg-3 col-form-label">Website</label>
                 <input
                   type='text'
@@ -38,7 +38,7 @@ class EditProfile extends Component {
                 />
               </div>
 
-              <div className='form-group row'>
+              <div className='form-group row profile-form-row'>
                 <label className="col-lg-3 col-form-label">Bio</label>
                 <textarea
                   type='text'
@@ -47,7 +47,7 @@ class EditProfile extends Component {
                 />
               </div>
 
-              <div className='form-group row'>
+              <div className='form-group row profile-form-row'>
                 <label className="col-lg-3 col-form-label">Phone</label>
                 <input
                   type='number'
@@ -56,7 +56,7 @@ class EditProfile extends Component {
                 />
               </div>
 
-              <div className='form-group row'>
+              <div className='form-group row profile-form-row'>
                 <label className="col-lg-3 col-form-label">Gender</label>
                 <input
                   type='text'
@@ -67,7 +67,7 @@ class EditProfile extends Component {
 
               <label className="col-form-label">Social Network Links</label>
 
-              <div className='form-group row'>
+              <div className='form-group row profile-form-row'>
                 <label className="col-lg-3 col-form-label">Twitter</label>
                 <div className="input-group col-lg-9 profile-form-input-group">
                   <div className="input-group-prepend">
@@ -79,7 +79,7 @@ class EditProfile extends Component {
                 </div>
               </div>
 
-              <div className='form-group row'>
+              <div className='form-group row profile-form-row'>
                 <label className="col-lg-3 col-form-label">Facebook</label>
                 <div className="input-group col-lg-9 profile-form-input-group">
                   <div className="input-group-prepend">
@@ -91,7 +91,7 @@ class EditProfile extends Component {
                 </div>
               </div>
 
-              <div className='form-group row'>
+              <div className='form-group row profile-form-row'>
                 <label className="col-lg-3 col-form-label">Youtube</label>
                 <div className="input-group col-lg-9 profile-form-input-group">
                   <div className="input-group-prepend">
@@ -103,7 +103,7 @@ class EditProfile extends Component {
                 </div>
               </div>
 
-              <div style={{marginTop: "30px"}}>
+              <div style={{marginTop: "30px", textAlign: "center"}}>
                 <input
                     type='submit'
                     value='Submit'

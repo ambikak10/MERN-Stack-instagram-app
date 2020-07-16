@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import logo from '../../img/logo.png';
 import axios from 'axios'
 import classnames from 'classnames';
+import "./signup.css"; 
 
 class Signup extends Component {
   constructor() {
