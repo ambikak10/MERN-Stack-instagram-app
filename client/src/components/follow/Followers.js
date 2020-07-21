@@ -18,6 +18,9 @@ class followers extends Component {
   // }
 
   render() {
+     if (!this.props.showFollowers) {
+       return null;
+     }
     return (
       <div className='first'>
         <div className='second'>
@@ -25,7 +28,7 @@ class followers extends Component {
             <div className='followers-container'>
               <h5>Followers </h5>
               <span>
-                <Link to='/profile' class='X'>
+                <Link onClick={this.props.close} class='X'>
                   X
                 </Link>
               </span>
@@ -75,7 +78,6 @@ class followers extends Component {
                       }}
                       // onClick={this.handleClick}
                     >
-                    
                       Follow
                       {/* {this.state.isToggleOn ? "Follow" : "Following"} */}
                     </button>
@@ -249,8 +251,8 @@ class followers extends Component {
                     <button
                       className='btn btn-primary'
                       style={{
-                       lineHeight: "2px",
-                       float: "right",
+                        lineHeight: "2px",
+                        float: "right",
                         height: "30px",
                       }}
                     >

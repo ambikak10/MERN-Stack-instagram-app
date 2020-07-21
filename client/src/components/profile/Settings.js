@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import "./settings.css";
 
 
+
 class Settings extends Component {
-  
-cancel = () => {
-   this.props.history.push("/profile");
-}
   render() {
+    if (!this.props.show) {
+      return null;
+    }
     return (
       <div className='firstset'>
         <div className='secondset'>
@@ -28,11 +28,12 @@ cancel = () => {
               </button>
 
               <button
-               onClick={this.cancel}
+                onClick={this.props.close}
+                
                 style={{
                   borderBottomLeftRadius: "15px",
                   borderBottomRightRadius: "15px",
-                  lineHeight: "30px"
+                  lineHeight: "30px",
                 }}
                 className='w3-button w3-block w3-white '
               >
