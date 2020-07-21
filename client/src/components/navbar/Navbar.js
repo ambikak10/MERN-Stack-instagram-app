@@ -16,7 +16,7 @@ export class Navbar extends Component {
             <img className='logo-navbar' alt='Instagram' src={logo} />
           </Link>
 
-          <div className='search d-none d-xl-block d-lg-block d-md-block'>
+          <div className='search d-none d-xl-block'>
             <span className='fa fa-search'></span>
             <input
               className='form-control form-control-sm'
@@ -48,7 +48,7 @@ export class Navbar extends Component {
             </li>
 
             {/* to be shown only once the user logs In */}
-            <li style={{marginTop: "10px"}}>
+            <li style={{ marginTop: "10px" }}>
               <Link
                 to='/'
                 // style={{
@@ -57,7 +57,9 @@ export class Navbar extends Component {
                 //   color: "black",
                 // }}
               >
-                <span className="navbarIcon" style={{fontSize: "0.9em"}}>Log out</span>
+                <span className='navbarIcon' style={{ fontSize: "0.9em" }}>
+                  Log out
+                </span>
               </Link>
             </li>
           </ul>

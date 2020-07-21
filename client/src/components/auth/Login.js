@@ -5,6 +5,8 @@ import mobile from "../../img/mobile.png";
 import axios from 'axios'
 import classnames from 'classnames';
 import "./login.css"; 
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
 
 class Login extends Component {
   constructor() {
@@ -23,86 +25,90 @@ class Login extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const newUser = {
+    const user = {
       email: this.state.email,
       password: this.state.password,
     };
-
-    axios
-      .post("/api/users/login", newUser)
-      .then((res) => console.log(res))
-      .catch((err) => this.setState({ errors: err.response.data }));
+    this.props.loginUser(user);
+  }
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.auth.isAuthenticated) {
+        this.props.history.push('/create-profile');
+      }
+      if (nextProps.errors) {
+        this.setState({ errors: nextProps.errors });
+    }
   }
     render() {
     const { errors } = this.state;
     const { email, password } = this.state;
     const enabled = email.length > 0 && password.length > 0;
     return (
-      <div className="margin">
-        <img className="mobile" src={mobile} />
-        <div className="d-flex flex-column">
-          <div className="card">
-            <div className="card-body">
-              <img className="logo" src={logo} alt="instagram" />
+      <div className='margin'>
+        <img className='mobile d-none d-xl-block' src={mobile} />
+        <div className='d-flex flex-column'>
+          <div className='card'>
+            <div className='card-body'>
+              <img className='logo' src={logo} alt='instagram' />
               <br />
               <br />
               <form onSubmit={this.onSubmit}>
-                <div className="form-group">
+                <div className='form-group'>
                   <input
-                    type="email"
-                    id="myText"
+                    type='email'
+                    id='myText'
                     className={classnames("form-control", {
                       "is-invalid": errors.email,
                     })}
-                    placeholder="Email"
-                    name="email"
+                    placeholder='Email'
+                    name='email'
                     value={this.state.email}
                     onChange={this.onChange}
                   />
                   {errors.email && (
-                    <div className="invalid-feedback">{errors.email}</div>
+                    <div className='invalid-feedback'>{errors.email}</div>
                   )}
                 </div>
-                <div className="form-group">
+                <div className='form-group'>
                   <input
-                    type="password"
+                    type='password'
                     className={classnames("form-control ", {
                       "is-invalid": errors.password,
                     })}
-                    placeholder="Password"
-                    name="password"
+                    placeholder='Password'
+                    name='password'
                     value={this.state.password}
                     onChange={this.onChange}
                   />
                   {errors.password && (
-                    <div className="invalid-feedback">{errors.password}</div>
+                    <div className='invalid-feedback'>{errors.password}</div>
                   )}
                 </div>
 
                 <input
-                  type="submit"
-                  value="Log In"
+                  type='submit'
+                  value='Log In'
                   disabled={!enabled}
                   // style={{
                   //   width: "265px",
                   //   height: "30px",
                   //   marginTop: "10px",
-                  //   border: "None",                    
+                  //   border: "None",
                   // }}
-                  className="authButton"
+                  className='authButton'
                 />
               </form>
               <br />
               <div>
-                <hr id="one" />
-                <span id="or">OR</span>
-                <hr id="two" />
+                <hr id='one' />
+                <span id='or'>OR</span>
+                <hr id='two' />
               </div>
               <br />
-              <p className="more-info">
+              <p className='more-info'>
                 Don't have an account? &nbsp;
                 <span>
-                  <Link to="/signup">Sign up</Link>
+                  <Link to='/signup'>Sign up</Link>
                 </span>
               </p>
             </div>
@@ -113,4 +119,9 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  errors: state.errors,
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);
