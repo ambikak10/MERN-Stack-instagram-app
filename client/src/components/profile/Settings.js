@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./settings.css";
-import { Link } from "react-router-dom";
-import avatar from "../../img/avatar.png";
+
 
 class Settings extends Component {
   
@@ -35,7 +34,7 @@ cancel = () => {
                   borderBottomRightRadius: "15px",
                   lineHeight: "30px"
                 }}
-                className='w3-button w3-block w3-white look'
+                className='w3-button w3-block w3-white '
               >
                 Cancel
               </button>
