@@ -5,7 +5,9 @@ import avatar from "../../img/avatar.png";
 
 class Settings extends Component {
   
-
+cancel = () => {
+   this.props.history.push("/profile");
+}
   render() {
     return (
       <div className='firstset'>
@@ -26,8 +28,8 @@ class Settings extends Component {
                 Delete account
               </button>
 
-              <Link
-                to='/profile'
+              <button
+               onClick={this.cancel}
                 style={{
                   borderBottomLeftRadius: "15px",
                   borderBottomRightRadius: "15px",
@@ -36,7 +38,7 @@ class Settings extends Component {
                 className='w3-button w3-block w3-white look'
               >
                 Cancel
-              </Link>
+              </button>
             </div>
           </div>
         </div>
