@@ -34,9 +34,7 @@ export class profile extends Component {
                     Edit profile
                   </Link>
                   <Link
-                    to='/Settings'
-                    // type='button'
-                    // className='btn profileButton'
+                    to='/settings'
                   >
                     <i style={{ fontSize: "1.5rem", color:"black"}} class='fas fa-cog'></i>
                   </Link>

@@ -24,33 +24,32 @@ export class home extends Component {
          render() {
            
            return (
-             
-             <div className="container">              
-                <div className="row">
-                 <div className="col-sm-6"> 
-                   <div className="card-home">
-                     <div className="card-header">
-                       <Link to="#">
+             <div className='container'>
+               <div className='row'>
+                 <div className='col-sm-6'>
+                   <div className='card-home'>
+                     <div className='card-header'>
+                       <Link to='#'>
                          <img
-                           className="avatar-icon"
+                           className='avatar-icon'
                            src={avatar}
-                           alt="Avatar"
+                           alt='Avatar'
                            style={{ marginLeft: ".5px" }}
                          />
                        </Link>
-                       <Link to="" className="name-of-account">
+                       <Link to='' className='name-of-account'>
                          user007
                        </Link>
                      </div>
                      <img
-                       class="card-img-top"
-                       src="https://images.unsplash.com/photo-1462216589242-9e3e00a47a48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=966&q=80"
+                       class='card-img-top'
+                       src='https://images.unsplash.com/photo-1462216589242-9e3e00a47a48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=966&q=80'
                      />
-                     <div classname="card-body">
-                       <section id="icons">
-                         <Link to="">
+                     <div classname='card-body'>
+                       <section id='icons'>
+                         <Link to=''>
                            <i
-                             className="fa fa-heart-o fa-2x"
+                             className='fa fa-heart-o fa-2x'
                              style={{
                                color: "black",
                                marginRight: "20px",
@@ -58,9 +57,9 @@ export class home extends Component {
                              }}
                            ></i>
                          </Link>
-                         <Link to="">
+                         <Link to=''>
                            <i
-                             className="fa fa-comment-o "
+                             className='fa fa-comment-o '
                              style={{
                                color: "black",
                                marginRight: "20px",
@@ -68,9 +67,9 @@ export class home extends Component {
                              }}
                            ></i>
                          </Link>
-                         <Link to="">
+                         <Link to=''>
                            <i
-                             className="fa fa-paper-plane-o"
+                             className='fa fa-paper-plane-o'
                              style={{
                                color: "black",
                                marginRight: "400px",
@@ -78,13 +77,13 @@ export class home extends Component {
                              }}
                            ></i>
                          </Link>
-                         <Link to="">
+                         <Link to=''>
                            <i
-                             className="fa fa-bookmark-o"
+                             className='fa fa-bookmark-o'
                              style={{ color: "black", fontSize: "1.4em" }}
                            ></i>
                          </Link>
-                         <div className="textStyle-date">
+                         <div className='textStyle-date'>
                            <div
                              style={{
                                fontWeight: "600",
@@ -96,22 +95,22 @@ export class home extends Component {
                            </div>
                          </div>
                          <div>
-                           <Link class="handlename-post" to="">
+                           <Link class='handlename-post' to=''>
                              user007
                            </Link>
-                           <span class="textStyle-comment">
+                           <span class='textStyle-comment'>
                              &nbsp; Love is in the air
                            </span>
                          </div>
                          <div>
-                           <Link to="" className="handlename-post">
+                           <Link to='' className='handlename-post'>
                              user1
                            </Link>
-                           <span className="textStyle-comment">
+                           <span className='textStyle-comment'>
                              &nbsp; calm and serene
-                             <Link to="">
+                             <Link to=''>
                                <i
-                                 className="fa fa-heart-o fa-2x"
+                                 className='fa fa-heart-o fa-2x'
                                  style={{
                                    color: "gray",
                                    float: "right",
@@ -135,22 +134,22 @@ export class home extends Component {
                        </section>
                      </div>
                      <br />
-                     <div class="card-footer">
+                     <div class='card-footer'>
                        <div
                          style={{
                            fontSize: "1em",
                            color: "grey",
-                           marginTop: "10px"
-                           
+                           marginTop: "10px",
                          }}
                        >
                          Add a comment
                        </div>
                      </div>
                    </div>
-                 </div> 
-                 <div className="col-sm-6">
-                   <div className="card-home"
+                 </div>
+                 <div className='col-sm-6'>
+                   <div
+                     className='card-home d-none d-xl-block'
                      style={{
                        marginTop: "20px",
                        backgroundColor: "#fafafa",
@@ -160,24 +159,24 @@ export class home extends Component {
                      }}
                    >
                      <div
-                       className="card-header"
+                       className='card-header'
                        style={{
                          backgroundColor: "#fafafa",
                          border: "none",
                        }}
                      >
-                       <Link to="#">
+                       <Link to='#'>
                          <img
-                           className="avatar-icon"
+                           className='avatar-icon'
                            src={avatar}
-                           alt="Avatar"
+                           alt='Avatar'
                            style={{
                              marginLeft: ".5px",
                              width: "60px",
                            }}
                          />
                        </Link>
-                       <Link to="" className="name-of-account">
+                       <Link to='' className='name-of-account'>
                          user007
                        </Link>
                      </div>
@@ -196,12 +195,12 @@ export class home extends Component {
                      </div>
 
                      <div style={{ marginTop: "10px", marginLeft: "10px" }}>
-                       <Link to="/profile">
+                       <Link to='/profile'>
                          <img
-                           className="rounded-circle profile-card-avatar"
+                           className='rounded-circle profile-card-avatar'
                            style={{ width: "50px" }}
                            src={avatar}
-                           alt="avatar"
+                           alt='avatar'
                          />
                        </Link>
                        <span
@@ -226,12 +225,12 @@ export class home extends Component {
                      </div>
 
                      <div style={{ marginTop: "10px", marginLeft: "10px" }}>
-                       <Link to="/profile">
+                       <Link to='/profile'>
                          <img
-                           className="rounded-circle profile-card-avatar"
+                           className='rounded-circle profile-card-avatar'
                            style={{ width: "50px" }}
                            src={avatar}
-                           alt="avatar"
+                           alt='avatar'
                          />
                        </Link>
                        <span
@@ -256,7 +255,7 @@ export class home extends Component {
                      </div>
                    </div>
                  </div>
-               </div> 
+               </div>
              </div>
            );
          }
