@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import avatar from "../../img/avatar.png"
 import "./home.css"; 
+import Navbar from '../navbar/Navbar';
 
 export class home extends Component {
          constructor() {
@@ -21,8 +22,10 @@ export class home extends Component {
            this.setState({ follow: false });
          }
          render() {
+           
            return (
-             <div className="container">
+             
+             <div className="container">              
                 <div className="row">
                  <div className="col-sm-6"> 
                    <div className="card-home">

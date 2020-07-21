@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import logo from '../../img/logo.png';
-import axios from 'axios'
+import { connect } from 'react-redux';
+import { signupUser } from '../../actions/authActions';
+import { withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import "./signup.css"; 
 
@@ -31,16 +33,18 @@ class Signup extends Component {
       password2: this.state.password2,
     };
 
-    axios
-      .post("/api/users/signup", newUser)
-      .then((res) => console.log(res))
-      .catch((err) => this.setState({ errors: err.response.data }));
+    this.props.signupUser(newUser, this.props.history);
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
 
   render() {
     const {errors} = this.state;
-    const { email, password, name, password2 } = this.state;
-    const enabled = email.length > 0 && password.length > 0 && name.length > 0 && password2.length > 0;
+    const {name} = this.state;
+    const enabled = name.length > 0 ;
     return (
       <div className="margin">
         <div className="d-flex flex-column">
@@ -145,4 +149,8 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+const mapStateToProps = (state) => ({
+  errors: state.errors
+});
+
+export default connect(mapStateToProps, { signupUser })(withRouter(Signup));
