@@ -1,12 +1,31 @@
 import React, { Component } from "react";
 import "./navbar.css";
 import logo from "../../img/logo.png";
-import avatar from "../../img/avatar.png";
-import { Link} from "react-router-dom";
+// import avatar from "../../img/avatar.png";
+import { Link, withRouter} from "react-router-dom";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
+
 
 export class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.logoutUserHandle = this.logoutUserHandle.bind(this);
+  }
+
+  logoutUserHandle(e) {
+    e.preventDefault();
+    this.props.history.push("/");
+    this.props.logoutUser();
+  }
+
   render() {
-    return (
+    const {isAuthenticated, user} = this.props.auth;
+    //Get real avatar of user from redux store
+    const {avatar} = user;
+
+    //Put all navbar contents into variable "navbar" 
+    const navbar = (
       <nav
         className='navbar navbar-light navbar-expand-lg'
         style={{ backgroundColor: "white", padding: "0px" }}
@@ -46,11 +65,10 @@ export class Navbar extends Component {
                 <img className='avatar navbarIcon' src={avatar} alt='Avatar' />
               </Link>
             </li>
-
-            {/* to be shown only once the user logs In */}
+            
             <li style={{ marginTop: "10px" }}>
               <Link
-                to='/'
+                onClick={this.logoutUserHandle}
                 // style={{
                 //   fontSize: "0.9em",
                 //   fontFamily: "sans-serif",
@@ -66,9 +84,21 @@ export class Navbar extends Component {
         </div>
       </nav>
     );
+    return (
+      <div>
+        {/* Check if user is isAuthenticated, if yes - show Navbar, if no - hide Navbar */}
+        {isAuthenticated ? navbar : null}
+      </div>
+    );
   }
 }
-   export default Navbar; 
+   
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { logoutUser })(withRouter(Navbar));
+  
 
               {/* Conditional rendering of dropdown -- on click to do in react*/}
               {/* <div className='dropdown'>
