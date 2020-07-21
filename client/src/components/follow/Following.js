@@ -17,7 +17,7 @@ class following extends Component {
             <div className='followers-container'>
               <h5>Following </h5>
               <span>
-                <Link onClick={this.props.close} class='X'>
+                <Link onClick={this.props.close} className='X'>
                   X
                 </Link>
               </span>
@@ -40,7 +40,7 @@ class following extends Component {
                   <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
                     <Link
                       to='#'
-                      class='fontStyleSizeColor'
+                      className='fontStyleSizeColor'
                       style={{ marginLeft: "-50px" }}
                     >
                       HandleName
@@ -75,7 +75,7 @@ class following extends Component {
                   <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
                     <Link
                       to='#'
-                      class='fontStyleSizeColor'
+                      className='fontStyleSizeColor'
                       style={{ marginLeft: "-50px" }}
                     >
                       HandleName
@@ -110,7 +110,7 @@ class following extends Component {
                   <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
                     <Link
                       to='#'
-                      class='fontStyleSizeColor'
+                      className='fontStyleSizeColor'
                       style={{ marginLeft: "-50px" }}
                     >
                       HandleName
@@ -145,7 +145,7 @@ class following extends Component {
                   <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
                     <Link
                       to='#'
-                      class='fontStyleSizeColor'
+                      className='fontStyleSizeColor'
                       style={{ marginLeft: "-50px" }}
                     >
                       HandleName
@@ -180,7 +180,7 @@ class following extends Component {
                   <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
                     <Link
                       to='#'
-                      class='fontStyleSizeColor'
+                      className='fontStyleSizeColor'
                       style={{ marginLeft: "-50px" }}
                     >
                       HandleName
@@ -215,7 +215,7 @@ class following extends Component {
                   <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
                     <Link
                       to='#'
-                      class='fontStyleSizeColor'
+                      className='fontStyleSizeColor'
                       style={{ marginLeft: "-50px" }}
                     >
                       HandleName
@@ -250,7 +250,7 @@ class following extends Component {
                   <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
                     <Link
                       to='#'
-                      class='fontStyleSizeColor'
+                      className='fontStyleSizeColor'
                       style={{ marginLeft: "-50px" }}
                     >
                       HandleName
@@ -285,7 +285,7 @@ class following extends Component {
                   <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
                     <Link
                       to='#'
-                      class='fontStyleSizeColor'
+                      className='fontStyleSizeColor'
                       style={{ marginLeft: "-50px" }}
                     >
                       HandleName

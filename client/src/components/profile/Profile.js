@@ -68,7 +68,7 @@ export class profile extends Component {
                          />
                        </span>
                      </h2>
-                     <p className='textsize'>
+                     <div className='textsize'>
                        <span>
                          <Link to='#'>
                            <b>2</b> posts
@@ -90,8 +90,8 @@ export class profile extends Component {
                            close={this.showFollowingList}
                          />
                        </span>
-                     </p>
-                     <p className='profileName'>
+                     </div>
+                     <p style={{marginTop: "20px"}}className='profileName'>
                        <strong>username</strong>
                      </p>
                      <br />
