@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 import avatar from "../../img/avatar.png";
 
 class following extends Component {
+  
   render() {
+     if (!this.props.showFollowing) {
+       return null;
+     }
     return (
       <div className='first'>
         <div className='second'>
@@ -13,7 +17,7 @@ class following extends Component {
             <div className='followers-container'>
               <h5>Following </h5>
               <span>
-                <Link to='/profile' class='X'>
+                <Link onClick={this.props.close} class='X'>
                   X
                 </Link>
               </span>

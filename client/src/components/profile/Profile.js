@@ -4,17 +4,30 @@ import Navbar from "../../components/navbar/Navbar";
 import avatar from "../../img/avatar.png";
 import "./profile.css";
 import Settings from "./Settings";
+import Followers from "../follow/Followers";
+import Following from "../follow/Following";
 
 export class profile extends Component {
          state = {
            show: false,
+           showFollowers: false,
+           showFollowing: false,
+         };
+         showFollowersList = (e) => {
+           this.setState({
+             showFollowers: !this.state.showFollowers,
+           });
+         };
+         showFollowingList = (e) => {
+           this.setState({
+             showFollowing: !this.state.showFollowing,
+           });
          };
          showSettings = (e) => {
            this.setState({
              show: !this.state.show,
            });
          };
-      
 
          render() {
            return (
@@ -43,9 +56,7 @@ export class profile extends Component {
                          >
                            Edit profile
                          </Link>
-                         <Link
-                           onClick={(e) => this.showSettings()}
-                         >
+                         <Link onClick={(e) => this.showSettings()}>
                            <i
                              style={{ fontSize: "1.5rem", color: "black" }}
                              className='fas fa-cog'
@@ -63,13 +74,21 @@ export class profile extends Component {
                            <b>2</b> posts
                          </Link>
                          &nbsp; &nbsp; &nbsp;&nbsp;
-                         <Link>
+                         <Link onClick={(e) => this.showFollowersList()}>
                            <b>200</b> followers
-                         </Link>
+                         </Link>{" "}
+                         <Followers
+                           showFollowers={this.state.showFollowers}
+                           close={this.showFollowersList}
+                         />
                          &nbsp; &nbsp; &nbsp;
-                         <Link to='/following'>
+                         <Link onClick={(e) => this.showFollowingList()}>
                            <b>20</b> following
                          </Link>
+                         <Following
+                           showFollowing={this.state.showFollowing}
+                           close={this.showFollowingList}
+                         />
                        </span>
                      </p>
                      <p className='profileName'>

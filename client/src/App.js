@@ -10,7 +10,6 @@ import Navbar from './components/navbar/Navbar';
 import Post from "./components/displayPost/Post";
 import CreateProfile from "./components/profile/CreateProfile";
 import CreatePost from "./components/displayPost/CreatePost";
-import Followers from "./components/follow/Followers";
 import Following from "./components/follow/Following";
 import Profiles from "./components/profile/Profiles";
 import Home from "./components/home/Home";
@@ -33,8 +32,6 @@ class App extends Component {
             <Route exact path='/post' component={Post} />
             <Route exact path='/create-profile' component={CreateProfile} />
             <Route exact path='/create-post' component={CreatePost} />
-            <Route exact path='/followers' component={Followers} />
-            <Route exact path='/following' component={Following} />
             <Route exact path='/explore' component={Profiles} />
             <Route exact path='/home' component={Home} />
 
