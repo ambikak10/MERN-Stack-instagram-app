@@ -5,6 +5,8 @@ import mobile from "../../img/mobile.png";
 import axios from 'axios'
 import classnames from 'classnames';
 import "./login.css"; 
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
 
 class Login extends Component {
   constructor() {
@@ -23,15 +25,19 @@ class Login extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const newUser = {
+    const user = {
       email: this.state.email,
       password: this.state.password,
     };
-
-    axios
-      .post("/api/users/login", newUser)
-      .then((res) => console.log(res))
-      .catch((err) => this.setState({ errors: err.response.data }));
+    this.props.loginUser(user);
+  }
+    componentWillReceiveProps(nextProps) {
+      if (nextProps.auth.isAuthenticated) {
+        this.props.history.push('/create-profile');
+      }
+      if (nextProps.errors) {
+        this.setState({ errors: nextProps.errors });
+    }
   }
     render() {
     const { errors } = this.state;
@@ -113,4 +119,9 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  errors: state.errors,
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);
