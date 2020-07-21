@@ -4,7 +4,6 @@ import './App.css';
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import Profile from "./components/profile/Profile";
-import Settings from "./components/profile/Settings";
 import EditProfile from "./components/profile/EditProfile";
 import Footer from "./components/footer/Footer";
 import Navbar from './components/navbar/Navbar';
@@ -30,7 +29,6 @@ class App extends Component {
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/' component={Login} />
             <Route exact path='/profile' component={Profile} />
-            <Route exact path='/settings' component={Settings} />
             <Route exact path='/edit-profile' component={EditProfile} />
             <Route exact path='/post' component={Post} />
             <Route exact path='/create-profile' component={CreateProfile} />

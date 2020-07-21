@@ -4,12 +4,21 @@ import { Link } from "react-router-dom";
 import avatar from "../../img/avatar.png";
 
 class post extends Component {
+  constructor(props) {
+    super(props);
+    this.goBack = this.goBack.bind(this);
+  }
+
+  goBack() {
+    this.props.history.goBack();
+  }
+
   render() {
     return (
       <div className='parent'>
         <div className='child'>
           <span class='close'>
-            <button>
+            <button onClick={this.goBack}>
               <i class='fa fa-times' aria-hidden='true'></i>
             </button>
           </span>
