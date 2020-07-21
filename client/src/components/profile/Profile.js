@@ -33,6 +33,13 @@ export class profile extends Component {
                   >
                     Edit profile
                   </Link>
+                  <Link
+                    to='/Settings'
+                    // type='button'
+                    // className='btn profileButton'
+                  >
+                    <i style={{ fontSize: "1.5rem", color:"black"}} class='fas fa-cog'></i>
+                  </Link>
                 </span>
               </h2>
               <p className='textsize'>
@@ -94,7 +101,7 @@ export class profile extends Component {
               </i>
             </Link>
             <Link to='/create-post'>
-              <i class="far fa-plus-square">
+              <i class='far fa-plus-square'>
                 <span
                   style={{
                     marginLeft: "5px",

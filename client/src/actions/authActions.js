@@ -2,8 +2,6 @@ import { SET_CURRENT_USER, GET_ERRORS } from './types';
 import axios from 'axios';
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
-import { connect } from "react-redux";
-
 
 //Register user
 export const signupUser = (userData, history) => dispatch => {

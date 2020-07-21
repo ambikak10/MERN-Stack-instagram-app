@@ -4,6 +4,7 @@ import './App.css';
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import Profile from "./components/profile/Profile";
+import Settings from "./components/profile/Settings";
 import EditProfile from "./components/profile/EditProfile";
 import Footer from "./components/footer/Footer";
 import Navbar from './components/navbar/Navbar';
@@ -24,19 +25,20 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div className="App">
-             <Navbar /> 
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/" component={Login} />
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/edit-profile" component={EditProfile} />
-            <Route exact path="/post" component={Post} />
-            <Route exact path="/create-profile" component={CreateProfile} />
-            <Route exact path="/create-post" component={CreatePost} />
-            <Route exact path="/followers" component={Followers} />
-            <Route exact path="/following" component={Following} />
-            <Route exact path="/explore" component={Profiles} />
-            <Route exact path="/home" component={Home} />
+          <div className='App'>
+            <Navbar />
+            <Route exact path='/signup' component={Signup} />
+            <Route exact path='/' component={Login} />
+            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/profile' component={Settings} />
+            <Route exact path='/edit-profile' component={EditProfile} />
+            <Route exact path='/post' component={Post} />
+            <Route exact path='/create-profile' component={CreateProfile} />
+            <Route exact path='/create-post' component={CreatePost} />
+            <Route exact path='/followers' component={Followers} />
+            <Route exact path='/following' component={Following} />
+            <Route exact path='/explore' component={Profiles} />
+            <Route exact path='/home' component={Home} />
 
             <Footer />
           </div>
