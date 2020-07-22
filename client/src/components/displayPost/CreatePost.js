@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import defaultImage from "../../img/defaultImage.jpg";
 import axios from "axios";
+
 class CreatePost extends Component {
   constructor(props) {
     super(props);
@@ -9,9 +10,10 @@ class CreatePost extends Component {
       image: "",
       showDefault: true,
       tagged: [],
-      text: "Helloworld",
+      text: "",
     };
     this.uploadImage = this.uploadImage.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
   // uploadImage(e) {
@@ -20,40 +22,46 @@ class CreatePost extends Component {
   //     showDefault: false
   //   });
   // }
+  onChange(e) {
+    this.setState({ text: e.target.value });
+  }
 
+  // Get user uploaded file
   uploadImage = async (e) => {
     const files = e.target.files;
     const data = new FormData();
     data.append("file", files[0]);
-    data.append("upload_preset", "instaimages");
+    data.append("upload_preset", "instagram");
+
+    // POST image to cloudinary through the cloudinary API and append image
     const res = await fetch(
-      "	https://api.cloudinary.com/v1_1/ambikakanakkur/image/upload",
+      "https://api.cloudinary.com/v1_1/instagramteam/image/upload",
       {
         method: "POST",
         body: data,
       }
     );
-
+    // Fetch result
     const result = await res.json();
-    const secure_url = result.secure_url;
-;
-     console.log(result);
+
+    // Update the image state to the fetched result url
+
     this.setState({
-      image: result.secure_url,
+      image: result.secure_url, //secure.url is a property of fetch result
       showDefault: false,
     });
-   
   };
   onClick = (e) => {
-    
-    const newPst = {
+    e.preventDefault();
+    const newPost = {
       text: this.state.text,
       image: this.state.image,
     };
     axios
-      .post("/api/posts", newPst)
+      .post("/api/posts", newPost)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err.response.data));
+    this.props.history.push("/create-post"); 
   };
 
   render() {
@@ -85,6 +93,8 @@ class CreatePost extends Component {
                   type='text'
                   className='form-control'
                   name='text'
+                  value={this.state.text}
+                  onChange={this.onChange}
                   placeholder='Description'
                   style={{ width: "93%", height: "200px" }}
                 />
