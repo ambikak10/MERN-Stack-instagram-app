@@ -4,7 +4,7 @@ import avatar from "../../img/avatar.png"
 import "./home.css"; 
 import Navbar from '../navbar/Navbar';
 
-export class home extends Component {
+class home extends Component {
          constructor() {
            super();
            this.state = {
