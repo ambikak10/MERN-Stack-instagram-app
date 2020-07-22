@@ -1,8 +1,34 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { createProfile } from "../../actions/profileActions";
 
 class CreateProfile extends Component {
-
+ constructor(props) {
+   super(props);
+   this.state = {
+     handle: "",
+     website: "",
+     bio: "",
+     phone: "",
+     gender: "",
+     facebook: "",
+     youtube: "",
+     twitter:'',
+     errors:{}
+   };
+   const profileData = {
+     handle: this.state.handle,
+     twitter: this.state.twitter,
+     facebook: this.state.facebook,
+     youtube: this.state.youtube,
+     website: this.state.website,
+     bio: this.state.bio,
+     phone: this.state.phone,
+     gender: this.state.gender,
+   };
+ }
   render() {
     return (
       <div className="profile-form-container">
@@ -110,5 +136,12 @@ class CreateProfile extends Component {
     )
   }
 }
-
-export default CreateProfile;
+CreateProfile.propTypes = {
+  profile: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+};
+const mapStateToProps =  state => ({
+  profile: state.profile,
+  errors: state.errors
+})
+export default connect(mapStoreToProps, {CreateProfile})(withRouter(CreateProfile));
