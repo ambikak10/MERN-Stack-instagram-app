@@ -61,7 +61,6 @@ class CreatePost extends Component {
       .post("/api/posts", newPost)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err.response.data));
-    this.props.history.push("/create-post"); 
   };
 
   render() {
