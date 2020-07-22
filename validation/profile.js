@@ -8,7 +8,7 @@ module.exports = function validateProfileInput(data){
     errors.handle = "Handle needs to be between 2 and 40 characters";
   }
   if (isEmpty(data.handle)) {
-    errors.handle = "Profile handle is required";
+    errors.handle = "Username is required";
   }
 
   if (!isEmpty(data.phone)) {

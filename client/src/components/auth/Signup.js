@@ -46,99 +46,99 @@ class Signup extends Component {
     const {name} = this.state;
     const enabled = name.length > 0 ;
     return (
-      <div className="margin">
-        <div className="d-flex flex-column">
-          <div className="card">
-            <div className="card-body">
-              <img className="logo" src={logo} alt="instagram" />
-              <p className="info">
+      <div className='margin'>
+        <div className='d-flex flex-column'>
+          <div className='card'>
+            <div className='card-body'>
+              <img className='logo' src={logo} alt='instagram' />
+              <p className='info'>
                 Sign up to see photos and videos from your friends.
               </p>
               <form onSubmit={this.onSubmit}>
-                <div className="form-group">
+                <div className='form-group'>
                   <input
-                    type="text"
+                    type='text'
                     className={classnames("form-control form-control-lg", {
                       "is-invalid": errors.name,
                     })}
-                    placeholder="Full Name"
-                    name="name"
+                    placeholder='Full Name'
+                    name='name'
                     value={this.state.name}
                     onChange={this.onChange}
                   />
-                  {errors.name && (
-                    <div className="invalid-feedback">{errors.name}</div>
+                  {errors.handle && (
+                    <div className='invalid-feedback'>{errors.handle}</div>
                   )}
                 </div>
-                <div className="form-group">
+                <div className='form-group'>
                   <input
-                    type="email"
+                    type='email'
                     className={classnames("form-control form-control-lg", {
                       "is-invalid": errors.email,
                     })}
-                    placeholder="Email"
-                    name="email"
+                    placeholder='Email'
+                    name='email'
                     value={this.state.email}
                     onChange={this.onChange}
                   />
                   {errors.email && (
-                    <div className="invalid-feedback">{errors.email}</div>
+                    <div className='invalid-feedback'>{errors.email}</div>
                   )}
                 </div>
-                <div className="form-group">
+                <div className='form-group'>
                   <input
-                    type="password"
+                    type='password'
                     className={classnames("form-control form-control-lg", {
                       "is-invalid": errors.password,
                     })}
-                    placeholder="Password"
-                    name="password"
+                    placeholder='Password'
+                    name='password'
                     value={this.state.password}
                     onChange={this.onChange}
                   />
                   {errors.password && (
-                    <div className="invalid-feedback">{errors.password}</div>
+                    <div className='invalid-feedback'>{errors.password}</div>
                   )}
                 </div>
-                <div className="form-group">
+                <div className='form-group'>
                   <input
-                    type="password"
+                    type='password'
                     className={classnames("form-control form-control-lg", {
                       "is-invalid": errors.password2,
                     })}
-                    placeholder="Password2"
-                    name="password2"
+                    placeholder='Password2'
+                    name='password2'
                     value={this.state.password2}
                     onChange={this.onChange}
                   />
                   {errors.password2 && (
-                    <div className="invalid-feedback">{errors.password2}</div>
+                    <div className='invalid-feedback'>{errors.password2}</div>
                   )}
                 </div>
                 <input
-                  type="submit"
-                  value="Sign up"
+                  type='submit'
+                  value='Sign up'
                   disabled={!enabled}
                   // style={{
                   //   width: "265px",
                   //   height: "30px",
                   //   marginTop: "10px",
                   //   border: "None",
-                    
+
                   // }}
-                  className="authButton"
+                  className='authButton'
                 />
               </form>
               <br />
-              <p className="terms">
+              <p className='terms'>
                 By signing up,you agree to our{" "}
                 <b>Terms, Data Policy and Cookies Policy.</b>
               </p>
 
-              <p className="more-info">
+              <p className='more-info'>
                 Have an Account? &nbsp;
                 <span>
-                  <Link to="/">Log in</Link>
+                  <Link to='/'>Log in</Link>
                 </span>
               </p>
             </div>
