@@ -70,9 +70,9 @@ export class profile extends Component {
                      </h2>
                      <div className='textsize'>
                        <span>
-                         <Link to='#'>
+                         <a href='#postgrid'>
                            <b>2</b> posts
-                         </Link>
+                         </a>
                          &nbsp; &nbsp; &nbsp;&nbsp;
                          <Link onClick={(e) => this.showFollowersList()}>
                            <b>200</b> followers
@@ -135,7 +135,7 @@ export class profile extends Component {
                  <hr className='horizontalLine' />
 
                  <div className='profileTabs icons'>
-                   <Link to=''>
+                   <a href='#postgrid'>
                      <i className='fa fa-picture-o' aria-hidden='true'>
                        <span
                          style={{ marginLeft: "5px", fontFamily: "sans-serif" }}
@@ -143,7 +143,7 @@ export class profile extends Component {
                          POSTS
                        </span>
                      </i>
-                   </Link>
+                   </a>
                    <Link to='/create-post'>
                      <i className='far fa-plus-square'>
                        <span
@@ -176,7 +176,7 @@ export class profile extends Component {
                    </Link>
                  </div>
 
-                 <section className='row hover-effect'>
+                 <section className='row hover-effect' id= 'postgrid'>
                    <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
                      <Link to='/post'>
                        <figure>
