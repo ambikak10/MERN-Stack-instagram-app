@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import defaultImage from "../../img/defaultImage.jpg";
 import axios from "axios";
+import Spinner from './Spinner'
 
 class CreatePost extends Component {
   constructor(props) {
@@ -61,7 +62,8 @@ class CreatePost extends Component {
       .post("/api/posts", newPost)
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err.response.data));
-  };
+     this.props.history.push("/profile");
+    };
 
   render() {
     return (
