@@ -1,12 +1,9 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../../components/navbar/Navbar";
-import avatar from "../../img/avatar.png";
 import "./profile.css";
 import Settings from "./Settings";
 import Followers from "../follow/Followers";
 import Following from "../follow/Following";
-import { getCurrentProfile } from "../../actions/profileActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -18,34 +15,30 @@ export class profile extends Component {
     show: false,
     showFollowers: false,
     showFollowing: false,
-  };
-  this.showFollowersList = (e) => {
+    };
+  }
+  showFollowersList = (e) => {
     this.setState({
       showFollowers: !this.state.showFollowers,
     });
   };
-  this.showFollowingList = (e) => {
+  showFollowingList = (e) => {
     this.setState({
       showFollowing: !this.state.showFollowing,
     });
   };
-  this.showSettings = (e) => {
+  showSettings = (e) => {
     this.setState({
       show: !this.state.show,
     });
   };
-  }
+  
   componentDidMount() {
     this.props.getCurrentProfile();
   }
-  render() {
-    const { user } = this.props.auth;
-    const { profile, loading } = this.props.profile;
-    
-console.log(profile);
-    return (
 
-    
+  render() {
+    return (
         <div>
           {/* <Navbar /> */}
 
@@ -62,7 +55,7 @@ console.log(profile);
               </div>
               <div className='d-flex flex-column space'>
                 <h2 className='HandleName'>
-                {profile.handle}
+                
                   <span>
                     <Link
                       to='/edit-profile'
@@ -284,17 +277,8 @@ console.log(profile);
           {/* <Footer /> */}
         </div>
      
-                  );
+    );
   }
 }
   
-profile.propTypes = {
-  getCurrentProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired,
-};
-const mapStateToProps = (state) => ({
-  profile: state.profile,
-  auth: state.auth,
-});
-export default connect(mapStateToProps, { getCurrentProfile })(profile);
+export default (profile);
