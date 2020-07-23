@@ -55,7 +55,7 @@ router.post('/', passport.authenticate("jwt", {session: false}), (req,res) => {
         new Profile(profileFields)
           .save()
           .then((profile) => res.json(profile)).catch(err => {
-            console.log(err.message);
+            console.log(err);
             res.status(500).send('Server Error')
           })
       });

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
@@ -10,6 +10,7 @@ class CreateProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      displaySocialInputs: false,
       handle: "",
       website: "",
       bio: "",
@@ -45,101 +46,13 @@ class CreateProfile extends Component {
     }
   }
   render() {
-    const { errors } = this.state;
-    return (
-      <div className='profile-form-container'>
-        <div className='card profile-form-card'>
-          <div className='card-body profile-form-card-body'>
-            <h3 style={{ textAlign: "center" }}>Create Profile</h3>
-            <hr className='profile-form-horizontal-line' />
-
-            <form onSubmit={this.onSubmit}>
-              <div className='form-group row profile-form-row'>
-                <label className='col-lg-3 col-form-label'>Username</label>
-                <input
-                  type='text'
-                  className={classnames("form-control col-lg-9", {
-                    "is-invalid": errors.handle,
-                  })}
-                  name='handle'
-                  value={this.state.handle}
-                  onChange={this.onChange}
-                />
-                {errors.handle && (
-                  <div
-                    style={{ textAlign: "center" }}
-                    className='invalid-feedback'
-                  >
-                    {errors.handle}
-                  </div>
-                )}
-              </div>
-
-              <div className='form-group row profile-form-row'>
-                <label className='col-lg-3 col-form-label'>Website</label>
-                <input
-                  type='text'
-                  className={classnames("form-control col-lg-9", {
-                    "is-invalid": errors.website,
-                  })}
-                  name='website'
-                  value={this.state.website}
-                  onChange={this.onChange}
-                />
-                {errors.website && (
-                  <div
-                    style={{ textAlign: "center" }}
-                    className='invalid-feedback'
-                  >
-                    {errors.website}
-                  </div>
-                )}
-              </div>
-
-              <div className='form-group row profile-form-row'>
-                <label className='col-lg-3 col-form-label'>Bio</label>
-                <textarea
-                  className='form-control col-lg-9'
-                  name='bio'
-                  value={this.state.bio}
-                  onChange={this.onChange}
-                />
-              </div>
-
-              <div className='form-group row profile-form-row'>
-                <label className='col-lg-3 col-form-label'>Phone</label>
-                <input
-                  type='tel'
-                  className={classnames("form-control col-lg-9", {
-                    "is-invalid": errors.website,
-                  })}
-                  name='phone'
-                  value={this.state.phone}
-                  onChange={this.onChange}
-                />
-                {errors.phone && (
-                  <div
-                    style={{ textAlign: "center" }}
-                    className='invalid-feedback'
-                  >
-                    {errors.phone}
-                  </div>
-                )}
-              </div>
-
-              <div className='form-group row profile-form-row'>
-                <label className='col-lg-3 col-form-label'>Gender</label>
-                <input
-                  type='text'
-                  className='form-control col-lg-9'
-                  name='gender'
-                  value={this.state.gender}
-                  onChange={this.onChange}
-                />
-              </div>
-
-              <label className='col-form-label'>Social Network Links</label>
-
+    const { errors, displaySocialInputs } = this.state;
+     let socialInputs;
+     if (displaySocialInputs) {
+      socialInputs = (
+   
+      <Fragment>
+      
               <div className='form-group row profile-form-row'>
                 <label className='col-lg-3 col-form-label'>Twitter</label>
                 <div className='input-group col-lg-9 profile-form-input-group'>
@@ -226,6 +139,117 @@ class CreateProfile extends Component {
                   )}
                 </div>
               </div>
+            </Fragment>);
+     }
+      return (
+      <div className='profile-form-container'>
+        <div className='card profile-form-card'>
+          <div className='card-body profile-form-card-body'>
+            <h3 style={{ textAlign: "center" }}>Create Profile</h3>
+            <hr className='profile-form-horizontal-line' />
+
+            <form onSubmit={this.onSubmit}>
+              <div className='form-group row profile-form-row'>
+                <label className='col-lg-3 col-form-label'>Username</label>
+                <input
+                  type='text'
+                  className={classnames("form-control col-lg-9", {
+                    "is-invalid": errors.handle,
+                  })}
+                  name='handle'
+                  value={this.state.handle}
+                  onChange={this.onChange}
+                />
+                {errors.handle && (
+                  <div
+                    style={{ textAlign: "center" }}
+                    className='invalid-feedback'
+                  >
+                    {errors.handle}
+                  </div>
+                )}
+              </div>
+
+              <div className='form-group row profile-form-row'>
+                <label className='col-lg-3 col-form-label'>Website</label>
+                <input
+                  type='text'
+                  className={classnames("form-control col-lg-9", {
+                    "is-invalid": errors.website,
+                  })}
+                  name='website'
+                  value={this.state.website}
+                  onChange={this.onChange}
+                />
+                {errors.website && (
+                  <div
+                    style={{ textAlign: "center" }}
+                    className='invalid-feedback'
+                  >
+                    {errors.website}
+                  </div>
+                )}
+              </div>
+
+              <div className='form-group row profile-form-row'>
+                <label className='col-lg-3 col-form-label'>Bio</label>
+                <textarea
+                  className='form-control col-lg-9'
+                  name='bio'
+                  value={this.state.bio}
+                  onChange={this.onChange}
+                />
+              </div>
+
+              <div className='form-group row profile-form-row'>
+                <label className='col-lg-3 col-form-label'>Phone</label>
+                <input
+                  type='tel'
+                  className={classnames("form-control col-lg-9", {
+                    "is-invalid": errors.phone,
+                  })}
+                  name='phone'
+                  value={this.state.phone}
+                  onChange={this.onChange}
+                />
+                {errors.phone && (
+                  <div
+                    style={{ textAlign: "center" }}
+                    className='invalid-feedback'
+                  >
+                    {errors.phone}
+                  </div>
+                )}
+              </div>
+
+              <div className='form-group row profile-form-row'>
+                <label className='col-lg-3 col-form-label'>Gender</label>
+                <input
+                  type='text'
+                  className='form-control col-lg-9'
+                  name='gender'
+                  value={this.state.gender}
+                  onChange={this.onChange}
+                />
+              </div>
+
+              {/* <label className='col-form-label'>Social Network Links</label> */}
+               <div className="mb-3">
+                   <button
+                    type="button"
+                    onClick={() => {
+                      this.setState(prevState => ({
+                        displaySocialInputs: !prevState.displaySocialInputs
+                      }));
+                    }}
+                    className="btn btn-light"
+                  >
+                    Add Social Network Links
+                  </button>
+                  <span className="text-muted">  Optional</span>
+                </div>
+                {socialInputs}
+
 
               <div style={{ marginTop: "30px", textAlign: "center" }}>
                 <input
