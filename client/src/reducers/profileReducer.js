@@ -8,17 +8,19 @@ import {
 const initialState = {
   profile: null,
   profiles: null,
-  loading: false,
+  // loading: false,
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    
     case PROFILE_LOADING:
       return {
         ...state,
-        loading: false,
-      };
+      //   loading: false,
+       };
     case GET_PROFILE:
+      console.log(action.payload);
       return {
         ...state,
         profile: action.payload,

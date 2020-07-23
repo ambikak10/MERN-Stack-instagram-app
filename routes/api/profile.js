@@ -71,7 +71,7 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const errors = {};
-
+  console.log("backend get current prfile API")
     Profile.findOne({ user: req.user.id })
       .populate("user", ["name", "avatar"])
       .then((profile) => {
@@ -79,7 +79,8 @@ router.get(
           errors.noprofile = "There is no profile for this user";
           return res.status(404).json(errors);
         }
-        res.json(profile);
+        return res.json(profile);
+        console.log(profile);
       })
       .catch((err) => res.status(404).json(err));
   }
