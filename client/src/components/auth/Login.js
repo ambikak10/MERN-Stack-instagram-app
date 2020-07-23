@@ -51,7 +51,7 @@ class Login extends Component {
     return (
       <div className='margin'>
         <img className='mobile d-none d-xl-block d-md-block' src={mobile} />
-        <div className='d-flex flex-column'>
+        <div className='d-flex flex-column height'>
           <div className='card'>
             <div className='card-body'>
               <img className='logo' src={logo} alt='instagram' />
