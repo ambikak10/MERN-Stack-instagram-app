@@ -6,6 +6,7 @@ import Followers from "../follow/Followers";
 import Following from "../follow/Following";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import avatar from '../../img/avatar.png'
 
 
 export class profile extends Component {
@@ -32,10 +33,6 @@ export class profile extends Component {
       show: !this.state.show,
     });
   };
-  
-  componentDidMount() {
-    this.props.getCurrentProfile();
-  }
 
   render() {
     return (
@@ -49,13 +46,13 @@ export class profile extends Component {
                   <img
                     className='profile-photo'
                     alt='profile-photo'
-                    src=''
+                    src={avatar}
                   />
                 </Link>
               </div>
               <div className='d-flex flex-column space'>
                 <h2 className='HandleName'>
-                
+                HandleName
                   <span>
                     <Link
                       to='/edit-profile'

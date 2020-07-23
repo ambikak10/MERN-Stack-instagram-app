@@ -5,7 +5,7 @@ module.exports = function validateProfileInput(data){
   let errors = {};
 
   if(!Validator.isLength(data.handle, {min:2, max: 40})){
-    errors.handle = "Handle needs to be between 2 and 40 characters";
+    errors.handle = "Username needs to be between 2 and 40 characters";
   }
   if (isEmpty(data.handle)) {
     errors.handle = "Username is required";

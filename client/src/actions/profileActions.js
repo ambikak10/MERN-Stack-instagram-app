@@ -4,13 +4,11 @@ import {
 } from "./types";
 
 // Create Profile
+// Create Profile
 export const createProfile = (profileData, history) => dispatch => {
   axios
     .post('/api/profile', profileData)
-    .then(res => {
-      history.push('/profile');
-
-    })
+    .then(res => history.push('/profile'))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -18,5 +16,4 @@ export const createProfile = (profileData, history) => dispatch => {
       })
     );
 };
-
 
