@@ -93,11 +93,15 @@ router.delete("/",
   passport.authenticate("jwt", {session: false}),
   (req, res) => {
     Profile.findOneAndRemove({user: req.user.id})
-      .then(() => {
+      .then((profile) => {
+        console.log(profile);
         User.findOneAndRemove({ _id: req.user.id})
           .then(() => res.json({ success: true }))
-      });
-  }
+      }).catch(err => {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  })
+ }
 );
 
 // @route   GET api/profile/followers/:profile_id

@@ -3,11 +3,14 @@ import "./settings.css";
 
 
 
+
 class Settings extends Component {
+
   render() {
     if (!this.props.show) {
       return null;
     }
+   
     return (
       <div className='firstset'>
         <div className='secondset'>
@@ -23,7 +26,7 @@ class Settings extends Component {
                 Log Out
               </button>
 
-              <button className='w3-button w3-block w3-white'>
+              <button onClick ={this.props.onDelete}className='w3-button w3-block w3-white'>
                 Delete account
               </button>
 
@@ -47,4 +50,4 @@ class Settings extends Component {
   }
 }
 
-export default Settings;
+export default (Settings);
