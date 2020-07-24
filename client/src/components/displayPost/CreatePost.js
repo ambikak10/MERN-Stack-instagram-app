@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import defaultImage from "../../img/defaultImage.jpg";
-import axios from "axios";
-import Spinner from './Spinner'
+import classnames from 'classnames';
+import { connect } from "react-redux";
+import { addPost } from "../../actions/postActions";
 
 class CreatePost extends Component {
   constructor(props) {
@@ -10,95 +11,101 @@ class CreatePost extends Component {
     this.state = {
       image: "",
       showDefault: true,
-      tagged: [],
       text: "",
+      errors: {},
+      fileData: new FormData()
     };
     this.uploadImage = this.uploadImage.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
-
-  // uploadImage(e) {
-  //   this.setState({
-  //     image: URL.createObjectURL(e.target.files[0]),
-  //     showDefault: false
-  //   });
-  // }
-  onChange(e) {
-    this.setState({ text: e.target.value });
-  }
-
+  
   // Get user uploaded file
-  uploadImage = async (e) => {
+  uploadImage = e => {
     const files = e.target.files;
     const data = new FormData();
     data.append("file", files[0]);
     data.append("upload_preset", "instagram");
+    this.setState({
+      fileData: data,
+      showDefault: false,
+      image: URL.createObjectURL(e.target.files[0])
+    });
+  };
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
 
     // POST image to cloudinary through the cloudinary API and append image
-    const res = await fetch(
+    fetch(
       "https://api.cloudinary.com/v1_1/instagramteam/image/upload",
       {
         method: "POST",
-        body: data,
+        body: this.state.fileData,
       }
-    );
-    // Fetch result
-    const result = await res.json();
+    )
+    .then(res => res.json())
+    .then(result => {
+      const newPost = {
+        text: this.state.text,
+        image: result.secure_url
+      };
+  
+      this.props.addPost(newPost, this.props.history);
+    })
+    
+  }
 
-    // Update the image state to the fetched result url
-
-    this.setState({
-      image: result.secure_url, //secure.url is a property of fetch result
-      showDefault: false,
-    });
-  };
-  onClick = (e) => {
-    e.preventDefault();
-    const newPost = {
-      text: this.state.text,
-      image: this.state.image,
-    };
-    axios
-      .post("/api/posts", newPost)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err.response.data));
-     this.props.history.push("/profile");
-    };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
 
   render() {
+    const {errors} = this.state;
     return (
-      <div className='container' style={{ marginTop: "30px" }}>
-        <div className='row'>
-          <div className='col-md-4 col-sm-12 d-flex flex-column'>
+      <div className="container" style={{marginTop: "30px"}}>
+        <div className="row">
+          <div className="col-md-4 col-sm-12 d-flex flex-column">
+
             <input
               type='file'
               name='file'
               onChange={this.uploadImage}
               style={{ marginBottom: "20px", marginTop: "10px" }}
+              accept="image/*"
             />
-            <img src={this.state.image} style={{ width: "100%" }} />
-            {this.state.showDefault && (
-              <img
-                src={defaultImage}
-                className='create-post-default-image-style'
-                alt='default image'
-              />
+            
+            {this.state.image && <img src={this.state.image} style={{width: "100%", marginTop: "20px"}}/>}
+            {this.state.showDefault && <img src={defaultImage} className="create-post-default-image-style" alt="default image"/>}
+            {errors.image && (
+              <div style={{color: "red", fontSize: "80%"}}>{errors.image}</div>
             )}
           </div>
-          <div className='d-flex flex-column col-md-8 col-sm-12'>
-            <p style={{ fontSize: "1.75rem" }}>Create New Post</p>
-            <form>
+          <div className="d-flex flex-column col-md-8 col-sm-12">
+            <p style={{fontSize: "1.75rem"}}>Create New Post</p>
+            <form onSubmit={this.onSubmit}>
               <div className='form-group'>
                 <label className='col-form-label'>Description</label>
                 <textarea
                   type='text'
-                  className='form-control'
                   name='text'
+                  placeholder="Description"
+                  style={{width: "93%", height: "200px"}}
                   value={this.state.text}
                   onChange={this.onChange}
-                  placeholder='Description'
-                  style={{ width: "93%", height: "200px" }}
+                  className={classnames("form-control ", {
+                    "is-invalid": errors.text,
+                  })}
                 />
+                {errors.text && (
+                  <div className='invalid-feedback'>{errors.text}</div>
+                )}
               </div>
 
               <div style={{ marginTop: "30px" }}>
@@ -121,4 +128,8 @@ class CreatePost extends Component {
   }
 }
 
-export default CreatePost;
+const mapStateToProps = (state) => ({
+  errors: state.errors
+});
+
+export default connect(mapStateToProps, { addPost })(withRouter(CreatePost));
