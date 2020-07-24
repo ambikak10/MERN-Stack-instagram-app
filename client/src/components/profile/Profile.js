@@ -40,6 +40,7 @@ export class profile extends Component {
          };
          logoutUserHandle = (e) => {
            e.preventDefault();
+           alert("Logging out..")
            this.props.history.push("/");
            this.props.logoutUser();
          }

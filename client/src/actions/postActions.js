@@ -5,7 +5,9 @@ import { GET_ERRORS } from "./types";
 export const addPost = (postData, history) => dispatch => {
   axios
     .post("/api/posts", postData)
-    .then(res => history.push("/profile"))
+    .then(res => {
+      window.alert("Post successfully submitted")
+      history.push("/profile")})
     .catch(err => 
       dispatch({
       type: GET_ERRORS,
