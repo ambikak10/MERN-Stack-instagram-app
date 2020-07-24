@@ -12,7 +12,8 @@ class CreatePost extends Component {
       image: "",
       showDefault: true,
       text: "",
-      errors: {}
+      errors: {},
+      fileData: new FormData()
     };
     this.uploadImage = this.uploadImage.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -25,23 +26,11 @@ class CreatePost extends Component {
     const data = new FormData();
     data.append("file", files[0]);
     data.append("upload_preset", "instagram");
-
-    // POST image to cloudinary through the cloudinary API and append image
-
-    fetch(
-      "https://api.cloudinary.com/v1_1/instagramteam/image/upload",
-      {
-        method: "POST",
-        body: data,
-      }
-    )
-    .then(res => res.json())
-    .then(result => {
-      this.setState({
-        image: result.secure_url, //secure.url is a property of fetch result
-        showDefault: false,
-      });
-    })
+    this.setState({
+      fileData: data,
+      showDefault: false,
+      image: URL.createObjectURL(e.target.files[0])
+    });
   };
 
   onChange(e) {
@@ -50,12 +39,25 @@ class CreatePost extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    const newPost = {
-      image: this.state.image,
-      text: this.state.text
-    };
 
-    this.props.addPost(newPost, this.props.history);
+    // POST image to cloudinary through the cloudinary API and append image
+    fetch(
+      "https://api.cloudinary.com/v1_1/instagramteam/image/upload",
+      {
+        method: "POST",
+        body: this.state.fileData,
+      }
+    )
+    .then(res => res.json())
+    .then(result => {
+      const newPost = {
+        text: this.state.text,
+        image: result.secure_url
+      };
+  
+      this.props.addPost(newPost, this.props.history);
+    })
+    
   }
 
   componentWillReceiveProps(nextProps) {
