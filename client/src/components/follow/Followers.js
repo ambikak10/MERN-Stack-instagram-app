@@ -54,11 +54,17 @@ class followers extends Component {
                     <Link
                       to='#'
                       class='fontStyleSizeColor'
-                      style={{ marginLeft: "-50px" }}
+                      style={{ marginLeft: "-50px", fontSize: "16px" }}
                     >
                       HandleName
                     </Link>
-                    <div style={{ marginTop: "-4px", marginLeft: "-50px" }}>
+                    <div
+                      style={{
+                        // marginTop: "-4px",
+                        marginLeft: "-50px",
+                        color: "#606060",
+                      }}
+                    >
                       Name
                     </div>
                   </div>
@@ -97,11 +103,17 @@ class followers extends Component {
                     <Link
                       to='#'
                       class='fontStyleSizeColor'
-                      style={{ marginLeft: "-50px" }}
+                      style={{ marginLeft: "-50px", fontSize: "16px" }}
                     >
                       HandleName
                     </Link>
-                    <div style={{ marginTop: "-4px", marginLeft: "-50px" }}>
+                    <div
+                      style={{
+                        marginTop: "",
+                        marginLeft: "-50px",
+                        color: "#606060",
+                      }}
+                    >
                       Name
                     </div>
                   </div>

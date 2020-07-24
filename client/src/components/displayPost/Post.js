@@ -45,9 +45,9 @@ class post extends Component {
                 <section className='row'>
                   {/* <!-- post description start--> */}
 
-                  <div class='col-lg-2'>
+                  <div className='col-lg-2'>
                     <Link to='#'>
-                      <img class='avatar-icon' src={avatar} alt='Avatar' />
+                      <img className='avatar-icon' src={avatar} alt='Avatar' />
                     </Link>
                   </div>
                   <div class='col-lg-10'>

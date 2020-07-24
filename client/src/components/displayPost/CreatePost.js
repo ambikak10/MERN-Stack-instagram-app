@@ -89,7 +89,7 @@ class CreatePost extends Component {
             <p style={{fontSize: "1.75rem"}}>Create New Post</p>
             <form onSubmit={this.onSubmit}>
               <div className='form-group'>
-                <label className="col-form-label">Description</label>
+                <label className='col-form-label'>Description</label>
                 <textarea
                   type='text'
                   name='text'
@@ -105,21 +105,24 @@ class CreatePost extends Component {
                   <div className='invalid-feedback'>{errors.text}</div>
                 )}
               </div>
-              
-              <div style={{marginTop: "30px"}}>
+
+              <div style={{ marginTop: "30px" }}>
                 <input
-                    type='submit'
-                    value='Post'
-                    className='btn btn-primary'
-                    style={{marginRight: "10px"}}
-                  />
-                <Link to="/profile" className="btn btn-secondary">Cancel</Link>
+                  onClick={this.onClick}
+                  type='submit'
+                  value='Post'
+                  className='btn btn-primary'
+                  style={{ marginRight: "10px" }}
+                />
+                <Link to='/profile' className='btn btn-secondary'>
+                  Cancel
+                </Link>
               </div>
             </form>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

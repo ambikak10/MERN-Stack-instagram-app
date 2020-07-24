@@ -54,7 +54,10 @@ router.post('/', passport.authenticate("jwt", {session: false}), (req,res) => {
       // Save Profile
         new Profile(profileFields)
           .save()
-          .then((profile) => res.json(profile));
+          .then((profile) => res.json(profile)).catch(err => {
+            console.log(err);
+            res.status(500).send('Server Error')
+          })
       });
     }
   });
@@ -68,7 +71,7 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const errors = {};
-
+  console.log("backend get current prfile API")
     Profile.findOne({ user: req.user.id })
       .populate("user", ["name", "avatar"])
       .then((profile) => {
@@ -76,7 +79,8 @@ router.get(
           errors.noprofile = "There is no profile for this user";
           return res.status(404).json(errors);
         }
-        res.json(profile);
+        return res.json(profile);
+        console.log(profile);
       })
       .catch((err) => res.status(404).json(err));
   }
@@ -89,11 +93,15 @@ router.delete("/",
   passport.authenticate("jwt", {session: false}),
   (req, res) => {
     Profile.findOneAndRemove({user: req.user.id})
-      .then(() => {
+      .then((profile) => {
+        console.log(profile);
         User.findOneAndRemove({ _id: req.user.id})
           .then(() => res.json({ success: true }))
-      });
-  }
+      }).catch(err => {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  })
+ }
 );
 
 // @route   GET api/profile/followers/:profile_id

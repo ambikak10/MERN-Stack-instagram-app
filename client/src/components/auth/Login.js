@@ -50,8 +50,8 @@ class Login extends Component {
     const enabled = email.length > 0 && password.length > 0;
     return (
       <div className='margin'>
-        <img className='mobile d-none d-xl-block' src={mobile} />
-        <div className='d-flex flex-column'>
+        <img className='mobile d-none d-xl-block d-md-block' src={mobile} />
+        <div className='d-flex flex-column height'>
           <div className='card'>
             <div className='card-body'>
               <img className='logo' src={logo} alt='instagram' />

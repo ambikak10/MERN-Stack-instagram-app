@@ -4,7 +4,7 @@ import avatar from "../../img/avatar.png"
 import "./home.css"; 
 import Navbar from '../navbar/Navbar';
 
-export class home extends Component {
+class home extends Component {
          constructor() {
            super();
            this.state = {
@@ -42,7 +42,7 @@ export class home extends Component {
                        </Link>
                      </div>
                      <img
-                       class='card-img-top'
+                       className='card-img-top'
                        src='https://images.unsplash.com/photo-1462216589242-9e3e00a47a48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=966&q=80'
                      />
                      <div classname='card-body'>
@@ -95,10 +95,10 @@ export class home extends Component {
                            </div>
                          </div>
                          <div>
-                           <Link class='handlename-post' to=''>
+                           <Link className='handlename-post' to=''>
                              user007
                            </Link>
-                           <span class='textStyle-comment'>
+                           <span className='textStyle-comment'>
                              &nbsp; Love is in the air
                            </span>
                          </div>
