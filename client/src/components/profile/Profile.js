@@ -8,6 +8,7 @@ import avatar from "../../img/avatar.png";
 import { deleteAccount } from "../../actions/profileActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types"; 
+import { logoutUser } from "../../actions/authActions";
 
 export class profile extends Component {
          constructor(props) {
@@ -37,6 +38,11 @@ export class profile extends Component {
          onDelete = (e) => {
            this.props.deleteAccount(this.props.history);
          };
+         logoutUserHandle = (e) => {
+           e.preventDefault();
+           this.props.history.push("/");
+           this.props.logoutUser();
+         }
 
          render() {
            return (
@@ -75,6 +81,7 @@ export class profile extends Component {
                            show={this.state.show}
                            close={this.showSettings}
                            onDelete={this.onDelete}
+                           onLogout={this.logoutUserHandle}
                          />
                        </span>
                      </h2>
@@ -299,4 +306,4 @@ profile.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
-export default connect(mapStateToProps, {deleteAccount})(withRouter(profile));
+export default connect(mapStateToProps, {deleteAccount, logoutUser})(withRouter(profile));
