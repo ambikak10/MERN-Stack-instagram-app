@@ -11,27 +11,33 @@ const validateComment = require("../../validation/comment");
 // @route   POST api/posts
 // @desc    Create post
 // @access  Private
-router.post('/',
-  passport.authenticate("jwt", {session: false}),
+router.post(
+  "/",
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const {errors, isValid} = validatePostInput(req.body);
-    
+    const { errors, isValid } = validatePostInput(req.body);
+
     //Check validation
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    
+
     const newPost = new Post({
       text: req.body.text,
       image: req.body.image,
       user: req.user.id,
       name: req.user.name,
-      avatar:req.user.avatar
+      avatar: req.user.avatar,
     });
-      newPost.save().then(post =>
-      res.json(post));
-    
-  });
+    newPost.save().then(post => {
+      return res.json(post);
+     
+    }).catch(err => {
+    console.error(err.message);
+    res.status(500).send('Server Error')
+  
+  })
+});
  
 // @route   GET api/posts
 // @desc    Get  all posts

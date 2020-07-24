@@ -1,18 +1,24 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import Navbar from "../../components/navbar/Navbar";
-import avatar from "../../img/avatar.png";
+import { Link, withRouter } from "react-router-dom";
 import "./profile.css";
 import Settings from "./Settings";
 import Followers from "../follow/Followers";
 import Following from "../follow/Following";
+import avatar from "../../img/avatar.png";
+import { deleteAccount } from "../../actions/profileActions";
+import { connect } from "react-redux";
+import PropTypes from "prop-types"; 
+import { logoutUser } from "../../actions/authActions";
 
 export class profile extends Component {
-         state = {
-           show: false,
-           showFollowers: false,
-           showFollowing: false,
-         };
+         constructor(props) {
+           super(props);
+           this.state = {
+             show: false,
+             showFollowers: false,
+             showFollowing: false,
+           };
+         }
          showFollowersList = (e) => {
            this.setState({
              showFollowers: !this.state.showFollowers,
@@ -28,6 +34,15 @@ export class profile extends Component {
              show: !this.state.show,
            });
          };
+
+         onDelete = (e) => {
+           this.props.deleteAccount(this.props.history);
+         };
+         logoutUserHandle = (e) => {
+           e.preventDefault();
+           this.props.history.push("/");
+           this.props.logoutUser();
+         }
 
          render() {
            return (
@@ -65,6 +80,8 @@ export class profile extends Component {
                          <Settings
                            show={this.state.show}
                            close={this.showSettings}
+                           onDelete={this.onDelete}
+                           onLogout={this.logoutUserHandle}
                          />
                        </span>
                      </h2>
@@ -91,7 +108,7 @@ export class profile extends Component {
                          />
                        </span>
                      </div>
-                     <p style={{marginTop: "20px"}}className='profileName'>
+                     <p style={{ marginTop: "20px" }} className='profileName'>
                        <strong>username</strong>
                      </p>
                      <br />
@@ -282,5 +299,11 @@ export class profile extends Component {
            );
          }
        }
-
-export default profile;
+profile.propTypes = {
+  deleteAccount: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps, {deleteAccount, logoutUser})(withRouter(profile));
