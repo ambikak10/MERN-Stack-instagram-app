@@ -9,6 +9,7 @@ import { deleteAccount } from "../../actions/profileActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types"; 
 import { logoutUser } from "../../actions/authActions";
+import {getProfileByHandle} from '../../actions/profileActions'
 
 export class profile extends Component {
          constructor(props) {
@@ -46,10 +47,12 @@ export class profile extends Component {
          }
 
          render() {
+  const { profile, loading } = this.props.profile;
+  if (profile === null || loading) {
+    
+  }
            return (
              <div>
-               {/* <Navbar /> */}
-
                <div className='container'>
                  <div className='margin'>
                    <div>
@@ -217,82 +220,16 @@ export class profile extends Component {
                      </Link>
                    </div>
 
-                   <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-                     <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-                       <figure>
-                         <img
-                           src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                           alt=''
-                         />
-                       </figure>
-                     </Link>
-                   </div>
 
-                   <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-                     <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-                       <figure>
-                         <img
-                           src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                           alt=''
-                         />
-                       </figure>
-                     </Link>
-                   </div>
 
-                   <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-                     <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-                       <figure>
-                         <img
-                           src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                           alt=''
-                         />
-                       </figure>
-                     </Link>
-                   </div>
+            
 
-                   <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-                     <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-                       <figure>
-                         <img
-                           src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                           alt=''
-                         />
-                       </figure>
-                     </Link>
-                   </div>
+                   
+     
 
-                   <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-                     <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-                       <figure>
-                         <img
-                           src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                           alt=''
-                         />
-                       </figure>
-                     </Link>
-                   </div>
+           
 
-                   <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-                     <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-                       <figure>
-                         <img
-                           src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                           alt=''
-                         />
-                       </figure>
-                     </Link>
-                   </div>
-
-                   <div className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-                     <Link to='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'>
-                       <figure>
-                         <img
-                           src='https://www.trafalgar.com/real-word/wp-content/uploads/sites/3/2015/09/switzerland.jpg'
-                           alt=''
-                         />
-                       </figure>
-                     </Link>
-                   </div>
+       
                  </section>
                </div>
                {/* <Footer /> */}
@@ -303,8 +240,15 @@ export class profile extends Component {
 profile.propTypes = {
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
+  profile: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  profile: state.profile
 });
-export default connect(mapStateToProps, {deleteAccount, logoutUser})(withRouter(profile));
+export default connect(mapStateToProps, {
+  deleteAccount,
+  logoutUser,
+  getProfileByHandle,
+})(withRouter(profile));

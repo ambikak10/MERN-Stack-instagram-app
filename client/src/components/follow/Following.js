@@ -5,16 +5,7 @@ import { Link } from "react-router-dom";
 import avatar from "../../img/avatar.png";
 
 class following extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //    seen: true
-  //   };
-  // }
-  seen = true;
-  close = () => {
-   this.seen = false;
-  }
+ 
   render() {
     if (!this.props.showFollowing && !this.seen) {
       return null;
@@ -26,7 +17,7 @@ class following extends Component {
             <div className='followers-container'>
               <h5>Following </h5>
               <span>
-                <Link onClick={this.close()} className='X'>
+                <Link onClick={this.props.close} className='X'>
                   X
                 </Link>
               </span>
