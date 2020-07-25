@@ -22,14 +22,15 @@ class Settings extends Component {
                   borderTopLeftRadius: "15px",
                   borderTopRightRadius: "15px",
                 }}
-                className='w3-button w3-block w3-white'
+                className='w3-button w3-block '
               >
                 Log Out
               </button>
 
               <button
                 onClick={this.props.onDelete}
-                className='w3-button w3-block w3-white'
+                className='w3-button w3-block'
+                style={{ color: "#ed4956" }}
               >
                 Delete account
               </button>
@@ -41,7 +42,7 @@ class Settings extends Component {
                   borderBottomRightRadius: "15px",
                   lineHeight: "30px",
                 }}
-                className='w3-button w3-block w3-white '
+                className='w3-button w3-block'
               >
                 Cancel
               </button>
