@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./navbar.css";
 import logo from "../../img/logo.png";
-// import avatar from "../../img/avatar.png";
 import { Link, withRouter} from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";

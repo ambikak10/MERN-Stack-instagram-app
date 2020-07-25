@@ -113,3 +113,29 @@ router.get('/current',
   })
 
 module.exports = router;
+
+// @route   POST api/users/editAvatar
+// @desc    Change profile picture
+// @access  Private
+
+router.post(
+  "/editAvatar",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    
+    const newUser = new User({
+
+          user: req.user.id,
+          name: req.user.name,
+          avatar: req.user.avatar,
+        });
+        newUser.save().then(user => {
+          return res.json(user);
+
+        }).catch(err => {
+          console.error(err.message);
+          res.status(500).send('Server Error')
+
+        })
+      });
+

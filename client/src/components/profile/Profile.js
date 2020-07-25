@@ -9,6 +9,7 @@ import { deleteAccount } from "../../actions/profileActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types"; 
 import { logoutUser } from "../../actions/authActions";
+import ProfilePicture from "./ProfilePicture";
 
 export class profile extends Component {
          constructor(props) {
@@ -17,6 +18,7 @@ export class profile extends Component {
              show: false,
              showFollowers: false,
              showFollowing: false,
+             change: false,
            };
          }
          showFollowersList = (e) => {
@@ -34,6 +36,11 @@ export class profile extends Component {
              show: !this.state.show,
            });
          };
+         changeProfilePicture = (e) => {
+            this.setState({
+              change: !this.state.change,
+            });
+          };
 
          onDelete = (e) => {
            this.props.deleteAccount(this.props.history);
@@ -52,13 +59,18 @@ export class profile extends Component {
                <div className='container'>
                  <div className='margin'>
                    <div>
-                     <Link to=''>
+                     <Link onClick={(e) => this.changeProfilePicture()}>
                        <img
                          className='profile-photo'
                          alt='profile-photo'
                          src={avatar}
                        />
                      </Link>
+                     <ProfilePicture
+                       
+                       change={this.state.change}
+                       close={this.changeProfilePicture}
+                     />
                    </div>
                    <div className='d-flex flex-column space'>
                      <h2 className='HandleName'>
