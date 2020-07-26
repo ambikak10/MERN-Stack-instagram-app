@@ -30,9 +30,9 @@ export const getUserPosts = () => dispatch => {
     .catch((err) => {
     console.log(err);
       dispatch({
-        type: GET_USER_POSTS,
-        payload: null
-      })}
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });}
     );
 }
 // Set loading state

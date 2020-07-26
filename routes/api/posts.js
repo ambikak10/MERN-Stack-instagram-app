@@ -42,12 +42,13 @@ router.post(
 // @route   GET api/posts
 // @desc    Get  all posts
 // @access  Public
-router.get("/", (req, res) => {
-  Post.find()
-    .sort({ date: -1 })
-    .then((posts) => res.json(posts))
-    .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
-});
+// router.get("/", (req, res) => {
+//   console.log("allpost");
+//   Post.find()
+//     .sort({ date: -1 })
+//     .then((posts) => res.json(posts))
+//     .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
+// });
 
 // @route   GET api/posts
 // @desc    get all posts of a user
