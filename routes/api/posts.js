@@ -53,9 +53,11 @@ router.get("/", (req, res) => {
 // @desc    get all posts of a user
 // @access  Private
 router.get('/', passport.authenticate("jwt", { session: false }), (req, res) => {
+
   Post.find({ user: req.user.id })
     .sort({ date: -1 })
-    .then((posts) => res.json(posts))
+    .then((posts) => {console.log("allpostuser");
+      return res.json(posts)})
     .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
 });
 

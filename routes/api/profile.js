@@ -140,7 +140,7 @@ router.get("/following/:profile_id", (req, res) => {
 
 router.get("/handle/:handle", (req, res) => {
   const errors = {};
-
+console.log("get by handle backend API")
   Profile.findOne({ handle: req.params.handle })
     .populate("user", ["name", "avatar"])
     .then((profile) => {
@@ -149,7 +149,7 @@ router.get("/handle/:handle", (req, res) => {
         res.status(404).json(errors);
       }
 
-      res.json(profile);
+      return res.json(profile);
     })
     .catch((err) => res.status(404).json(err));
 });
