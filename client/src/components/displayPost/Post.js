@@ -75,7 +75,7 @@ class Post extends Component {
                   {/* <!-- post description end--> */}
 
                   {/* comments on post */}
-                  <Comments comments={post.comments}/>
+                  <Comments comments={post.comments} postId={postId}/>
                 </section>
               </div>
 

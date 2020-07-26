@@ -1,28 +1,31 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { } from '../../actions/postActions';
+import { deleteComment } from '../../actions/postActions';
 
 class CommentItem extends Component {
+  onDeleteComment(postId, commentId) {
+    this.props.deleteComment(postId, commentId);
+  }
   render() {
-    const {comment, auth} = this.props;
+    const {comment, auth, postId} = this.props;
     let deleteIcon;
     if (comment.user === auth.user.id) {
       deleteIcon = (
-        <div className='col-lg-2'>
-          <Link to='' className='delete-post'>
+        <div type="button" className='col-lg-2' onClick={this.onDeleteComment.bind(this, postId, comment._id)}>
+          <div className='delete-post'>
             <i
               style={{
                 fontSize: "0.9em",
                 float: "right",
                 padding: "5px",
-                marginTop: "-3px",
+                marginTop: "15px",
                 fontWeight: "lighter",
               }}
               className='fa fa-trash'
               aria-hidden='true'
             ></i>
-          </Link>
+          </div>
         </div>
       );
     }
@@ -57,5 +60,5 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, {})(CommentItem);
+export default connect(mapStateToProps, {deleteComment})(CommentItem);
 
