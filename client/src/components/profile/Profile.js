@@ -53,21 +53,13 @@ export class Profile extends Component {
     this.props.getCurrentProfile();
     this.props.getUserPosts();
   }
-  //  componentWillReceiveProps(nextProps) {
-  //    if (
-  //      nextProps.profile.profile === null &&
-  //      this.props.profile.loading
-  //    ) {
-  //      this.props.history.push("/not-found");
-  //    }
-  //  }
 
   render() {
     let profileContent;
     const { profile, loading } = this.props.profile;
     const { user } = this.props.auth;
-    const { userPosts } = this.props.userPosts;
-    console.log(userPosts);
+    const { userPosts } = this.props.post;
+    // console.log(userPosts);
     userPosts.map((post) => console.log(post));
     if (profile === null || loading) {
       profileContent = <Spinner />;
@@ -253,6 +245,7 @@ export class Profile extends Component {
               </section>
             </Fragment>
           ) : (
+        
             <div className='HandleName' style={{ textAlign: "center" }}>
               {" "}
               No Posts Yet
@@ -271,12 +264,12 @@ Profile.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
   getUserPosts: PropTypes.func.isRequired,
-  userPosts: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
-  userPosts: state.post,
+  post: state.post,
 });
 export default connect(mapStateToProps, {
   deleteAccount,

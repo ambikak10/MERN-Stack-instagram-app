@@ -18,22 +18,21 @@ export const addPost = (postData, history) => dispatch => {
 export const getUserPosts = () => dispatch => {
     dispatch(setPostLoading());
   axios
-    .get("api/posts")
+    .get("api/posts/currentUser")
     .then((res) => {
       console.log(res);
       dispatch({
         type: GET_USER_POSTS,
         payload: res.data,
       });
-     
     })
     .catch((err) => {
-    console.log(err);
+      console.log(err);
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data,
-      });}
-    );
+      });
+    });
 }
 // Set loading state
 export const setPostLoading = () => {

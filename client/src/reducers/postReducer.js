@@ -3,7 +3,8 @@ import { GET_USER_POSTS, POST_LOADING } from "../actions/types";
 const initialState = {
   posts: [],
   post: {},
-  userPosts: []
+  userPosts: [],
+  loading: false
 };
 
 export default function (state=initialState, action) {
@@ -14,7 +15,6 @@ export default function (state=initialState, action) {
         loading: true,
       };
     case GET_USER_POSTS:
-      console.log(action.payload);
       return {
         ...state,
         userPosts: action.payload,
