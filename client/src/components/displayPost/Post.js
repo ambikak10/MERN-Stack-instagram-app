@@ -2,11 +2,19 @@ import React, { Component } from "react";
 import "./post.css";
 import { Link } from "react-router-dom";
 import avatar from "../../img/avatar.png";
+import AddComment from "./AddComment";
+import Comments from "./Comments";
+import { connect } from "react-redux";
+import { getPost } from "../../actions/postActions";
 
-class post extends Component {
+class Post extends Component {
   constructor(props) {
     super(props);
     this.goBack = this.goBack.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getPost(this.props.match.params.id);
   }
 
   goBack() {
@@ -14,21 +22,24 @@ class post extends Component {
   }
 
   render() {
+    const {post} = this.props.post;
+
     return (
       <div className='parent'>
         <div className='child'>
-          <span class='close'>
+          <span className='close'>
             <button onClick={this.goBack}>
-              <i class='fa fa-times' aria-hidden='true'></i>
+              <i className='fa fa-times' aria-hidden='true'></i>
             </button>
           </span>
 
           <div className='container-post'>
             <img
               className='size-of-image'
+              src={post.image}
               // width="600"
               // height="600"
-              src='https://images.unsplash.com/photo-1462216589242-9e3e00a47a48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=966&q=80'
+              // src='https://images.unsplash.com/photo-1462216589242-9e3e00a47a48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=966&q=80'
             />
 
             <div className='style d-none d-xl-block d-md-none d-lg-none d-sm-none '>
@@ -50,12 +61,12 @@ class post extends Component {
                       <img className='avatar-icon' src={avatar} alt='Avatar' />
                     </Link>
                   </div>
-                  <div class='col-lg-10'>
+                  <div className='col-lg-10'>
                     <div id='col-space'>
-                      <Link class='handlename-post' to=''>
+                      <Link className='handlename-post' to=''>
                         HandleName
                       </Link>
-                      <span class='textStyle-comment'>
+                      <span className='textStyle-comment'>
                         &nbsp; Post description
                       </span>
                     </div>
@@ -63,7 +74,8 @@ class post extends Component {
                   {/* <!-- post description end--> */}
 
                   {/* comments on post */}
-                  <div className='col-lg-2'>
+                  <Comments />
+                  {/* <div className='col-lg-2'>
                     <Link to='#'>
                       <img className='avatar-icon' src={avatar} alt='Avatar' />
                     </Link>
@@ -82,9 +94,9 @@ class post extends Component {
                         in reprehenderit in voluptate velit es
                       </span>
                     </div>
-                  </div>
+                  </div> */}
                   {/* <!--delete my comment-rendered conditionally in react--> */}
-                  <div className='col-lg-2'>
+                  {/* <div className='col-lg-2'>
                     <Link to='' className='delete-post'>
                       <i
                         style={{
@@ -98,9 +110,9 @@ class post extends Component {
                         aria-hidden='true'
                       ></i>
                     </Link>
-                  </div>
+                  </div> */}
 
-                  <div className='col-lg-2'>
+                  {/* <div className='col-lg-2'>
                     <Link to='#'>
                       <img className='avatar-icon' src={avatar} alt='Avatar' />
                     </Link>
@@ -119,14 +131,14 @@ class post extends Component {
                         in reprehenderit in voluptate velit es
                       </span>
                     </div>
-                  </div>
+                  </div> */}
 
-                  <div className='col-lg-2'>
+                  {/* <div className='col-lg-2'>
                     <Link to='#'>
                       <img className='avatar-icon' src={avatar} alt='Avatar' />
                     </Link>
-                  </div>
-                  <div className='col-lg-10'>
+                  </div> */}
+                  {/* <div className='col-lg-10'>
                     <div id='col-space'>
                       <Link to='' className='handlename-post'>
                         user3
@@ -140,21 +152,21 @@ class post extends Component {
                         in reprehenderit in voluptate velit es
                       </span>
                     </div>
-                  </div>
+                  </div> */}
                 </section>
               </div>
 
               <div id='footer'>
                 <hr />
                 <section>
-                  <Link to='' class='delete-post'>
+                  <Link to='' className='delete-post'>
                     <i
                       className='fa fa-heart-o'
                       style={{ fontSize: "1.5em" }}
                       aria-hidden='true'
                     ></i>
                   </Link>
-                  <Link to='' class='delete-post'>
+                  <Link to='' className='delete-post'>
                     <i
                       style={{ fontSize: "1.5em" }}
                       className='fa fa-comment-o'
@@ -162,14 +174,14 @@ class post extends Component {
                     ></i>
                   </Link>
 
-                  <Link to='' class='delete-post'>
+                  <Link to='' className='delete-post'>
                     <i
                       style={{ fontSize: "1.5em" }}
                       className='far fa-user-circle'
                       aria-hidden='true'
                     ></i>
                   </Link>
-                  <Link to='' class='delete-post'>
+                  <Link to='' className='delete-post'>
                     <i
                       style={{ fontSize: "1.5em" }}
                       className='fa fa-bookmark-o'
@@ -206,12 +218,13 @@ class post extends Component {
                   </div>
                 </section>
                 <hr />
-                <textarea
+                <AddComment />
+                {/* <textarea
                   className='comment-textarea'
                   type='text'
                   placeholder='Add a comment..'
                 ></textarea>
-                <button className='post'>Post</button>
+                <button className='post'>Post</button> */}
               </div>
             </div>
           </div>
@@ -220,14 +233,14 @@ class post extends Component {
 
           <div id='wrapper'>
             <section className='section-only-mobile d-xl-none'>
-              <Link to='' class='delete-post'>
+              <Link to='' className='delete-post'>
                 <i
                   style={{ fontSize: "1.5em" }}
                   className='fa fa-heart-o'
                   aria-hidden='true'
                 ></i>
               </Link>
-              <Link to='' class='delete-post'>
+              <Link to='' className='delete-post'>
                 <i
                   style={{ fontSize: "1.5em" }}
                   className='fa fa-comment-o'
@@ -235,14 +248,14 @@ class post extends Component {
                 ></i>
               </Link>
 
-              <Link to='' class='delete-post'>
+              <Link to='' className='delete-post'>
                 <i
                   style={{ fontSize: "1.5em" }}
                   className='far fa-user-circle'
                   aria-hidden='true'
                 ></i>
               </Link>
-              <Link to='' class='delete-post'>
+              <Link to='' className='delete-post'>
                 <i
                   style={{ fontSize: "1.5em" }}
                   className='fa fa-bookmark-o'
@@ -267,12 +280,13 @@ class post extends Component {
               <p className='textStyle-date'>
                 MARCH 24 &nbsp; <span>21 Likes</span>
               </p>
-              <textarea
+              <AddComment />
+              {/* <textarea
                 className='comment-textarea'
                 type='text'
                 placeholder='Add a comment..'
               ></textarea>
-              <button className='post'>Post</button>
+              <button className='post'>Post</button> */}
             </section>
           </div>
         </div>
@@ -280,5 +294,8 @@ class post extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  post: state.post
+});
 
-export default post;
+export default connect(mapStateToProps, { getPost })(Post);
