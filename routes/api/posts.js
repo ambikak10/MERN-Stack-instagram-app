@@ -52,21 +52,29 @@ router.post(
 // @desc    Get  all posts
 // @access  Public
 router.get("/", (req, res) => {
+  console.log("allpost");
   Post.find()
     .sort({ date: -1 })
     .then((posts) => res.json(posts))
     .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
 });
 
-// @route   GET api/posts
+// @route   GET api/posts/currentUser
 // @desc    get all posts of a user
 // @access  Private
-router.get('/', passport.authenticate("jwt", { session: false }), (req, res) => {
-  Post.find({ user: req.user.id })
-    .sort({ date: -1 })
-    .then((posts) => res.json(posts))
-    .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
-});
+router.get(
+  "/currentUser",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Post.find({ user: req.user.id })
+      .sort({ date: -1 })
+      .then((posts) => {
+        console.log("allpostuser");
+        return res.json(posts);
+      })
+      .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
+  }
+);
 
 // @route   GET api/posts/:id
 // @desc    Get post by id
