@@ -196,6 +196,11 @@
   .space input {
    margin-top: 10px;
   }
+ .responsiveness {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ }
 }
 
 
