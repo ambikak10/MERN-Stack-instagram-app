@@ -13,7 +13,7 @@ import CreatePost from "./components/displayPost/CreatePost";
 import Following from "./components/follow/Following";
 import Profiles from "./components/profile/Profiles";
 import Home from "./components/home/Home";
-import NotFound from './components/common/NotFound'
+// import NotFound from './components/common/NotFound'
 //redux
 import { Provider } from "react-redux";
 import store from "./store";
@@ -60,7 +60,7 @@ class App extends Component {
             <Route exact path='/create-post' component={CreatePost} />
             <Route exact path='/explore' component={Profiles} />
             <Route exact path='/home' component={Home} />
-            <Route exact path='/not-found' component={NotFound} />
+            {/* <Route exact path='/not-found' component={NotFound} /> */}
             <Route exact path='/post/:id' component={Post} />
 
             <Footer />
