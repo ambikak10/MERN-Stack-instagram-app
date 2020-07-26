@@ -86,7 +86,8 @@ class profilepicture extends Component {
               <hr style={{marginBottom: "0" }}/>
               <div>
               <input
-                  type="file" hidden ref={this.inputReference} onChange={this.uploadImage}            
+                  type="file" hidden ref={this.inputReference} onChange={this.uploadImage}
+                  onClick= {this.props.close}            
               />    
               <button
                 onClick={this.onClick} 

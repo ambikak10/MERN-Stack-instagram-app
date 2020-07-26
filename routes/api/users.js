@@ -122,20 +122,21 @@ router.post(
   "/editAvatar",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    
-    const newUser = new User({
+    User.findOne({ user: req.user.id })
+    .then((user) => {
+      if (user) {
+        // Update
+        User.findOneAndUpdate(
+          { user: req.user.id },
+          { avatar: req.user.avatar },
+          
+        ).then((user) => res.json(user));
+      } else {
+        return res.json({ usernotfound: "No user found" });
+      }
+    })
+    .catch(err => console.log(err));
+  });
 
-          user: req.user.id,
-          name: req.user.name,
-          avatar: req.user.avatar,
-        });
-        newUser.save().then(user => {
-          return res.json(user);
-
-        }).catch(err => {
-          console.error(err.message);
-          res.status(500).send('Server Error')
-
-        })
-      });
+  
 
