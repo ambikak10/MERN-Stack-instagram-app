@@ -113,3 +113,30 @@ router.get('/current',
   })
 
 module.exports = router;
+
+// @route   POST api/users/editAvatar
+// @desc    Change profile picture
+// @access  Private
+
+router.post(
+  "/editAvatar",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => { 
+    User.findById(req.user.id )
+    .then((user) => {
+      if (user) {
+        // Update
+        User.findOneAndUpdate(
+          { user: req.user.id },
+          { avatar: req.user.avatar },
+          { new : true}
+        ).then((user) => res.json(user));
+      } else {
+        return res.json({ usernotfound: "No user found" });
+      }
+    })
+    .catch(err => console.log(err));
+  });
+
+  
+

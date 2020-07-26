@@ -13,7 +13,7 @@ import CreatePost from "./components/displayPost/CreatePost";
 import Following from "./components/follow/Following";
 import Profiles from "./components/profile/Profiles";
 import Home from "./components/home/Home";
-// import NotFound from './components/common/NotFound'
+
 //redux
 import { Provider } from "react-redux";
 import store from "./store";
@@ -53,7 +53,7 @@ class App extends Component {
             <Navbar />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/' component={Login} />
-            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/profile' component={Profile} />            
             <Route exact path='/edit-profile' component={EditProfile} />
             {/* <Route exact path='/post' component={Post} /> */}
             <Route exact path='/create-profile' component={CreateProfile} />

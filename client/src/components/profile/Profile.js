@@ -8,6 +8,7 @@ import { deleteAccount } from "../../actions/profileActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/authActions";
+
 import { getCurrentProfile } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
 // import NotFound from '../common/NotFound';
@@ -39,6 +40,39 @@ export class Profile extends Component {
     });
   };
 
+ {/*import ProfilePicture from "./ProfilePicture";
+
+export class profile extends Component {
+         constructor(props) {
+           super(props);
+           this.state = {
+             show: false,
+             showFollowers: false,
+             showFollowing: false,
+             change: false,
+           };
+         }
+         showFollowersList = (e) => {
+           this.setState({
+             showFollowers: !this.state.showFollowers,
+           });
+         };
+         showFollowingList = (e) => {
+           this.setState({
+             showFollowing: !this.state.showFollowing,
+           });
+         };
+         showSettings = (e) => {
+           this.setState({
+             show: !this.state.show,
+           });
+         };
+         changeProfilePicture = (e) => {
+            this.setState({
+              change: !this.state.change,
+            });
+          };*/}
+
   onDelete = (e) => {
     this.props.deleteAccount(this.props.history);
   };
@@ -53,6 +87,7 @@ export class Profile extends Component {
     this.props.getCurrentProfile();
     this.props.getUserPosts();
   }
+
 
   render() {
     let profileContent;
@@ -142,6 +177,76 @@ export class Profile extends Component {
             </p>
             <br />
             {/* rendered only if user has information */}
+              {/*<div className='container'>
+                 <div className='margin'>
+                   <div>
+                     <Link onClick={(e) => this.changeProfilePicture()}>
+                       <img
+                         className='profile-photo'
+                         alt='profile-photo'
+                         src={avatar}
+                       />
+                     </Link>
+                     <ProfilePicture
+                       
+                       change={this.state.change}
+                       close={this.changeProfilePicture}
+                     />
+                   </div>
+                   <div className='d-flex flex-column space'>
+                     <h2 className='HandleName'>
+                       HandleName
+                       <span>
+                         <Link
+                           to='/edit-profile'
+                           type='button'
+                           className='btn profileButton'
+                         >
+                           Edit profile
+                         </Link>
+                         <Link onClick={(e) => this.showSettings()}>
+                           <i
+                             style={{ fontSize: "1.5rem", color: "black" }}
+                             className='fas fa-cog'
+                           ></i>
+                         </Link>
+                         <Settings
+                           show={this.state.show}
+                           close={this.showSettings}
+                           onDelete={this.onDelete}
+                           onLogout={this.logoutUserHandle}
+                         />
+                       </span>
+                     </h2>
+                     <div className='textsize'>
+                       <span>
+                         <Link to='#'>
+                           <b>2</b> posts
+                         </Link>
+                         &nbsp; &nbsp; &nbsp;&nbsp;
+                         <Link onClick={(e) => this.showFollowersList()}>
+                           <b>200</b> followers
+                         </Link>{" "}
+                         <Followers
+                           showFollowers={this.state.showFollowers}
+                           close={this.showFollowersList}
+                         />
+                         &nbsp; &nbsp; &nbsp;
+                         <Link onClick={(e) => this.showFollowingList()}>
+                           <b>20</b> following
+                         </Link>
+                         <Following
+                           showFollowing={this.state.showFollowing}
+                           close={this.showFollowingList}
+                         />
+                       </span>
+                     </div>
+                     <p style={{ marginTop: "20px" }} className='profileName'>
+                       <strong>username</strong>
+                     </p>
+                     <br />*/}
+                     {/* rendered only if user has information 
+
 
             {profile.bio && (
               <div
