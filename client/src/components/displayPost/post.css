@@ -55,6 +55,13 @@
   background-color: white;
 
 }
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+a:active {
+  opacity: .5;
+}
 .avatar-icon {
   border-radius: 50%;
   width: 35px;
@@ -62,7 +69,7 @@
   margin-left: 15px;
 }
  .handlename-post{
-  /* margin-left:px; */
+
   position: relative;
   top: 14px;
   color: black;
@@ -71,6 +78,16 @@
   text-transform: lowercase;
   text-decoration: none;
  }
+  /* .handlename-comment{
+  margin-left: 15px;
+  position: relative;
+  top: 14px;
+  color: black;
+  font-family: inherit;
+  font-weight: 600;
+  text-transform: lowercase;
+  text-decoration: none;
+ } */
  .name-of-account {
   margin-left: 14px;
   position: relative;
@@ -180,7 +197,7 @@
 }
 .delete-post {
   color: black;
-  margin-left: 15px;
+  margin-left: 93px;
   float: right
 }
 .create-post-default-image-style {
