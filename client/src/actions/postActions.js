@@ -18,10 +18,12 @@ export const addPost = (postData, history) => dispatch => {
 export const getPost = (postId) => dispatch => {
   axios
     .get(`/api/posts/${postId}`)
-    .then(res => dispatch({
+    .then(res => {
+      console.log(res.data);
+      dispatch({
       type: GET_POST,
       payload: res.data
-    }))
+    })})
     .catch(err => dispatch({
       type: GET_POST,
       payload: null

@@ -4,10 +4,13 @@ import CommentItem from './CommentItem';
 class Comments extends Component {
   
   render() {
-    const arr = [1,2,3];
-    let comments = arr.map(comment => (
-      <CommentItem />
-    ));
+    let comments;
+    if (this.props.comments) {
+      comments = this.props.comments.map(comment => (
+        <CommentItem key={comment.id}/>
+      ));
+    }
+    
     return (
       <div>
         {comments}

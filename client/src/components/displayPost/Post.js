@@ -44,10 +44,10 @@ class Post extends Component {
 
             <div className='style d-none d-xl-block d-md-none d-lg-none d-sm-none '>
               <Link to='#'>
-                <img className='avatar-icon' src={avatar} alt='Avatar' />
+                <img className='avatar-icon' src={post.avatar} alt='Avatar' />
               </Link>
               <Link to='' className='name-of-account'>
-                HandleName
+                {post.name}
               </Link>
               <hr style={{ marginBottom: "10px" }} />
 
@@ -58,101 +58,23 @@ class Post extends Component {
 
                   <div className='col-lg-2'>
                     <Link to='#'>
-                      <img className='avatar-icon' src={avatar} alt='Avatar' />
+                      <img className='avatar-icon' src={post.avatar} alt='Avatar' />
                     </Link>
                   </div>
                   <div className='col-lg-10'>
                     <div id='col-space'>
                       <Link className='handlename-post' to=''>
-                        HandleName
+                        {post.name}
                       </Link>
                       <span className='textStyle-comment'>
-                        &nbsp; Post description
+                        &nbsp; {post.text}
                       </span>
                     </div>
                   </div>
                   {/* <!-- post description end--> */}
 
                   {/* comments on post */}
-                  <Comments />
-                  {/* <div className='col-lg-2'>
-                    <Link to='#'>
-                      <img className='avatar-icon' src={avatar} alt='Avatar' />
-                    </Link>
-                  </div>
-                  <div className='col-lg-8'>
-                    <div id='col-space'>
-                      <Link to='' className='handlename-post'>
-                        user1
-                      </Link>
-                      <span className='textStyle-comment'>
-                        &nbsp; Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor
-                        in reprehenderit in voluptate velit es
-                      </span>
-                    </div>
-                  </div> */}
-                  {/* <!--delete my comment-rendered conditionally in react--> */}
-                  {/* <div className='col-lg-2'>
-                    <Link to='' className='delete-post'>
-                      <i
-                        style={{
-                          fontSize: "0.9em",
-                          float: "right",
-                          padding: "5px",
-                          marginTop: "-3px",
-                          fontWeight: "lighter",
-                        }}
-                        className='fa fa-trash'
-                        aria-hidden='true'
-                      ></i>
-                    </Link>
-                  </div> */}
-
-                  {/* <div className='col-lg-2'>
-                    <Link to='#'>
-                      <img className='avatar-icon' src={avatar} alt='Avatar' />
-                    </Link>
-                  </div>
-                  <div className='col-lg-10'>
-                    <div id='col-space'>
-                      <Link to='' className='handlename-post'>
-                        user2
-                      </Link>
-                      <span className='textStyle-comment'>
-                        &nbsp; Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor
-                        in reprehenderit in voluptate velit es
-                      </span>
-                    </div>
-                  </div> */}
-
-                  {/* <div className='col-lg-2'>
-                    <Link to='#'>
-                      <img className='avatar-icon' src={avatar} alt='Avatar' />
-                    </Link>
-                  </div> */}
-                  {/* <div className='col-lg-10'>
-                    <div id='col-space'>
-                      <Link to='' className='handlename-post'>
-                        user3
-                      </Link>
-                      <span className='textStyle-comment'>
-                        &nbsp; Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor
-                        in reprehenderit in voluptate velit es
-                      </span>
-                    </div>
-                  </div> */}
+                  <Comments comments={post.comments}/>
                 </section>
               </div>
 
@@ -219,12 +141,7 @@ class Post extends Component {
                 </section>
                 <hr />
                 <AddComment />
-                {/* <textarea
-                  className='comment-textarea'
-                  type='text'
-                  placeholder='Add a comment..'
-                ></textarea>
-                <button className='post'>Post</button> */}
+                
               </div>
             </div>
           </div>
@@ -281,12 +198,7 @@ class Post extends Component {
                 MARCH 24 &nbsp; <span>21 Likes</span>
               </p>
               <AddComment />
-              {/* <textarea
-                className='comment-textarea'
-                type='text'
-                placeholder='Add a comment..'
-              ></textarea>
-              <button className='post'>Post</button> */}
+              
             </section>
           </div>
         </div>
