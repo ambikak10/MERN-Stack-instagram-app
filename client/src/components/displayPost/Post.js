@@ -20,8 +20,8 @@ class Post extends Component {
   goBack() {
     this.props.history.goBack();
   }
-  onDeletePost(postId) {
-    this.props.deletePost(postId);
+  onDeletePost(postId, history) {
+    this.props.deletePost(postId, history);
   }
 
   render() {
@@ -30,7 +30,7 @@ class Post extends Component {
     let deleteIcon;
     if (post.user === this.props.auth.user.id) {
       deleteIcon = (
-        <div type="button" className='delete-post' onClick={this.onDeletePost.bind(this,post._id)}>
+        <div type="button" className='delete-post' onClick={this.onDeletePost.bind(this,post._id, this.props.history)}>
           <i
             style={{
               fontSize: "1.5em",
@@ -146,7 +146,7 @@ class Post extends Component {
                       color: "black",
                     }}
                   >
-                    21 Likes
+                    {post.likes && post.likes.length} Likes
                   </div>
                   <Moment format="D MMM YYYY">{post.date}</Moment>
                 </div>
@@ -167,7 +167,7 @@ class Post extends Component {
               </section>
 
               <p className='post-textStyle-date'>
-              <Moment format="D MMM YYYY">{post.date}</Moment> &nbsp; <span>21 Likes</span>
+              <Moment format="D MMM YYYY">{post.date}</Moment> &nbsp; <span>{post.likes && post.likes.length} Likes</span>
               </p>
               <AddComment />
               
