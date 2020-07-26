@@ -121,15 +121,15 @@ module.exports = router;
 router.post(
   "/editAvatar",
   passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    User.findOne({ user: req.user.id })
+  (req, res) => { 
+    User.findById(req.user.id )
     .then((user) => {
       if (user) {
         // Update
         User.findOneAndUpdate(
           { user: req.user.id },
           { avatar: req.user.avatar },
-          
+          { new : true}
         ).then((user) => res.json(user));
       } else {
         return res.json({ usernotfound: "No user found" });
