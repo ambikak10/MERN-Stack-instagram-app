@@ -34,11 +34,16 @@ export const getPost = (postId, history) => dispatch => {
 export const deletePost = (postId, history) => dispatch => {
   axios
     .delete(`/api/posts/${postId}`)
-    .then(res => history.push("/profile"))
-    .catch(err => dispatch({
+    .then(res => {
+      // console.log(res.data);
+      history.push("/profile")})
+    .catch(err => {
+      // console.log(err);
+      dispatch({
       type: GET_ERRORS,
       payload: err.response.data
-    }))
+    })
+  })
 }
 
 //Add comment
