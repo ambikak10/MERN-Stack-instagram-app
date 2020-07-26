@@ -6,6 +6,7 @@ import AddComment from "./AddComment";
 import Comments from "./Comments";
 import { connect } from "react-redux";
 import { getPost } from "../../actions/postActions";
+import Moment from "react-moment"; 
 
 class Post extends Component {
   constructor(props) {
@@ -136,7 +137,7 @@ class Post extends Component {
                     >
                       21 Likes
                     </div>
-                    <div>MARCH 24</div>
+                    <Moment format="D MMM YYYY">{post.date}</Moment>
                   </div>
                 </section>
                 <hr />
