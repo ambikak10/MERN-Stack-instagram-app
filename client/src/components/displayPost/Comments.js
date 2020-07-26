@@ -7,7 +7,7 @@ class Comments extends Component {
     let comments;
     if (this.props.comments) {
       comments = this.props.comments.map(comment => (
-        <CommentItem key={comment.id}/>
+        <CommentItem key={comment.id} comment={comment}/>
       ));
     }
     
