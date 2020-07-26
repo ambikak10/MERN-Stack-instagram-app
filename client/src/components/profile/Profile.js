@@ -65,8 +65,8 @@ export class Profile extends Component {
     const { profile, loading } = this.props.profile;
     const { user } = this.props.auth;
     const { userPosts } = this.props.post;
-    // console.log(userPosts);
-    userPosts.map((post) => console.log(post));
+
+
     if (profile === null || loading) {
       profileContent = <Spinner />;
     } else {
@@ -112,9 +112,17 @@ export class Profile extends Component {
             </h2>
             <div className='textsize'>
               <span>
-                <Link to='#'>
-                  <b>2</b> posts
-                </Link>
+                {userPosts.length > 0 ? (
+                  <a href='#posts'>
+                    <b>{userPosts.length}</b> posts
+                  </a>
+                ) : (
+                  <Fragment>
+                    {" "}
+                    <b style={{ fontSize: "18px" }}>0</b>{" "}
+                    <span style={{ fontSize: "18px" }}>posts</span>
+                  </Fragment>
+                )}
                 &nbsp; &nbsp; &nbsp;&nbsp;
                 {profile.followers.length > 0 ? (
                   <Link onClick={(e) => this.showFollowersList()}>
@@ -123,7 +131,9 @@ export class Profile extends Component {
                 ) : (
                   <Fragment>
                     <b style={{ fontSize: "18px" }}>0</b>{" "}
-                    <span style={{ fontSize: "18px" }}>followers</span>
+                    <span style={{ fontSize: "18px" }}>
+                      followers
+                    </span>
                   </Fragment>
                 )}
                 <Followers
@@ -151,19 +161,30 @@ export class Profile extends Component {
               {profile.handle}
             </p>
             <br />
-          {profile.bio && (
-            <div style={{ wordBreak: "break-word", marginTop: "-30px", fontWeight: "400", fontStyle: "Roboto, Helvetica, Arial, sans-serif", fontSize: "16px", marginBottom: "5px"}}>
-           {profile.bio}
-            </div> )}
-            {profile.website && (
-            <span>
-              <a
-                href={profile.website}
-                style={{ color: "rgba(var(--fe0,0,55,107),1)" }}
+            {profile.bio && (
+              <div
+                style={{
+                  wordBreak: "break-word",
+                  marginTop: "-30px",
+                  fontWeight: "400",
+                  fontStyle: "Roboto, Helvetica, Arial, sans-serif",
+                  fontSize: "16px",
+                  marginBottom: "5px",
+                }}
               >
-               {profile.website}
-              </a>
-            </span> )}
+                {profile.bio}
+              </div>
+            )}
+            {profile.website && (
+              <span>
+                <a
+                  href={profile.website}
+                  style={{ color: "rgba(var(--fe0,0,55,107),1)" }}
+                >
+                  {profile.website}
+                </a>
+              </span>
+            )}
 
             {/* Social network Links */}
             <span>
@@ -230,6 +251,7 @@ export class Profile extends Component {
               </i>
             </Link>
           </div>
+
           {userPosts.length > 0 ? (
             //  <Fragment>
             //    {userPosts.map(post => (
@@ -237,14 +259,14 @@ export class Profile extends Component {
             //    ))} kkooo
             //  </Fragment>
             <Fragment>
-              <section className='row hover-effect'>
+              <section className='row responsiveness hover-effect'>
                 <ProfilePostItem posts={userPosts} />
               </section>
             </Fragment>
           ) : (
-        
-            <div className='HandleName' style={{ textAlign: "center" }}>
+            <div className='HandleName' style={{ textAlign: "center", marginTop : "100px" }}>
               {" "}
+              <div><i class="fa fa-camera" aria-hidden="true"></i></div>
               No Posts Yet
             </div>
           )}

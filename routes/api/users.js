@@ -138,5 +138,43 @@ router.post(
     .catch(err => console.log(err));
   });
 
-  
+  // @route   POST api/users/avatar
+// @desc    Uploading avatar
+// @access  Private
+
+router.post('/avatar', passport.authenticate("jwt", {session: false}), (req,res) => {
+ User.findOne({_id: req.user.id}).then(user => {
+   console.log(req.body.avatar);
+  if(user) {
+     User.findOneAndUpdate(
+       { _id: req.user.id },
+       { $set: {avatar:req.body.avatar} },
+       { new: true }
+     ).then((user) => res.json(user.avatar));
+  }
+   }).catch(error => {
+      console.error(error.message);
+      res.status(500).send("Server Error");
+   })
+});
+
+// @route   PUT api/users/avatar
+// @desc    Removing avatar or Defaulting to gravatr
+// @access  Private
+
+router.put('/avatar', passport.authenticate("jwt", {session: false}), (req,res) => {
+ User.findOne({_id: req.user.id}).then(user => {
+   console.log(req.body.avatar);
+  if(user) {
+     User.findOneAndUpdate(
+       { _id: req.user.id },
+       { $set: {avatar:"http://www.gravatar.com/avatar/3bc8768789f3edc986ada4d7a381c848?s=200&r=pg&d=mm"} },
+       { new: true }
+     ).then((user) => res.json(user.avatar));
+  }
+   }).catch(error => {
+      console.error(error.message);
+      res.status(500).send("Server Error");
+   })
+});
 
