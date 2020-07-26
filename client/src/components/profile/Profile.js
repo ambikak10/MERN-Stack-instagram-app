@@ -151,6 +151,19 @@ export class Profile extends Component {
               {profile.handle}
             </p>
             <br />
+          {profile.bio && (
+            <div style={{ wordBreak: "break-word", marginTop: "-30px", fontWeight: "400", fontStyle: "Roboto, Helvetica, Arial, sans-serif", fontSize: "16px", marginBottom: "5px"}}>
+           {profile.bio}
+            </div> )}
+            {profile.website && (
+            <span>
+              <a
+                href={profile.website}
+                style={{ color: "rgba(var(--fe0,0,55,107),1)" }}
+              >
+               {profile.website}
+              </a>
+            </span> )}
 
             {/* Social network Links */}
             <span>
