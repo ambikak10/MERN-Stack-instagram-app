@@ -8,12 +8,11 @@ import { deleteAccount } from "../../actions/profileActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/authActions";
-
 import { getCurrentProfile } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
-// import NotFound from '../common/NotFound';
 import ProfilePostItem from "./ProfilePostItem";
 import { getUserPosts } from "../../actions/postActions";
+import ProfilePicture from "./ProfilePicture";
 
 export class Profile extends Component {
   constructor(props) {
@@ -22,6 +21,7 @@ export class Profile extends Component {
       show: false,
       showFollowers: false,
       showFollowing: false,
+      change: false
     };
   }
   showFollowersList = (e) => {
@@ -39,39 +39,11 @@ export class Profile extends Component {
       show: !this.state.show,
     });
   };
-
- {/*import ProfilePicture from "./ProfilePicture";
-
-export class profile extends Component {
-         constructor(props) {
-           super(props);
-           this.state = {
-             show: false,
-             showFollowers: false,
-             showFollowing: false,
-             change: false,
-           };
-         }
-         showFollowersList = (e) => {
-           this.setState({
-             showFollowers: !this.state.showFollowers,
-           });
-         };
-         showFollowingList = (e) => {
-           this.setState({
-             showFollowing: !this.state.showFollowing,
-           });
-         };
-         showSettings = (e) => {
-           this.setState({
-             show: !this.state.show,
-           });
-         };
-         changeProfilePicture = (e) => {
-            this.setState({
-              change: !this.state.change,
-            });
-          };*/}
+  changeProfilePicture = (e) => {
+    this.setState({
+      change: !this.state.change,
+    });
+  };
 
   onDelete = (e) => {
     this.props.deleteAccount(this.props.history);
@@ -88,7 +60,6 @@ export class profile extends Component {
     this.props.getUserPosts();
   }
 
-
   render() {
     let profileContent;
     const { profile, loading } = this.props.profile;
@@ -102,13 +73,17 @@ export class profile extends Component {
       profileContent = (
         <div className='margin'>
           <div>
-            <Link to=''>
+            <Link onClick={(e) => this.changeProfilePicture()}>
               <img
                 className='profile-photo'
                 alt='profile-photo'
                 src={user.avatar}
               />
             </Link>
+            <ProfilePicture
+              change={this.state.change}
+              close={this.changeProfilePicture}
+            />
           </div>
           <div className='d-flex flex-column space'>
             <h2 className='HandleName'>
@@ -176,111 +151,15 @@ export class profile extends Component {
               {profile.handle}
             </p>
             <br />
-            {/* rendered only if user has information */}
-              {/*<div className='container'>
-                 <div className='margin'>
-                   <div>
-                     <Link onClick={(e) => this.changeProfilePicture()}>
-                       <img
-                         className='profile-photo'
-                         alt='profile-photo'
-                         src={avatar}
-                       />
-                     </Link>
-                     <ProfilePicture
-                       
-                       change={this.state.change}
-                       close={this.changeProfilePicture}
-                     />
-                   </div>
-                   <div className='d-flex flex-column space'>
-                     <h2 className='HandleName'>
-                       HandleName
-                       <span>
-                         <Link
-                           to='/edit-profile'
-                           type='button'
-                           className='btn profileButton'
-                         >
-                           Edit profile
-                         </Link>
-                         <Link onClick={(e) => this.showSettings()}>
-                           <i
-                             style={{ fontSize: "1.5rem", color: "black" }}
-                             className='fas fa-cog'
-                           ></i>
-                         </Link>
-                         <Settings
-                           show={this.state.show}
-                           close={this.showSettings}
-                           onDelete={this.onDelete}
-                           onLogout={this.logoutUserHandle}
-                         />
-                       </span>
-                     </h2>
-                     <div className='textsize'>
-                       <span>
-                         <Link to='#'>
-                           <b>2</b> posts
-                         </Link>
-                         &nbsp; &nbsp; &nbsp;&nbsp;
-                         <Link onClick={(e) => this.showFollowersList()}>
-                           <b>200</b> followers
-                         </Link>{" "}
-                         <Followers
-                           showFollowers={this.state.showFollowers}
-                           close={this.showFollowersList}
-                         />
-                         &nbsp; &nbsp; &nbsp;
-                         <Link onClick={(e) => this.showFollowingList()}>
-                           <b>20</b> following
-                         </Link>
-                         <Following
-                           showFollowing={this.state.showFollowing}
-                           close={this.showFollowingList}
-                         />
-                       </span>
-                     </div>
-                     <p style={{ marginTop: "20px" }} className='profileName'>
-                       <strong>username</strong>
-                     </p>
-                     <br />*/}
-                     {/* rendered only if user has information 
-
-
-            {profile.bio && (
-              <div
-                style={{
-                  wordBreak: "break-word",
-                  marginTop: "-30px",
-                  fontWeight: "400",
-                  fontStyle: "Roboto, Helvetica, Arial, sans-serif",
-                  fontSize: "16px",
-                  marginBottom: "5px",
-                }}
-              >
-                {profile.bio}
-              </div>
-            )}
-            {profile.website && (
-              <span>
-                <a
-                  href='https://www.youtube.com/'
-                  style={{ color: "rgba(var(--fe0,0,55,107),1)" }}
-                >
-                  {profile.website}
-                </a>
-              </span>
-            )}
 
             {/* Social network Links */}
             <span>
-              {profile.social.facebook && (
+              {profile.social && profile.social.facebook && (
                 <a href={profile.social.facebook}>
                   <i className='fa fa-facebook-square'></i>
                 </a>
               )}
-              {profile.social.youtube && (
+              {profile.social && profile.social.youtube && (
                 <a href={profile.social.youtube}>
                   <i
                     className='fa fa-youtube-play youtube'
@@ -288,7 +167,7 @@ export class profile extends Component {
                   ></i>
                 </a>
               )}
-              {profile.social.twitter && (
+              {profile.social && profile.social.twitter && (
                 <a href={profile.social.twitter}>
                   <i className='fa fa-twitter twitter' aria-hidden='true'></i>
                 </a>

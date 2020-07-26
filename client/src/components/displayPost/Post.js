@@ -1,42 +1,107 @@
 import React, { Component } from "react";
 import "./post.css";
 import { Link } from "react-router-dom";
-import avatar from "../../img/avatar.png";
+import AddComment from "./AddComment";
+import Comments from "./Comments";
+import { connect } from "react-redux";
+import { getPost, deletePost } from "../../actions/postActions";
+import Moment from "react-moment"; 
 
-class post extends Component {
+class Post extends Component {
   constructor(props) {
     super(props);
     this.goBack = this.goBack.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getPost(this.props.match.params.id, this.props.history);
+  }
+
   goBack() {
     this.props.history.goBack();
   }
+  onDeletePost(postId) {
+    this.props.deletePost(postId);
+  }
 
   render() {
+    const {post} = this.props.post;
+    const postId = this.props.match.params.id;
+    let deleteIcon;
+    if (post.user === this.props.auth.user.id) {
+      deleteIcon = (
+        <div type="button" className='delete-post' onClick={this.onDeletePost.bind(this,post._id)}>
+          <i
+            style={{
+              fontSize: "1.5em",
+              float: "right",
+              padding: "5px",
+              marginTop: "-3px",
+              fontWeight: "lighter",
+            }}
+            className='fa fa-trash'
+            aria-hidden='true'
+          ></i>
+        </div>
+      );
+    }
+    const icons = (
+      <div>
+        <div type="button" className='icons-post'>
+          <i
+            className='fa fa-heart-o'
+            style={{ fontSize: "1.5em" }}
+            aria-hidden='true'
+          ></i>
+        </div>
+        <div type="button" className='icons-post'>
+          <i
+            style={{ fontSize: "1.5em" }}
+            className='fa fa-comment-o'
+            aria-hidden='true'
+          ></i>
+        </div>
+
+        <div type="button" className='icons-post'>
+          <i
+            style={{ fontSize: "1.5em" }}
+            className='far fa-user-circle'
+            aria-hidden='true'
+          ></i>
+        </div>
+        <div type="button" className='icons-post'>
+          <i
+            style={{ fontSize: "1.5em" }}
+            className='fa fa-bookmark-o'
+            aria-hidden='true'
+          ></i>
+        </div>
+
+        {/* delete post */}
+        {deleteIcon}
+      </div>
+    );
     return (
       <div className='parent'>
         <div className='child'>
-          <span class='close'>
+          <span className='close'>
             <button onClick={this.goBack}>
-              <i class='fa fa-times' aria-hidden='true'></i>
+              <i className='fa fa-times' aria-hidden='true'></i>
             </button>
           </span>
 
           <div className='container-post'>
             <img
               className='size-of-image'
-              // width="600"
-              // height="600"
-              src='https://images.unsplash.com/photo-1462216589242-9e3e00a47a48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=966&q=80'
+              src={post.image}
             />
 
             <div className='style d-none d-xl-block d-md-none d-lg-none d-sm-none '>
               <Link to='#'>
-                <img className='avatar-icon' src={avatar} alt='Avatar' />
+                <img className='avatar-icon' src={post.avatar} alt='Avatar' />
               </Link>
               <Link to='' className='name-of-account'>
-                HandleName
+                {post.name}
               </Link>
               <hr style={{ marginBottom: "10px" }} />
 
@@ -47,171 +112,47 @@ class post extends Component {
 
                   <div className='col-lg-2'>
                     <Link to='#'>
-                      <img className='avatar-icon' src={avatar} alt='Avatar' />
+                      <img className='avatar-icon' src={post.avatar} alt='Avatar' />
                     </Link>
                   </div>
-                  <div class='col-lg-10'>
+                  <div className='col-lg-10'>
                     <div id='col-space'>
-                      <Link class='handlename-post' to=''>
-                        HandleName
+                      <Link className='handlename-post' to=''>
+                        {post.name}
                       </Link>
-                      <span class='textStyle-comment'>
-                        &nbsp; Post description
+                      <span className='textStyle-comment'>
+                        &nbsp; {post.text}
                       </span>
                     </div>
                   </div>
                   {/* <!-- post description end--> */}
 
                   {/* comments on post */}
-                  <div className='col-lg-2'>
-                    <Link to='#'>
-                      <img className='avatar-icon' src={avatar} alt='Avatar' />
-                    </Link>
-                  </div>
-                  <div className='col-lg-8'>
-                    <div id='col-space'>
-                      <Link to='' className='handlename-post'>
-                        user1
-                      </Link>
-                      <span className='textStyle-comment'>
-                        &nbsp; Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor
-                        in reprehenderit in voluptate velit es
-                      </span>
-                    </div>
-                  </div>
-                  {/* <!--delete my comment-rendered conditionally in react--> */}
-                  <div className='col-lg-2'>
-                    <Link to='' className='delete-post'>
-                      <i
-                        style={{
-                          fontSize: "0.9em",
-                          float: "right",
-                          padding: "5px",
-                          marginTop: "-3px",
-                          fontWeight: "lighter",
-                        }}
-                        className='fa fa-trash'
-                        aria-hidden='true'
-                      ></i>
-                    </Link>
-                  </div>
-
-                  <div className='col-lg-2'>
-                    <Link to='#'>
-                      <img className='avatar-icon' src={avatar} alt='Avatar' />
-                    </Link>
-                  </div>
-                  <div className='col-lg-10'>
-                    <div id='col-space'>
-                      <Link to='' className='handlename-post'>
-                        user2
-                      </Link>
-                      <span className='textStyle-comment'>
-                        &nbsp; Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor
-                        in reprehenderit in voluptate velit es
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className='col-lg-2'>
-                    <Link to='#'>
-                      <img className='avatar-icon' src={avatar} alt='Avatar' />
-                    </Link>
-                  </div>
-                  <div className='col-lg-10'>
-                    <div id='col-space'>
-                      <Link to='' className='handlename-post'>
-                        user3
-                      </Link>
-                      <span className='textStyle-comment'>
-                        &nbsp; Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat. Duis aute irure dolor
-                        in reprehenderit in voluptate velit es
-                      </span>
-                    </div>
-                  </div>
+                  <Comments comments={post.comments} postId={postId}/>
                 </section>
               </div>
 
               <div id='footer'>
                 <hr />
                 <section>
-                  <Link to='' class='delete-post'>
-                    <i
-                      className='fa fa-heart-o'
-                      style={{ fontSize: "1.5em" }}
-                      aria-hidden='true'
-                    ></i>
-                  </Link>
-                  <Link to='' class='delete-post'>
-                    <i
-                      style={{ fontSize: "1.5em" }}
-                      className='fa fa-comment-o'
-                      aria-hidden='true'
-                    ></i>
-                  </Link>
-
-                  <Link to='' class='delete-post'>
-                    <i
-                      style={{ fontSize: "1.5em" }}
-                      className='far fa-user-circle'
-                      aria-hidden='true'
-                    ></i>
-                  </Link>
-                  <Link to='' class='delete-post'>
-                    <i
-                      style={{ fontSize: "1.5em" }}
-                      className='fa fa-bookmark-o'
-                      aria-hidden='true'
-                    ></i>
-                  </Link>
-
-                  {/* delete post */}
-                  <Link to='' className='delete-post'>
-                    <i
-                      style={{
-                        fontSize: "1.5em",
-                        float: "right",
-                        padding: "5px",
-                        marginTop: "-3px",
-                        fontWeight: "lighter",
-                      }}
-                      className='fa fa-trash'
-                      aria-hidden='true'
-                    ></i>
-                  </Link>
-
-                  <div className='textStyle-date'>
-                    <div
-                      style={{
-                        fontWeight: "600",
-                        fontSize: "1.4em",
-                        color: "black",
-                      }}
-                    >
-                      21 Likes
-                    </div>
-                    <div>MARCH 24</div>
-                  </div>
+                  {/* Show like, save, delete icons */}
+                  {icons}
                 </section>
+                <div className='post-textStyle-date'>
+                  <div
+                    style={{
+                      fontWeight: "600",
+                      fontSize: "1.4em",
+                      color: "black",
+                    }}
+                  >
+                    21 Likes
+                  </div>
+                  <Moment format="D MMM YYYY">{post.date}</Moment>
+                </div>
                 <hr />
-                <textarea
-                  className='comment-textarea'
-                  type='text'
-                  placeholder='Add a comment..'
-                ></textarea>
-                <button className='post'>Post</button>
+                <AddComment postId={postId}/>
+                
               </div>
             </div>
           </div>
@@ -220,59 +161,16 @@ class post extends Component {
 
           <div id='wrapper'>
             <section className='section-only-mobile d-xl-none'>
-              <Link to='' class='delete-post'>
-                <i
-                  style={{ fontSize: "1.5em" }}
-                  className='fa fa-heart-o'
-                  aria-hidden='true'
-                ></i>
-              </Link>
-              <Link to='' class='delete-post'>
-                <i
-                  style={{ fontSize: "1.5em" }}
-                  className='fa fa-comment-o'
-                  aria-hidden='true'
-                ></i>
-              </Link>
+              <section>
+                {/* Show like, save, delete icons */}
+                {icons}
+              </section>
 
-              <Link to='' class='delete-post'>
-                <i
-                  style={{ fontSize: "1.5em" }}
-                  className='far fa-user-circle'
-                  aria-hidden='true'
-                ></i>
-              </Link>
-              <Link to='' class='delete-post'>
-                <i
-                  style={{ fontSize: "1.5em" }}
-                  className='fa fa-bookmark-o'
-                  aria-hidden='true'
-                ></i>
-              </Link>
-
-              {/* delete post */}
-              <Link to='' className='delete-post'>
-                <i
-                  style={{
-                    fontSize: "1.5em",
-                    padding: "5px",
-                    marginTop: "-3px",
-                    fontWeight: "lighter",
-                  }}
-                  className='fa fa-trash'
-                  aria-hidden='true'
-                ></i>
-              </Link>
-
-              <p className='textStyle-date'>
-                MARCH 24 &nbsp; <span>21 Likes</span>
+              <p className='post-textStyle-date'>
+              <Moment format="D MMM YYYY">{post.date}</Moment> &nbsp; <span>21 Likes</span>
               </p>
-              <textarea
-                className='comment-textarea'
-                type='text'
-                placeholder='Add a comment..'
-              ></textarea>
-              <button className='post'>Post</button>
+              <AddComment />
+              
             </section>
           </div>
         </div>
@@ -280,5 +178,9 @@ class post extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  post: state.post,
+  auth: state.auth
+});
 
-export default post;
+export default connect(mapStateToProps, { getPost, deletePost })(Post);

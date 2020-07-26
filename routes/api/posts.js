@@ -22,21 +22,30 @@ router.post(
       return res.status(400).json(errors);
     }
 
-    const newPost = new Post({
-      text: req.body.text,
-      image: req.body.image,
-      user: req.user.id,
-      name: req.user.name,
-      avatar: req.user.avatar,
-    });
-    newPost.save().then(post => {
-      return res.json(post);
-     
-    }).catch(err => {
-    console.error(err.message);
-    res.status(500).send('Server Error')
-  
-  })
+    Profile.findOne({user: req.user.id})
+      .then(profile => {
+        const newPost = new Post({
+          text: req.body.text,
+          image: req.body.image,
+          user: req.user.id,
+          name: req.user.name,
+          avatar: req.user.avatar,
+        });
+
+        if (profile) {
+          newPost.handle = profile.handle;
+        }
+
+        newPost.save()
+        .then(post => {
+          return res.json(post);
+        })
+        .catch(err => {
+          console.error(err.message);
+          res.status(500).send('Server Error')
+        })
+      })
+      .catch(err => console.log(err))
 });
  
 // @route   GET api/posts
@@ -73,7 +82,12 @@ router.get(
 
 router.get("/:id", (req, res) => {
   Post.findById(req.params.id)
-    .then((post) => res.json(post))
+    .then((post) => {
+      if (post) {
+        res.json(post);
+      } else {
+        return res.status(404).json({nopostfound: "No post found"});
+      }})
     .catch((err) =>
       res.status(404).json({ nopostfound: "No post found with that ID" })
     );
@@ -89,15 +103,20 @@ router.delete(
     Profile.findOne({ user: req.user.id }).then((profile) => {
       Post.findById(req.params.id)
         .then((post) => {
-          // Check for post owner
-          if (post.user.toString() !== req.user.id) {
-            return res
-              .status(401)
-              .json({ notauthorized: "User not authorized" });
+          if (post) {
+            // Check for post owner
+            if (post.user.toString() !== req.user.id) {
+              return res
+                .status(401)
+                .json({ notauthorized: "User not authorized" });
+            }
+            // Delete
+            post.remove().then(() => res.json({ success: true }));
+          } else {
+            return res.status(404).json({ nopostfound: "No post found"});
           }
-          // Delete
-          post.remove().then(() => res.json({ success: true }));
         })
+        .catch(err => console.log(err))
     })   
   })  
 
@@ -265,19 +284,30 @@ router.post(
 
     Post.findById(req.params.post_id)
       .then((post) => {
-        const newComment = {
-          text: req.body.text,
-          name: req.user.name,
-          avatar: req.user.avatar,
-          user: req.user.id,
-        };
+        if (post) {
+          Profile.findOne({user: req.user.id})
+          .then(profile => {
+            const newComment = {
+              text: req.body.text,
+              name: req.user.name,
+              avatar: req.user.avatar,
+              user: req.user.id,
+            };
 
-        // Add to comments array
-        post.comments.unshift(newComment);
+            if (profile) {
+              newComment.handle = profile.handle;
+            }
 
-        // Save
+            // Add to comments array
+            post.comments.unshift(newComment);
 
-        post.save().then((post) => res.json(post));
+            // Save
+            post.save().then((post) => res.json(post));
+          })
+          .catch(err => console.log(err));
+        } else {
+          return res.status(404).json({postnotfound: "No post found"});
+        }
       })
       .catch((err) => res.status(404).json({ postnotfound: "No post found" }));
   }
