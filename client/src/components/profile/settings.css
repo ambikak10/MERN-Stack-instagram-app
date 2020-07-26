@@ -2,9 +2,10 @@
 .secondset button {
   outline: none;
   background-color: white;
-  font: 400 15.3333px Arial;
+  font: 700 15.3333px Arial;
   height: 50px;
   border: transparent;
+  border-top: 1px solid rgba(0,0,0,.1);
 }
 .secondset {
   height: 100%;
@@ -22,7 +23,6 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0,0,0,.5);
-
 }
 .followers-containerset {
   background-color:white;

@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 import avatar from "../../img/avatar.png";
 
 class following extends Component {
-  
+ 
   render() {
-     if (!this.props.showFollowing) {
-       return null;
-     }
+    if (!this.props.showFollowing && !this.seen) {
+      return null;
+    }
     return (
       <div className='first'>
         <div className='second'>
