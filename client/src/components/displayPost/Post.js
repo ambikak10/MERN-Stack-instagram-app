@@ -24,7 +24,7 @@ class Post extends Component {
 
   render() {
     const {post} = this.props.post;
-
+    const postId = this.props.match.params.id;
     return (
       <div className='parent'>
         <div className='child'>
@@ -141,7 +141,7 @@ class Post extends Component {
                   </div>
                 </section>
                 <hr />
-                <AddComment />
+                <AddComment postId={postId}/>
                 
               </div>
             </div>
