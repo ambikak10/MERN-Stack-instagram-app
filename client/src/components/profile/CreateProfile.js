@@ -258,7 +258,7 @@ class CreateProfile extends Component {
                   className='btn btn-primary'
                   style={{ marginRight: "10px" }}
                 />
-                <Link to='' className='btn btn-secondary'>
+                <Link to='/home' className='btn btn-secondary'>
                   Cancel
                 </Link>
               </div>
