@@ -14,7 +14,8 @@ export const addPost = (postData, history) => dispatch => {
 };
 
 //Get post
-export const getPost = (postId) => dispatch => {
+export const getPost = (postId, history) => dispatch => {
+  dispatch(setPostLoading());
   axios
     .get(`/api/posts/${postId}`)
     .then(res => {
@@ -23,11 +24,20 @@ export const getPost = (postId) => dispatch => {
       type: GET_POST,
       payload: res.data
     })})
-    .catch(err => dispatch({
-      type: GET_POST,
-      payload: null
-    }))
+    .catch(err => {
+      history.push("/not-found")})
 };
+
+//Delete post
+export const deletePost = (postId, history) => dispatch => {
+  axios
+    .delete(`/api/posts/${postId}`)
+    .then(res => history.push("/profile"))
+    .catch(err => dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    }))
+}
 
 //Add comment
 export const addComment = (commentInput, postId) => dispatch => {

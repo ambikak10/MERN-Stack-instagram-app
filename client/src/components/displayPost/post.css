@@ -104,12 +104,13 @@
   position: relative;
   top: 14px;
 }
-.textStyle-date {
+.post-textStyle-date {
   font-size: 11px;
   font-weight: 400;
   margin-left: 15px;
   color: gray;
   margin-top: -2px;
+  clear: both;
 }
 .comment-textarea {
   outline: transparent;
@@ -172,9 +173,15 @@
   width:600px;
   height:200px;
 }
+.icons-post {
+  color: black;
+  margin-left: 15px;
+  float: left;
+}
 .delete-post {
   color: black;
   margin-left: 15px;
+  float: right
 }
 .create-post-default-image-style {
   /* background-color: rgb(247, 244, 244); 

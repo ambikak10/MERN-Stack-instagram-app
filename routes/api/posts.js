@@ -65,7 +65,12 @@ router.get('/', passport.authenticate("jwt", { session: false }), (req, res) => 
 
 router.get("/:id", (req, res) => {
   Post.findById(req.params.id)
-    .then((post) => res.json(post))
+    .then((post) => {
+      if (post) {
+        res.json(post);
+      } else {
+        return res.status(404).json({nopostfound: "No post found"});
+      }})
     .catch((err) =>
       res.status(404).json({ nopostfound: "No post found with that ID" })
     );
@@ -81,15 +86,20 @@ router.delete(
     Profile.findOne({ user: req.user.id }).then((profile) => {
       Post.findById(req.params.id)
         .then((post) => {
-          // Check for post owner
-          if (post.user.toString() !== req.user.id) {
-            return res
-              .status(401)
-              .json({ notauthorized: "User not authorized" });
+          if (post) {
+            // Check for post owner
+            if (post.user.toString() !== req.user.id) {
+              return res
+                .status(401)
+                .json({ notauthorized: "User not authorized" });
+            }
+            // Delete
+            post.remove().then(() => res.json({ success: true }));
+          } else {
+            return res.status(404).json({ nopostfound: "No post found"});
           }
-          // Delete
-          post.remove().then(() => res.json({ success: true }));
         })
+        .catch(err => console.log(err))
     })   
   })  
 

@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import "./post.css";
 import { Link } from "react-router-dom";
-import avatar from "../../img/avatar.png";
 import AddComment from "./AddComment";
 import Comments from "./Comments";
 import { connect } from "react-redux";
-import { getPost } from "../../actions/postActions";
+import { getPost, deletePost } from "../../actions/postActions";
 import Moment from "react-moment"; 
 
 class Post extends Component {
@@ -15,16 +14,73 @@ class Post extends Component {
   }
 
   componentDidMount() {
-    this.props.getPost(this.props.match.params.id);
+    this.props.getPost(this.props.match.params.id, this.props.history);
   }
 
   goBack() {
     this.props.history.goBack();
   }
+  onDeletePost(postId) {
+    this.props.deletePost(postId);
+  }
 
   render() {
     const {post} = this.props.post;
     const postId = this.props.match.params.id;
+    let deleteIcon;
+    if (post.user === this.props.auth.user.id) {
+      deleteIcon = (
+        <div type="button" className='delete-post' onClick={this.onDeletePost.bind(this,post._id)}>
+          <i
+            style={{
+              fontSize: "1.5em",
+              float: "right",
+              padding: "5px",
+              marginTop: "-3px",
+              fontWeight: "lighter",
+            }}
+            className='fa fa-trash'
+            aria-hidden='true'
+          ></i>
+        </div>
+      );
+    }
+    const icons = (
+      <div>
+        <div type="button" className='icons-post'>
+          <i
+            className='fa fa-heart-o'
+            style={{ fontSize: "1.5em" }}
+            aria-hidden='true'
+          ></i>
+        </div>
+        <div type="button" className='icons-post'>
+          <i
+            style={{ fontSize: "1.5em" }}
+            className='fa fa-comment-o'
+            aria-hidden='true'
+          ></i>
+        </div>
+
+        <div type="button" className='icons-post'>
+          <i
+            style={{ fontSize: "1.5em" }}
+            className='far fa-user-circle'
+            aria-hidden='true'
+          ></i>
+        </div>
+        <div type="button" className='icons-post'>
+          <i
+            style={{ fontSize: "1.5em" }}
+            className='fa fa-bookmark-o'
+            aria-hidden='true'
+          ></i>
+        </div>
+
+        {/* delete post */}
+        {deleteIcon}
+      </div>
+    );
     return (
       <div className='parent'>
         <div className='child'>
@@ -38,9 +94,6 @@ class Post extends Component {
             <img
               className='size-of-image'
               src={post.image}
-              // width="600"
-              // height="600"
-              // src='https://images.unsplash.com/photo-1462216589242-9e3e00a47a48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=966&q=80'
             />
 
             <div className='style d-none d-xl-block d-md-none d-lg-none d-sm-none '>
@@ -82,64 +135,21 @@ class Post extends Component {
               <div id='footer'>
                 <hr />
                 <section>
-                  <Link to='' className='delete-post'>
-                    <i
-                      className='fa fa-heart-o'
-                      style={{ fontSize: "1.5em" }}
-                      aria-hidden='true'
-                    ></i>
-                  </Link>
-                  <Link to='' className='delete-post'>
-                    <i
-                      style={{ fontSize: "1.5em" }}
-                      className='fa fa-comment-o'
-                      aria-hidden='true'
-                    ></i>
-                  </Link>
-
-                  <Link to='' className='delete-post'>
-                    <i
-                      style={{ fontSize: "1.5em" }}
-                      className='far fa-user-circle'
-                      aria-hidden='true'
-                    ></i>
-                  </Link>
-                  <Link to='' className='delete-post'>
-                    <i
-                      style={{ fontSize: "1.5em" }}
-                      className='fa fa-bookmark-o'
-                      aria-hidden='true'
-                    ></i>
-                  </Link>
-
-                  {/* delete post */}
-                  <Link to='' className='delete-post'>
-                    <i
-                      style={{
-                        fontSize: "1.5em",
-                        float: "right",
-                        padding: "5px",
-                        marginTop: "-3px",
-                        fontWeight: "lighter",
-                      }}
-                      className='fa fa-trash'
-                      aria-hidden='true'
-                    ></i>
-                  </Link>
-
-                  <div className='textStyle-date'>
-                    <div
-                      style={{
-                        fontWeight: "600",
-                        fontSize: "1.4em",
-                        color: "black",
-                      }}
-                    >
-                      21 Likes
-                    </div>
-                    <Moment format="D MMM YYYY">{post.date}</Moment>
-                  </div>
+                  {/* Show like, save, delete icons */}
+                  {icons}
                 </section>
+                <div className='post-textStyle-date'>
+                  <div
+                    style={{
+                      fontWeight: "600",
+                      fontSize: "1.4em",
+                      color: "black",
+                    }}
+                  >
+                    21 Likes
+                  </div>
+                  <Moment format="D MMM YYYY">{post.date}</Moment>
+                </div>
                 <hr />
                 <AddComment postId={postId}/>
                 
@@ -151,52 +161,13 @@ class Post extends Component {
 
           <div id='wrapper'>
             <section className='section-only-mobile d-xl-none'>
-              <Link to='' className='delete-post'>
-                <i
-                  style={{ fontSize: "1.5em" }}
-                  className='fa fa-heart-o'
-                  aria-hidden='true'
-                ></i>
-              </Link>
-              <Link to='' className='delete-post'>
-                <i
-                  style={{ fontSize: "1.5em" }}
-                  className='fa fa-comment-o'
-                  aria-hidden='true'
-                ></i>
-              </Link>
+              <section>
+                {/* Show like, save, delete icons */}
+                {icons}
+              </section>
 
-              <Link to='' className='delete-post'>
-                <i
-                  style={{ fontSize: "1.5em" }}
-                  className='far fa-user-circle'
-                  aria-hidden='true'
-                ></i>
-              </Link>
-              <Link to='' className='delete-post'>
-                <i
-                  style={{ fontSize: "1.5em" }}
-                  className='fa fa-bookmark-o'
-                  aria-hidden='true'
-                ></i>
-              </Link>
-
-              {/* delete post */}
-              <Link to='' className='delete-post'>
-                <i
-                  style={{
-                    fontSize: "1.5em",
-                    padding: "5px",
-                    marginTop: "-3px",
-                    fontWeight: "lighter",
-                  }}
-                  className='fa fa-trash'
-                  aria-hidden='true'
-                ></i>
-              </Link>
-
-              <p className='textStyle-date'>
-                MARCH 24 &nbsp; <span>21 Likes</span>
+              <p className='post-textStyle-date'>
+              <Moment format="D MMM YYYY">{post.date}</Moment> &nbsp; <span>21 Likes</span>
               </p>
               <AddComment />
               
@@ -208,7 +179,8 @@ class Post extends Component {
   }
 }
 const mapStateToProps = state => ({
-  post: state.post
+  post: state.post,
+  auth: state.auth
 });
 
-export default connect(mapStateToProps, { getPost })(Post);
+export default connect(mapStateToProps, { getPost, deletePost })(Post);

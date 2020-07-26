@@ -20,6 +20,7 @@ import setAuthToken from "./utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { SET_CURRENT_USER } from "./actions/types";
 import { logoutUser } from "./actions/authActions";
+import NotFound from "./components/common/NotFound";
 
 //Check for token
 if (localStorage.jwtToken) {
@@ -59,6 +60,7 @@ class App extends Component {
             <Route exact path='/create-post' component={CreatePost} />
             <Route exact path='/explore' component={Profiles} />
             <Route exact path='/home' component={Home} />
+            <Route exact path='/not-found' component={NotFound}/>
 
             <Footer />
           </div>
