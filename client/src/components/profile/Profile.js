@@ -67,154 +67,147 @@ export class Profile extends Component {
     const { userPosts } = this.props.post;
 
 
-    if (profile === null || loading) {
+    if (profile === null || loading || this.props.post.loading) {
       profileContent = <Spinner />;
     } else {
       profileContent = (
-        <div className='margin'>
-          <div>
-            <Link onClick={(e) => this.changeProfilePicture()}>
-              <img
-                className='profile-photo'
-                alt='profile-photo'
-                src={user.avatar}
+        <Fragment>
+          <div className='margin'>
+            <div>
+              <Link onClick={(e) => this.changeProfilePicture()}>
+                <img
+                  className='profile-photo'
+                  alt='profile-photo'
+                  src={user.avatar}
+                />
+              </Link>
+              <ProfilePicture
+                change={this.state.change}
+                close={this.changeProfilePicture}
               />
-            </Link>
-            <ProfilePicture
-              change={this.state.change}
-              close={this.changeProfilePicture}
-            />
-          </div>
-          <div className='d-flex flex-column space'>
-            <h2 className='HandleName'>
-              {user.name}
-              <span>
-                <Link
-                  to='/edit-profile'
-                  type='button'
-                  className='btn profileButton'
+            </div>
+            <div className='d-flex flex-column space'>
+              <h2 className='HandleName'>
+                {user.name}
+                <span>
+                  <Link
+                    to='/edit-profile'
+                    type='button'
+                    className='btn profileButton'
+                  >
+                    Edit profile
+                  </Link>
+                  <Link onClick={(e) => this.showSettings()}>
+                    <i
+                      style={{ fontSize: "1.5rem", color: "black" }}
+                      className='fas fa-cog'
+                    ></i>
+                  </Link>
+                  <Settings
+                    show={this.state.show}
+                    close={this.showSettings}
+                    onDelete={this.onDelete}
+                    onLogout={this.logoutUserHandle}
+                  />
+                </span>
+              </h2>
+              <div className='textsize'>
+                <span>
+                  {userPosts.length > 0 ? (
+                    <a href='#posts'>
+                      <b>{userPosts.length}</b> posts
+                    </a>
+                  ) : (
+                    <Fragment>
+                      {" "}
+                      <b style={{ fontSize: "18px" }}>0</b>{" "}
+                      <span style={{ fontSize: "18px" }}>posts</span>
+                    </Fragment>
+                  )}
+                  &nbsp; &nbsp; &nbsp;&nbsp;
+                  {profile.followers.length > 0 ? (
+                    <Link onClick={(e) => this.showFollowersList()}>
+                      <b>{profile.followers.length}</b> followers
+                    </Link>
+                  ) : (
+                    <Fragment>
+                      <b style={{ fontSize: "18px" }}>0</b>{" "}
+                      <span style={{ fontSize: "18px" }}>followers</span>
+                    </Fragment>
+                  )}
+                  <Followers
+                    showFollowers={this.state.showFollowers}
+                    close={this.showFollowersList}
+                  />
+                  &nbsp; &nbsp; &nbsp;
+                  {profile.followers.length > 0 ? (
+                    <Link onClick={(e) => this.showFollowingList()}>
+                      <b>{profile.following.length}</b> following
+                    </Link>
+                  ) : (
+                    <Fragment>
+                      <b style={{ fontSize: "18px" }}>0</b>{" "}
+                      <span style={{ fontSize: "18px" }}>following</span>
+                    </Fragment>
+                  )}
+                  <Following
+                    showFollowing={this.state.showFollowing}
+                    close={this.showFollowingList}
+                  />
+                </span>
+              </div>
+              <p style={{ marginTop: "20px" }} className='profileName'>
+                {profile.handle}
+              </p>
+              <br />
+              {profile.bio && (
+                <div
+                  style={{
+                    wordBreak: "break-word",
+                    marginTop: "-30px",
+                    fontWeight: "400",
+                    fontStyle: "Roboto, Helvetica, Arial, sans-serif",
+                    fontSize: "16px",
+                    marginBottom: "5px",
+                  }}
                 >
-                  Edit profile
-                </Link>
-                <Link onClick={(e) => this.showSettings()}>
-                  <i
-                    style={{ fontSize: "1.5rem", color: "black" }}
-                    className='fas fa-cog'
-                  ></i>
-                </Link>
-                <Settings
-                  show={this.state.show}
-                  close={this.showSettings}
-                  onDelete={this.onDelete}
-                  onLogout={this.logoutUserHandle}
-                />
-              </span>
-            </h2>
-            <div className='textsize'>
-              <span>
-                {userPosts.length > 0 ? (
-                  <a href='#posts'>
-                    <b>{userPosts.length}</b> posts
+                  {profile.bio}
+                </div>
+              )}
+              {profile.website && (
+                <span>
+                  <a
+                    href={profile.website}
+                    style={{ color: "rgba(var(--fe0,0,55,107),1)" }}
+                  >
+                    {profile.website}
                   </a>
-                ) : (
-                  <Fragment>
-                    {" "}
-                    <b style={{ fontSize: "18px" }}>0</b>{" "}
-                    <span style={{ fontSize: "18px" }}>posts</span>
-                  </Fragment>
+                </span>
+              )}
+
+              {/* Social network Links */}
+              <span>
+                {profile.social && profile.social.facebook && (
+                  <a href={profile.social.facebook}>
+                    <i className='fa fa-facebook-square'></i>
+                  </a>
                 )}
-                &nbsp; &nbsp; &nbsp;&nbsp;
-                {profile.followers.length > 0 ? (
-                  <Link onClick={(e) => this.showFollowersList()}>
-                    <b>{profile.followers.length}</b> followers
-                  </Link>
-                ) : (
-                  <Fragment>
-                    <b style={{ fontSize: "18px" }}>0</b>{" "}
-                    <span style={{ fontSize: "18px" }}>
-                      followers
-                    </span>
-                  </Fragment>
+                {profile.social && profile.social.youtube && (
+                  <a href={profile.social.youtube}>
+                    <i
+                      className='fa fa-youtube-play youtube'
+                      aria-hidden='true'
+                    ></i>
+                  </a>
                 )}
-                <Followers
-                  showFollowers={this.state.showFollowers}
-                  close={this.showFollowersList}
-                />
-                &nbsp; &nbsp; &nbsp;
-                {profile.followers.length > 0 ? (
-                  <Link onClick={(e) => this.showFollowingList()}>
-                    <b>{profile.following.length}</b> following
-                  </Link>
-                ) : (
-                  <Fragment>
-                    <b style={{ fontSize: "18px" }}>0</b>{" "}
-                    <span style={{ fontSize: "18px" }}>following</span>
-                  </Fragment>
+                {profile.social && profile.social.twitter && (
+                  <a href={profile.social.twitter}>
+                    <i className='fa fa-twitter twitter' aria-hidden='true'></i>
+                  </a>
                 )}
-                <Following
-                  showFollowing={this.state.showFollowing}
-                  close={this.showFollowingList}
-                />
               </span>
             </div>
-            <p style={{ marginTop: "20px" }} className='profileName'>
-              {profile.handle}
-            </p>
-            <br />
-            {profile.bio && (
-              <div
-                style={{
-                  wordBreak: "break-word",
-                  marginTop: "-30px",
-                  fontWeight: "400",
-                  fontStyle: "Roboto, Helvetica, Arial, sans-serif",
-                  fontSize: "16px",
-                  marginBottom: "5px",
-                }}
-              >
-                {profile.bio}
-              </div>
-            )}
-            {profile.website && (
-              <span>
-                <a
-                  href={profile.website}
-                  style={{ color: "rgba(var(--fe0,0,55,107),1)" }}
-                >
-                  {profile.website}
-                </a>
-              </span>
-            )}
-
-            {/* Social network Links */}
-            <span>
-              {profile.social && profile.social.facebook && (
-                <a href={profile.social.facebook}>
-                  <i className='fa fa-facebook-square'></i>
-                </a>
-              )}
-              {profile.social && profile.social.youtube && (
-                <a href={profile.social.youtube}>
-                  <i
-                    className='fa fa-youtube-play youtube'
-                    aria-hidden='true'
-                  ></i>
-                </a>
-              )}
-              {profile.social && profile.social.twitter && (
-                <a href={profile.social.twitter}>
-                  <i className='fa fa-twitter twitter' aria-hidden='true'></i>
-                </a>
-              )}
-            </span>
           </div>
-        </div>
-      );
-    }
-    return (
-      <div>
-        <div className='container'>
-          {profileContent}
           <hr className='horizontalLine' />
           <div className='profileTabs icons'>
             <Link to=''>
@@ -264,12 +257,26 @@ export class Profile extends Component {
               </section>
             </Fragment>
           ) : (
-            <div className='HandleName' style={{ textAlign: "center", marginTop : "100px" }}>
+            <div
+              className='HandleName'
+              style={{ textAlign: "center", marginTop: "100px" }}
+            >
               {" "}
-              <div><i class="fa fa-camera" aria-hidden="true"></i></div>
+              <div>
+                <i class='fa fa-camera' aria-hidden='true'></i>
+              </div>
               No Posts Yet
             </div>
           )}
+        </Fragment>
+      );
+    }
+  
+    return (
+      <div>
+        <div className='container'>
+          {profileContent}
+ 
         </div>
       </div>
     );
