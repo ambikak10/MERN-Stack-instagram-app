@@ -54,14 +54,15 @@ class App extends Component {
             <Navbar />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/' component={Login} />
-            <Route exact path='/profile' component={Profile} />            
+            <Route exact path='/profile' component={Profile} />
             <Route exact path='/edit-profile' component={EditProfile} />
             <Route exact path='/post/:id' component={Post} />
+            <Route exact path='/profile/:handle' component={Profile} />
             <Route exact path='/create-profile' component={CreateProfile} />
             <Route exact path='/create-post' component={CreatePost} />
             <Route exact path='/explore' component={Profiles} />
             <Route exact path='/home' component={Home} />
-            <Route exact path='/not-found' component={NotFound}/>
+            <Route exact path='/not-found' component={NotFound} />
 
             <Footer />
           </div>

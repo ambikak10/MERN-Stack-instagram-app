@@ -153,7 +153,7 @@ console.log("get by handle backend API")
       return res.json(profile);
     })
     .catch((err) =>{
-      console.log(err)
+      console.log(err);
  res.status(404).json(err)
     })
 });

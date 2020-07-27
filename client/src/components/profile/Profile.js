@@ -56,10 +56,11 @@ export class Profile extends Component {
   };
 
   componentDidMount() {
-    this.props.getProfileByHandle(this.props.profile.handle);
+    if(this.props.match.params.handle){
+      this.props.getProfileByHandle(this.props.match.params.handle);
     this.props.getUserPosts();
   }
-
+  }
   render() {
     let profileContent;
     const { profile, loading } = this.props.profile;

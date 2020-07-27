@@ -22,7 +22,7 @@ export class Navbar extends Component {
     const {isAuthenticated, user} = this.props.auth;
     //Get real avatar of user from redux store
     const {avatar} = user;
-
+    const { profile } = this.props.profile
     //Put all navbar contents into variable "navbar" 
     const navbar = (
       <nav
@@ -60,7 +60,7 @@ export class Navbar extends Component {
             </li>
 
             <li>
-              <Link to='/profile'>
+              <Link to={`/profile/:${profile.handle}`}>
                 <img className='avatar navbarIcon' src={avatar} alt='Avatar' />
               </Link>
             </li>
@@ -93,7 +93,8 @@ export class Navbar extends Component {
 }
    
 const mapStateToProps = (state) => ({
-  auth: state.auth
+  auth: state.auth,
+  profile:state.profile
 });
 
 export default connect(mapStateToProps, { logoutUser })(withRouter(Navbar));
