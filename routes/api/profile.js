@@ -339,7 +339,7 @@ router.get("/suggestions",
             .populate("user", ["name", "avatar"])
             .then(profiles => {
               let suggestion = profiles.filter(p => {
-                if (following.indexOf(p.user.toString()) === -1 && p.id !== profile.id) {
+                if (following.indexOf(p.user._id.toString()) === -1 && p.id !== profile.id) {
                   return true;
                 }
               });

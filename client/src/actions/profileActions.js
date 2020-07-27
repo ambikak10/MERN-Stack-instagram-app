@@ -96,14 +96,14 @@ export const getSuggestionList = () => dispatch => {
   axios
     .get("/api/profile/suggestions")
     .then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       dispatch({
         type: GET_PROFILES,
         payload: res.data
       })
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
       dispatch({
         type: GET_PROFILES,
         payload: {}
@@ -115,6 +115,18 @@ export const getSuggestionList = () => dispatch => {
 export const followUser = (profileId) => dispatch => {
   axios
     .post(`/api/profile/follow/${profileId}`)
+    .then(res => {
+      console.log(res.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+//Unfollow a user
+export const unfollowUser = (profileId) => dispatch => {
+  axios
+    .post(`/api/profile/unfollow/${profileId}`)
     .then(res => {
       console.log(res.data)
     })

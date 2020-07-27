@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { followUser } from "../../actions/profileActions";
+import { followUser, unfollowUser } from "../../actions/profileActions";
 
 class SuggestionItem extends Component {
   constructor() {
@@ -18,6 +18,7 @@ class SuggestionItem extends Component {
 
   handleUnfollow(profileId) {
     this.setState({ follow: false });
+    this.props.unfollowUser(profileId);
   }
   render() {
     const {profile} = this.props;
@@ -59,4 +60,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { followUser })(SuggestionItem);
+export default connect(mapStateToProps, { followUser, unfollowUser })(SuggestionItem);
