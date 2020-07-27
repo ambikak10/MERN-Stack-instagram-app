@@ -20,6 +20,11 @@ class Home extends Component {
          render() {
            const {auth, profile} = this.props;
            
+           let suggestionList;
+           if (profile.profiles && profile.profiles.length > 0) {
+            suggestionList = <SuggestionLists profiles={profile.profiles}/>
+           } 
+
            return (
              <div className='container'>
                <div className='row'>
@@ -193,7 +198,8 @@ class Home extends Component {
                        </Link>
                      </div>
 
-                     <SuggestionLists profiles={profile.profiles}/>
+                     {/* <SuggestionLists profiles={profile.profiles}/> */}
+                     {suggestionList}
                    </div>
                  </div>
                </div>
