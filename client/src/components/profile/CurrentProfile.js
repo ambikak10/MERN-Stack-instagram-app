@@ -43,8 +43,8 @@ class CurrentProfile extends Component {
 
 Profile.propTypes = {
   profile: PropTypes.object.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired,
-  getUserPosts: PropTypes.func.isRequired,
+  // getCurrentProfile: PropTypes.func.isRequired,
+  // getUserPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
