@@ -17,11 +17,12 @@ class CurrentProfile extends Component {
   }
 
   render() {
-    // console.log(this.props.profile.profile);
+    console.log(this.props.profile.profile);
     const { profile, loading } = this.props.profile;
     let content;
     const { userPosts, loadingPost } = this.props.post;
-    // console.log(userPosts);
+    console.log(userPosts);
+    console.log(profile);
 
     if (this.props.profile.profile != null) {
       content = (
@@ -29,7 +30,7 @@ class CurrentProfile extends Component {
           <Profile
             profile={profile}
             loading={loading}
-            othersUserPosts={userPosts}
+            userPosts={userPosts}
             loadingPost={loadingPost}
           />
         </div>
@@ -43,9 +44,9 @@ class CurrentProfile extends Component {
 
 Profile.propTypes = {
   profile: PropTypes.object.isRequired,
-  // getProfileByHandle: PropTypes.func.isRequired,
+  getProfileByHandle: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
-  // getOtherUsersPosts: PropTypes.func.isRequired,
+  getOtherUsersPosts: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   // auth: state.auth,

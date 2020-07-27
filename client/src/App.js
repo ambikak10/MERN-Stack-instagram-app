@@ -60,7 +60,7 @@ class App extends Component {
             <Route exact path='/profile' component={CurrentProfile} />
             <Route exact path='/edit-profile' component={EditProfile} />
             <Route exact path='/post/:id' component={Post} />
-            <Route exact path='/profile/:handle' component={HandleProfile} />
+            <Route exact path='/profile/:handle/:user_id' component={HandleProfile} />
             <Route exact path='/create-profile' component={CreateProfile} />
             <Route exact path='/create-post' component={CreatePost} />
             <Route exact path='/explore' component={Profiles} />
