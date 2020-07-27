@@ -149,7 +149,7 @@ console.log("get by handle backend API")
         errors.noprofile = "There is no profile for this user";
         res.status(404).json(errors);
       }
-      console.log(profile);
+      // console.log(profile);
       return res.json(profile);
     })
     .catch((err) =>{

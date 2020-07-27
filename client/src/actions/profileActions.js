@@ -64,14 +64,14 @@ export const getProfileByHandle = handle => dispatch => {
   axios
     .get(`/api/profile/handle/${handle}`)
     .then(res =>{
-      console.log(res);
+      // console.log(res);
       dispatch({
         type: GET_PROFILE,
         payload: res.data
       })
      } )
     .catch(err =>{
-      console.log(err)
+      // console.log(err)
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
