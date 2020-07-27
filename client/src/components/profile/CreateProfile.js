@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { createProfile } from "../../actions/profileActions";
+import { createProfile, getCurrentProfile } from "../../actions/profileActions";
 import classnames from "classnames";
 import PropTypes from "prop-types";
 
@@ -39,6 +39,7 @@ class CreateProfile extends Component {
       gender: this.state.gender,
     };
     this.props.createProfile(profileData, this.props.history);
+    this.props.getCurrentProfile();
   };
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
@@ -272,11 +273,12 @@ class CreateProfile extends Component {
 CreateProfile.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
 };
 const mapStateToProps =  state => ({
   profile: state.profile,
   errors: state.errors
 })
-export default connect(mapStateToProps, { createProfile })(
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
   withRouter(CreateProfile)
 );

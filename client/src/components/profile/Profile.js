@@ -8,7 +8,7 @@ import { deleteAccount } from "../../actions/profileActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/authActions";
-import { getCurrentProfile } from "../../actions/profileActions";
+import { getProfileByHandle } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
 import ProfilePostItem from "./ProfilePostItem";
 import { getUserPosts } from "../../actions/postActions";
@@ -56,7 +56,7 @@ export class Profile extends Component {
   };
 
   componentDidMount() {
-    this.props.getCurrentProfile();
+    this.props.getProfileByHandle(this.props.profile.handle);
     this.props.getUserPosts();
   }
 
@@ -65,8 +65,7 @@ export class Profile extends Component {
     const { profile, loading } = this.props.profile;
     const { user } = this.props.auth;
     const { userPosts } = this.props.post;
-
-
+  console.log(this.props.profile);
     if (profile === null || loading || this.props.post.loading) {
       profileContent = <Spinner />;
     } else {
@@ -287,12 +286,12 @@ Profile.propTypes = {
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired,
+  getProfileByHandle: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
   getUserPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
 };
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({ 
   auth: state.auth,
   profile: state.profile,
   post: state.post,
@@ -300,6 +299,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   deleteAccount,
   logoutUser,
-  getCurrentProfile,
+  getProfileByHandle,
   getUserPosts,
 })(Profile);
