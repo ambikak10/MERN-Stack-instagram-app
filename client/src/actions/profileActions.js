@@ -109,4 +109,16 @@ export const getSuggestionList = () => dispatch => {
         payload: {}
       })
     })
+};
+
+//Follow a user
+export const followUser = (profileId) => dispatch => {
+  axios
+    .post(`/api/profile/follow/${profileId}`)
+    .then(res => {
+      console.log(res.data)
+    })
+    .catch(err => {
+      console.log(err);
+    })
 }
