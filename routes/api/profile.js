@@ -342,12 +342,16 @@ router.get("/suggestions",
           Profile.find()
             .populate("user", ["name", "avatar"])
             .then(profiles => {
-              let suggestion = profiles.filter(p => {
-                if (following.indexOf(p.user.toString()) === -1 && p.id !== profile.id) {
-                  return true;
-                }
-              });
-              return res.json(suggestion);
+              if (profiles) {
+                let suggestion = profiles.filter(p => {
+                  if (following.indexOf(p.user._id.toString()) === -1 && p.id !== profile.id) {
+                    return true;
+                  }
+                });
+                return res.json(suggestion);
+              } else {
+                return res.status(404).json({ noprofile: "No profile found"});
+              }
             })
             .catch(err => console.log(err))
         } else {
