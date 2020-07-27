@@ -1,7 +1,8 @@
-import { SET_CURRENT_USER, GET_ERRORS } from './types';
+import { SET_CURRENT_USER, GET_ERRORS, GET_PROFILE } from './types';
 import axios from 'axios';
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
+import {getCurrentProfile} from './profileActions'
 
 //Register user
 export const signupUser = (userData, history) => dispatch => {
@@ -37,6 +38,7 @@ export const loginUser = (userData) => (dispatch) => {
         type: GET_ERRORS,
         payload: err.response.data,
       })
+     
     );
 };
 

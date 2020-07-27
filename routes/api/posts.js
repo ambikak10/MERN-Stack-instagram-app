@@ -80,7 +80,7 @@ router.get("/selected",
 );
 
 // @route   GET api/posts/currentUser
-// @desc    get all posts of a user
+// @desc    get all posts of current user
 // @access  Private
 router.get(
   "/currentUser",
@@ -95,9 +95,33 @@ router.get(
       .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
   }
 );
+// @route   GET api/posts/otheruserposts/:user_id
+// @desc    get all posts of other user by their user_id
+// @access  Public
+router.get(
+  "/otheruserposts/:user_id",
+  // passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+     Post.find()
+      .sort({ date: -1 })
+      .then((posts) => {
+        if(posts) {
+      let otheruserposts;
+        otheruserposts = posts.filter(post => 
+        post.user.toString() === req.params.user_id)
+        return res.json(otheruserposts);
+        
+       } else  {
+       return res.status(404).json({ nopostsfound: "No posts found" });
+      }})
+      .catch((err) =>{
+        console.log(err); 
+        res.status(404).json({ nopostsfound: "No posts found" })});
+  }
+);
 
 // @route   GET api/posts/:id
-// @desc    Get post by id
+// @desc    Get a post by id
 // @access  Public
 
 router.get("/:id", (req, res) => {
@@ -261,31 +285,31 @@ router.post('/:post_id/untag/:user_id', passport.authenticate("jwt", { session: 
   });
 });
 
-// @route   GET /api/posts/user/tagged
-// @desc    Get tagged posts of current user
-// @access  Private
-router.get("/user/tagged",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    // console.log(req.user.id);
-    Profile.findOne({user: req.user.id})
-      .populate({
-        path: "tagged",
-        populate: {
-          path: "postId",
-          select: "image"
-        }
-      })
-      .then(profile => {
-        if (profile) {
-          return res.json(profile.tagged)
-        } else {
-          return res.status(400).json({noprofilefound: "No profile found in then"});
-        }
-      })
-      .catch(err => console.log(err));
-  }
-);
+// // @route   GET /api/posts/user/tagged
+// // @desc    Get tagged posts of current user
+// // @access  Private
+// router.get("/user/tagged",
+//   passport.authenticate("jwt", { session: false }),
+//   (req, res) => {
+//     // console.log(req.user.id);
+//     Profile.findOne({user: req.user.id})
+//       .populate({
+//         path: "tagged",
+//         populate: {
+//           path: "postId",
+//           select: "image"
+//         }
+//       })
+//       .then(profile => {
+//         if (profile) {
+//           return res.json(profile.tagged)
+//         } else {
+//           return res.status(400).json({noprofilefound: "No profile found in then"});
+//         }
+//       })
+//       .catch(err => console.log(err));
+//   }
+// );
 
 // @route   POST api/posts/comment/:post_id
 // @desc    Add comment to post

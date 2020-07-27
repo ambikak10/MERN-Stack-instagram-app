@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./profile.css";
 import Settings from "./Settings";
 import Followers from "../follow/Followers";
@@ -8,11 +8,11 @@ import { deleteAccount } from "../../actions/profileActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/authActions";
-import { getCurrentProfile } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
 import ProfilePostItem from "./ProfilePostItem";
 import { getUserPosts } from "../../actions/postActions";
 import ProfilePicture from "./ProfilePicture";
+// import { getCurrentProfile } from "../../actions/profileActions";
 
 export class Profile extends Component {
   constructor(props) {
@@ -55,61 +55,67 @@ export class Profile extends Component {
     this.props.logoutUser();
   };
 
-  componentDidMount() {
-    this.props.getCurrentProfile();
-    this.props.getUserPosts();
-  }
-
   render() {
     let profileContent;
-    const { profile, loading } = this.props.profile;
+    const { profile, loading } = this.props;
     const { user } = this.props.auth;
-    const { userPosts } = this.props.post;
-
-
-    if (profile === null || loading || this.props.post.loading) {
+    const { userPosts, loadingPost } = this.props;
+    console.log(profile.user._id);
+    console.log(user.id);
+    console.log(user.id === profile.user._id)
+    if (profile === null || loading || loadingPost) {
       profileContent = <Spinner />;
     } else {
       profileContent = (
         <Fragment>
           <div className='margin'>
-            <div>
-              <Link onClick={(e) => this.changeProfilePicture()}>
-                <img
-                  className='profile-photo'
-                  alt='profile-photo'
-                  src={user.avatar}
+            {user.id === profile.user._id ? (
+              <div>
+                <Link onClick={(e) => this.changeProfilePicture()}>
+                  <img
+                    className='profile-photo'
+                    alt='profile-photo'
+                    src={user.avatar}
+                  />
+                </Link>
+                <ProfilePicture
+                  change={this.state.change}
+                  close={this.changeProfilePicture}
                 />
-              </Link>
-              <ProfilePicture
-                change={this.state.change}
-                close={this.changeProfilePicture}
+              </div>
+            ) : (
+              <img
+                className='profile-photo'
+                alt='profile-photo'
+                src={user.avatar}
               />
-            </div>
+            )}
             <div className='d-flex flex-column space'>
               <h2 className='HandleName'>
                 {user.name}
-                <span>
-                  <Link
-                    to='/edit-profile'
-                    type='button'
-                    className='btn profileButton'
-                  >
-                    Edit profile
-                  </Link>
-                  <Link onClick={(e) => this.showSettings()}>
-                    <i
-                      style={{ fontSize: "1.5rem", color: "black" }}
-                      className='fas fa-cog'
-                    ></i>
-                  </Link>
-                  <Settings
-                    show={this.state.show}
-                    close={this.showSettings}
-                    onDelete={this.onDelete}
-                    onLogout={this.logoutUserHandle}
-                  />
-                </span>
+                {user.id === profile.user._id && (
+                  <span>
+                    <Link
+                      to='/edit-profile'
+                      type='button'
+                      className='btn profileButton'
+                    >
+                      Edit profile
+                    </Link>
+                    <Link onClick={(e) => this.showSettings()}>
+                      <i
+                        style={{ fontSize: "1.5rem", color: "black" }}
+                        className='fas fa-cog'
+                      ></i>
+                    </Link>
+                    <Settings
+                      show={this.state.show}
+                      close={this.showSettings}
+                      onDelete={this.onDelete}
+                      onLogout={this.logoutUserHandle}
+                    />
+                  </span>
+                )}
               </h2>
               <div className='textsize'>
                 <span>
@@ -287,19 +293,13 @@ Profile.propTypes = {
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
-  getCurrentProfile: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
-  getUserPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired,
 };
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-  profile: state.profile,
-  post: state.post,
-});
+ const mapStateToProps = (state) => ({ 
+   auth: state.auth,
+ 
+ });
 export default connect(mapStateToProps, {
   deleteAccount,
   logoutUser,
-  getCurrentProfile,
-  getUserPosts,
 })(Profile);

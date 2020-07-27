@@ -7,6 +7,8 @@ import classnames from 'classnames';
 import "./login.css"; 
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import { getCurrentProfile } from "../../actions/profileActions";
+import PropTypes from 'prop-types';
 
 class Login extends Component {
   constructor() {
@@ -30,6 +32,7 @@ class Login extends Component {
       password: this.state.password,
     };
     this.props.loginUser(user);
+    // this.props.getCurrentProfile();
   }
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
@@ -123,10 +126,14 @@ class Login extends Component {
     );
   }
 }
-
+Login.propTypes = {
+ getCurrentProfile: PropTypes.func.isRequired,
+ loginUser: PropTypes.func.isRequired,
+}
 const mapStateToProps = (state) => ({
   errors: state.errors,
-  auth: state.auth
+  auth: state.auth,
+  
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(mapStateToProps, { loginUser, getCurrentProfile })(Login);
