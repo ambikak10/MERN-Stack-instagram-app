@@ -2,26 +2,23 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import avatar from "../../img/avatar.png"
 import "./home.css"; 
-import Navbar from '../navbar/Navbar';
+import { connect } from "react-redux";
+import SuggestionLists from "./SuggestionLists";
+import { getSuggestionList } from "../../actions/profileActions";
 
-class home extends Component {
+class Home extends Component {
          constructor() {
            super();
            this.state = {
              follow: false,
            };
-           this.handleFollow = this.handleFollow.bind(this);
-           this.handleUnfollow = this.handleUnfollow.bind(this);
          }
-
-         handleFollow() {
-           this.setState({ follow: true });
+         componentDidMount() {
+           this.props.getSuggestionList();
          }
-
-         handleUnfollow() {
-           this.setState({ follow: false });
-         }
+         
          render() {
+           const {auth, profile} = this.props;
            
            return (
              <div className='container'>
@@ -158,6 +155,7 @@ class home extends Component {
                        border: "none",
                      }}
                    >
+                     {/* Avatar of current user */}
                      <div
                        className='card-header'
                        style={{
@@ -168,7 +166,7 @@ class home extends Component {
                        <Link to='#'>
                          <img
                            className='avatar-icon'
-                           src={avatar}
+                           src={auth.user.avatar}
                            alt='Avatar'
                            style={{
                              marginLeft: ".5px",
@@ -177,10 +175,11 @@ class home extends Component {
                          />
                        </Link>
                        <Link to='' className='name-of-account'>
-                         user007
+                          {auth.user.name}
                        </Link>
                      </div>
-
+                    
+                     {/* Suggestions lists */}
                      <div
                        style={{
                          marginLeft: "10px",
@@ -189,70 +188,12 @@ class home extends Component {
                        }}
                      >
                        Suggestions For You
-                       <span style={{ float: "right", color: "black" }}>
+                       <Link to="/explore" style={{ float: "right", color: "black" }}>
                          See All
-                       </span>
+                       </Link>
                      </div>
 
-                     <div style={{ marginTop: "10px", marginLeft: "10px" }}>
-                       <Link to='/profile'>
-                         <img
-                           className='rounded-circle profile-card-avatar'
-                           style={{ width: "50px" }}
-                           src={avatar}
-                           alt='avatar'
-                         />
-                       </Link>
-                       <span
-                         style={{
-                           marginLeft: "10px",
-                           color: "black",
-                           fontFamily: "inherit",
-                           fontWeight: "600",
-                           textTransform: "lowercase",
-                         }}
-                       >
-                         BruceLee
-                       </span>
-                       <span style={{ float: "right", marginTop: "10px" }}>
-                         {!this.state.follow && (
-                           <Link onClick={this.handleFollow}>Follow</Link>
-                         )}
-                         {this.state.follow && (
-                           <Link onClick={this.handleUnfollow}>Following</Link>
-                         )}
-                       </span>
-                     </div>
-
-                     <div style={{ marginTop: "10px", marginLeft: "10px" }}>
-                       <Link to='/profile'>
-                         <img
-                           className='rounded-circle profile-card-avatar'
-                           style={{ width: "50px" }}
-                           src={avatar}
-                           alt='avatar'
-                         />
-                       </Link>
-                       <span
-                         style={{
-                           marginLeft: "10px",
-                           color: "black",
-                           fontFamily: "inherit",
-                           fontWeight: "600",
-                           textTransform: "lowercase",
-                         }}
-                       >
-                         HarryPotter
-                       </span>
-                       <span style={{ float: "right", marginTop: "10px" }}>
-                         {!this.state.follow && (
-                           <Link onClick={this.handleFollow}>Follow</Link>
-                         )}
-                         {this.state.follow && (
-                           <Link onClick={this.handleUnfollow}>Following</Link>
-                         )}
-                       </span>
-                     </div>
+                     <SuggestionLists profiles={profile.profiles}/>
                    </div>
                  </div>
                </div>
@@ -260,16 +201,10 @@ class home extends Component {
            );
          }
        }
-            
 
-            
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  profile: state.profile
+});
 
-
-            
-
-            
-    
-  
-
-
-export default home;
+export default connect(mapStateToProps, {getSuggestionList})(Home);

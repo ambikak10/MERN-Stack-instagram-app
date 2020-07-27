@@ -336,6 +336,7 @@ router.get("/suggestions",
         if (profile) {
           let following = profile.following.map(item => item.user.toString());
           Profile.find()
+            .populate("user", ["name", "avatar"])
             .then(profiles => {
               let suggestion = profiles.filter(p => {
                 if (following.indexOf(p.user.toString()) === -1 && p.id !== profile.id) {
