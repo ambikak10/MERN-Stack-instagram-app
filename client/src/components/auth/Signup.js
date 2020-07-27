@@ -16,6 +16,7 @@ class Signup extends Component {
       password: "",
       password2: "",
       errors: {},
+      handle: "",
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -31,6 +32,7 @@ class Signup extends Component {
       email: this.state.email,      
       password: this.state.password,
       password2: this.state.password2,
+      handle: this.state.handle,
     };
 
     this.props.signupUser(newUser, this.props.history);
@@ -64,6 +66,21 @@ class Signup extends Component {
                     placeholder='Full Name'
                     name='name'
                     value={this.state.name}
+                    onChange={this.onChange}
+                  />
+                  {errors.name && (
+                    <div className='invalid-feedback'>{errors.name}</div>
+                  )}
+                </div>
+                <div className='form-group'>
+                  <input
+                    type='text'
+                    className={classnames("form-control form-control-lg", {
+                      "is-invalid": errors.handle,
+                    })}
+                    placeholder='Username'
+                    name='handle'
+                    value={this.state.handle}
                     onChange={this.onChange}
                   />
                   {errors.handle && (
