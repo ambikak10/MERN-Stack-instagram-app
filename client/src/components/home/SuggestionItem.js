@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import avatar from "../../img/avatar.png"
+import { connect } from "react-redux";
+import { followUser, unfollowUser } from "../../actions/profileActions";
 
 class SuggestionItem extends Component {
   constructor() {
@@ -8,16 +9,16 @@ class SuggestionItem extends Component {
     this.state = {
       follow: false,
     };
-    this.handleFollow = this.handleFollow.bind(this);
-    this.handleUnfollow = this.handleUnfollow.bind(this);
   }
 
-  handleFollow() {
+  handleFollow(profileId) {
     this.setState({ follow: true });
+    this.props.followUser(profileId);
   }
 
-  handleUnfollow() {
+  handleUnfollow(profileId) {
     this.setState({ follow: false });
+    this.props.unfollowUser(profileId);
   }
   render() {
     const {profile} = this.props;
@@ -44,10 +45,10 @@ class SuggestionItem extends Component {
         </span>
         <span style={{ float: "right", marginTop: "10px" }}>
           {!this.state.follow && (
-            <Link onClick={this.handleFollow}>Follow</Link>
+            <Link onClick={this.handleFollow.bind(this, profile._id)}>Follow</Link>
           )}
           {this.state.follow && (
-            <Link onClick={this.handleUnfollow}>Following</Link>
+            <Link onClick={this.handleUnfollow.bind(this, profile._id)}>Following</Link>
           )}
         </span>
       </div>
@@ -55,4 +56,8 @@ class SuggestionItem extends Component {
   }
 }
 
-export default SuggestionItem;
+const mapStateToProps = (state) => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { followUser, unfollowUser })(SuggestionItem);

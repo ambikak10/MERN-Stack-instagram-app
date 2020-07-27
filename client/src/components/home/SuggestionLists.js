@@ -8,7 +8,7 @@ class SuggestionLists extends Component {
     let suggestions;
     if (profiles) {
       suggestions = profiles.map(profile => (
-        <SuggestionItem profile={profile}/>
+        <SuggestionItem key={profile._id} profile={profile}/>
       ));
     }
     

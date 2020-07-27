@@ -59,6 +59,26 @@ router.get("/", (req, res) => {
     .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
 });
 
+// @route   GET api/posts/selected
+// @desc    Get  all posts except posts of currentUser
+// @access  Private
+router.get("/selected",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Post.find()
+      .sort({date: -1})
+      .then(posts => {
+        if (posts) {
+          let selected = posts.filter(post => post.user.toString() !== req.user.id);
+          return res.json(selected);
+        } else {
+          return res.status(404).json({ nopostsfound: "No posts found" });
+        }
+      })
+      .catch(err => res.status(404).json({ nopostsfound: "No posts found" }));
+  }
+);
+
 // @route   GET api/posts/currentUser
 // @desc    get all posts of a user
 // @access  Private
