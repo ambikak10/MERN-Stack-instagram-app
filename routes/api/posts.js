@@ -75,20 +75,28 @@ router.get(
       .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
   }
 );
-// @route   GET api/posts/user/:user_id
+// @route   GET api/posts/otheruserposts/:user_id
 // @desc    get all posts of other user by their user_id
-// @access  Private
+// @access  Public
 router.get(
-  "/user/:user_id",
-  passport.authenticate("jwt", { session: false }),
+  "/otheruserposts/:user_id",
+  // passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Post.findById(req.params.id)
+     Post.find()
       .sort({ date: -1 })
       .then((posts) => {
-        console.log("other's all posts");
-        return res.json(posts);
-      })
-      .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
+        if(posts) {
+      let otheruserposts;
+        otheruserposts = posts.filter(post => 
+        post.user.toString() === req.params.user_id)
+        return res.json(otheruserposts);
+        
+       } else  {
+       return res.status(404).json({ nopostsfound: "No posts found" });
+      }})
+      .catch((err) =>{
+        console.log(err); 
+        res.status(404).json({ nopostsfound: "No posts found" })});
   }
 );
 
