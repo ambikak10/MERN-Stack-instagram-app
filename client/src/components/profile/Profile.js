@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./profile.css";
 import Settings from "./Settings";
 import Followers from "../follow/Followers";
@@ -8,11 +8,11 @@ import { deleteAccount } from "../../actions/profileActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/authActions";
-import { getProfileByHandle } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
 import ProfilePostItem from "./ProfilePostItem";
 import { getUserPosts } from "../../actions/postActions";
 import ProfilePicture from "./ProfilePicture";
+// import { getCurrentProfile } from "../../actions/profileActions";
 
 export class Profile extends Component {
   constructor(props) {
@@ -55,19 +55,13 @@ export class Profile extends Component {
     this.props.logoutUser();
   };
 
-  componentDidMount() {
-    if(this.props.match.params.handle){
-      this.props.getProfileByHandle(this.props.match.params.handle);
-    this.props.getUserPosts();
-  }
-  }
   render() {
     let profileContent;
-    const { profile, loading } = this.props.profile;
+    const { profile, loading } = this.props;
     const { user } = this.props.auth;
-    const { userPosts } = this.props.post;
-  console.log(this.props.profile);
-    if (profile === null || loading || this.props.post.loading) {
+    const { userPosts, loadingPost } = this.props;
+    console.log(userPosts);
+    if (profile === null || loading || loadingPost) {
       profileContent = <Spinner />;
     } else {
       profileContent = (
@@ -287,19 +281,13 @@ Profile.propTypes = {
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
-  getProfileByHandle: PropTypes.func.isRequired,
   logoutUser: PropTypes.func.isRequired,
-  getUserPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired,
 };
-const mapStateToProps = (state) => ({ 
-  auth: state.auth,
-  profile: state.profile,
-  post: state.post,
-});
+ const mapStateToProps = (state) => ({ 
+   auth: state.auth,
+ 
+ });
 export default connect(mapStateToProps, {
   deleteAccount,
   logoutUser,
-  getProfileByHandle,
-  getUserPosts,
 })(Profile);

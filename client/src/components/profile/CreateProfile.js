@@ -39,7 +39,6 @@ class CreateProfile extends Component {
       gender: this.state.gender,
     };
     this.props.createProfile(profileData, this.props.history);
-    this.props.getCurrentProfile();
   };
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {

@@ -11,8 +11,10 @@ import Post from "./components/displayPost/Post";
 import CreateProfile from "./components/profile/CreateProfile";
 import CreatePost from "./components/displayPost/CreatePost";
 import Following from "./components/follow/Following";
-import Profiles from "./components/profile/Profiles";
+import Profiles from "./components/profile/CurrentProfile";
 import Home from "./components/home/Home";
+import CurrentProfile from "./components/profile/CurrentProfile";
+import HandleProfile from "./components/profile/HandleProfile";
 
 //redux
 import { Provider } from "react-redux";
@@ -54,10 +56,11 @@ class App extends Component {
             <Navbar />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/' component={Login} />
-            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/current-profile' component={CurrentProfile} />
+            <Route exact path='/profile' component={CurrentProfile} />
             <Route exact path='/edit-profile' component={EditProfile} />
             <Route exact path='/post/:id' component={Post} />
-            <Route exact path='/profile/:handle' component={Profile} />
+            <Route exact path='/profile/:handle' component={HandleProfile} />
             <Route exact path='/create-profile' component={CreateProfile} />
             <Route exact path='/create-post' component={CreatePost} />
             <Route exact path='/explore' component={Profiles} />

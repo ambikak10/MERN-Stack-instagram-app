@@ -60,7 +60,7 @@ export class Navbar extends Component {
             </li>
 
             <li>
-              <Link to={`/profile/:${profile.handle}`}>
+              <Link to='/profile'>
                 <img className='avatar navbarIcon' src={avatar} alt='Avatar' />
               </Link>
             </li>

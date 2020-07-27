@@ -85,11 +85,31 @@ export const deleteComment = (postId, commentId) => dispatch => {
       });
     })
 }
-//Get all posts of a user
+//Get all posts of current user
 export const getUserPosts = () => dispatch => {
   dispatch(setPostLoading());
 axios
   .get("api/posts/currentUser")
+  .then((res) => {
+    console.log(res);
+    dispatch({
+      type: GET_USER_POSTS,
+      payload: res.data,
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    });
+  });
+}
+//Get all posts of another user
+export const getOtherUsersPosts = (user_id) => dispatch => {
+  dispatch(setPostLoading());
+axios
+  .get("api/posts/user/:user_id")
   .then((res) => {
     console.log(res);
     dispatch({
