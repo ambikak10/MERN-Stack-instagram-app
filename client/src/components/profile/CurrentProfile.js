@@ -12,7 +12,6 @@ class CurrentProfile extends Component {
     this.props.getCurrentProfile();
     this.props.getUserPosts();
   }
-
   render() {
     console.log(this.props.profile.profile);
     const {profile, loading } = this.props.profile;
@@ -35,16 +34,13 @@ class CurrentProfile extends Component {
            content = ( <Spinner /> )
           }
     return <div> {content}</div>;
-
-
-  
   }
 }
 
 Profile.propTypes = {
   profile: PropTypes.object.isRequired,
-  // getCurrentProfile: PropTypes.func.isRequired,
-  // getUserPosts: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  getUserPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({

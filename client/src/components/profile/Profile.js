@@ -61,7 +61,7 @@ export class Profile extends Component {
     const { user } = this.props.auth;
     const { userPosts, loadingPost } = this.props;
     console.log(profile.user._id);
-    console.log(user.id);
+    console.log(this.props.userPosts);
     console.log(user.id === profile.user._id)
     if (profile === null || loading || loadingPost) {
       profileContent = <Spinner />;

@@ -9,7 +9,7 @@ export const GET_PROFILES = "GET_PROFILES";
 export const GET_USER_POSTS = "GET_USER_POSTS";
 export const POST_LOADING = "POST_LOADING";
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
-export const GET_OTHER_USERS_POSTS = "GET_OTHER_USERS_POSTS";
+
 
 
 

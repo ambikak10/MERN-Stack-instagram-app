@@ -109,7 +109,7 @@ axios
 export const getOtherUsersPosts = (user_id) => dispatch => {
   dispatch(setPostLoading());
 axios
-  .get("api/posts/otheruserposts/:user_id")
+  .get(`/api/posts/otheruserposts/${user_id}`)
   .then((res) => {
     console.log(res);
     dispatch({
