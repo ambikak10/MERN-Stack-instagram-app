@@ -60,14 +60,16 @@ export class Profile extends Component {
     const { profile, loading } = this.props;
     const { user } = this.props.auth;
     const { userPosts, loadingPost } = this.props;
-    console.log(userPosts);
+    console.log(profile.user._id);
+    console.log(user.id);
+    console.log(user.id === profile.user._id)
     if (profile === null || loading || loadingPost) {
       profileContent = <Spinner />;
     } else {
       profileContent = (
         <Fragment>
           <div className='margin'>
-            <div>
+            {user.id === profile.user._id && (<div>
               <Link onClick={(e) => this.changeProfilePicture()}>
                 <img
                   className='profile-photo'
@@ -79,11 +81,11 @@ export class Profile extends Component {
                 change={this.state.change}
                 close={this.changeProfilePicture}
               />
-            </div>
+            </div>)}
             <div className='d-flex flex-column space'>
               <h2 className='HandleName'>
                 {user.name}
-                <span>
+                {user.id === profile.user._id && (<span>
                   <Link
                     to='/edit-profile'
                     type='button'
@@ -103,7 +105,7 @@ export class Profile extends Component {
                     onDelete={this.onDelete}
                     onLogout={this.logoutUserHandle}
                   />
-                </span>
+                </span>)}
               </h2>
               <div className='textsize'>
                 <span>
