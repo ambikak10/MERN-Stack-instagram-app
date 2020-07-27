@@ -66,6 +66,7 @@ class App extends Component {
             <Route exact path='/explore' component={Profiles} />
             <Route exact path='/home' component={Home} />
             <Route exact path='/not-found' component={NotFound} />
+            
 
             <Footer />
           </div>
