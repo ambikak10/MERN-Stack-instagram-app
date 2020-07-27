@@ -114,9 +114,9 @@ export class Profile extends Component {
               <div className='textsize'>
                 <span>
                   {userPosts.length > 0 ? (
-                    <a href='#posts'>
+                    <Link to='#'>
                       <b>{userPosts.length}</b> posts
-                    </a>
+                    </Link>
                   ) : (
                     <Fragment>
                       {" "}
@@ -210,7 +210,7 @@ export class Profile extends Component {
           </div>
           <hr className='horizontalLine' />
           <div className='profileTabs icons'>
-            <Link to=''>
+            <Link to='#'>
               <i className='fa fa-picture-o' aria-hidden='true'>
                 <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
                   POSTS
