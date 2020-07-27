@@ -69,43 +69,53 @@ export class Profile extends Component {
       profileContent = (
         <Fragment>
           <div className='margin'>
-            {user.id === profile.user._id && (<div>
-              <Link onClick={(e) => this.changeProfilePicture()}>
-                <img
-                  className='profile-photo'
-                  alt='profile-photo'
-                  src={user.avatar}
+            {user.id === profile.user._id ? (
+              <div>
+                <Link onClick={(e) => this.changeProfilePicture()}>
+                  <img
+                    className='profile-photo'
+                    alt='profile-photo'
+                    src={user.avatar}
+                  />
+                </Link>
+                <ProfilePicture
+                  change={this.state.change}
+                  close={this.changeProfilePicture}
                 />
-              </Link>
-              <ProfilePicture
-                change={this.state.change}
-                close={this.changeProfilePicture}
+              </div>
+            ) : (
+              <img
+                className='profile-photo'
+                alt='profile-photo'
+                src={user.avatar}
               />
-            </div>)}
+            )}
             <div className='d-flex flex-column space'>
               <h2 className='HandleName'>
                 {user.name}
-                {user.id === profile.user._id && (<span>
-                  <Link
-                    to='/edit-profile'
-                    type='button'
-                    className='btn profileButton'
-                  >
-                    Edit profile
-                  </Link>
-                  <Link onClick={(e) => this.showSettings()}>
-                    <i
-                      style={{ fontSize: "1.5rem", color: "black" }}
-                      className='fas fa-cog'
-                    ></i>
-                  </Link>
-                  <Settings
-                    show={this.state.show}
-                    close={this.showSettings}
-                    onDelete={this.onDelete}
-                    onLogout={this.logoutUserHandle}
-                  />
-                </span>)}
+                {user.id === profile.user._id && (
+                  <span>
+                    <Link
+                      to='/edit-profile'
+                      type='button'
+                      className='btn profileButton'
+                    >
+                      Edit profile
+                    </Link>
+                    <Link onClick={(e) => this.showSettings()}>
+                      <i
+                        style={{ fontSize: "1.5rem", color: "black" }}
+                        className='fas fa-cog'
+                      ></i>
+                    </Link>
+                    <Settings
+                      show={this.state.show}
+                      close={this.showSettings}
+                      onDelete={this.onDelete}
+                      onLogout={this.logoutUserHandle}
+                    />
+                  </span>
+                )}
               </h2>
               <div className='textsize'>
                 <span>
