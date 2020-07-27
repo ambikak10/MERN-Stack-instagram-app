@@ -91,3 +91,23 @@ export const clearCurrentProfile = () => {
     type: CLEAR_CURRENT_PROFILE
   };
 };
+
+//Get suggestion list
+export const getSuggestionList = () => dispatch => {
+  axios
+    .get("/api/profile/suggestions")
+    .then(res => {
+      console.log(res.data);
+      dispatch({
+        type: GET_PROFILES,
+        payload: res.data
+      })
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({
+        type: GET_PROFILES,
+        payload: {}
+      })
+    })
+}
