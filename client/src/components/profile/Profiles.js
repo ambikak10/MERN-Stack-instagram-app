@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
 import ProfileCard from './ProfileCard';
-import{getAllProfiles} from '../../actions/profileActions';
+import { getSuggestionList } from "../../actions/profileActions";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import Spinner from '../common/Spinner';
 class Profiles extends Component {
   componentDidMount() {
-    this.props.getAllProfiles();
+    this.props.getSuggestionList();
   }
   render() {
     let content;
@@ -15,8 +15,14 @@ class Profiles extends Component {
     console.log(this.props.profile.profiles);
     if(profiles === null || loading === true){
     content = <Spinner />;
-    } else {
+    } 
+
+    if(profiles !== null && profiles.length > 0) {
       content = profiles.map(profile => <ProfileCard profile={profile} key={profile._id}/>);
+    } 
+    
+    if (profiles !==null && profiles.length === 0){
+      content = <div style={{textAlign: "center", fontSize: "22px"}}>No suggestions. You already follow all users.</div>
     }
     return (
       <div className='container d-flex flex-wrap' style={{ marginTop: "30px" }}>
@@ -27,11 +33,11 @@ class Profiles extends Component {
 }
 Profiles.propTypes = {
   profile: PropTypes.object.isRequired,
-  getAllProfiles: PropTypes.func.isRequired,
+  getSuggestionList: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 export default connect(mapStateToProps, {
-  getAllProfiles,
+  getSuggestionList,
 })(Profiles);
