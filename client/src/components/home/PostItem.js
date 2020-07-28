@@ -9,6 +9,7 @@ import Comments from "../displayPost/Comments";
 import AddComment from "../displayPost/AddComment";
 import Moment from "react-moment"; 
 import { addLike } from "../../actions/postActions";
+import { savePost } from "../../actions/postActions";
 import PropTypes from 'prop-types';
 
 class PostItem extends Component {
@@ -27,6 +28,10 @@ class PostItem extends Component {
        onLikeClick(id) {
           this.props.addLike(id);
          }
+       onSaveClick(id) {
+            this.props.savePost(id);
+          }
+
          render() {
            const {post,postId,auth, profile} = this.props;      
            
@@ -59,10 +64,8 @@ class PostItem extends Component {
                      />
                      <div classname='card-body'>
                        <section id='icons'>
-                         <button
-                           onClick={this.onLikeClick.bind(this, post._id)}
-                           type="button"
-                           className="btn-btn primary"
+                         <Link
+                           onClick={this.onLikeClick.bind(this, post._id)}                          
                          >
                            <i
                              className='fa fa-heart-o fa-2x'
@@ -72,9 +75,8 @@ class PostItem extends Component {
                                fontSize: "1.4em",
                                
                              }}
-                           ></i>
-                           
-                         </button>
+                           /></Link>      
+                         
                          
                          <Link to=''>
                            <i
@@ -91,16 +93,18 @@ class PostItem extends Component {
                              className='fa fa-paper-plane-o'
                              style={{
                                color: "black",
-                               marginRight: "400px",
+                               marginRight:"20px",
                                fontSize: "1.4em",
                              }}
                            ></i>
                          </Link>
-                         <Link to=''>
+                         <Link
+                           onClick={this.onSaveClick.bind(this, post._id)}
+                         >
                            <i
                              className='fa fa-bookmark-o'
                              style={{ color: "black", fontSize: "1.4em" }}
-                           ></i>
+                           />
                          </Link>
                          <div className='textStyle-date'>
                            <div
@@ -211,7 +215,8 @@ class PostItem extends Component {
        }
 PostItem.propTypes = {
   
-  addLike: PropTypes.func.isRequired,  
+  addLike: PropTypes.func.isRequired, 
+  savePost: PropTypes.func.isRequired, 
   post: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -221,4 +226,4 @@ const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { getSuggestionList,addLike,})(PostItem);
+export default connect(mapStateToProps, { getSuggestionList,addLike,savePost})(PostItem);

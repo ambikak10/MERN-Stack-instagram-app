@@ -1,6 +1,7 @@
 import axios from "axios";
 import { GET_ERRORS, GET_POSTS, GET_POST, POST_LOADING, CLEAR_ERRORS, GET_USER_POSTS, CLEAR_POST } from "./types";
 
+
 //Add post
 export const addPost = (postData, history) => dispatch => {
   axios
@@ -164,6 +165,18 @@ export const clearErrors = () => {
 export const addLike = id => dispatch => {
   axios
     .post(`/api/posts/like/${id}`)
+    .then(res => dispatch(getPosts()))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+//save Post
+export const savePost = id => dispatch => {
+  axios
+    .post(`/api/posts/save/${id}`)     
     .then(res => dispatch(getPosts()))
     .catch(err =>
       dispatch({
