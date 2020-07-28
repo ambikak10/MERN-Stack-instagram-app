@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
@@ -14,7 +14,7 @@ import Profiles from "./components/profile/Profiles";
 import Posts from "./components/home/Posts";
 import CurrentProfile from "./components/profile/CurrentProfile";
 import HandleProfile from "./components/profile/HandleProfile";
-
+import PrivateRoute from "./components/common/PrivateRoute";
 //redux
 import { Provider } from "react-redux";
 import store from "./store";
@@ -55,17 +55,19 @@ class App extends Component {
             <Navbar />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/' component={Login} />
-            <Route exact path='/current-profile' component={CurrentProfile} />
-            <Route exact path='/profile' component={CurrentProfile} />
-            <Route exact path='/edit-profile' component={EditProfile} />
-            <Route exact path='/post/:id' component={Post} />
-            <Route exact path='/profile/:handle/:user_id' component={HandleProfile} />
-            <Route exact path='/create-profile' component={CreateProfile} />
-            <Route exact path='/create-post' component={CreatePost} />
-            <Route exact path='/explore' component={Profiles} />
-            <Route exact path='/home' component={Posts} />
-            <Route exact path='/not-found' component={NotFound}/>
-
+            <Switch>
+              
+            <PrivateRoute exact path='/current-profile' component={CurrentProfile} />
+            <PrivateRoute exact path='/profile' component={CurrentProfile} />
+            <PrivateRoute exact path='/edit-profile' component={EditProfile} />
+            <PrivateRoute exact path='/post/:id' component={Post} />
+            <PrivateRoute exact path='/profile/:handle/:user_id' component={HandleProfile} />
+            <PrivateRoute exact path='/create-profile' component={CreateProfile} />
+            <PrivateRoute exact path='/create-post' component={CreatePost} />
+            <PrivateRoute exact path='/explore' component={Profiles} />
+            <PrivateRoute exact path='/home' component={Posts} />
+            <PrivateRoute exact path='/not-found' component={NotFound}/>
+            </Switch>
             <Footer />
           </div>
         </Router>
