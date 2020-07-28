@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import "./profile.css";
 
 class ProfilePostItem extends Component {
+
   render() {
-    
+      // const { post, id, image } = this.props;
+
     return this.props.posts.map((post) => {
       let id = this.props.saved === false ? post._id : post.postId;
      

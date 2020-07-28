@@ -10,6 +10,17 @@ class CommentItem extends Component {
   render() {
     const {comment, auth, postId} = this.props;
     let deleteIcon;
+    let avatar;
+    if (this.props.showAvatar === true) {
+      avatar = (
+        <div className='col-lg-2'>
+          <Link to='#'>
+            <img className='avatar-icon' src={comment.avatar} alt='Avatar'
+           />
+          </Link>
+        </div>
+      );
+    }
     if (comment.user === auth.user.id) {
       deleteIcon = (
         <div type="button" className='col-lg-2' onClick={this.onDeleteComment.bind(this, postId, comment._id)}>
@@ -33,11 +44,13 @@ class CommentItem extends Component {
     return (
       <div className="container">
         <section className='row'>
-        <div className='col-lg-2'>
+ 
+         {/* <div className='col-lg-2'>
           <Link to='#'>
             <img className='avatar-icon' src={comment.avatar} alt='Avatar' />
           </Link>
-        </div>
+        </div>  */}
+        {avatar}
         <div className='col-lg-8'>
           <div id='col-space'>
             <Link to='' className='handlename-post'>

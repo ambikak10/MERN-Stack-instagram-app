@@ -85,9 +85,6 @@ export class Profile extends Component {
     const { profile, loading } = this.props;
     const { user } = this.props.auth;
     const { userPosts, loadingPost } = this.props;
-    // console.log(profile.user._id);
-    // console.log(this.props.userPosts);
-    // console.log(user.id === profile.user._id)
     if (profile === null || loading || loadingPost || !userPosts) {
       profileContent = <Spinner />;
     } else {
@@ -127,7 +124,7 @@ export class Profile extends Component {
                   <img
                     className='profile-photo'
                     alt='profile-photo'
-                    src={user.avatar}
+                    src={profile.user.avatar}
                   />
                 </Link>
                 <ProfilePicture
@@ -139,12 +136,12 @@ export class Profile extends Component {
               <img
                 className='profile-photo'
                 alt='profile-photo'
-                src={user.avatar}
+                src={profile.user.avatar}
               />
             )}
             <div className='d-flex flex-column space'>
               <h2 className='HandleName'>
-                {user.name}
+                {profile.user.name}
                 {user.id === profile.user._id && (
                   <span>
                     <Link
@@ -289,8 +286,8 @@ export class Profile extends Component {
           {this.state.posts ? (
             //  <Fragment>
             //    {userPosts.map(post => (
-            //      <ProfilePostItem key={post._id} postItem={post} />
-            //    ))} kkooo
+            //      <ProfilePostItem key={post._id} postItem={post} id={post._id} image={post.image}/>
+            //    ))} 
             //  </Fragment>
             <Fragment>
               <section className='row responsiveness hover-effect'>
