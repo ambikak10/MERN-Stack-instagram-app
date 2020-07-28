@@ -2,22 +2,27 @@ import React, { Component } from "react";
 import "./follow.css";
 
 import { Link } from "react-router-dom";
-import avatar from "../../img/avatar.png";
 import FollowItem from "./FollowItem";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-class following extends Component {
+class Following extends Component {
  
   render() {
     if (!this.props.showFollowing && !this.seen) {
       return null;
     }
-    const {following} = this.props;
+    const {following, auth} = this.props;
     const followingList= following.map(profile => profile.user);
      let content;
      if (following.length > 0) {
-       content = following.map(following => (
-          <FollowItem key={following.id} follow={following} followingList={followingList}/>
-       ))
+       content = following.map(following => {
+        if (auth.user.id === following.user) {
+          return (<FollowItem key={following.id} follow={following} followingList={followingList} isCurrent={true}/>)
+        } else {
+          return (<FollowItem key={following.id} follow={following} followingList={followingList} isCurrent={false}/>)
+        }
+       })
      }
     return (
       <div className='first'>
@@ -49,5 +54,8 @@ class following extends Component {
   }
 }
 
-export default following;
+const mapStateToProps = (state) => ({ 
+  auth: state.auth
+});
+export default connect(mapStateToProps)(Following);
 

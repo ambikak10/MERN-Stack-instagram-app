@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import "./follow.css";
 import { Link } from "react-router-dom";
-import avatar from "../../img/avatar.png";
 import FollowItem from './FollowItem';
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-class followers extends Component {
+class Followers extends Component {
   // constructor(props) {
   //   super(props);
   //   this.state = { isToggleOn: true };
@@ -19,6 +20,8 @@ class followers extends Component {
   // }
 
   render() {
+     const {auth} = this.props;
+
      if (!this.props.showFollowers) {
        return null;
      }
@@ -26,9 +29,14 @@ class followers extends Component {
      const followingList= following.map(profile => profile.user);
      let content;
      if (followers.length > 0) {
-       content = followers.map(follower => (
-          <FollowItem key={follower.id} follow={follower} followingList={followingList}/>
-       ))
+       content = followers.map(follower => {
+        if (auth.user.id === follower.user) {
+          return (<FollowItem key={follower.id} follow={follower} followingList={followingList} isCurrent={true}/>)
+        } else {
+          return (<FollowItem key={follower.id} follow={follower} followingList={followingList} isCurrent={false}/>)
+        }
+       }
+      )
      }
     return (
       <div className='first'>
@@ -61,4 +69,7 @@ class followers extends Component {
   }
 }
 
-export default followers;
+const mapStateToProps = (state) => ({ 
+  auth: state.auth
+});
+export default connect(mapStateToProps)(Followers);

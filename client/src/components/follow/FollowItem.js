@@ -30,16 +30,8 @@ class FollowItem extends Component {
     this.props.unfollowUser(profileId);
   }
   render() {
-    const {follow, followingList} = this.props;
-    // let followButton;
-    // let followButtonStyle;
-    // if (followingList.indexOf(follow.user) === -1) {
-    //   followButtonStyle = this.state.followStyle;
-    //   followButton = this.state.followButton;
-    // } else {
-    //   followButtonStyle = this.state.followingStyle;
-    //   followButton = this.state.followingButton;
-    // }
+    const {follow, isCurrent} = this.props;
+    
     return (
       <div className="container" style={{marginBottom: "10px"}}>
         <div className="row">
@@ -87,8 +79,9 @@ class FollowItem extends Component {
                 color: "white"
               }}
               onClick={this.handleFollow.bind(this, follow.profile)}
+              disabled={isCurrent}
             >
-             Follow 
+             {isCurrent ? "You" : "Follow"} 
             </button>
           )}
           {this.state.isFollow && (
@@ -103,8 +96,9 @@ class FollowItem extends Component {
                 color: "black"
               }}
               onClick={this.handleUnFollow.bind(this, follow.profile)}
+              disabled={isCurrent}
             >
-             Following 
+             {isCurrent ? "You" : "Following"} 
             </button>
           )}
         </div>
