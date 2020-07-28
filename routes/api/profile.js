@@ -255,13 +255,7 @@ router.post(
           }
          
      
-          const newFollower = {
-            user: req.user.id,
-            name: req.user.name,
-            avatar: req.user.avatar
-          };
-          profile.followers.unshift(newFollower);
-          profile.save();
+         
           // .then((profile) => res.json(profile)); sending res.json more than once resulted in error 'http headers are already written to the client browser' in terminal, hence removed and added at the end.
   
      
@@ -272,9 +266,20 @@ router.post(
                 const newFollow = {
                   user: profile.user,
                   name: otherUser.name,
-                  avatar: otherUser.avatar
+                  avatar: otherUser.avatar,
+                  handle: profile.handle
                 };
                 myProfile.following.unshift(newFollow); //add user id, name and avatar of the person you are following to your following list.
+                
+                const newFollower = {
+                  user: req.user.id,
+                  name: req.user.name,
+                  avatar: req.user.avatar,
+                  handle: myProfile.handle
+                };
+                profile.followers.unshift(newFollower);
+                profile.save();
+
                 myProfile
                   .save()
                   .then((myProfile) =>
