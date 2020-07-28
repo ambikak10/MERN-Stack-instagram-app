@@ -192,10 +192,12 @@ export class Profile extends Component {
                   )}
                   <Followers
                     showFollowers={this.state.showFollowers}
+                    followers={profile.followers}
+                    following={profile.following}
                     close={this.showFollowersList}
                   />
                   &nbsp; &nbsp; &nbsp;
-                  {profile.followers.length > 0 ? (
+                  {profile.following.length > 0 ? (
                     <Link onClick={(e) => this.showFollowingList()}>
                       <b>{profile.following.length}</b> following
                     </Link>
@@ -207,6 +209,7 @@ export class Profile extends Component {
                   )}
                   <Following
                     showFollowing={this.state.showFollowing}
+                    following={profile.following}
                     close={this.showFollowingList}
                   />
                 </span>

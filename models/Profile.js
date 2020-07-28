@@ -33,7 +33,10 @@ const ProfileSchema = new Schema({
       },
       avatar: {
         type: String,
-      }
+      },
+      handle: {
+        type: String
+      },
     }
   ],
   followers: [
@@ -47,6 +50,9 @@ const ProfileSchema = new Schema({
       },
       avatar: {
         type: String,
+      },
+      handle: {
+        type: String
       }
     }
   ],
