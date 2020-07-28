@@ -41,6 +41,7 @@ export const deleteAccount = (history) => (dispatch) => {
 };
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
+  dispatch(clearCurrentProfile());
   dispatch(setProfileLoading());
   axios
     .get('/api/profile')
@@ -59,6 +60,7 @@ export const getCurrentProfile = () => dispatch => {
 };
 // Get profile by handle
 export const getProfileByHandle = handle => dispatch => {
+  dispatch(clearCurrentProfile());
   dispatch(setProfileLoading());
   console.log('action getProfileby handle')
   axios
