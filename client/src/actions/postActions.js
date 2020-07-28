@@ -152,6 +152,43 @@ export const setPostLoading = () => {
     type: POST_LOADING
   };
 };
+// Like a post 
+export const addLike = (postId) => (dispatch) => {
+  axios
+    .post(`/api/posts/like/${postId}`)
+    .then((res) => {
+     dispatch({
+       type: GET_POST,
+       payload: res.data,
+     });
+    })
+    .catch((err) => {
+      // console.log(err);
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
+
+// Like a post 
+export const removeLike = (postId) => (dispatch) => {
+  axios
+    .post(`/api/posts/unlike/${postId}`)
+    .then((res) => {
+      dispatch({
+        type: GET_POST,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      // console.log(err);
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
 
 // Clear errors
 export const clearErrors = () => {

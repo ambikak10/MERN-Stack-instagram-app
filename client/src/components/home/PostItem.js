@@ -37,7 +37,7 @@ class PostItem extends Component {
                  <div className='col-sm-6'>
                    <div className='card-home'>
                      <div className='card-header'>
-                       <Link to='#'>
+                       <Link to='/current-profile'>
                          <img
                            className='avatar-icon'
                            src={post.avatar}
@@ -45,7 +45,7 @@ class PostItem extends Component {
                            style={{ marginLeft: ".5px" }}
                          />
                        </Link>
-                       <Link to='' className='name-of-account'>
+                       <Link to='/current-profile' className='name-of-account'>
                          {post.name}
                        </Link>
                      </div>
@@ -159,7 +159,7 @@ class PostItem extends Component {
                          border: "none",
                        }}
                      >
-                       <Link to='#'>
+                       <Link to='/current-profile'>
                          <img
                            className='avatar-icon'
                            src={auth.user.avatar}
@@ -170,7 +170,7 @@ class PostItem extends Component {
                            }}
                          />
                        </Link>
-                       <Link to='' className='name-of-account'>
+                       <Link to='/current-profile' className='name-of-account'>
                           {auth.user.name}
                        </Link>
                      </div>
