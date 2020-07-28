@@ -8,23 +8,27 @@ import { getSuggestionList } from "../../actions/profileActions";
 import Comments from "../displayPost/Comments";
 import AddComment from "../displayPost/AddComment";
 import Moment from "react-moment"; 
-import { now } from "moment";
+import { addLike } from "../../actions/postActions";
+import PropTypes from 'prop-types';
 
 class PostItem extends Component {
+  
          constructor() {
            super();
            this.state = {
              follow: false,
+             isClicked: false,
            };
+          
          }
          componentDidMount() {
            this.props.getSuggestionList();
          }
-         
+       onLikeClick(id) {
+          this.props.addLike(id);
+         }
          render() {
-           const {post,postId,auth, profile} = this.props;
-           
-          
+           const {post,postId,auth, profile} = this.props;      
            
            let suggestionList;
            if (profile.profiles && profile.profiles.length > 0) {
@@ -55,16 +59,23 @@ class PostItem extends Component {
                      />
                      <div classname='card-body'>
                        <section id='icons'>
-                         <Link to=''>
+                         <button
+                           onClick={this.onLikeClick.bind(this, post._id)}
+                           type="button"
+                           className="btn-btn primary"
+                         >
                            <i
                              className='fa fa-heart-o fa-2x'
                              style={{
                                color: "black",
                                marginRight: "20px",
                                fontSize: "1.4em",
+                               
                              }}
                            ></i>
-                         </Link>
+                           
+                         </button>
+                         
                          <Link to=''>
                            <i
                              className='fa fa-comment-o '
@@ -198,10 +209,16 @@ class PostItem extends Component {
            );
          }
        }
+PostItem.propTypes = {
+  
+  addLike: PropTypes.func.isRequired,  
+  post: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
+};
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile
 });
 
-export default connect(mapStateToProps, {getSuggestionList})(PostItem);
+export default connect(mapStateToProps, { getSuggestionList,addLike,})(PostItem);
