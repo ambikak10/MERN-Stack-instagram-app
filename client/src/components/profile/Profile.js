@@ -21,7 +21,9 @@ export class Profile extends Component {
       show: false,
       showFollowers: false,
       showFollowing: false,
-      change: false
+      change: false,
+      posts: [],
+      saved: false
     };
   }
   showFollowersList = (e) => {
@@ -55,14 +57,64 @@ export class Profile extends Component {
     this.props.logoutUser();
   };
 
+  componentDidMount() {
+    if (this.props.profile !== null && !this.props.loading && !this.props.loadingPost && this.props.userPosts) {
+      this.setState({
+        posts: this.props.userPosts,
+        saved: false
+      });
+    }
+  }
+
+  getPosts() {
+    this.setState({
+      posts: this.props.userPosts,
+      saved: false
+    });
+  }
+
+  getSavedPosts() {
+    this.setState({
+      posts: this.props.profile.saved,
+      saved: true
+    });
+  }
+
   render() {
     let profileContent;
     const { profile, loading } = this.props;
     const { user } = this.props.auth;
     const { userPosts, loadingPost } = this.props;
-    if (profile === null || loading || loadingPost) {
+    if (profile === null || loading || loadingPost || !userPosts) {
       profileContent = <Spinner />;
     } else {
+      let savedTab;
+      let addPostTab;
+      if (user.id === profile.user._id) {
+        addPostTab = (
+          <Link to='/create-post'>
+            <i className='far fa-plus-square'>
+              <span
+                style={{
+                  marginLeft: "5px",
+                  fontFamily: "sans-serif",
+                }}
+              >
+                ADD POST
+              </span>
+            </i>
+          </Link>
+        );
+        savedTab = (
+          <div type="button" onClick={this.getSavedPosts.bind(this)} >
+            <i className='fa fa-bookmark-o' aria-hidden='true'>
+              <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
+                SAVED
+              </span>
+            </i>
+          </div>
+        )
+      }
       profileContent = (
         <Fragment>
           <div className='margin'>
@@ -213,32 +265,15 @@ export class Profile extends Component {
           </div>
           <hr className='horizontalLine' />
           <div className='profileTabs icons'>
-            <Link to='#'>
+            <div type="button" onClick={this.getPosts.bind(this)}>
               <i className='fa fa-picture-o' aria-hidden='true'>
                 <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
                   POSTS
                 </span>
               </i>
-            </Link>
-            <Link to='/create-post'>
-              <i className='far fa-plus-square'>
-                <span
-                  style={{
-                    marginLeft: "5px",
-                    fontFamily: "sans-serif",
-                  }}
-                >
-                  ADD POST
-                </span>
-              </i>
-            </Link>
-            <Link to=''>
-              <i className='fa fa-bookmark-o' aria-hidden='true'>
-                <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
-                  SAVED
-                </span>
-              </i>
-            </Link>
+            </div>
+            {addPostTab}
+            {savedTab}
             <Link to=''>
               <i className='far fa-user-circle' aria-hidden='true'>
                 <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
@@ -248,7 +283,7 @@ export class Profile extends Component {
             </Link>
           </div>
 
-          {userPosts.length > 0 ? (
+          {this.state.posts ? (
             //  <Fragment>
             //    {userPosts.map(post => (
             //      <ProfilePostItem key={post._id} postItem={post} id={post._id} image={post.image}/>
@@ -256,7 +291,8 @@ export class Profile extends Component {
             //  </Fragment>
             <Fragment>
               <section className='row responsiveness hover-effect'>
-                <ProfilePostItem posts={userPosts} />
+                {/* <ProfilePostItem posts={userPosts} /> */}
+                <ProfilePostItem posts={this.state.posts} saved={this.state.saved}/>
               </section>
             </Fragment>
           ) : (
@@ -293,8 +329,7 @@ Profile.propTypes = {
   logoutUser: PropTypes.func.isRequired,
 };
  const mapStateToProps = (state) => ({ 
-   auth: state.auth,
- 
+   auth: state.auth
  });
 export default connect(mapStateToProps, {
   deleteAccount,

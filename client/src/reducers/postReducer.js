@@ -3,7 +3,7 @@ import { GET_POST, GET_POSTS, POST_LOADING, GET_USER_POSTS } from "../actions/ty
 const initialState = {
   posts: [],
   post: {},
-  userPosts: [],
+  userPosts: null,
   loadingPost: false
 };
 

@@ -10,7 +10,6 @@ import Navbar from './components/navbar/Navbar';
 import Post from "./components/displayPost/Post";
 import CreateProfile from "./components/profile/CreateProfile";
 import CreatePost from "./components/displayPost/CreatePost";
-import Following from "./components/follow/Following";
 import Profiles from "./components/profile/Profiles";
 import Posts from "./components/home/Posts";
 import CurrentProfile from "./components/profile/CurrentProfile";
