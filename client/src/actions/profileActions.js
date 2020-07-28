@@ -118,17 +118,18 @@ export const clearCurrentProfile = () => {
 
 //Get suggestion list
 export const getSuggestionList = () => dispatch => {
+   dispatch(setProfileLoading());
   axios
     .get("/api/profile/suggestions")
     .then(res => {
-      // console.log(res.data);
+      console.log(res.data);
       dispatch({
         type: GET_PROFILES,
         payload: res.data
       })
     })
     .catch(err => {
-      // console.log(err);
+      console.log(err);
       dispatch({
         type: GET_PROFILES,
         payload: {}

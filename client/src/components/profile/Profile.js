@@ -195,7 +195,7 @@ export class Profile extends Component {
                     close={this.showFollowersList}
                   />
                   &nbsp; &nbsp; &nbsp;
-                  {profile.followers.length > 0 ? (
+                  {profile.following.length > 0 ? (
                     <Link onClick={(e) => this.showFollowingList()}>
                       <b>{profile.following.length}</b> following
                     </Link>
@@ -283,7 +283,7 @@ export class Profile extends Component {
             </Link>
           </div>
 
-          {this.state.posts ? (
+          {this.state.posts.length > 0 ? (
             //  <Fragment>
             //    {userPosts.map(post => (
             //      <ProfilePostItem key={post._id} postItem={post} id={post._id} image={post.image}/>
