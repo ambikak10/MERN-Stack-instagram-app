@@ -6,6 +6,7 @@ import Comments from "./Comments";
 import { connect } from "react-redux";
 import { getPost, deletePost } from "../../actions/postActions";
 import Moment from "react-moment"; 
+import Spinner from "../common/Spinner";
 
 class Post extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class Post extends Component {
   }
 
   render() {
-    const {post} = this.props.post;
+    const {post, loadingPost} = this.props.post;
     const postId = this.props.match.params.id;
     let deleteIcon;
     if (post.user === this.props.auth.user.id) {
@@ -81,8 +82,12 @@ class Post extends Component {
         {deleteIcon}
       </div>
     );
-    return (
-      <div className='parent'>
+
+    let content;
+    if (loadingPost) {
+      content = <Spinner />
+    } else {
+      content = (
         <div className='child'>
           <span className='close'>
             <button onClick={this.goBack}>
@@ -95,7 +100,6 @@ class Post extends Component {
               className='size-of-image'
               src={post.image}
             />
-
             <div className='style d-none d-xl-block d-md-none d-lg-none d-sm-none '>
               <Link to='#'>
                 <img className='avatar-icon' src={post.avatar} alt='Avatar' />
@@ -128,7 +132,7 @@ class Post extends Component {
                   {/* <!-- post description end--> */}
 
                   {/* comments on post */}
-                  <Comments comments={post.comments} postId={postId}/>
+                  <Comments comments={post.comments} postId={postId} showAvatar={true}/>
                 </section>
               </div>
 
@@ -174,6 +178,12 @@ class Post extends Component {
             </section>
           </div>
         </div>
+      );
+    }
+
+    return (
+      <div className='parent'>
+        {content}
       </div>
     );
   }
