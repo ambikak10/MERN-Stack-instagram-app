@@ -2,14 +2,28 @@ import React, { Component } from "react";
 import "./follow.css";
 
 import { Link } from "react-router-dom";
-import avatar from "../../img/avatar.png";
+import FollowItem from "./FollowItem";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-class following extends Component {
+class Following extends Component {
  
   render() {
     if (!this.props.showFollowing && !this.seen) {
       return null;
     }
+    const {following, auth} = this.props;
+    const followingList= following.map(profile => profile.user);
+     let content;
+     if (following.length > 0) {
+       content = following.map(following => {
+        if (auth.user.id === following.user) {
+          return (<FollowItem key={following.id} follow={following} followingList={followingList} isCurrent={true}/>)
+        } else {
+          return (<FollowItem key={following.id} follow={following} followingList={followingList} isCurrent={false}/>)
+        }
+       })
+     }
     return (
       <div className='first'>
         <div className='second'>
@@ -17,7 +31,7 @@ class following extends Component {
             <div className='followers-container'>
               <h5>Following </h5>
               <span>
-                <Link onClick={this.props.close} className='X'>
+                <Link onClick={() => window.location.reload(true)} className='X'>
                   X
                 </Link>
               </span>
@@ -28,298 +42,7 @@ class following extends Component {
                   className='row'
                   // style={{position: "relative"}}
                 >
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <Link to='#'>
-                      <img
-                        className='followers-avatar-icon'
-                        src={avatar}
-                        alt='Avatar'
-                      />
-                    </Link>
-                  </div>
-                  <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
-                    <Link
-                      to='#'
-                      className='fontStyleSizeColor'
-                      style={{ marginLeft: "-50px", fontSize: "16px" }}
-                    >
-                      HandleName
-                    </Link>
-                    <div
-                      style={{
-                        marginTop: "-4px",
-                        marginLeft: "-50px",
-                        color: "#606060",
-                      }}
-                    >
-                      Name
-                    </div>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <button
-                      className='btn'
-                      style={{
-                        backgroundColor: "transparent",
-                        border: "1px solid rgb(218, 215, 215)",
-                        lineHeight: "2.2px",
-                        float: "right",
-                        height: "30px",
-                      }}
-                    >
-                      Following
-                    </button>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <Link to='#'>
-                      <img
-                        className='followers-avatar-icon'
-                        src={avatar}
-                        alt='Avatar'
-                      />
-                    </Link>
-                  </div>
-                  <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
-                    <Link
-                      to='#'
-                      className='fontStyleSizeColor'
-                      style={{ marginLeft: "-50px" }}
-                    >
-                      HandleName
-                    </Link>
-                    <div style={{ marginTop: "-4px", marginLeft: "-50px" }}>
-                      Name
-                    </div>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <button
-                      className='btn'
-                      style={{
-                        backgroundColor: "transparent",
-                        border: "1px solid rgb(218, 215, 215)",
-                        lineHeight: "2.2px",
-                        float: "right",
-                        height: "30px",
-                      }}
-                    >
-                      Following
-                    </button>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <Link to='#'>
-                      <img
-                        className='followers-avatar-icon'
-                        src={avatar}
-                        alt='Avatar'
-                      />
-                    </Link>
-                  </div>
-                  <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
-                    <Link
-                      to='#'
-                      className='fontStyleSizeColor'
-                      style={{ marginLeft: "-50px" }}
-                    >
-                      HandleName
-                    </Link>
-                    <div style={{ marginTop: "-4px", marginLeft: "-50px" }}>
-                      Name
-                    </div>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <button
-                      className='btn'
-                      style={{
-                        backgroundColor: "transparent",
-                        border: "1px solid rgb(218, 215, 215)",
-                        lineHeight: "2.2px",
-                        float: "right",
-                        height: "30px",
-                      }}
-                    >
-                      Following
-                    </button>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <Link to='#'>
-                      <img
-                        className='followers-avatar-icon'
-                        src={avatar}
-                        alt='Avatar'
-                      />
-                    </Link>
-                  </div>
-                  <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
-                    <Link
-                      to='#'
-                      className='fontStyleSizeColor'
-                      style={{ marginLeft: "-50px" }}
-                    >
-                      HandleName
-                    </Link>
-                    <div style={{ marginTop: "-4px", marginLeft: "-50px" }}>
-                      Name
-                    </div>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <button
-                      className='btn'
-                      style={{
-                        backgroundColor: "transparent",
-                        border: "1px solid rgb(218, 215, 215)",
-                        lineHeight: "2.2px",
-                        float: "right",
-                        height: "30px",
-                      }}
-                    >
-                      Following
-                    </button>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <Link to='#'>
-                      <img
-                        className='followers-avatar-icon'
-                        src={avatar}
-                        alt='Avatar'
-                      />
-                    </Link>
-                  </div>
-                  <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
-                    <Link
-                      to='#'
-                      className='fontStyleSizeColor'
-                      style={{ marginLeft: "-50px" }}
-                    >
-                      HandleName
-                    </Link>
-                    <div style={{ marginTop: "-4px", marginLeft: "-50px" }}>
-                      Name
-                    </div>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <button
-                      className='btn'
-                      style={{
-                        backgroundColor: "transparent",
-                        border: "1px solid rgb(218, 215, 215)",
-                        lineHeight: "2.2px",
-                        float: "right",
-                        height: "30px",
-                      }}
-                    >
-                      Following
-                    </button>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <Link to='#'>
-                      <img
-                        className='followers-avatar-icon'
-                        src={avatar}
-                        alt='Avatar'
-                      />
-                    </Link>
-                  </div>
-                  <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
-                    <Link
-                      to='#'
-                      className='fontStyleSizeColor'
-                      style={{ marginLeft: "-50px", fontSize: "16px" }}
-                    >
-                      HandleName
-                    </Link>
-                    <div
-                      style={{
-                        marginTop: "-4px",
-                        marginLeft: "-50px",
-                        color: "#606060",
-                      }}
-                    >
-                      Name
-                    </div>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <button
-                      className='btn'
-                      style={{
-                        backgroundColor: "transparent",
-                        border: "1px solid rgb(218, 215, 215)",
-                        lineHeight: "2.2px",
-                        float: "right",
-                        height: "30px",
-                      }}
-                    >
-                      Following
-                    </button>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <Link to='#'>
-                      <img
-                        className='followers-avatar-icon'
-                        src={avatar}
-                        alt='Avatar'
-                      />
-                    </Link>
-                  </div>
-                  <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
-                    <Link
-                      to='#'
-                      className='fontStyleSizeColor'
-                      style={{ marginLeft: "-50px" }}
-                    >
-                      HandleName
-                    </Link>
-                    <div style={{ marginTop: "-4px", marginLeft: "-50px" }}>
-                      Name
-                    </div>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <button
-                      className='btn'
-                      style={{
-                        backgroundColor: "transparent",
-                        border: "1px solid rgb(218, 215, 215)",
-                        lineHeight: "2.2px",
-                        float: "right",
-                        height: "30px",
-                      }}
-                    >
-                      Following
-                    </button>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <Link to='#'>
-                      <img
-                        className='followers-avatar-icon'
-                        src={avatar}
-                        alt='Avatar'
-                      />
-                    </Link>
-                  </div>
-                  <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
-                    <Link
-                      to='#'
-                      className='fontStyleSizeColor'
-                      style={{ marginLeft: "-50px" }}
-                    >
-                      HandleName
-                    </Link>
-                    <div style={{ marginTop: "-4px", marginLeft: "-50px" }}>
-                      Name
-                    </div>
-                  </div>
-                  <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-                    <button
-                      className='btn'
-                      style={{
-                        backgroundColor: "transparent",
-                        border: "1px solid rgb(218, 215, 215)",
-                        lineHeight: "2.2px",
-                        float: "right",
-                        height: "30px",
-                      }}
-                    >
-                      Following
-                    </button>
-                  </div>
+                  {content}
                 </div>
               </div>
               {/* followers-container ends */}
@@ -331,5 +54,8 @@ class following extends Component {
   }
 }
 
-export default following;
+const mapStateToProps = (state) => ({ 
+  auth: state.auth
+});
+export default connect(mapStateToProps)(Following);
 

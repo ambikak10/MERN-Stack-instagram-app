@@ -192,6 +192,8 @@ export class Profile extends Component {
                   )}
                   <Followers
                     showFollowers={this.state.showFollowers}
+                    followers={profile.followers}
+                    following={profile.following}
                     close={this.showFollowersList}
                   />
                   &nbsp; &nbsp; &nbsp;
@@ -207,6 +209,7 @@ export class Profile extends Component {
                   )}
                   <Following
                     showFollowing={this.state.showFollowing}
+                    following={profile.following}
                     close={this.showFollowingList}
                   />
                 </span>
