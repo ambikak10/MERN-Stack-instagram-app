@@ -32,25 +32,11 @@ class Post extends Component {
     const postId = this.props.match.params.id;
     let deleteIcon;
     let alreadyLiked = false;
-    let likesUserIds;
-
-    // console.log(this.props.post.post.likes);
-    // console.log(post.likes.length);
     if(post.likes !== undefined) {
-      // console.log(post.likes)
-      console.log(this.props.auth.user.id);
-      console.log(post.likes);
-
     if(post.likes.filter(like => like.user === this.props.auth.user.id).length > 0)
     {
       alreadyLiked = true;
-      // console.log("hi")
     }
-    // console.log(likesUserIds);
-    // if(likesUserIds.indexOf(this.props.auth.user.id )) {
-    //   liked = true;
-    // }
-    console.log(alreadyLiked);
    }
 
      if (post.user === this.props.auth.user.id) {

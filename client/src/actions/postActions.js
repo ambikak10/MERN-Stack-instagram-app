@@ -157,7 +157,10 @@ export const addLike = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/like/${postId}`)
     .then((res) => {
-      console.log(res);
+     dispatch({
+       type: GET_POST,
+       payload: res.data,
+     });
     })
     .catch((err) => {
       // console.log(err);
@@ -173,7 +176,10 @@ export const removeLike = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/unlike/${postId}`)
     .then((res) => {
-      console.log(res);
+      dispatch({
+        type: GET_POST,
+        payload: res.data,
+      });
     })
     .catch((err) => {
       // console.log(err);
