@@ -283,21 +283,6 @@ export class Profile extends Component {
             </Link>
           </div>
 
-<<<<<<< HEAD
-          {userPosts.length > 0 ? (
-             <Fragment>
-             <section className='row responsiveness hover-effect'>
-               {userPosts.map(post => (
-                 <ProfilePostItem key={post._id} postItem={post} id={post._id} image={post.image}/>
-               ))} 
-            </section>
-             </Fragment>
-            // <Fragment>
-            //   <section className='row responsiveness hover-effect'>
-            //     <ProfilePostItem posts={userPosts} />
-            //   </section>
-            // </Fragment>
-=======
           {this.state.posts ? (
             //  <Fragment>
             //    {userPosts.map(post => (
@@ -310,7 +295,6 @@ export class Profile extends Component {
                 <ProfilePostItem posts={this.state.posts} saved={this.state.saved}/>
               </section>
             </Fragment>
->>>>>>> 5c5cfeac4e699724636cb817ac4476840c921b53
           ) : (
             <div
               className='HandleName'
