@@ -12,7 +12,7 @@ import CreateProfile from "./components/profile/CreateProfile";
 import CreatePost from "./components/displayPost/CreatePost";
 import Following from "./components/follow/Following";
 import Profiles from "./components/profile/Profiles";
-import Home from "./components/home/Home";
+import Posts from "./components/home/Posts";
 import CurrentProfile from "./components/profile/CurrentProfile";
 import HandleProfile from "./components/profile/HandleProfile";
 
@@ -64,9 +64,8 @@ class App extends Component {
             <Route exact path='/create-profile' component={CreateProfile} />
             <Route exact path='/create-post' component={CreatePost} />
             <Route exact path='/explore' component={Profiles} />
-            <Route exact path='/home' component={Home} />
-            <Route exact path='/not-found' component={NotFound} />
-
+            <Route exact path='/home' component={Posts} />
+            <Route exact path='/not-found' component={NotFound}/>
 
             <Footer />
           </div>
