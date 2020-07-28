@@ -4,15 +4,15 @@ const initialState = {
   posts: [],
   post: {},
   userPosts: [],
-  loading: false
+  loadingPost: false
 };
 
 export default function (state=initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case POST_LOADING:
       return {
         ...state,
-        loading: true
+        loadingPost: true,
       };
     case GET_POSTS:
       return {
@@ -24,19 +24,25 @@ export default function (state=initialState, action) {
       return {
         ...state,
         post: action.payload,
-        loading: false
+        loadingPost: false,
       };
     case POST_LOADING:
       return {
         ...state,
-        loading: true,
+        loadingPost: true,
       };
     case GET_USER_POSTS:
       return {
         ...state,
         userPosts: action.payload,
-        loading: false,
+        loadingPost: false,
       };
+    // case GET_OTHER_USERS_POSTS:
+    //   return {
+    //     ...state,
+    //     othersUserPosts: action.payload,
+    //     loadingPost: false,
+      // };
     default:
       return state;
   }

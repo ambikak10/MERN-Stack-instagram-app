@@ -24,7 +24,7 @@ class SuggestionItem extends Component {
     const {profile} = this.props;
     return (
       <div style={{ marginTop: "10px", marginLeft: "10px" }}>
-        <Link to={`/profile/${profile.handle}`}>
+        <Link to={`/profile/${profile.handle}/${profile.user._id}`}>
           <img
             className='rounded-circle profile-card-avatar'
             style={{ width: "50px" }}
@@ -45,14 +45,18 @@ class SuggestionItem extends Component {
         </span>
         <span style={{ float: "right", marginTop: "10px" }}>
           {!this.state.follow && (
-            <Link onClick={this.handleFollow.bind(this, profile._id)}>Follow</Link>
+            <Link onClick={this.handleFollow.bind(this, profile._id)}>
+              Follow
+            </Link>
           )}
           {this.state.follow && (
-            <Link onClick={this.handleUnfollow.bind(this, profile._id)}>Following</Link>
+            <Link onClick={this.handleUnfollow.bind(this, profile._id)}>
+              Following
+            </Link>
           )}
         </span>
       </div>
-    )
+    );
   }
 }
 

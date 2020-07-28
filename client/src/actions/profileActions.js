@@ -63,18 +63,20 @@ export const getProfileByHandle = handle => dispatch => {
   console.log('action getProfileby handle')
   axios
     .get(`/api/profile/handle/${handle}`)
-    .then(res =>
+    .then(res =>{
+      // console.log(res);
       dispatch({
         type: GET_PROFILE,
         payload: res.data
       })
-    )
-    .catch(err =>
+     } )
+    .catch(err =>{
+      // console.log(err)
       dispatch({
         type: GET_ERRORS,
-        payload: null
+        payload: err.response.data
       })
-    );
+    });
 };
 
 // Profile loading

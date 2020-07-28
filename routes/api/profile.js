@@ -70,6 +70,7 @@ router.get(
   '/',
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+     console.log("current users profile");
     const errors = {};
   console.log("backend get current prfile API")
     Profile.findOne({ user: req.user.id })
@@ -80,7 +81,7 @@ router.get(
           return res.status(404).json(errors);
         }
         return res.json(profile);
-        console.log(profile);
+       
       })
       .catch((err) => res.status(404).json(err));
   }
@@ -148,10 +149,13 @@ console.log("get by handle backend API")
         errors.noprofile = "There is no profile for this user";
         res.status(404).json(errors);
       }
-
+      // console.log(profile);
       return res.json(profile);
     })
-    .catch((err) => res.status(404).json(err));
+    .catch((err) =>{
+      console.log(err);
+ res.status(404).json(err)
+    })
 });
 
 // @route   GET api/profile/all

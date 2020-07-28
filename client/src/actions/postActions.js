@@ -72,14 +72,14 @@ export const addComment = (commentInput, postId) => dispatch => {
   axios
     .post(`/api/posts/comment/${postId}`, commentInput)
     .then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       dispatch({
         type: GET_POST,
         payload: res.data
       })
     })
     .catch(err => {
-      console.log(err.response.data);
+      // console.log(err.response.data);
       dispatch({
       type: GET_ERRORS,
       payload: err.response.data
@@ -90,34 +90,54 @@ export const deleteComment = (postId, commentId) => dispatch => {
   axios
     .delete(`/api/posts/comment/${postId}/${commentId}`)
     .then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       dispatch({
         type: GET_POST,
         payload: res.data
       })
     })
     .catch(err => {
-      console.log(err.response.data);
+      // console.log(err.response.data);
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
       });
     })
 }
-//Get all posts of a user
+//Get all posts of current user
 export const getUserPosts = () => dispatch => {
   dispatch(setPostLoading());
 axios
   .get("api/posts/currentUser")
   .then((res) => {
-    console.log(res);
+    // console.log(res);
     dispatch({
       type: GET_USER_POSTS,
       payload: res.data,
     });
   })
   .catch((err) => {
-    console.log(err);
+    // console.log(err);
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    });
+  });
+}
+//Get all posts of another user
+export const getOtherUsersPosts = (user_id) => dispatch => {
+  dispatch(setPostLoading());
+axios
+  .get(`/api/posts/otheruserposts/${user_id}`)
+  .then((res) => {
+    // console.log(res);
+    dispatch({
+      type: GET_USER_POSTS,
+      payload: res.data,
+    });
+  })
+  .catch((err) => {
+    // console.log(err);
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data,
