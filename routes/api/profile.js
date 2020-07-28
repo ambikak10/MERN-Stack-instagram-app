@@ -267,7 +267,8 @@ router.post(
                   user: profile.user,
                   name: otherUser.name,
                   avatar: otherUser.avatar,
-                  handle: profile.handle
+                  handle: profile.handle,
+                  profile: profile._id
                 };
                 myProfile.following.unshift(newFollow); //add user id, name and avatar of the person you are following to your following list.
                 
@@ -275,7 +276,8 @@ router.post(
                   user: req.user.id,
                   name: req.user.name,
                   avatar: req.user.avatar,
-                  handle: myProfile.handle
+                  handle: myProfile.handle,
+                  profile: myProfile._id
                 };
                 profile.followers.unshift(newFollower);
                 profile.save();

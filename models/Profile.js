@@ -37,6 +37,10 @@ const ProfileSchema = new Schema({
       handle: {
         type: String
       },
+      profile: {
+        type: Schema.Types.ObjectId,
+        ref: "profile",
+      }
     }
   ],
   followers: [
@@ -53,6 +57,10 @@ const ProfileSchema = new Schema({
       },
       handle: {
         type: String
+      },
+      profile: {
+        type: Schema.Types.ObjectId,
+        ref: "profile",
       }
     }
   ],
