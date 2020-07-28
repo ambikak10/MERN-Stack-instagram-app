@@ -7,11 +7,13 @@ import { connect } from "react-redux";
 import { getPost, deletePost } from "../../actions/postActions";
 import Moment from "react-moment"; 
 import Spinner from "../common/Spinner";
+import {addLike, removeLike} from "../../actions/postActions" 
 
 class Post extends Component {
   constructor(props) {
     super(props);
     this.goBack = this.goBack.bind(this);
+  
   }
 
   componentDidMount() {
@@ -29,33 +31,76 @@ class Post extends Component {
     const {post, loadingPost} = this.props.post;
     const postId = this.props.match.params.id;
     let deleteIcon;
-    if (post.user === this.props.auth.user.id) {
-      deleteIcon = (
-        <div type="button" className='delete-post' onClick={this.onDeletePost.bind(this,post._id, this.props.history)}>
-          <i
-            style={{
-              fontSize: "1.5em",
-              float: "right",
-              padding: "5px",
-              marginTop: "-3px",
-              fontWeight: "lighter",
-            }}
-            className='fa fa-trash'
-            aria-hidden='true'
-          ></i>
-        </div>
-      );
+    let alreadyLiked = false;
+    let likesUserIds;
+
+    // console.log(this.props.post.post.likes);
+    // console.log(post.likes.length);
+    if(post.likes !== undefined) {
+      // console.log(post.likes)
+      console.log(this.props.auth.user.id);
+      console.log(post.likes);
+
+    if(post.likes.filter(like => like.user === this.props.auth.user.id).length > 0)
+    {
+      alreadyLiked = true;
+      // console.log("hi")
     }
+    // console.log(likesUserIds);
+    // if(likesUserIds.indexOf(this.props.auth.user.id )) {
+    //   liked = true;
+    // }
+    console.log(alreadyLiked);
+   }
+
+     if (post.user === this.props.auth.user.id) {
+       deleteIcon = (
+         <div
+           type='button'
+           className='delete-post'
+           onClick={this.onDeletePost.bind(this, post._id, this.props.history)}
+         >
+           <i
+             style={{
+               fontSize: "1.5em",
+               float: "right",
+               padding: "5px",
+               marginTop: "-3px",
+               fontWeight: "lighter",
+             }}
+             className='fa fa-trash'
+             aria-hidden='true'
+           ></i>
+         </div>
+       );
+     }
     const icons = (
       <div>
-        <div type="button" className='icons-post'>
-          <i
-            className='fa fa-heart-o'
-            style={{ fontSize: "1.5em" }}
-            aria-hidden='true'
-          ></i>
-        </div>
-        <div type="button" className='icons-post'>
+        {alreadyLiked === true ? (
+          <div type='button' className='icons-post'>
+            <i
+              onClick={() => {
+                this.props.removeLike(post._id);
+              }}
+              className='fa fa-heart'
+              style={{ fontSize: "1.5em", color: "red" }}
+              aria-hidden='true'
+            ></i>
+          </div>
+        ) : (
+          <div
+            type='button'
+            onClick={() => this.props.addLike(post._id)}
+            className='icons-post'
+          >
+            <i
+              className='fa fa-heart-o'
+              style={{ fontSize: "1.5em", color: "black" }}
+              aria-hidden='true'
+            ></i>
+          </div>
+        )}
+        <div type='button' className='icons-post'>
           <i
             style={{ fontSize: "1.5em" }}
             className='fa fa-comment-o'
@@ -63,14 +108,14 @@ class Post extends Component {
           ></i>
         </div>
 
-        <div type="button" className='icons-post'>
+        <div type='button' className='icons-post'>
           <i
             style={{ fontSize: "1.5em" }}
             className='far fa-user-circle'
             aria-hidden='true'
           ></i>
         </div>
-        <div type="button" className='icons-post'>
+        <div type='button' className='icons-post'>
           <i
             style={{ fontSize: "1.5em" }}
             className='fa fa-bookmark-o'
@@ -188,9 +233,16 @@ class Post extends Component {
     );
   }
 }
+
+// Profile.propTypes = {
+  
+//   auth: PropTypes.object.isRequired,
+  
+//   logoutUser: PropTypes.func.isRequired,
+// };
 const mapStateToProps = state => ({
   post: state.post,
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getPost, deletePost })(Post);
+export default connect(mapStateToProps, { getPost, deletePost, addLike, removeLike })(Post);
