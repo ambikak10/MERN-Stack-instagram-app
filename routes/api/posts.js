@@ -52,7 +52,7 @@ router.post(
 // @desc    Get  all posts
 // @access  Public
 router.get("/", (req, res) => {
-  console.log("allpost");
+ 
   Post.find()
     .sort({ date: -1 })
     .then((posts) => res.json(posts))
@@ -65,17 +65,25 @@ router.get("/", (req, res) => {
 router.get("/selected",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+  
     Post.find()
       .sort({date: -1})
       .then(posts => {
         if (posts) {
-          let selected = posts.filter(post => post.user.toString() !== req.user.id);
+       
+          let selected = posts.filter(post => {
+         
+            post.user.toString() !== req.user.id
+          });
+        
           return res.json(selected);
         } else {
           return res.status(404).json({ nopostsfound: "No posts found" });
         }
       })
-      .catch(err => res.status(404).json({ nopostsfound: "No posts found" }));
+      .catch(err => {
+        console.log(err)
+        res.status(404).json({ nopostsfound: "No posts found" })});
   }
 );
 
@@ -89,7 +97,7 @@ router.get(
     Post.find({ user: req.user.id })
       .sort({ date: -1 })
       .then((posts) => {
-        console.log("allpostuser");
+       
         return res.json(posts);
       })
       .catch((err) => res.status(404).json({ nopostsfound: "No posts found" }));
@@ -201,6 +209,7 @@ router.post(
   "/unlike/:post_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+
     Profile.findOne({ user: req.user.id }).then((profile) => {
       Post.findById(req.params.post_id)
         .then((post) => {
@@ -249,12 +258,12 @@ router.post(
           image: post.image,
           postId: req.params.post_id
         }; 
-      //  console.log(post.image);
+     
         // othersProfile.tagged.unshift({ postId: req.params.post_id });
         othersProfile.tagged.unshift(taggedPost);
         othersProfile.save().then(() => {
            res.json({ msg: 'success' });
-          // console.log(othersProfile);
+       
         });
       });
     }).catch((err) =>

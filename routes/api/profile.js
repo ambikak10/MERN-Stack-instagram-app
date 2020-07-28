@@ -353,7 +353,10 @@ router.get(
               if (profiles) {
                 // console.log(profiles);
                 let suggestion = profiles.filter((p) => {
-                  console.log(p);
+                console.log(p.user);
+                //  console.log(p.id);
+                // console.log(p);
+                //  console.log(p._id);
                   if (
                     
                     following.indexOf(p.user._id.toString()) === -1 &&

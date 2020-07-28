@@ -236,7 +236,7 @@ a:active {
   .container-post {
    background-color: white;
    position: static;
-   margin-top: -40px;
+   margin-top: -90px;
    margin-left: 20px;
   }
   .child {
@@ -246,7 +246,7 @@ a:active {
   justify-content: flex-start;
   align-items: center;
   display: inline-block; 
-  margin-top: -50px; 
+  margin-top: -60px; 
   margin-left: -70px;
 } 
 #wrapper {
