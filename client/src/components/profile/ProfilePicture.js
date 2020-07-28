@@ -69,7 +69,7 @@ class profilepicture extends Component {
     }    
     return (  
       <div className='firstset'>   
-      <div className='secondset'>
+      <div className='secondsetupload'>
         <div className='thirdset'>
           <div className='containerset' style={{ height: "220px" ,
         width: "400px"}}>
@@ -91,7 +91,7 @@ class profilepicture extends Component {
               />    
               <button
                 onClick={this.onClick} 
-                className='button w3-block'
+                className='w3-button w3-block'
                 style={{
                   color: "blue",
 
@@ -104,7 +104,7 @@ class profilepicture extends Component {
               <hr style={{ marginTop: "0", marginBottom: "0" }}/>
               <button
                 onClick={this.props.onDelete}
-                className='button w3-block'
+                className='w3-button w3-block'
                 style={{
                 color: "red",      
                   
@@ -119,7 +119,7 @@ class profilepicture extends Component {
                   borderBottomRightRadius: "15px",
                   borderBottomLeftRadius: "15px"
                 }}
-                className='button w3-block'
+                className='w3-button w3-block'
               >
                 Cancel
               </button>
