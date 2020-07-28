@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom';
 import ProfileCard from './ProfileCard';
 import { getSuggestionList } from "../../actions/profileActions";
 import PropTypes from 'prop-types';
@@ -28,7 +27,7 @@ class Profiles extends Component {
       <div className='container d-flex flex-wrap' style={{ marginTop: "30px" }}>
         {content}
       </div>
-    );
+    )
   }
 }
 Profiles.propTypes = {
