@@ -79,6 +79,27 @@ export const getProfileByHandle = handle => dispatch => {
     });
 };
 
+// Get all profiles
+export const getAllProfiles = () => (dispatch) => {
+  dispatch(setProfileLoading());
+  console.log("get all profiles");
+  axios
+    .get(`/api/profile/all`)
+    .then((res) => {
+      // console.log(res);
+      dispatch({
+        type: GET_PROFILES,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      // console.log(err)
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
 // Profile loading
 export const setProfileLoading = () => {
   return {

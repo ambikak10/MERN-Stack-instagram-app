@@ -21,13 +21,14 @@ class ProfileCard extends Component {
   }
   
   render() {
+    const {profile} = this.props;
     return (
       <div className="d-flex card profile-card-outer">
         <div style={{marginTop: "10px"}}>
-          <Link to="/profile"><img className="rounded-circle profile-card-avatar" src={avatar} alt="avatar"/></Link>
+          <Link to={`/profile/${profile.handle}/${profile.user._id}`}><img className="rounded-circle profile-card-avatar" src={profile.user.avatar} alt="avatar"/></Link>
         </div>
         <div className="profile-card-truncate-text">
-          Alexander Joe
+          {profile.user.name}
         </div>
         <div className="profile-card-card-footer">
           {!this.state.follow && <button className="btn profile-card-button-follow" onClick={this.handleFollow}>Follow</button>}
