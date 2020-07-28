@@ -33,6 +33,13 @@ const ProfileSchema = new Schema({
       },
       avatar: {
         type: String,
+      },
+      handle: {
+        type: String
+      },
+      profile: {
+        type: Schema.Types.ObjectId,
+        ref: "profile",
       }
     }
   ],
@@ -47,6 +54,13 @@ const ProfileSchema = new Schema({
       },
       avatar: {
         type: String,
+      },
+      handle: {
+        type: String
+      },
+      profile: {
+        type: Schema.Types.ObjectId,
+        ref: "profile",
       }
     }
   ],
