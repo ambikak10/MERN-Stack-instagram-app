@@ -4,11 +4,14 @@ import "./profile.css";
 
 class ProfilePostItem extends Component {
   render() {
+    
     return this.props.posts.map((post) => {
+      let id = this.props.saved === false ? post._id : post.postId;
+     
       return (
         <div>
           <div id="posts"className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-            <Link to={`/post/${post._id}`}>
+            <Link to={`/post/${id}`}>
               <figure>
                 <img src={post.image} alt='posts' />
               </figure>

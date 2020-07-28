@@ -7,7 +7,7 @@ import {
 const initialState = {
   posts: [],
   post: {},
-  userPosts: [],
+  userPosts: null,
   loadingPost: false
 };
 
