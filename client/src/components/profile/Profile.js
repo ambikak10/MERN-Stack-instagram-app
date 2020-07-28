@@ -249,16 +249,18 @@ export class Profile extends Component {
           </div>
 
           {userPosts.length > 0 ? (
-            //  <Fragment>
-            //    {userPosts.map(post => (
-            //      <ProfilePostItem key={post._id} postItem={post} id={post._id} image={post.image}/>
-            //    ))} 
-            //  </Fragment>
-            <Fragment>
-              <section className='row responsiveness hover-effect'>
-                <ProfilePostItem posts={userPosts} />
-              </section>
-            </Fragment>
+             <Fragment>
+             <section className='row responsiveness hover-effect'>
+               {userPosts.map(post => (
+                 <ProfilePostItem key={post._id} postItem={post} id={post._id} image={post.image}/>
+               ))} 
+            </section>
+             </Fragment>
+            // <Fragment>
+            //   <section className='row responsiveness hover-effect'>
+            //     <ProfilePostItem posts={userPosts} />
+            //   </section>
+            // </Fragment>
           ) : (
             <div
               className='HandleName'

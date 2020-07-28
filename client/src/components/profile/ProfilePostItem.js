@@ -5,21 +5,21 @@ import "./profile.css";
 class ProfilePostItem extends Component {
 
   render() {
-      // const { post, id, image } = this.props;
+      const { post, id, image } = this.props;
 
-    return this.props.posts.map((post) => {
+    // return this.props.posts.map((post) => {
       return (
         <div>
           <div id="posts"className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
-            <Link to={`/post/${post._id}`}>
+            <Link to={`/post/${id}`}>
               <figure>
-                <img src={post.image} alt='posts' />
+                <img src={image} alt='posts' />
               </figure>
             </Link>
           </div>
         </div>
       );
-    });
+    // });
   }
 }
 
