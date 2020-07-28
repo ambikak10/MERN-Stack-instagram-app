@@ -5,8 +5,12 @@ import "./home.css";
 import { connect } from "react-redux";
 import SuggestionLists from "./SuggestionLists";
 import { getSuggestionList } from "../../actions/profileActions";
+import Comments from "../displayPost/Comments";
+import AddComment from "../displayPost/AddComment";
+import Moment from "react-moment"; 
+import { now } from "moment";
 
-class Home extends Component {
+class PostItem extends Component {
          constructor() {
            super();
            this.state = {
@@ -18,7 +22,9 @@ class Home extends Component {
          }
          
          render() {
-           const {auth, profile} = this.props;
+           const {post,postId,auth, profile} = this.props;
+           
+          
            
            let suggestionList;
            if (profile.profiles && profile.profiles.length > 0) {
@@ -34,18 +40,18 @@ class Home extends Component {
                        <Link to='#'>
                          <img
                            className='avatar-icon'
-                           src={avatar}
+                           src={post.avatar}
                            alt='Avatar'
                            style={{ marginLeft: ".5px" }}
                          />
                        </Link>
                        <Link to='' className='name-of-account'>
-                         user007
+                         {post.name}
                        </Link>
                      </div>
                      <img
                        className='card-img-top'
-                       src='https://images.unsplash.com/photo-1462216589242-9e3e00a47a48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=966&q=80'
+                       src={post.image}
                      />
                      <div classname='card-body'>
                        <section id='icons'>
@@ -93,34 +99,18 @@ class Home extends Component {
                                color: "black",
                              }}
                            >
-                             10,000 Likes
+                             {post.likes && post.likes.length} Likes
                            </div>
                          </div>
                          <div>
                            <Link className='handlename-post' to=''>
-                             user007
+                             {post.name}
                            </Link>
                            <span className='textStyle-comment'>
-                             &nbsp; Love is in the air
-                           </span>
-                         </div>
-                         <div>
-                           <Link to='' className='handlename-post'>
-                             user1
-                           </Link>
-                           <span className='textStyle-comment'>
-                             &nbsp; calm and serene
-                             <Link to=''>
-                               <i
-                                 className='fa fa-heart-o fa-2x'
-                                 style={{
-                                   color: "gray",
-                                   float: "right",
-                                   fontSize: "1em",
-                                 }}
-                               ></i>
-                             </Link>
-                           </span>
+                             &nbsp;{post.text}
+                           </span>              
+                           {/* comments on post */}
+                           <Comments showAvatar={false} comments={post.comments} postId={postId} />
                          </div>
                          <div>
                            <div
@@ -130,7 +120,8 @@ class Home extends Component {
                                marginTop: "20px",
                              }}
                            >
-                             20 HOURS AGO
+                             <Moment format="hh">{post.time} 
+                              </Moment> Hours Ago
                            </div>
                          </div>
                        </section>
@@ -144,7 +135,7 @@ class Home extends Component {
                            marginTop: "10px",
                          }}
                        >
-                         Add a comment
+                         <AddComment postId={postId} />
                        </div>
                      </div>
                    </div>
@@ -213,4 +204,4 @@ const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, {getSuggestionList})(Home);
+export default connect(mapStateToProps, {getSuggestionList})(PostItem);

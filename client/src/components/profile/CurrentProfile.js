@@ -18,8 +18,9 @@ class CurrentProfile extends Component {
     let content;
         const { userPosts, loadingPost } = this.props.post;
         console.log(userPosts)
-
-          if (this.props.profile.profile !=null) {
+          if (loading || loadingPost || profile === null || userPosts === null) {
+            content = ( <Spinner /> )
+          } else {
             content = (
               <div>
                 <Profile
@@ -27,12 +28,12 @@ class CurrentProfile extends Component {
                   loading={loading}
                   userPosts={userPosts}
                   loadingPost={loadingPost}
+                  isCurrentProfile={true}
                 />
               </div>
             );
-          } else {
-           content = ( <Spinner /> )
           }
+          
     return <div> {content}</div>;
   }
 }
