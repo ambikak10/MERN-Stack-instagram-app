@@ -286,7 +286,7 @@ export class Profile extends Component {
             </Link>
           </div>
 
-          {this.state.posts ? (
+          {this.state.posts.length > 0 ? (
             //  <Fragment>
             //    {userPosts.map(post => (
             //      <ProfilePostItem key={post._id} postItem={post} id={post._id} image={post.image}/>
