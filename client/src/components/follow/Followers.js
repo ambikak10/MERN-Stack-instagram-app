@@ -45,7 +45,7 @@ class Followers extends Component {
             <div className='followers-container'>
               <h5>Followers </h5>
               <span>
-                <Link onClick={this.props.close} class='X'>
+                <Link onClick={() => window.location.reload(true)} class='X'>
                   X
                 </Link>
               </span>

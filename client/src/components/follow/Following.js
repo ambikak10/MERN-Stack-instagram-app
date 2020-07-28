@@ -31,7 +31,7 @@ class Following extends Component {
             <div className='followers-container'>
               <h5>Following </h5>
               <span>
-                <Link onClick={this.props.close} className='X'>
+                <Link onClick={() => window.location.reload(true)} className='X'>
                   X
                 </Link>
               </span>
