@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./App.css";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import Profile from "./components/profile/Profile";
 import EditProfile from "./components/profile/EditProfile";
 import Footer from "./components/footer/Footer";
-import Navbar from './components/navbar/Navbar';
+import Navbar from "./components/navbar/Navbar";
 import Post from "./components/displayPost/Post";
 import CreateProfile from "./components/profile/CreateProfile";
 import CreatePost from "./components/displayPost/CreatePost";
@@ -14,7 +14,7 @@ import Profiles from "./components/profile/Profiles";
 import Posts from "./components/home/Posts";
 import CurrentProfile from "./components/profile/CurrentProfile";
 import HandleProfile from "./components/profile/HandleProfile";
-
+import PrivateRoute from "./components/common/PrivateRoute";
 //redux
 import { Provider } from "react-redux";
 import store from "./store";
@@ -33,7 +33,7 @@ if (localStorage.jwtToken) {
   //Write user data to redux store
   store.dispatch({
     type: SET_CURRENT_USER,
-    payload: decoded
+    payload: decoded,
   });
 
   //Check for expired token
@@ -41,13 +41,12 @@ if (localStorage.jwtToken) {
   if (decoded.exp < currentTime) {
     store.dispatch(logoutUser());
 
-    window.location.href ="/";
+    window.location.href = "/";
   }
 }
 
 class App extends Component {
   render() {
-   
     return (
       <Provider store={store}>
         <Router>
@@ -55,16 +54,58 @@ class App extends Component {
             <Navbar />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/' component={Login} />
-            <Route exact path='/current-profile' component={CurrentProfile} />
-            <Route exact path='/profile' component={CurrentProfile} />
-            <Route exact path='/edit-profile' component={EditProfile} />
-            <Route exact path='/post/:id' component={Post} />
-            <Route exact path='/profile/:handle/:user_id' component={HandleProfile} />
-            <Route exact path='/create-profile' component={CreateProfile} />
-            <Route exact path='/create-post' component={CreatePost} />
-            <Route exact path='/explore' component={Profiles} />
-            <Route exact path='/home' component={Posts} />
-            <Route exact path='/not-found' component={NotFound}/>
+            <Switch>
+              <PrivateRoute
+                exact
+                path='/current-profile'
+                component={CurrentProfile}
+              />{" "}
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/profile' component={CurrentProfile} />
+              <PrivateRoute
+                exact
+                path='/edit-profile'
+                component={EditProfile}
+              />{" "}
+            </Switch>
+            <Switch>
+              {" "}
+              <PrivateRoute exact path='/post/:id' component={Post} />
+              <PrivateRoute
+                exact
+                path='/profile/:handle/:user_id'
+                component={HandleProfile}
+              />{" "}
+            </Switch>
+            <Switch>
+              {" "}
+              <PrivateRoute
+                exact
+                path='/create-profile'
+                component={CreateProfile}
+              />{" "}
+            </Switch>
+            <Switch>
+              {" "}
+              <PrivateRoute
+                exact
+                path='/create-post'
+                component={CreatePost}
+              />{" "}
+            </Switch>
+            <Switch>
+              {" "}
+              <PrivateRoute exact path='/explore' component={Profiles} />{" "}
+            </Switch>
+            <Switch>
+              {" "}
+              <PrivateRoute exact path='/home' component={Posts} />{" "}
+            </Switch>
+            <Switch>
+              {" "}
+              <PrivateRoute exact path='/not-found' component={NotFound} />{" "}
+            </Switch>
 
             <Footer />
           </div>

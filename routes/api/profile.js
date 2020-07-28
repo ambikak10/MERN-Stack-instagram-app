@@ -255,13 +255,7 @@ router.post(
           }
          
      
-          const newFollower = {
-            user: req.user.id,
-            name: req.user.name,
-            avatar: req.user.avatar
-          };
-          profile.followers.unshift(newFollower);
-          profile.save();
+         
           // .then((profile) => res.json(profile)); sending res.json more than once resulted in error 'http headers are already written to the client browser' in terminal, hence removed and added at the end.
   
      
@@ -272,9 +266,22 @@ router.post(
                 const newFollow = {
                   user: profile.user,
                   name: otherUser.name,
-                  avatar: otherUser.avatar
+                  avatar: otherUser.avatar,
+                  handle: profile.handle,
+                  profile: profile._id
                 };
                 myProfile.following.unshift(newFollow); //add user id, name and avatar of the person you are following to your following list.
+                
+                const newFollower = {
+                  user: req.user.id,
+                  name: req.user.name,
+                  avatar: req.user.avatar,
+                  handle: myProfile.handle,
+                  profile: myProfile._id
+                };
+                profile.followers.unshift(newFollower);
+                profile.save();
+
                 myProfile
                   .save()
                   .then((myProfile) =>
@@ -329,38 +336,46 @@ router.post('/unfollow/:profile_id', passport.authenticate("jwt", { session: fal
   });
 });
 
-// @route   GET api/profile/suggestions
+// @route   GET api/efilopr / suggestions;
 // @desc    Get suggestion list for current profile
 // @access  Private
-router.get("/suggestions",
-  passport.authenticate("jwt", {session: false}),
+router.get(
+  "/suggestions",
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOne({user: req.user.id})
-      .then(profile => {
+    Profile.findOne({ user: req.user.id })
+      .then((profile) => {
         if (profile) {
-          let following = profile.following.map(item => item.user.toString());
+          let following = profile.following.map((item) => item.user.toString());
           Profile.find()
             .populate("user", ["name", "avatar"])
-            .then(profiles => {
+            .then((profiles) => {
               if (profiles) {
-                let suggestion = profiles.filter(p => {
-                  if (following.indexOf(p.user._id.toString()) === -1 && p.id !== profile.id) {
+                // console.log(profiles);
+                let suggestion = profiles.filter((p) => {
+                  console.log(p);
+                  if (
+                    
+                    following.indexOf(p.user._id.toString()) === -1 &&
+                    p.id !== profile.id
+                  ) {
                     return true;
                   }
                 });
                 return res.json(suggestion);
               } else {
-                return res.status(404).json({ noprofile: "No profile found"});
+                return res.status(404).json({ noprofile: "No profile found" });
               }
             })
-            .catch(err => console.log(err))
+            .catch((err) => console.log(err));
         } else {
-          return res.status(404).json({ profilenotfound: "No profile found"});
+          return res.status(404).json({ profilenotfound: "No profile found" });
         }
       })
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err));
   }
-)
+);
+
 
 
 

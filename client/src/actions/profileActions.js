@@ -41,6 +41,7 @@ export const deleteAccount = (history) => (dispatch) => {
 };
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
+  dispatch(clearCurrentProfile());
   dispatch(setProfileLoading());
   axios
     .get('/api/profile')
@@ -59,6 +60,7 @@ export const getCurrentProfile = () => dispatch => {
 };
 // Get profile by handle
 export const getProfileByHandle = handle => dispatch => {
+  dispatch(clearCurrentProfile());
   dispatch(setProfileLoading());
   console.log('action getProfileby handle')
   axios
@@ -79,6 +81,27 @@ export const getProfileByHandle = handle => dispatch => {
     });
 };
 
+// Get all profiles
+export const getAllProfiles = () => (dispatch) => {
+  dispatch(setProfileLoading());
+  console.log("get all profiles");
+  axios
+    .get(`/api/profile/all`)
+    .then((res) => {
+      // console.log(res);
+      dispatch({
+        type: GET_PROFILES,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      // console.log(err)
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
 // Profile loading
 export const setProfileLoading = () => {
   return {
@@ -95,17 +118,18 @@ export const clearCurrentProfile = () => {
 
 //Get suggestion list
 export const getSuggestionList = () => dispatch => {
+   dispatch(setProfileLoading());
   axios
     .get("/api/profile/suggestions")
     .then(res => {
-      // console.log(res.data);
+      console.log(res.data);
       dispatch({
         type: GET_PROFILES,
         payload: res.data
       })
     })
     .catch(err => {
-      // console.log(err);
+      console.log(err);
       dispatch({
         type: GET_PROFILES,
         payload: {}
