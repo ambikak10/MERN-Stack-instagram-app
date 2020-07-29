@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Profile from './Profile';
-import { getCurrentProfile } from "../../actions/profileActions";
+import { getCurrentProfile, getFollowingList } from "../../actions/profileActions";
 import { getUserPosts } from "../../actions/postActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -11,14 +11,15 @@ class CurrentProfile extends Component {
  componentDidMount() {
     this.props.getCurrentProfile();
     this.props.getUserPosts();
+    this.props.getFollowingList();
   }
   render() {
     console.log(this.props.profile.profile);
-    const {profile, loading } = this.props.profile;
+    const {profile, loading, followingList } = this.props.profile;
     let content;
         const { userPosts, loadingPost } = this.props.post;
         console.log(userPosts)
-          if (loading || loadingPost || profile === null || userPosts === null) {
+          if (loading || loadingPost || profile === null || userPosts === null || followingList === null) {
             content = ( <Spinner /> )
           } else {
             content = (
@@ -29,6 +30,7 @@ class CurrentProfile extends Component {
                   userPosts={userPosts}
                   loadingPost={loadingPost}
                   isCurrentProfile={true}
+                  followingList={followingList}
                 />
               </div>
             );
@@ -52,5 +54,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getCurrentProfile,
   getUserPosts,
+  getFollowingList,
 })(CurrentProfile);
 

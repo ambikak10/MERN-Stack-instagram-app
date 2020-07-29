@@ -6,18 +6,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 class Followers extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { isToggleOn: true };
-
-  //   this.handleClick = this.handleClick.bind(this);
-  // }
-
-  // handleClick() {
-  //   this.setState(function (prevState) {
-  //     return { isToggleOn: !prevState.isToggleOn };
-  //   });
-  // }
 
   render() {
      const {auth} = this.props;
@@ -25,8 +13,7 @@ class Followers extends Component {
      if (!this.props.showFollowers) {
        return null;
      }
-     const {followers, following} = this.props;
-     const followingList= following.map(profile => profile.user);
+     const {followers, followingList} = this.props;
      let content;
      if (followers.length > 0) {
        content = followers.map(follower => {
