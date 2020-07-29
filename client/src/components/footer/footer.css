@@ -19,7 +19,14 @@ footer{
   
 }
 .stickyfooter {
- min-height: 95vh; /* will cover the 100% of viewport */
+ min-height: 93vh; /* will cover the 100% of viewport */
  position: relative;
  padding-bottom: 100px; 
+}
+@media (max-width: 1200) {
+.f {
+min-height: 100vh; /* will cover the 100% of viewport */
+ position: relative;
+ padding-bottom: 100px; 
+}
 }

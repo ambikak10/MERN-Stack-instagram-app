@@ -189,7 +189,25 @@ export const removeLike = (postId) => (dispatch) => {
       });
     });
 };
-
+// Get all posts except current user's
+export const allPostsExceptCurrentUsers = () => (dispatch) => {
+  axios
+    .get(`/api/posts/selected`)
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: GET_POSTS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      // console.log(err);
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
 // Clear errors
 export const clearErrors = () => {
   return {
