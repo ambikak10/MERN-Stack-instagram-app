@@ -148,7 +148,7 @@ router.post(
         // Update
         User.findOneAndUpdate(
           { _id: req.user.id },
-          { avatar: req.body.avatar },
+          { avatar: req.user.changeAvatar },
           { new : true}
         ).then((user) => res.json(user));
       } else {
