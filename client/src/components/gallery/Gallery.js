@@ -29,8 +29,8 @@ class Gallery extends Component {
               <GalleryItem key={post._id} image={post.image} id={post._id} />
             ))}
           </Fragment>
-        ) : (
-          <Spinner />
+        ) : (<div style={{ margin: "180px"}}>
+          <Spinner /></div>
         )}
       </div>
     );
