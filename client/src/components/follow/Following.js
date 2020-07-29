@@ -32,7 +32,7 @@ class Following extends Component {
               <h5>Following </h5>
               <span>
                 <Link onClick={() => window.location.reload(true)} className='X'>
-                  X
+                  <i className="fas fa-times"></i>
                 </Link>
               </span>
               <hr />
