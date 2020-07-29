@@ -108,9 +108,6 @@ class App extends Component {
               <PrivateRoute exact path='/not-found' component={NotFound} />{" "}
             </Switch>
             <Switch>
-              {" "}
-              <PrivateRoute exact path='/post/:id' component={Post} /></Switch>
-              <Switch>
               <PrivateRoute
                 exact
                 path='/gallery'
