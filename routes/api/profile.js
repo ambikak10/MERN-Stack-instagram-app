@@ -70,9 +70,9 @@ router.get(
   '/',
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-     console.log("current users profile");
+    
     const errors = {};
-  console.log("backend get current prfile API")
+
     Profile.findOne({ user: req.user.id })
       .populate("user", ["name", "avatar"])
       .then((profile) => {
@@ -95,7 +95,7 @@ router.delete("/",
   (req, res) => {
     Profile.findOneAndRemove({user: req.user.id})
       .then((profile) => {
-        console.log(profile);
+      
         User.findOneAndRemove({ _id: req.user.id})
           .then(() => res.json({ success: true }))
       }).catch(err => {
@@ -143,7 +143,7 @@ passport.authenticate("jwt", {session: false}),
 
 router.get("/handle/:handle", (req, res) => {
   const errors = {};
-console.log("get by handle backend API")
+
   Profile.findOne({ handle: req.params.handle })
     .populate("user", ["name", "avatar"])
     .then((profile) => {
@@ -151,7 +151,7 @@ console.log("get by handle backend API")
         errors.noprofile = "There is no profile for this user";
         res.status(404).json(errors);
       }
-      // console.log(profile);
+    
       return res.json(profile);
     })
     .catch((err) =>{
@@ -355,7 +355,7 @@ router.get(
               if (profiles) {
                 // console.log(profiles);
                 let suggestion = profiles.filter((p) => {
-                console.log(p.user);
+                // console.log(p.user);
                 //  console.log(p.id);
                 // console.log(p);
                 //  console.log(p._id);

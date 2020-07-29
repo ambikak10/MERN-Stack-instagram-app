@@ -71,10 +71,10 @@ router.get("/selected",
       .then(posts => {
         if (posts) {
        
-          let selected = posts.filter(post => {
+          let selected = posts.filter(post => 
          
             post.user.toString() !== req.user.id
-          });
+          )
         
           return res.json(selected);
         } else {

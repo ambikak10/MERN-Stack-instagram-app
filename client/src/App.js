@@ -23,6 +23,7 @@ import jwt_decode from "jwt-decode";
 import { SET_CURRENT_USER } from "./actions/types";
 import { logoutUser } from "./actions/authActions";
 import NotFound from "./components/common/NotFound";
+import Gallery from './components/gallery/Gallery'
 
 //Check for token
 if (localStorage.jwtToken) {
@@ -105,6 +106,16 @@ class App extends Component {
             <Switch>
               {" "}
               <PrivateRoute exact path='/not-found' component={NotFound} />{" "}
+            </Switch>
+            <Switch>
+              {" "}
+              <PrivateRoute exact path='/post/:id' component={Post} /></Switch>
+              <Switch>
+              <PrivateRoute
+                exact
+                path='/gallery'
+                component={Gallery}
+              />{" "}
             </Switch>
 
             <Footer />
