@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import {allPostsExceptCurrentUsers} from '../../actions/postActions';
 import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner'
-import Masonry from 'react-masonry-css'
+// import Masonry from 'react-masonry-css'
 import GalleryItem from './GalleryItem';
 
 
