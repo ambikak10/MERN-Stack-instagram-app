@@ -4,7 +4,7 @@ import "./profile.css";
 import Settings from "./Settings";
 import Followers from "../follow/Followers";
 import Following from "../follow/Following";
-import { deleteAccount } from "../../actions/profileActions";
+import { deleteAccount, getFollowingList } from "../../actions/profileActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logoutUser } from "../../actions/authActions";
@@ -82,7 +82,7 @@ export class Profile extends Component {
 
   render() {
     let profileContent;
-    const { profile, loading } = this.props;
+    const { profile, loading, followingList } = this.props;
     const { user } = this.props.auth;
     const { userPosts, loadingPost } = this.props;
     if (profile === null || loading || loadingPost || !userPosts) {
@@ -193,7 +193,7 @@ export class Profile extends Component {
                   <Followers
                     showFollowers={this.state.showFollowers}
                     followers={profile.followers}
-                    following={profile.following}
+                    followingList={followingList}
                     close={this.showFollowersList}
                   />
                   &nbsp; &nbsp; &nbsp;
@@ -210,6 +210,7 @@ export class Profile extends Component {
                   <Following
                     showFollowing={this.state.showFollowing}
                     following={profile.following}
+                    followingList={followingList}
                     close={this.showFollowingList}
                   />
                 </span>
@@ -337,4 +338,5 @@ Profile.propTypes = {
 export default connect(mapStateToProps, {
   deleteAccount,
   logoutUser,
+  getFollowingList
 })(Profile);

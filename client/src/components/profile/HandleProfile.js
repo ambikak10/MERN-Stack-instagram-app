@@ -4,7 +4,7 @@ import { getOtherUsersPosts } from "../../actions/postActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
-import { getProfileByHandle } from '../../actions/profileActions';
+import { getProfileByHandle, getFollowingList } from '../../actions/profileActions';
 
 class CurrentProfile extends Component {
   componentDidMount() {
@@ -14,17 +14,18 @@ class CurrentProfile extends Component {
    if (this.props.match.params.handle) {
     this.props.getProfileByHandle(this.props.match.params.handle);
     }
+    this.props.getFollowingList();
   }
 
   render() {
     console.log(this.props.profile.profile);
-    const { profile, loading } = this.props.profile;
+    const { profile, loading, followingList } = this.props.profile;
     let content;
     const { userPosts, loadingPost } = this.props.post;
     console.log(userPosts);
     console.log(profile);
 
-    if (loading || loadingPost || profile === null || userPosts === null) {
+    if (loading || loadingPost || profile === null || userPosts === null || followingList === null) {
       content = ( <Spinner /> )
     } else {
       content = (
@@ -35,6 +36,7 @@ class CurrentProfile extends Component {
             userPosts={userPosts}
             loadingPost={loadingPost}
             isCurrentProfile={true}
+            followingList={followingList}
           />
         </div>
       );
@@ -57,4 +59,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getOtherUsersPosts,
   getProfileByHandle,
+  getFollowingList
 })(CurrentProfile);

@@ -132,10 +132,10 @@ class Post extends Component {
               src={post.image}
             />
             <div className='style d-none d-xl-block d-md-none d-lg-none d-sm-none '>
-              <Link to='#'>
+              <Link to={`/profile/${post.handle}/${post.user}`}>
                 <img className='avatar-icon' src={post.avatar} alt='Avatar' />
               </Link>
-              <Link to='' className='name-of-account'>
+              <Link to={`/profile/${post.handle}/${post.user}`} className='name-of-account'>
                 {post.name}
               </Link>
               <hr style={{ marginBottom: "10px" }} />
@@ -146,13 +146,13 @@ class Post extends Component {
                   {/* <!-- post description start--> */}
 
                   <div className='col-lg-2'>
-                    <Link to='#'>
+                    <Link to={`/profile/${post.handle}/${post.user}`}>
                       <img className='avatar-icon' src={post.avatar} alt='Avatar' />
                     </Link>
                   </div>
                   <div className='col-lg-10'>
                     <div id='col-space'>
-                      <Link className='handlename-post' to=''>
+                      <Link className='handlename-post' to={`/profile/${post.handle}/${post.user}`}>
                         {post.name}
                       </Link>
                       <span className='textStyle-comment'>
