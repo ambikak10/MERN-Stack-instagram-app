@@ -259,39 +259,3 @@ export const clearPost = () => {
     type: CLEAR_POST
   }
 }
-// save post
-export const savePost= (postId) => (dispatch) => {
-  axios
-    .post(`/api/posts/save/${postId}`)
-    .then((res) => {     
-      dispatch({
-        type: GET_POST,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {    
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data,
-      });
-    });
-};
-
-// Unsave a post 
-export const unsavePost = (postId) => (dispatch) => {
-  axios
-    .post(`/api/posts/unsave/${postId}`)
-    .then((res) => {
-      dispatch({
-        type: GET_POST,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      // console.log(err);
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data,
-      });
-    });
-};
