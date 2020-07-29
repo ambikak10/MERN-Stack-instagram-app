@@ -47,7 +47,7 @@ class FollowItem extends Component {
 
           <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
           <Link
-            to='#'
+            to={`/profile/${follow.handle}/${follow.user}`}
             class='fontStyleSizeColor'
             style={{ 
               marginLeft: "-50px", 

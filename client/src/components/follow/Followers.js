@@ -32,8 +32,8 @@ class Followers extends Component {
             <div className='followers-container'>
               <h5>Followers </h5>
               <span>
-                <Link onClick={() => window.location.reload(true)} class='X'>
-                  X
+                <Link onClick={() => window.location.reload(true)} className='X'>
+                  <i className="fas fa-times"></i>
                 </Link>
               </span>
               <hr />
