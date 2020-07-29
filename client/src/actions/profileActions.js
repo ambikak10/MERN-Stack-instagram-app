@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ERRORS, SET_CURRENT_USER, GET_PROFILE, CLEAR_CURRENT_PROFILE, GET_PROFILES, PROFILE_LOADING } from "./types";
+import { GET_ERRORS, SET_CURRENT_USER, GET_PROFILE, CLEAR_CURRENT_PROFILE, GET_PROFILES, PROFILE_LOADING, GET_FOLLOWING } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
 // Create Profile
@@ -159,4 +159,22 @@ export const unfollowUser = (profileId) => dispatch => {
     .catch(err => {
       console.log(err);
     })
+}
+
+//Get following list of current user
+export const getFollowingList = () => dispatch => {
+  dispatch({
+    type: GET_FOLLOWING,
+    payload: null
+  });
+  axios
+    .get("/api/profile/following")
+    .then(res => {
+      const result = res.data.map(item => item.user.toString());
+      dispatch({
+        type: GET_FOLLOWING,
+        payload: result
+      })
+    })
+    .catch(err => console.log(err));
 }

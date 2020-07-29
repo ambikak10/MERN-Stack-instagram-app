@@ -12,8 +12,8 @@ class Following extends Component {
     if (!this.props.showFollowing && !this.seen) {
       return null;
     }
-    const {following, auth} = this.props;
-    const followingList= following.map(profile => profile.user);
+    const {following, auth, followingList} = this.props;
+    
      let content;
      if (following.length > 0) {
        content = following.map(following => {
@@ -32,7 +32,7 @@ class Following extends Component {
               <h5>Following </h5>
               <span>
                 <Link onClick={() => window.location.reload(true)} className='X'>
-                  X
+                  <i className="fas fa-times"></i>
                 </Link>
               </span>
               <hr />

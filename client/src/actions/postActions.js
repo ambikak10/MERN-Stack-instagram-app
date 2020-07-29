@@ -190,12 +190,24 @@ export const removeLike = (postId) => (dispatch) => {
       });
     });
 };
-
-// Clear errors
-export const clearErrors = () => {
-  return {
-    type: CLEAR_ERRORS
-  };
+// Get all posts except current user's
+export const allPostsExceptCurrentUsers = () => (dispatch) => {
+  axios
+    .get(`/api/posts/selected`)
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: GET_POSTS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      // console.log(err);
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
 };
 
 export const clearPost = () => {
@@ -280,7 +292,8 @@ export const savePost = (postId) => (dispatch) => {
 
 };
 
-// Unsave a post 
+// Unsave post
+
 export const unsavePost = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/unsave/${postId}`)
@@ -297,4 +310,16 @@ export const unsavePost = (postId) => (dispatch) => {
         payload: err.response.data,
       });
     });
+}; 
+// Clear errors
+export const clearErrors = () => {
+  return {
+    type: CLEAR_ERRORS
+  };
 };
+
+export const clearPost = () => {
+  return {
+    type: CLEAR_POST
+  }
+}

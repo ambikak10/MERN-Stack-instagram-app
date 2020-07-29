@@ -74,7 +74,7 @@ class profilepicture extends Component {
         width: "400px"}}>
               <div 
               style={{
-                marginLeft: "120px",
+                marginLeft: "102px",
                 marginTop: "30px",
                 marginBottom: "20px",
                 borderTopRightRadius: "15px",                

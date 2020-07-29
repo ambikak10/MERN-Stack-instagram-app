@@ -54,8 +54,8 @@ export class Navbar extends Component {
               </Link>
             </li>
             <li>
-              <Link to='#'>
-                <i className='fa fa-heart-o navbarIcon' aria-hidden='true'></i>
+              <Link to='/gallery'>
+                <i className='fas fa-images navbarIcon' aria-hidden='true'></i>
               </Link>
             </li>
 
