@@ -210,13 +210,6 @@ export const allPostsExceptCurrentUsers = () => (dispatch) => {
     });
 };
 
-export const clearPost = () => {
-  return {
-    type: CLEAR_POST
-  }
-}
-
-
 // Like a post in PostFeed
 export const addLikePosts = (postId) => (dispatch) => {
   axios
