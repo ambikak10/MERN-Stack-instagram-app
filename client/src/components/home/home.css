@@ -2,17 +2,14 @@
   width: 550px;
   height: 500px;
 } */
-.card-home{
-  margin-top: 40px;
-  float: left; 
-  margin-left: 100px;
-  margin-bottom: 10px;
-  width: 550px;
-  height: 700px;
-  
-}
+
+
 .card-header{
   background-color: white; 
+}
+.card-img-top{
+  width: 580px;
+  height: 500px;
 }
 #icons{  
   margin-top: 10px;
@@ -33,16 +30,10 @@
   top: 14px;
   
 }
-.handlename-post{
-  /* margin-left:px; */
-  position: relative;
-  top: 14px;
-  color: black;
-  font-family: inherit;
-  font-weight: 600;
-  text-transform: lowercase;
-  text-decoration: none;
- }
+
 .card-footer{
   background-color: white; 
+}
+.btn-btn {
+  border: ivory;
 }
