@@ -31,7 +31,47 @@ class FollowItem extends Component {
   }
   render() {
     const {follow, isCurrent} = this.props;
+
+    let followButton;
     
+    if (!isCurrent) {
+      followButton = (
+        <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
+          {!this.state.isFollow && (
+            <button
+              className='btn'
+              style={{
+                lineHeight: "2px",
+                float: "right",
+                height: "30px",
+                backgroundColor: "#0095f6",
+                color: "white"
+              }}
+              onClick={this.handleFollow.bind(this, follow.profile)}
+            >
+             Follow 
+            </button>
+          )}
+          {this.state.isFollow && (
+            <button
+              className='btn'
+              style={{
+                lineHeight: "2px",
+                float: "right",
+                height: "30px",
+                backgroundColor: "white",
+                border: "1px solid #dbdbdb",
+                color: "black"
+              }}
+              onClick={this.handleUnFollow.bind(this, follow.profile)}
+            >
+             Following 
+            </button>
+          )}
+        </div>
+      );
+    }
+
     return (
       <div className="container" style={{marginBottom: "10px"}}>
         <div className="row">
@@ -66,42 +106,7 @@ class FollowItem extends Component {
             {follow.name}
           </div>
         </div>
-
-        <div className='spaceMargin col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-          {!this.state.isFollow && (
-            <button
-              className='btn'
-              style={{
-                lineHeight: "2px",
-                float: "right",
-                height: "30px",
-                backgroundColor: "#0095f6",
-                color: "white"
-              }}
-              onClick={this.handleFollow.bind(this, follow.profile)}
-              disabled={isCurrent}
-            >
-             {isCurrent ? "You" : "Follow"} 
-            </button>
-          )}
-          {this.state.isFollow && (
-            <button
-              className='btn'
-              style={{
-                lineHeight: "2px",
-                float: "right",
-                height: "30px",
-                backgroundColor: "white",
-                border: "1px solid #dbdbdb",
-                color: "black"
-              }}
-              onClick={this.handleUnFollow.bind(this, follow.profile)}
-              disabled={isCurrent}
-            >
-             {isCurrent ? "You" : "Following"} 
-            </button>
-          )}
-        </div>
+            {followButton}
         </div>
         
       </div>
