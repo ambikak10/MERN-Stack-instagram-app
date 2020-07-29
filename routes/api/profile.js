@@ -120,11 +120,13 @@ router.get("/followers/:profile_id", (req, res) => {
     .catch(err => console.log(err));
 });
 
-// @route   GET api/profile/following/:profile_id
+// @route   GET api/profile/following
 // @desc    Get list of user's following
 // @access  Public
-router.get("/following/:profile_id", (req, res) => {
-  Profile.findById(req.params.profile_id)
+router.get("/following",
+passport.authenticate("jwt", {session: false}),
+(req, res) => {
+  Profile.findOne({user: req.user.id})
     .then(profile => {
       if (profile) {
         return res.json(profile.following);

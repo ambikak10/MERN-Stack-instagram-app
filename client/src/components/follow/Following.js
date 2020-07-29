@@ -12,8 +12,8 @@ class Following extends Component {
     if (!this.props.showFollowing && !this.seen) {
       return null;
     }
-    const {following, auth} = this.props;
-    const followingList= following.map(profile => profile.user);
+    const {following, auth, followingList} = this.props;
+    
      let content;
      if (following.length > 0) {
        content = following.map(following => {
