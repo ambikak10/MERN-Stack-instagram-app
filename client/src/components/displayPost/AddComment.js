@@ -23,7 +23,9 @@ class AddComment extends Component {
     const newComment = {
       text: this.state.comment
     };
+    console.log(this.props.postId);
     this.props.addComment(newComment, this.props.postId);
+    
     this.setState({comment: ""});
   }
   componentWillReceiveProps(nextProps) {

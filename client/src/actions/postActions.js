@@ -74,7 +74,7 @@ export const addComment = (commentInput, postId) => dispatch => {
   axios
     .post(`/api/posts/comment/${postId}`, commentInput)
     .then(res => {
-      // console.log(res.data);
+       console.log(res.data);
       dispatch({
         type: GET_POST,
         payload: res.data
@@ -172,7 +172,7 @@ export const addLike = (postId) => (dispatch) => {
     });
 };
 
-// Like a post 
+// UnLike a post 
 export const removeLike = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/unlike/${postId}`)
@@ -198,32 +198,44 @@ export const clearErrors = () => {
   };
 };
 
-// Add Like
-export const addLike = id => dispatch => {
-  axios
-    .post(`/api/posts/like/${id}`)
-    .then(res => dispatch(getPosts()))
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
-//save Post
-export const savePost = id => dispatch => {
-  axios
-    .post(`/api/posts/save/${id}`)     
-    .then(res => dispatch(getPosts()))
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
 export const clearPost = () => {
   return {
     type: CLEAR_POST
   }
 }
+// save post
+export const savePost= (postId) => (dispatch) => {
+  axios
+    .post(`/api/posts/save/${postId}`)
+    .then((res) => {     
+      dispatch({
+        type: GET_POST,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {    
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
+
+// Unsave a post 
+export const unsavePost = (postId) => (dispatch) => {
+  axios
+    .post(`/api/posts/unsave/${postId}`)
+    .then((res) => {
+      dispatch({
+        type: GET_POST,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      // console.log(err);
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
