@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { getPost, deletePost } from "../../actions/postActions";
 import Moment from "react-moment"; 
 import Spinner from "../common/Spinner";
-import {addLike, removeLike} from "../../actions/postActions" 
+import {addLike, removeLike, savePost, unsavePost} from "../../actions/postActions" 
 
 class Post extends Component {
   constructor(props) {
@@ -29,6 +29,7 @@ class Post extends Component {
 
   render() {
     const {post, loadingPost} = this.props.post;
+    console.log(post.saved);
     const postId = this.props.match.params.id;
     let deleteIcon;
     let alreadyLiked = false;
@@ -38,6 +39,15 @@ class Post extends Component {
       alreadyLiked = true;
     }
    }
+  let alreadySaved = false;
+  if (post.saved !== undefined) {
+    if (
+      post.saved.filter((save) => save.user === this.props.auth.user.id)
+        .length > 0
+    ) {
+      alreadySaved = true;
+    }
+  }
 
      if (post.user === this.props.auth.user.id) {
        deleteIcon = (
@@ -86,7 +96,7 @@ class Post extends Component {
             ></i>
           </div>
         )}
-        <div type='button' className='icons-post'>
+        {/* <div type='button' className='icons-post'>
           <i
             style={{ fontSize: "1.5em" }}
             className='fa fa-comment-o'
@@ -100,14 +110,30 @@ class Post extends Component {
             className='far fa-user-circle'
             aria-hidden='true'
           ></i>
-        </div>
-        <div type='button' className='icons-post'>
-          <i
-            style={{ fontSize: "1.5em" }}
-            className='fa fa-bookmark-o'
-            aria-hidden='true'
-          ></i>
-        </div>
+        </div> */}
+        {alreadySaved === true ? (
+          <div type='button' className='icons-post'>
+            <i
+              onClick={() => {
+                this.props.unsavePost(post._id);
+              }}
+              style={{ fontSize: "1.5em" }}
+              className='fa fa-bookmark'
+              aria-hidden='true'
+            ></i>
+          </div>
+        ) : (
+          <div type='button' className='icons-post'>
+            <i
+              onClick={() => {
+                this.props.savePost(post._id);
+              }}
+              style={{ fontSize: "1.5em" }}
+              className='fa fa-bookmark-o'
+              aria-hidden='true'
+            ></i>
+          </div>
+        )}
 
         {/* delete post */}
         {deleteIcon}
@@ -231,4 +257,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { getPost, deletePost, addLike, removeLike })(Post);
+export default connect(mapStateToProps, { getPost, deletePost, addLike, removeLike, savePost, unsavePost })(Post);
