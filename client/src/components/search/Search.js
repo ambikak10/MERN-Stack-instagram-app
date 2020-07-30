@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from "react-router-dom";
 import "./search.css";
-import { getSuggestionList } from "../../actions/profileActions";
+import { getAllProfiles } from "../../actions/profileActions";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import Spinner from '../common/Spinner';
@@ -25,7 +25,7 @@ class Search extends Component {
     this.setState({ showMenu: true, searchInput: event.target.value }, () => {
       document.addEventListener('click', this.closeMenu);
     });
-    this.props.getSuggestionList();
+    this.props.getAllProfiles();
   }
   
   closeMenu(event) {
@@ -45,32 +45,37 @@ class Search extends Component {
 
   render() {
     const {profiles, loading} = this.props.profile;
+    const {auth} = this.props;
     let content;
     if(profiles === null || loading){
       content = <Spinner />;
     }
     if(profiles !== null && profiles.length > 0) {
-      console.log(profiles);
-      content = profiles.map(profile =>  {
-        return (
-        <Link to={`/profile/${profile.handle}/${profile.user._id}`} className="searchOption" onClick={this.searchClick.bind(this)}>
-          <div className="searchData">
-            <div className="searchAvatarBox">
-              <img className="searchAvatar" src={profile.user.avatar}/>
+      const searchProfiles = profiles.filter(profile => {
+        return profile.user.name.toLowerCase().includes(this.state.searchInput.toLowerCase()) && profile.user._id !== auth.user.id;
+      });
+      if (searchProfiles.length === 0) {
+        content = <div style={{textAlign: "center", fontSize: "14px"}}>No search result</div>
+      } else {
+        content = searchProfiles.map(profile =>  {
+          return (
+          <Link to={`/profile/${profile.handle}/${profile.user._id}`} className="searchOption" onClick={this.searchClick.bind(this)}>
+            <div className="searchData">
+              <div className="searchAvatarBox">
+                <img className="searchAvatar" src={profile.user.avatar}/>
+              </div>
+              <div className="searchNameBox">
+                <div className="searchName">{profile.user.name}</div>
+                <div className="searchHandle">{profile.handle}</div>
+              </div>
             </div>
-            <div className="searchNameBox">
-              <div className="searchName">{profile.user.name}</div>
-              <div className="searchHandle">{profile.handle}</div>
-            </div>
-          </div>
-        </Link>
-      )});
+          </Link>
+        )});
+      }
+      // console.log(searchProfiles);
+      
     } 
-    
-    if (profiles !==null && profiles.length === 0){
-      content = <div style={{textAlign: "center", fontSize: "22px"}}>No search result</div>
-    }
-
+        
     return (
       <div className="searchBox">
         <span className='fa fa-search searchIcon'></span>
@@ -110,7 +115,8 @@ class Search extends Component {
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
+  auth: state.auth
 });
 export default connect(mapStateToProps, {
-  getSuggestionList,
+  getAllProfiles,
 })(Search);
