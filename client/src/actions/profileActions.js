@@ -22,6 +22,7 @@ export const deleteAccount = (history) => (dispatch) => {
     axios
       .delete("/api/profile")
       .then((res) => {
+        console.log(res);
         dispatch({
           type: SET_CURRENT_USER,
           payload: {},
@@ -34,7 +35,7 @@ export const deleteAccount = (history) => (dispatch) => {
       .catch((err) =>
         dispatch({
           type: GET_ERRORS,
-          payload: err.response.data,
+          payload: {},
         })
       );
   }

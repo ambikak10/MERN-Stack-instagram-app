@@ -14,7 +14,7 @@ class ProfilePostItem extends Component {
           <div id='posts' className='col-lg-4 col-md-6 col-xs-12 col-xxs-12'>
             <Link to={`/post/${id}`}>
               <figure>
-                <img src={post.image} alt='posts' />
+                <img src={post.image} alt='posts' style={{objectFit: "cover"}} />
               </figure>
             </Link>
           </div>

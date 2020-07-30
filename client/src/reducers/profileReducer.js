@@ -43,8 +43,8 @@ export default function (state = initialState, action) {
     case GET_FOLLOWING:
       return {
         ...state,
-        followingList: action.payload
-      }
+        followingList: action.payload,
+      };
     case CLEAR_CURRENT_PROFILE:
       return {
         ...state,
