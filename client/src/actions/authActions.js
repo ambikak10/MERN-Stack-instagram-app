@@ -54,3 +54,19 @@ export const logoutUser = () => dispatch => {
     payload: {}
   })
 };
+
+//Add picture
+export const addPicture = (picture, history) => dispatch => {
+  axios
+    .post("/api/users/editAvatar", picture)
+    .then(res => {
+      console.log(res.data)
+      window.alert("Photo successfully changed")
+      history.push("/profile")
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      }))
+};

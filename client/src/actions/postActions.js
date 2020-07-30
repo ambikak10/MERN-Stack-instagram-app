@@ -159,7 +159,7 @@ export const addLike = (postId) => (dispatch) => {
     .post(`/api/posts/like/${postId}`)
     .then((res) => {
      dispatch({
-       type: GET_POST,
+       type: GET_POSTS,
        payload: res.data,
      });
     })
@@ -210,7 +210,63 @@ export const allPostsExceptCurrentUsers = () => (dispatch) => {
     });
 };
 
-// Save post
+// Like a post in PostFeed
+export const addLikePosts = (postId) => (dispatch) => {
+  axios
+    .post(`/api/posts/like/${postId}`)
+    .then(res => dispatch(getPosts()))
+    .catch((err) => {
+      // console.log(err);
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
+
+// UnLike a post in PostFeed
+export const removeLikePosts = (postId) => (dispatch) => {
+  axios
+    .post(`/api/posts/unlike/${postId}`)
+    .then(res => dispatch(getPosts()))    
+    .catch((err) => {
+      // console.log(err);
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
+
+// save posts in PostFeed
+export const savePosts= (postId) => (dispatch) => {
+  axios
+    .post(`/api/posts/save/${postId}`)
+    .then(res => dispatch(getPosts()))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    ); 
+    
+};
+
+// Unsave a post in PostFeed
+export const unsavePosts = (postId) => (dispatch) => {
+  axios
+    .post(`/api/posts/unsave/${postId}`)
+    .then(res => dispatch(getPosts()))
+    .catch((err) => {
+      // console.log(err);
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
+
+// save post
 export const savePost = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/save/${postId}`)
@@ -220,12 +276,13 @@ export const savePost = (postId) => (dispatch) => {
         payload: res.data,
       });
     })
-    .catch((err) => {
+    .catch(err =>
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data,
-      });
-    });
+        payload: err.response.data
+      })
+    );
+
 };
 
 // Unsave post
