@@ -25,9 +25,7 @@ export class Navbar extends Component {
     this.props.logoutUser();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const pathName = nextProps.history.location.pathname;
-    // console.log(pathName);
+  checkPathName(pathName) {
     if (pathName == "/home") {
       this.setState({
         home: true,
@@ -43,11 +41,19 @@ export class Navbar extends Component {
         avatarIcon: false,
       });
     } else if (pathName == "/gallery") {
+      console.log("hit gallery");
       this.setState({
         home: false,
         explore: false,
         gallery: true,
         avatarIcon: false,
+      })
+    } else if (pathName == "/profile" || pathName == "/current-profile") {
+      this.setState({
+        home: false,
+        explore: false,
+        gallery: false,
+        avatarIcon: true,
       })
     } else {
       this.setState({
@@ -57,6 +63,15 @@ export class Navbar extends Component {
         avatarIcon: false,
       })
     }
+  }
+
+  componentDidMount() {
+    const pathName = this.props.history.location.pathname;
+    this.checkPathName(pathName);
+  };
+  componentWillReceiveProps(nextProps) {
+    const pathName = nextProps.history.location.pathname;
+    this.checkPathName(pathName);
   }
   
   render() {
@@ -126,7 +141,8 @@ export class Navbar extends Component {
 
             <li>
               <Link to='/profile'>
-                <img className='avatar navbarIcon' src={avatar} alt='Avatar' />
+                {!avatarIcon && <img className='avatar navbarIcon' src={avatar} alt='Avatar' />}
+                {avatarIcon && <img className='avatar navbarIcon' src={avatar} alt='Avatar'  style={{border: "1px solid black", padding: "1.5px"}}/>}
               </Link>
             </li>
             

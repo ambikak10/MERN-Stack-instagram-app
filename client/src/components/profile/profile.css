@@ -6,8 +6,33 @@
   display: flex;
   /* padding-top: 20px; */
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  border-top: 1px solid rgba(var(--b38,219,219,219),1);
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+  margin-top: 100px;
+  color: #dbdbdb;
+  /* padding: 20px */
 }
+.profileTab {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  height: 52px;
+  justify-content: center;
+  width: 90px;
+}
+.profileTab:not(:last-child) {
+  margin-right: 60px;
+}
+.activeStyle {
+  border-top: 1px solid rgba(var(--i1d,38,38,38),1);
+}
+.activeTextStyle {
+  color: black;
+}
+
 .space {
   margin: 0 10% 0 6%; 
 }
@@ -46,7 +71,7 @@
   /* font-family: Helvetica, Arial, sans-serif; */
   display: flex;
   /* margin-top: -20px; */
-  margin-right: 70px;
+  /* margin-right: 70px; */
 }
 .fa-facebook-square {
   color: #3b5998;
