@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ERRORS, SET_CURRENT_USER, GET_PROFILE, CLEAR_CURRENT_PROFILE, GET_PROFILES, PROFILE_LOADING, GET_FOLLOWING } from "./types";
+import { GET_ERRORS, SET_CURRENT_USER, GET_PROFILE, CLEAR_CURRENT_PROFILE, GET_PROFILES, PROFILE_LOADING, GET_FOLLOWING, GET_ALL_PROFILES } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
 // Create Profile
@@ -90,7 +90,7 @@ export const getAllProfiles = () => (dispatch) => {
     .then((res) => {
       // console.log(res);
       dispatch({
-        type: GET_PROFILES,
+        type: GET_ALL_PROFILES,
         payload: res.data,
       });
     })
