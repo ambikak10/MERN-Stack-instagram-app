@@ -23,7 +23,9 @@ export class Profile extends Component {
       showFollowing: false,
       change: false,
       posts: [],
-      saved: false
+      saved: false,
+      postsIcon: true,
+      savedIcon: false,
     };
   }
   showFollowersList = (e) => {
@@ -69,22 +71,27 @@ export class Profile extends Component {
   getPosts() {
     this.setState({
       posts: this.props.userPosts,
-      saved: false
+      saved: false,
+      postsIcon: true,
+      savedIcon: false,
     });
   }
 
   getSavedPosts() {
     this.setState({
       posts: this.props.profile.saved,
-      saved: true
+      saved: true,
+      postsIcon: false,
+      savedIcon: true,
     });
   }
-
+  
   render() {
     let profileContent;
     const { profile, loading, followingList } = this.props;
     const { user } = this.props.auth;
     const { userPosts, loadingPost } = this.props;
+    const {postsIcon, savedIcon} = this.state;
     if (profile === null || loading || loadingPost || !userPosts) {
       profileContent = <Spinner />;
     } else {
@@ -92,7 +99,7 @@ export class Profile extends Component {
       let addPostTab;
       if (user.id === profile.user._id) {
         addPostTab = (
-          <Link to='/create-post'>
+          <Link to='/create-post' className="profileTab">
             <i className='far fa-plus-square'>
               <span
                 style={{
@@ -106,8 +113,8 @@ export class Profile extends Component {
           </Link>
         );
         savedTab = (
-          <div type="button" onClick={this.getSavedPosts.bind(this)} >
-            <i className='fa fa-bookmark-o' aria-hidden='true'>
+          <div type="button" onClick={this.getSavedPosts.bind(this)} className={`profileTab ${savedIcon ? "activeStyle" : ""}`}>
+            <i className={`fa fa-bookmark-o ${savedIcon ? "activeTextStyle" : ""}`} aria-hidden='true' style={savedIcon ? {color: "black"}: {}}>
               <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
                 SAVED
               </span>
@@ -267,10 +274,10 @@ export class Profile extends Component {
               </span>
             </div>
           </div>
-          <hr className='horizontalLine' />
+          {/* <hr className='horizontalLine' /> */}
           <div className='profileTabs icons'>
-            <div type="button" onClick={this.getPosts.bind(this)}>
-              <i className='fa fa-picture-o' aria-hidden='true'>
+            <div type="button" onClick={this.getPosts.bind(this)} className={`profileTab ${postsIcon ? "activeStyle" : ""}`}>
+              <i className="fa fa-picture-o" aria-hidden='true' style={postsIcon ? {color: "black"}: {}}>
                 <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
                   POSTS
                 </span>
@@ -278,13 +285,13 @@ export class Profile extends Component {
             </div>
             {addPostTab}
             {savedTab}
-            <Link to=''>
+            <div className="profileTab">
               <i className='far fa-user-circle' aria-hidden='true'>
                 <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
                   TAGGED
                 </span>
               </i>
-            </Link>
+            </div>
           </div>
 
           {this.state.posts.length > 0 ? (
