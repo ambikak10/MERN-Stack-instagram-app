@@ -44,14 +44,14 @@ class Search extends Component {
   }
 
   render() {
-    const {profiles, loading} = this.props.profile;
+    const {search, loading} = this.props.profile;
     const {auth} = this.props;
     let content;
-    if(profiles === null || loading){
+    if(search === null || loading){
       content = <Spinner />;
     }
-    if(profiles !== null && profiles.length > 0) {
-      const searchProfiles = profiles.filter(profile => {
+    if(search !== null && search.length > 0) {
+      const searchProfiles = search.filter(profile => {
         return profile.user.name.toLowerCase().includes(this.state.searchInput.toLowerCase()) && profile.user._id !== auth.user.id;
       });
       if (searchProfiles.length === 0) {
