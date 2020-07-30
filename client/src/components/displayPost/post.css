@@ -46,6 +46,7 @@
 .size-of-image {
   width: 600px;
   height: 600px;
+  object-fit: cover;
 }
 .style {
   width: 320px;
