@@ -7,11 +7,12 @@ import { connect } from "react-redux";
 import Spinner from '../common/Spinner';
 
 class Search extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     
     this.state = {
       showMenu: false,
+      searchInput: ""
     };
     
     this.showMenu = this.showMenu.bind(this);
@@ -21,7 +22,7 @@ class Search extends Component {
   showMenu(event) {
     event.preventDefault();
     
-    this.setState({ showMenu: true }, () => {
+    this.setState({ showMenu: true, searchInput: event.target.value }, () => {
       document.addEventListener('click', this.closeMenu);
     });
     this.props.getSuggestionList();
@@ -31,11 +32,15 @@ class Search extends Component {
     
     if (!this.dropdownMenu.contains(event.target)) {
       
-      this.setState({ showMenu: false }, () => {
+      this.setState({ showMenu: false, searchInput: "" }, () => {
         document.removeEventListener('click', this.closeMenu);
       });  
       
     }
+  }
+
+  searchClick(event) {
+    this.closeMenu(event);
   }
 
   render() {
@@ -46,8 +51,9 @@ class Search extends Component {
     }
     if(profiles !== null && profiles.length > 0) {
       console.log(profiles);
-      content = profiles.map(profile => (
-        <Link to={`/profile/${profile.handle}/${profile.user._id}`} className="searchOption">
+      content = profiles.map(profile =>  {
+        return (
+        <Link to={`/profile/${profile.handle}/${profile.user._id}`} className="searchOption" onClick={this.searchClick.bind(this)}>
           <div className="searchData">
             <div className="searchAvatarBox">
               <img className="searchAvatar" src={profile.user.avatar}/>
@@ -58,7 +64,7 @@ class Search extends Component {
             </div>
           </div>
         </Link>
-      ));
+      )});
     } 
     
     if (profiles !==null && profiles.length === 0){
@@ -73,8 +79,9 @@ class Search extends Component {
           type='search'
           placeholder='Search..'
           onChange={this.showMenu}
+          value={this.state.searchInput}
         />
-        
+
         {
           this.state.showMenu
             ? (
