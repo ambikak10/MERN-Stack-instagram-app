@@ -59,7 +59,7 @@ class Search extends Component {
       } else {
         content = searchProfiles.map(profile =>  {
           return (
-          <Link to={`/profile/${profile.handle}/${profile.user._id}`} className="searchOption" onClick={this.searchClick.bind(this)}>
+          <Link  to={`/profile/${profile.handle}/${profile.user._id}`} className="searchOption" onClick={this.searchClick.bind(this)}>
             <div className="searchData">
               <div className="searchAvatarBox">
                 <img className="searchAvatar" src={profile.user.avatar}/>
@@ -77,7 +77,7 @@ class Search extends Component {
     } 
         
     return (
-      <div className="searchBox">
+      <div className='searchBox d-none d-xl-block'>
         <span className='fa fa-search searchIcon'></span>
         <input
           className='searchInput'
@@ -87,27 +87,18 @@ class Search extends Component {
           value={this.state.searchInput}
         />
 
-        {
-          this.state.showMenu
-            ? (
-              <div className="searchDropDown">
-                <div
-                  className="searchDropDownMenu"
-                  ref={(element) => {
-                    this.dropdownMenu = element;
-                  }}
-                >
-                  <div className="searchOptions">
-                    {content}
-                  </div>
-                  
-                </div>
-              </div>
-            )
-            : (
-              null
-            )
-        }
+        {this.state.showMenu ? (
+          <div className='searchDropDown'>
+            <div
+              className='searchDropDownMenu'
+              ref={(element) => {
+                this.dropdownMenu = element;
+              }}
+            >
+              <div className='searchOptions'>{content}</div>
+            </div>
+          </div>
+        ) : null}
       </div>
     );
   }
