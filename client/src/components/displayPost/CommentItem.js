@@ -11,7 +11,7 @@ class CommentItem extends Component {
     const {comment, auth, postId} = this.props;
     let deleteIcon;
     let avatar;
-    if (this.props.showAvatar === false) {
+    if (this.props.showAvatar === true) {
       avatar = (
         <div className='col-lg-2'>
           <Link to={`/profile/${comment.handle}/${comment.user}`}>
