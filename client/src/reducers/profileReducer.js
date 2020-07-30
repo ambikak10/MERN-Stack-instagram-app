@@ -4,13 +4,16 @@ import {
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   GET_FOLLOWING,
+  GET_ALL_PROFILES
+
 } from "../actions/types";
 
 const initialState = {
   profile: null,
   profiles: null,
   loading: false,
-  followingList: null
+  followingList: null,
+  allProfiles: null
 };
 export default function (state = initialState, action) {
   switch (action.type) {
@@ -32,11 +35,17 @@ export default function (state = initialState, action) {
         profiles: action.payload,
         loading: false,
       };
+    case GET_ALL_PROFILES:
+      return {
+        ...state,
+        allProfiles: action.payload,
+        loading: false,
+      };
     case GET_FOLLOWING:
       return {
         ...state,
-        followingList: action.payload
-      }
+        followingList: action.payload,
+      };
     case CLEAR_CURRENT_PROFILE:
       return {
         ...state,

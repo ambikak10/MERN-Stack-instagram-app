@@ -12,6 +12,7 @@ export const POST_LOADING = "POST_LOADING";
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const CLEAR_POST = "CLEAR_POST";
 export const GET_FOLLOWING = "GET_FOLLOWING";
+export const GET_ALL_PROFILES= "GET_ALL_PROFILES";
 
 
 

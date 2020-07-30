@@ -98,7 +98,9 @@ router.delete("/",
       .then((profile) => {
       
         User.findOneAndRemove({ _id: req.user.id})
-          .then(() => res.json({ success: true }))
+          .then(() => {
+            console.log('success')
+            res.json({ success: true })})
       }).catch(err => {
     console.error(err.message);
     res.status(500).send('Server Error');
