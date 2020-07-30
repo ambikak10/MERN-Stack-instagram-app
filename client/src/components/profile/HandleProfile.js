@@ -17,6 +17,16 @@ class CurrentProfile extends Component {
     this.props.getFollowingList();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match && nextProps.match.params && this.props.match && this.props.match.params) {
+      if (nextProps.match.params.handle !== this.props.match.params.handle) {
+        console.log(nextProps.match.params.handle);
+        console.log(this.props.match.params.handle)
+        window.location.reload(true);
+      }
+    }
+  }
+
   render() {
     console.log(this.props.profile.profile);
     const { profile, loading, followingList } = this.props.profile;
