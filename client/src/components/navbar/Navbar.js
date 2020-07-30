@@ -4,6 +4,7 @@ import logo from "../../img/logo.png";
 import { Link, withRouter} from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import Search from "../search/Search";
 
 
 export class Navbar extends Component {
@@ -17,7 +18,7 @@ export class Navbar extends Component {
     this.props.history.push("/");
     this.props.logoutUser();
   }
-
+  
   render() {
     const {isAuthenticated, user} = this.props.auth;
     //Get real avatar of user from redux store
@@ -34,14 +35,16 @@ export class Navbar extends Component {
             <img className='logo-navbar' alt='Instagram' src={logo} />
           </Link>
 
-          <div className='search d-none d-xl-block'>
+          {/* <div className='search d-none d-xl-block'>
             <span className='fa fa-search'></span>
             <input
               className='form-control form-control-sm'
               type='search'
               placeholder='Search..'
             />
-          </div>
+          </div> */}
+
+          <Search/>
           <ul style={{ marginTop: "auto", marginBottom: "auto" }}>
             <li>
               <Link to='/home'>
