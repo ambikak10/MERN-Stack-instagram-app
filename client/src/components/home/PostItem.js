@@ -29,14 +29,10 @@ class PostItem extends Component {
          }       
 
          render() {
-<<<<<<< HEAD
-           const { post, auth,postId, loadingPost, profile} = this.props;    
-=======
            const { auth, profile} = this.props;
            const { post, loadingPost } = this.props; 
            
            
->>>>>>> a5ea641f6d03c9327420f460c10c83edf0237e2c
            let suggestionList;
            if (profile.profiles && profile.profiles.length > 0) {
             suggestionList = <SuggestionLists profiles={profile.profiles}/>
@@ -118,55 +114,6 @@ class PostItem extends Component {
              content = <Spinner />
            } else {
              content = (
-<<<<<<< HEAD
-               <div class='container-fluid'>
-                 <div class='row'>
-                   <div class='offset-sm-1 '>
-                     <div className='card-header'>
-                       <Link to='#'>
-                         <img
-                           className='avatar-icon'
-                           src={post.avatar}
-                           alt='Avatar'
-                         />
-                       </Link>
-                       <Link to='' className='name-of-account'>
-                         {post.name}
-                       </Link>
-                       <hr style={{ marginBottom: "10px" }} />
-                       <img className='card-img-top' src={post.image} />
-                       {/*  post description & comments on post */}
-                       <div className='comment-wrapper'>
-                         <section className='row'>
-                           <section id='icons'>
-                             {/* Show like, save icons */}
-                             {icons}
-
-                             <div className='textStyle-date'>
-                               <div
-                                 style={{
-                                   fontWeight: "600",
-                                   fontSize: "1.4em",
-                                   color: "black",
-                                   marginLeft: "10px",
-                                 }}
-                               >
-                                 {post.likes && post.likes.length} Likes
-                               </div>
-                             </div>
-                           </section>
-                           {/* <!-- post description start--> */}
-
-                           <div className='col-lg-10'>
-                             <div id='col-space'>
-                               <Link className='handlename-post' to=''>
-                                 {post.name}
-                               </Link>
-                               <span className='textStyle-comment'>
-                                 &nbsp; {post.text}
-                               </span>
-                             </div>
-=======
                <div className="container-fluid">
                  <div className ="row>">
                
@@ -210,27 +157,10 @@ class PostItem extends Component {
                              }}
                            >
                              {post.likes && post.likes.length} Likes
->>>>>>> a5ea641f6d03c9327420f460c10c83edf0237e2c
                            </div>
-                           {/* <!-- post description end--> */}
-                           {/* comments on post */}
-                           <Comments
-                             comments={post.comments}
-                             postId={postId}
-                             showAvatar={true}
-                           />
+                         </div>
+            
                          </section>
-<<<<<<< HEAD
-                         <hr />
-
-                         <AddComment postId={postId} />
-                       </div>
-                     </div>
-                   </div>
-                   {/* Suggestions*/}
-                   <div
-                     className='col-auto fixed'
-=======
                          {/* <!-- post description start--> */}    
                          
                          <div className=" col-lg-10">
@@ -272,70 +202,48 @@ class PostItem extends Component {
                    {/* Avatar of current user */}
                    <div className="card-header"
                      
->>>>>>> a5ea641f6d03c9327420f460c10c83edf0237e2c
                      style={{
-                       marginTop: "20px",
-                       marginLeft: "10px",
                        backgroundColor: "#fafafa",
-                       width: "300px",
-                       height: "400px",
                        border: "none",
-                       float: "right",
                      }}
                    >
-                     {/* Avatar of current user */}
-                     <div
-                       className='card-header'
-                       style={{
-                         backgroundColor: "#fafafa",
-                         border: "none",
-                       }}
-                     >
-                       <Link to='/current-profile'>
-                         <img
-                           className='avatar-icon'
-                           src={auth.user.avatar}
-                           alt='Avatar'
-                           style={{
-                             marginLeft: ".5px",
-                             width: "60px",
-                           }}
-                         />
-                       </Link>
-                       <Link to='/current-profile' className='name-of-account'>
-                         {auth.user.name}
-                       </Link>
-                     </div>
-
-                     {/* Suggestions lists */}
-                     <div
-                       style={{
-                         marginLeft: "10px",
-                         color: "gray",
-                         fontWeight: "600",
-                       }}
-                     >
-                       Suggestions For You
-                       <Link
-                         to='/explore'
-                         style={{ float: "right", color: "black" }}
-                       >
-                         See All
-                       </Link>
-                     </div>
-
-                     {/* <SuggestionLists profiles={profile.profiles}/> */}
-                     {suggestionList}
+                     <Link to='/current-profile'>
+                       <img
+                         className='avatar-icon'
+                         src={auth.user.avatar}
+                         alt='Avatar'
+                         style={{
+                           marginLeft: ".5px",
+                           width: "60px",
+                         }}
+                       />
+                     </Link>
+                     <Link to='/current-profile' className='name-of-account'>
+                       {auth.user.name}
+                     </Link>
                    </div>
+
+                   {/* Suggestions lists */}
+                   <div
+                     style={{
+                       marginLeft: "10px",
+                       color: "gray",
+                       fontWeight: "600",
+                     }}
+                   >
+                     Suggestions For You
+                       <Link to="/explore" style={{ float: "right", color: "black" }}>
+                       See All
+                       </Link>
+                   </div>
+
+                   {/* <SuggestionLists profiles={profile.profiles}/> */}
+                   {suggestionList}
                  </div>
                </div>
-<<<<<<< HEAD
-             );
-=======
                </div>
               
            );
->>>>>>> a5ea641f6d03c9327420f460c10c83edf0237e2c
          }
     return (
       <div >
