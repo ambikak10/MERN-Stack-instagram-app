@@ -29,8 +29,8 @@ export const deleteAccount = (history) => (dispatch) => {
         });
         history.push("/");
         //Remove token from localStorage otherwise after deleting account, on refreshing page --the navbar shows -- as token will still be there in headers and locastorage 
-        localStorage.removeItem("jwtToken");
-        setAuthToken(false);
+        // localStorage.removeItem("jwtToken");
+        // setAuthToken(false);
       })
       .catch((err) =>
         dispatch({
