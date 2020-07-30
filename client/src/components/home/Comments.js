@@ -24,7 +24,7 @@ class Comments extends Component {
      first3comments = filterComments.map(comment => (
         <CommentItem key={comment.id} comment={comment} postId={this.props.postId}
          showAvatar={this.props.showAvatar}
-          showDelete={this.props.showDelete}/>
+          showDelete={this.props.showDelete} s/>
       ));
  
       //  comments = this.props.comments.map(comment => (
@@ -36,7 +36,7 @@ class Comments extends Component {
     
     return (
       <div>
-        <Link
+         {this.props.comments.length > 3 &&  (<Link
           to={`/post/${postId}`}
           // type='button'
           // onClick={(e) => {
@@ -45,8 +45,8 @@ class Comments extends Component {
           // }}
           style={{ color: "gray", marginLeft: "25px" }}
         >
-          View all comments
-        </Link>
+      <Fragment>View all {this.props.comments.length} comments</Fragment>
+        </Link>)}
         {first3comments}
 
         {/* {this.state.viewAllComments && <Fragment>{comments} </Fragment>}*/}
