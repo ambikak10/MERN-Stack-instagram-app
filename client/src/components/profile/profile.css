@@ -147,8 +147,9 @@
   color: white;
   font-size: 0.9em;
   font-weight: 500;
-  position: absolute;
-  left: 40px;
+  /* position: absolute;
+  left: 40px; */
+  
  
 }
 .profile-card-button-unfollow {
@@ -159,7 +160,7 @@
 }
 .profile-card-card-footer {
   padding: .75rem 1.25rem;
-  position: relative
+  /* position: relative */
 }
 .profile-card-truncate-text {
   overflow: hidden;

@@ -96,7 +96,7 @@ class ProfileCard extends Component {
               >
                 {profile.user.name}
               </div>
-              <div className='profile-card-card-footer'>
+              <div className='profile-card-card-footer' style={{textAlign:"center", marginTop:"-10px"}}>
                 {!this.state.follow && (
                   <button
                     className='btn profile-card-button-follow'
