@@ -10,6 +10,8 @@
 .card-img-top{
   width: 580px;
   height: 500px;
+  margin-left: 0px;
+  
 }
 #icons{  
   margin-top: 10px;

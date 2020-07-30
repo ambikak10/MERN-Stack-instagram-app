@@ -5,10 +5,9 @@ import "./home.css";
 import { connect } from "react-redux";
 import SuggestionLists from "./SuggestionLists";
 import { getSuggestionList } from "../../actions/profileActions";
-import Comments from "../displayPost/Comments";
-import AddComment from "../displayPost/AddComment";
+import Comments from "./Comments";
+import AddComment from "./AddComment";
 import Moment from "react-moment"; 
-import { getPosts } from "../../actions/postActions";
 import { addLikePosts ,removeLikePosts} from "../../actions/postActions";
 import { savePosts, unsavePosts } from "../../actions/postActions";
 import PropTypes from 'prop-types';
@@ -16,8 +15,8 @@ import Spinner from "../common/Spinner";
 
 class PostItem extends Component {
   
-         constructor() {
-           super();
+         constructor(props) {
+           super(props);
            this.state = {
              follow: false,
              
@@ -30,8 +29,9 @@ class PostItem extends Component {
          }       
 
          render() {
-           const { post, auth,postId, loadingPost, profile} = this.props; 
-              
+           const { auth, profile} = this.props;
+           const { post, loadingPost } = this.props; 
+           
            
            let suggestionList;
            if (profile.profiles && profile.profiles.length > 0) {
@@ -83,7 +83,7 @@ class PostItem extends Component {
                    aria-hidden='true'
                  ></i>
                </div>               
-               {alreadySaved === true ? (
+               {alreadySaved === true ?  (
                  <div type='button' className='icons-post'>
                    <i
                      onClick={() => {
@@ -114,26 +114,35 @@ class PostItem extends Component {
              content = <Spinner />
            } else {
              content = (
-               <div class="container-fluid">
-                 <div class="row"> 
-                 <div class=
-                   "offset-sm-1 "> 
+               <div className="container-fluid">
+                 <div className ="row>">
+               
+               <div className="card  offset-sm-3"
+                     style={{                       
+                       width: "630px",
+                       border: "0.8px solid",
+                       borderColor: "#D3D3D3"        
 
-                   <div className='card-header'>
-                   <Link to='#'>
+                     }}>                      
+               <div className="card-header">
+                       <Link to={`/home/${post.handle}/${post.user}`}>
                      <img className='avatar-icon' src={post.avatar} alt='Avatar' />
                    </Link>
-                   <Link to='' className='name-of-account'>
+                       <Link to={`/home/${post.handle}/${post.user}`} className='name-of-account'>
                      {post.name}
-                   </Link>
-                   <hr style={{ marginBottom: "10px" }} />
+                   </Link>            
+                   
+                  <hr style={{ marginBottom: "10px" }} />
                  <img
                        className='card-img-top'
                    src={post.image}
+                   
                  />
+                 
                      {/*  post description & comments on post */}
-                     <div className='comment-wrapper'>
-                       <section className='row'>
+                    <div className='comment-wrapper'>
+                       <section className='row'
+                       >
                          <section id ="icons">
                            {/* Show like, save icons */}
                            {icons}
@@ -154,9 +163,9 @@ class PostItem extends Component {
                          </section>
                          {/* <!-- post description start--> */}    
                          
-                         <div className='col-lg-10'>
+                         <div className=" col-lg-10">
                            <div id='col-space'>
-                             <Link className='handlename-post' to=''>
+                               <Link className='handlename-post' to={`/home/${post.handle}/${post.user}`}>
                                {post.name}
                              </Link>
                              <span className='textStyle-comment'>
@@ -166,33 +175,33 @@ class PostItem extends Component {
                          </div>
                          {/* <!-- post description end--> */}
                          {/* comments on post */}
-                         <Comments comments={post.comments} postId={postId} showAvatar={true} />
+                         <Comments comments={post.comments} postId={post._id} showAvatar={true} showDelete={true} />
                        </section>
                        <hr/>
                        
-                       <AddComment postId={postId}/>
-
-                    </div>
-                    
-               </div>
-               </div>
+                       <AddComment postId={post._id}/>
+                  </div>
+                 </div>   
+                 </div>   
+               
+               
+                 
                { /* Suggestions*/}
-                 <div
-                     className="col-auto fixed"
+                 <div className="card fixed-top"
+                       
                    style={{
-                     marginTop: "20px",
-                     marginLeft: "10px",
+                     marginTop: "60px", 
+                     marginLeft: "20px" ,                 
                      backgroundColor: "#fafafa",
                      width: "300px",
-                     height: "400px",
+                     height: "500px",
                      border: "none",
-                     float:"right"
                     
                    }}
                  >
                    {/* Avatar of current user */}
-                   <div
-                     className='card-header'
+                   <div className="card-header"
+                     
                      style={{
                        backgroundColor: "#fafafa",
                        border: "none",
@@ -232,8 +241,8 @@ class PostItem extends Component {
                    {suggestionList}
                  </div>
                </div>
-               
-             </div>
+               </div>
+              
            );
          }
     return (
@@ -255,4 +264,4 @@ const mapStateToProps = (state) => ({
   
 });
 
-export default connect(mapStateToProps, { getSuggestionList,getPosts,addLikePosts,removeLikePosts,savePosts,unsavePosts})(PostItem);
+export default connect(mapStateToProps, { getSuggestionList, addLikePosts,removeLikePosts,savePosts,unsavePosts})(PostItem);
