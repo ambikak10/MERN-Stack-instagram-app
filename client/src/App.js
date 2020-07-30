@@ -102,6 +102,11 @@ class App extends Component {
             <Switch>
               {" "}
               <PrivateRoute exact path='/home' component={Posts} />{" "}
+              <PrivateRoute
+                exact
+                path='/home/:handle/:user_id'
+                component={HandleProfile}
+              />{" "}
             </Switch>
             <Switch>
               {" "}
