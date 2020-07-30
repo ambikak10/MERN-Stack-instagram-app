@@ -79,6 +79,8 @@ export const addComment = (commentInput, postId) => dispatch => {
         type: GET_POST,
         payload: res.data
       })
+      
+      
     })
     .catch(err => {
       // console.log(err.response.data);
@@ -87,6 +89,23 @@ export const addComment = (commentInput, postId) => dispatch => {
       payload: err.response.data
     })})
 }
+// Add comment in postfeed
+//Add comment
+export const addCommentPosts = (commentInput, postId) => dispatch => {
+  dispatch(setPostLoading());
+  dispatch(clearErrors());
+  axios
+    .post(`/api/posts/comment/${postId}`, commentInput)
+    .then(res => dispatch(getPosts()))  
+    .catch(err => {
+      // console.log(err.response.data);
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    })
+}
+
 //Delete comment
 export const deleteComment = (postId, commentId) => dispatch => {
   axios
