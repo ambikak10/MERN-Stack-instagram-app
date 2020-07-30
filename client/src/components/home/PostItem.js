@@ -8,9 +8,9 @@ import { getSuggestionList } from "../../actions/profileActions";
 import Comments from "../displayPost/Comments";
 import AddComment from "../displayPost/AddComment";
 import Moment from "react-moment"; 
-import { getPost } from "../../actions/postActions";
-import { addLike ,removeLike} from "../../actions/postActions";
-import { savePost, unsavePost } from "../../actions/postActions";
+import { getPosts } from "../../actions/postActions";
+import { addLikePosts ,removeLikePosts} from "../../actions/postActions";
+import { savePosts, unsavePosts } from "../../actions/postActions";
 import PropTypes from 'prop-types';
 import Spinner from "../common/Spinner";
 
@@ -54,7 +54,7 @@ class PostItem extends Component {
                  <div type='button' className='icons-post'>
                    <i
                      onClick={() => {
-                       this.props.removeLike(post._id);
+                       this.props.removeLikePosts(post._id);
                      }}
                      className='fa fa-heart'
                      style={{ fontSize: "1.5em", color: "red" }}
@@ -64,7 +64,7 @@ class PostItem extends Component {
                ) : (
                    <div
                      type='button'
-                     onClick={() => this.props.addLike(post._id)}
+                     onClick={() => this.props.addLikePosts(post._id)}
                      className='icons-post'
                    >
                      <i
@@ -85,7 +85,7 @@ class PostItem extends Component {
                  <div type='button' className='icons-post'>
                    <i
                      onClick={() => {
-                       this.props.unsavePost(post._id);
+                       this.props.unsavePosts(post._id);
                      }}
                      className='fa fa-bookmark'
                      style={{ fontSize: "1.5em" }}
@@ -95,7 +95,7 @@ class PostItem extends Component {
                ) : (
                    <div
                      type='button'
-                     onClick={() => this.props.savePost(post._id)}
+                     onClick={() => this.props.savePosts(post._id)}
                      className='icons-post'
                    >
                      <i
@@ -254,4 +254,4 @@ const mapStateToProps = (state) => ({
   
 });
 
-export default connect(mapStateToProps, { getSuggestionList,getPost,addLike,removeLike,savePost,unsavePost})(PostItem);
+export default connect(mapStateToProps, { getSuggestionList,getPosts,addLikePosts,removeLikePosts,savePosts,unsavePosts})(PostItem);

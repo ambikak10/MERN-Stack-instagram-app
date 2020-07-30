@@ -148,9 +148,10 @@ router.post(
         // Update
         User.findOneAndUpdate(
           { _id: req.user.id },
-          { avatar: req.user.changeAvatar },
+          { avatar: req.body.image },
           { new : true}
         ).then((user) => res.json(user));
+        console.log(res.data);
       } else {
         return res.json({ usernotfound: "No user found" });
       }

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import "./gallery.css";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import {allPostsExceptCurrentUsers} from '../../actions/postActions';
+import {allPostsExceptCurrentUsers} from "../../actions/postActions";
 import PropTypes from 'prop-types';
 import Spinner from '../common/Spinner'
 import GalleryItem from './GalleryItem';
