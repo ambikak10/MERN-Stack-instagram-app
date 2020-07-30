@@ -8,10 +8,10 @@ class CommentItem extends Component {
   render() {
     const {comment, auth, postId} = this.props;   
     return (
-      <div className='container-fluid' tyle={{ marginTop: "-10px" }}>
+      <div className='container-fluid'>
         <div class='row'>
           <div className='col-lg-0'>
-            <div id='col-space' style={{ marginLeft: "15px" }}>
+            <div id='col-space' style={{ marginLeft: "15px", marginTop: "-10px"}}>
               <Link
                 to={`/home/${comment.handle}/${comment.user}`}
                 className='handlename-post'
