@@ -14,21 +14,11 @@ import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
 
 class PostItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      follow: false,
-      // ViewAllComments: false,
-    };
-  }
+
   componentDidMount() {
     this.props.getSuggestionList();
   }
-  // toggleComments = () => {
-  //   this.setState({
-  //     ViewAllComments: !this.state.ViewAllComments,
-  // //   });
-  // };
+ 
   render() {
     const { auth, profile } = this.props;
     const { post, loadingPost } = this.props;
@@ -55,7 +45,7 @@ class PostItem extends Component {
         alreadySaved = true;
       }
     }
-
+ 
     const icons = (
       <div>
         {alreadyLiked === true ? (
@@ -202,14 +192,8 @@ class PostItem extends Component {
                     </div>
                     {/* <!-- post description end--> */}
                     {/* comments on post */}
-                    {/* <p
-                      type='button'
-                      onClcik={(e) => this.toggleComments()}
-                      style={{ color: "gray", marginLeft: "25px" }}
-                    >
-                      View all comments
-                    </p>{" "}
-                    {ViewAllComments && ( */}
+             
+                 
                       <Comments
                         comments={post.comments}
                         postId={post._id}
