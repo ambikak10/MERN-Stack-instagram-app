@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import PostFeed from './PostFeed';
 import Spinner from '../common/Spinner';
-import { getPosts } from '../../actions/postActions';
+import { allPostsExceptCurrentUsers } from '../../actions/postActions';
 
 class Posts extends Component {
   componentDidMount() {
-    this.props.getPosts();
+    this.props.allPostsExceptCurrentUsers();
   }
 
   render() {
@@ -44,4 +44,4 @@ const mapStateToProps = state => ({
   post: state.post
 });
 
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default connect(mapStateToProps, { allPostsExceptCurrentUsers })(Posts);
