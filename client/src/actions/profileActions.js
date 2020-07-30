@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GET_ERRORS, SET_CURRENT_USER, GET_PROFILE, CLEAR_CURRENT_PROFILE, GET_PROFILES, PROFILE_LOADING, GET_FOLLOWING, GET_ALL_PROFILES } from "./types";
 import setAuthToken from "../utils/setAuthToken";
-
+import {logoutUser} from "./authActions";
 // Create Profile
 export const createProfile = (profileData, history) => (dispatch) => {
   axios
@@ -22,14 +22,15 @@ export const deleteAccount = (history) => (dispatch) => {
     axios
       .delete("/api/profile")
       .then((res) => {
-        dispatch({
-          type: SET_CURRENT_USER,
-          payload: {},
-        });
-        history.push("/");
-        //Remove token from localStorage otherwise after deleting account, on refreshing page --the navbar shows -- as token will still be there in headers and locastorage 
-        localStorage.removeItem("jwtToken");
-        setAuthToken(false);
+        // dispatch({
+        //   type: SET_CURRENT_USER,
+        //   payload: {},
+        // });
+        // history.push("/");
+        dispatch(logoutUser());
+        // //Remove token from localStorage otherwise after deleting account, on refreshing page --the navbar shows -- as token will still be there in headers and locastorage 
+        // localStorage.removeItem("jwtToken");
+        // setAuthToken(false);
       })
       .catch((err) =>
         dispatch({
