@@ -159,4 +159,26 @@ router.post(
   });
 
 
-
+// @route   DELETE api/users/deleteAvatar
+// @desc    Delete Avatar
+// @access  Private
+router.post(
+  "/deleteAvatar",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.findOne({ _id: req.user.id })
+      .then((user) => {
+        if (user) {
+          // Update
+          User.findOneAndUpdate(
+            { _id: req.user.id },
+            { $set: { avatar: null } },
+            { new: true }
+          ).then((user) => res.json(user.avatar));
+        } else {
+          return res.json({ usernotfound: "No user found" });
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+);

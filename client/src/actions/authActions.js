@@ -61,7 +61,8 @@ export const addPicture = (picture, history) => dispatch => {
     .post("/api/users/editAvatar", picture)
     .then(res => {      
       window.alert("Photo successfully changed")
-      history.push("/profile")
+      window.location.reload(false);
+     
     })
     .catch(err =>
       dispatch({
@@ -69,3 +70,20 @@ export const addPicture = (picture, history) => dispatch => {
         payload: err.response.data
       }))
 };
+
+//Delete Avatar
+export const deletePicture = (history) => dispatch => {
+  axios
+    .post("/api/users/deleteAvatar")
+    .then(res => {
+      // console.log(res.data);
+      //history.push("/profile")})
+      window.location.reload(false)})
+    .catch(err => {
+      // console.log(err);
+      dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  })
+}

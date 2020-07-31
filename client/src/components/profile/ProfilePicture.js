@@ -3,7 +3,7 @@ import './profilepicture.css';
 import { Link } from "react-router-dom";
 import { withRouter } from 'react-router';
 import { connect } from "react-redux";
-import { addPicture } from "../../actions/authActions";
+import { addPicture,deletePicture } from "../../actions/authActions";
 
 
 class profilepicture extends Component {
@@ -14,43 +14,53 @@ class profilepicture extends Component {
       showDefault: true,
       fileUploadState: "",
       //data:new FormData()
+      errors: {},
     };
     this.uploadImage = this.uploadImage.bind(this);
     this.inputReference = React.createRef();
     //this.onClick = this.onClick.bind(this);
   }
 
-  uploadImage = async(e) => {
-    const  files  = e.target.files;
+  uploadImage = async (e) => {
+    const files = e.target.files;
     const data = new FormData();
     data.append("file", files[0]);
-    data.append("upload_preset", "instagram");  
+    data.append("upload_preset", "instagram");
 
-    const res = await fetch("https://api.cloudinary.com/v1_1/instagramteam/image/upload", {
-      method: "POST",
-      body: data,
-    });
-    const result = await res.json();
-      this.setState({
-      image: result.secure_url, //secure.url is a property of fetch result
-      showDefault: false,
-      }      
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/instagramteam/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
     );
-  
-    this.props.addPicture(this.image, this.props.history);
+    const result = await res.json();
+    const newAvatar = {
+      avatar: result.secure_url,
+    };
+
+    this.props.addPicture(newAvatar, this.props.history);
   };
-  
-  onChange = (e)=> {
-    this.setState({ fileUploadState: e.target.value });
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
-   onClick = (e) => {
-    this.inputReference.current.click();    
-    
+
+  onChange = (e) => {
+    this.setState({ fileUploadState: e.target.value });
+  };
+  onClick = (e) => {
+    this.inputReference.current.click();
+  };
+  onRemoveImage(history) {
+    this.props.deletePicture(history);
   }
   render() {
     if (!this.props.change) {
       return null;
     }
+    const { errors } = this.state;
     return (
       <div className="firstset">
         <div className="secondsetupload">
@@ -78,11 +88,9 @@ class profilepicture extends Component {
                   hidden
                   ref={this.inputReference}
                   onChange={this.uploadImage}
-                  //onClick={this.props.close}
                 />
                 <button
                   onClick={this.onClick}
-                  
                   className="w3-button w3-block"
                   style={{
                     color: "blue",
@@ -94,7 +102,10 @@ class profilepicture extends Component {
               </div>
               <hr style={{ marginTop: "0", marginBottom: "0" }} />
               <button
-                onClick={this.props.onDelete}
+                onClick={this.onRemoveImage.bind(
+                  this,
+                  this.props.history
+                )}
                 className="w3-button w3-block"
                 style={{
                   color: "red",
@@ -121,6 +132,6 @@ class profilepicture extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  auth: state.auth
+  errors: state.errors
 });
-export default connect(mapStateToProps, { addPicture })(withRouter(profilepicture));
+export default connect(mapStateToProps, { addPicture,deletePicture })(withRouter(profilepicture));
