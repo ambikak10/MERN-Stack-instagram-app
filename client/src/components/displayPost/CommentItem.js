@@ -43,10 +43,10 @@ class CommentItem extends Component {
     }
     
     return (
-      <div className="container">
+      // <div className="container">
         <section className='row'>      
         {avatar}
-        <div className='col-lg-8'>
+        <div className={`${comment.user === auth.user.id ? "col-lg-8" : "col-lg-10"}`}>
           <div id='col-space'>
             <Link to={`/profile/${comment.handle}/${comment.user}`} className='handlename-post'>
               {comment.name}
@@ -58,7 +58,7 @@ class CommentItem extends Component {
         </div>
         {deleteIcon}
       </section>
-      </div>
+      // </div>
       
     )
   }
