@@ -77,9 +77,9 @@ export class Navbar extends Component {
   render() {
     // console.log(this.props.history);
     const {isAuthenticated, user} = this.props.auth;
+    const { currentProfile } = this.props.profile;
     //Get real avatar of user from redux store
-    const {avatar} = user;
-    const { profile } = this.props.profile;
+    const avatar = currentProfile ? currentProfile.user.avatar : user.avatar;
     const {home, explore, gallery, avatarIcon} = this.state;
     //Put all navbar contents into variable "navbar" 
     const navbar = (

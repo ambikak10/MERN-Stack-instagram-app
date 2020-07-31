@@ -22,6 +22,7 @@ import setAuthToken from "./utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { SET_CURRENT_USER } from "./actions/types";
 import { logoutUser } from "./actions/authActions";
+import { getCurrentProfile } from "./actions/profileActions";
 import NotFound from "./components/common/NotFound";
 import Gallery from './components/gallery/Gallery';
 import UploadAvatar from './components/profile/UploadAvatar'
@@ -44,6 +45,8 @@ if (localStorage.jwtToken) {
     store.dispatch(logoutUser());
 
     window.location.href = "/";
+  } else {
+    store.dispatch(getCurrentProfile());
   }
 }
 
