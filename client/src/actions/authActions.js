@@ -59,8 +59,7 @@ export const logoutUser = () => dispatch => {
 export const addPicture = (picture, history) => dispatch => {
   axios
     .post("/api/users/editAvatar", picture)
-    .then(res => {
-      console.log(res.data)
+    .then(res => {      
       window.alert("Photo successfully changed")
       history.push("/profile")
     })
