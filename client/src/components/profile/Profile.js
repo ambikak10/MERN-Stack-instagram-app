@@ -55,7 +55,7 @@ export class Profile extends Component {
   };
 
   onRemove =(e) => {
-    this.props.removeAvatar();
+    this.props.removeAvatar(this.props.history);
   }
   logoutUserHandle = (e) => {
     e.preventDefault();

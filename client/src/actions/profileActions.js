@@ -185,10 +185,6 @@ export const addPicture = (newPic, history) => dispatch => {
   axios.post('/api/users/editAvatar', newPic).then(res =>{
  
     console.log(res);
-  // dispatch({
-  //   type: GET_PROFILE,
-  //   payload: res.data
-  // })
   window.alert("Profile picture uploaded")
   history.push("/profile")
   })
@@ -200,18 +196,16 @@ export const addPicture = (newPic, history) => dispatch => {
       });
     });
 };
-// Upload avatar
+// Remove avatar
 export const removeAvatar = () => (dispatch) => {
          axios.put("/api/users/removeAvatar").then((res) =>
-           dispatch({
-             type: GET_PROFILE,
-             payload: res.data,
-           }).catch((err) => {
+         console.log(res)
+         .catch((err) => {
              // console.log(err)
              dispatch({
                type: GET_ERRORS,
                payload: err.response.data,
              });
            })
-         );
+         )
        };

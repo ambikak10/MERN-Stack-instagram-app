@@ -152,7 +152,7 @@ router.post(
        { _id: req.user.id },
        { $set: {avatar:req.body.avatar} },
        { new: true }
-     ).then((user) => res.json(user.avatar));
+     ).then((user) => res.json(user));
   }
    }).catch(error => {
       console.error(error.message);

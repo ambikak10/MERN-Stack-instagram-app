@@ -225,7 +225,7 @@ class PostItem extends Component {
                 border: "none",
                 position: "fixed",
                 right: "280px",
-                marginTop: "60px",
+                marginTop: "65px",
               }}
             >
               {/* Avatar of current user */}

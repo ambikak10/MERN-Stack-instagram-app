@@ -106,7 +106,7 @@ class profilepicture extends Component {
               {/* </form> */}
               <hr style={{ marginTop: "0", marginBottom: "0" }} />
               <button
-                onClick={this.props.remove}
+                onClick={this.props.remove} {...this.props.close}
                 className='w3-button w3-block'
                 style={{
                   color: "red",
