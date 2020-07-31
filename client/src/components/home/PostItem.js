@@ -219,15 +219,15 @@ class PostItem extends Component {
             <div
               className='card sticky-top d-none d-xl-block'
               style={{
-                marginTop: "60px",
+                // marginTop: "60px",
                 marginLeft: "20px",
                 backgroundColor: "#fafafa",
                 width: "300px",
                 height: "500",
                 border: "none",
-                position: "fixed",
-                right: "280px",
-                marginTop: "65px",
+                position: "absolute",
+                right: "100px",
+                marginTop: "15px",
               }}
             >
               {/* Avatar of current user */}
