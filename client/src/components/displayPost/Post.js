@@ -167,7 +167,7 @@ class Post extends Component {
               <hr style={{ marginBottom: "10px" }} />
 
               {/*  post description & comments on post */}
-              <div className='comment-wrapper'>
+              <div>
                 <section className='row'>
                   {/* <!-- post description start--> */}
 
@@ -186,13 +186,20 @@ class Post extends Component {
                       </span>
                     </div>
                   </div>
-                  {/* <!-- post description end--> */}
+                </section>
+              </div>
+               {/* <!-- post description end--> */}
 
-                  {/* comments on post */}
+               {/* comments on post */}
+              <div className='comment-wrapper'>
+                <section>
                   <Comments comments={post.comments} postId={postId} showAvatar={true}/>
                 </section>
               </div>
+                 
 
+                 
+              
               <div id='footer'>
                 <hr />
                 <section>

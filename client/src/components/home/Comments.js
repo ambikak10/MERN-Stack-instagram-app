@@ -48,7 +48,7 @@ class Comments extends Component {
       ));
      }
     return (
-      <div>
+      <div style={{overflow: "hidden"}}>
          {this.props.comments.length > 3 &&  (<Link
           to={`/post/${postId}`}
           // type='button'
