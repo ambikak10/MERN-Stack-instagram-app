@@ -6,87 +6,9 @@ import { connect } from "react-redux";
 import { addPicture,deletePicture } from "../../actions/authActions";
 
 
-class profilepicture extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     image: "",  
-  //     showDefault: true,
-  //     fileUploadState: "" ,
-  //     fileData: new FormData()
-      
-      
-  //   };
-    // this.uploadImage = this.uploadImage.bind(this);
-    // this.inputReference = React.createRef();
-    // this.onClick = this.onClick.bind(this);
-  // }
-  
-  
-  
-  // uploadImage = async (e) => {
-  //   const files = e.target.files;
-  //   const data = new FormData();
-  //   data.append("file", files[0]);
-  //   data.append("upload_preset", "instagram");
-  //   this.setState({
-  //     fileData: data,
-  //     showDefault: false,
-  //     image: URL.createObjectURL(e.target.files[0])
-  //   });
-  // };
-  // onChange(e) {
-  //   this.setState({ fileUploadState: e.target.value });
-  // }
-  // onSubmit(e) {
-  //   //this.inputReference.current.click();    
-  //   e.preventDefault();
-  //   //POST image to cloudinary through the cloudinary API and append image
-  //   fetch(
-  //     "https://api.cloudinary.com/v1_1/instagramteam/image/upload",
-  //     {
-  //       method: "POST",
-  //       body: this.state.fileData,
-  //     }
-  //   )
-  //     .then(res => res.json())
-  //     .then(result => {
-  //       const newPicture = {          
-  //         image: result.secure_url
-  //       };
+class profilepicture extends Component { 
 
-  uploadImage = async (e) => {
-    const files = e.target.files;
-    const data = new FormData();
-    data.append("file", files[0]);
-    data.append("upload_preset", "instagram");
-
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/instagramteam/image/upload",
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-    const result = await res.json();
-    const newAvatar = {
-      avatar: result.secure_url,
-    };
-
-    this.props.addPicture(newAvatar, this.props.history);
-  };
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-  }
-
-  onChange = (e) => {
-    this.setState({ fileUploadState: e.target.value });
-  };
-  onClick = (e) => {
-    this.inputReference.current.click();
-  };
+   
   onRemoveImage(history) {
     this.props.deletePicture(history);
   }
@@ -114,15 +36,8 @@ class profilepicture extends Component {
                 Change Profile Photo
               </div>
               <hr style={{ marginBottom: "0" }} />
-
-              {/* <form onSubmit={this.onSubmit}>
-              <input
-                  type="file" hidden ref={this.inputReference} onChange={this.uploadImage}
-                  onClick= {this.props.close}            
-              />     */}
               <Link to='/upload'>
-                <button
-                  // onClick={ this.uploadImage}
+                <button                 
                   className='w3-button w3-block'
                   style={{
                     color: "blue",
@@ -130,8 +45,7 @@ class profilepicture extends Component {
                 >
                   Upload photo
                 </button>
-              </Link>
-              {/* </form> */}
+              </Link>              
               <hr style={{ marginTop: "0", marginBottom: "0" }} />
               <button
                 onClick={this.props.remove} 

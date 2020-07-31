@@ -2,7 +2,7 @@ import { SET_CURRENT_USER, GET_ERRORS, GET_PROFILE } from './types';
 import axios from 'axios';
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
-import {getCurrentProfile} from './profileActions'
+
 
 //Register user
 export const signupUser = (userData, history) => dispatch => {
@@ -75,12 +75,9 @@ export const addPicture = (picture, history) => dispatch => {
 export const deletePicture = (history) => dispatch => {
   axios
     .post("/api/users/deleteAvatar")
-    .then(res => {
-      // console.log(res.data);
-      //history.push("/profile")})
+    .then(res => {      
       window.location.reload(false)})
-    .catch(err => {
-      // console.log(err);
+    .catch(err => {      
       dispatch({
       type: GET_ERRORS,
       payload: err.response.data

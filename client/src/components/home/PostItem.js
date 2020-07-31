@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import avatar from "../../img/avatar.png";
 import "./home.css";
 import { connect } from "react-redux";
 import SuggestionLists from "./SuggestionLists";
