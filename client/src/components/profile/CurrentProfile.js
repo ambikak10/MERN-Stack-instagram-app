@@ -14,18 +14,18 @@ class CurrentProfile extends Component {
     this.props.getFollowingList();
   }
   render() {
-    console.log(this.props.profile.profile);
-    const {profile, loading, followingList } = this.props.profile;
+    // console.log(this.props.profile.profile);
+    const {currentProfile, loading, followingList } = this.props.profile;
     let content;
         const { userPosts, loadingPost } = this.props.post;
         console.log(userPosts)
-          if (loading || loadingPost || profile === null || userPosts === null || followingList === null) {
+          if (loading || loadingPost || currentProfile === null || userPosts === null || followingList === null) {
             content = ( <Spinner /> )
           } else {
             content = (
               <div>
                 <Profile
-                  profile={profile}
+                  profile={currentProfile}
                   loading={loading}
                   userPosts={userPosts}
                   loadingPost={loadingPost}

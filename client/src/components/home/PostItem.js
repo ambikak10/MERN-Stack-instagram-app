@@ -22,6 +22,8 @@ class PostItem extends Component {
   render() {
     const { auth, profile } = this.props;
     const { post, loadingPost } = this.props;
+    //Get avatar from redux store
+    const avatar = profile.currentProfile ? profile.currentProfile.user.avatar : auth.user.avatar;
 
     let suggestionList;
     if (profile.profiles && profile.profiles.length > 0) {
@@ -239,7 +241,7 @@ class PostItem extends Component {
                 <Link to='/current-profile'>
                   <img
                     className='avatar-icon'
-                    src={auth.user.avatar}
+                    src={avatar}
                     alt='Avatar'
                     style={{
                       marginLeft: ".5px",
