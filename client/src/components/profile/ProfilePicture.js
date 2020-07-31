@@ -3,7 +3,7 @@ import './profilepicture.css';
 import { Link } from "react-router-dom";
 import { withRouter } from 'react-router';
 import { connect } from "react-redux";
-import { addPicture } from "../../actions/authActions";
+import { addPicture,deletePicture } from "../../actions/authActions";
 
 
 class profilepicture extends Component {
@@ -55,14 +55,42 @@ class profilepicture extends Component {
   //         image: result.secure_url
   //       };
 
-  //       this.props.addPicture(newPicture, this.props.history);
-  //     })
-    
- 
-  //   }
+  uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "instagram");
 
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/instagramteam/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const result = await res.json();
+    const newAvatar = {
+      avatar: result.secure_url,
+    };
+
+    this.props.addPicture(newAvatar, this.props.history);
+  };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
+  onChange = (e) => {
+    this.setState({ fileUploadState: e.target.value });
+  };
+  onClick = (e) => {
+    this.inputReference.current.click();
+  };
+  onRemoveImage(history) {
+    this.props.deletePicture(history);
+  }
   render() {
-  
     if (!this.props.change) {
       return null;
     }    
@@ -121,7 +149,7 @@ class profilepicture extends Component {
                   borderBottomRightRadius: "15px",
                   borderBottomLeftRadius: "15px",
                 }}
-                className='w3-button w3-block'
+                className="w3-button w3-block"
               >
                 Cancel
               </button>
@@ -133,6 +161,6 @@ class profilepicture extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  auth: state.auth
+  errors: state.errors
 });
-export default connect(mapStateToProps, { addPicture })(withRouter(profilepicture));
+export default connect(mapStateToProps, { addPicture,deletePicture })(withRouter(profilepicture));
