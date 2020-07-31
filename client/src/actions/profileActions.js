@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ERRORS, SET_CURRENT_USER, GET_PROFILE, CLEAR_CURRENT_PROFILE, GET_PROFILES, PROFILE_LOADING, GET_FOLLOWING, GET_ALL_PROFILES } from "./types";
+import { GET_ERRORS, SET_CURRENT_USER, GET_PROFILE, CLEAR_CURRENT_PROFILE, GET_PROFILES, PROFILE_LOADING, GET_FOLLOWING, GET_ALL_PROFILES, GET_CURRENT_PROFILE } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import {logoutUser} from "./authActions";
 // Create Profile
@@ -48,13 +48,13 @@ export const getCurrentProfile = () => dispatch => {
     .get('/api/profile')
     .then(res =>
       dispatch({
-        type: GET_PROFILE,
+        type: GET_CURRENT_PROFILE,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
-        type: GET_PROFILE,
+        type: GET_CURRENT_PROFILE,
         payload: {}
       })
     );
