@@ -183,8 +183,6 @@ export const getFollowingList = () => dispatch => {
 export const addPicture = (newPic, history) => dispatch => {
      console.log(newPic);
   axios.post('/api/users/editAvatar', newPic).then(res =>{
- 
-    console.log(res);
   window.alert("Profile picture uploaded")
   history.push("/profile")
   })
@@ -192,20 +190,21 @@ export const addPicture = (newPic, history) => dispatch => {
       // console.log(err)
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data,
+        payload: {},
       });
     });
 };
 // Remove avatar
 export const removeAvatar = () => (dispatch) => {
-         axios.put("/api/users/removeAvatar").then((res) =>
-         console.log(res)
-         .catch((err) => {
+         axios
+           .put("/api/users/removeAvatar")
+           .then((res) => window.location.reload(true))
+           .catch((err) => {
              // console.log(err)
              dispatch({
                type: GET_ERRORS,
-               payload: err.response.data,
+               payload: {},
              });
-           })
-         )
+           });
+         
        };
