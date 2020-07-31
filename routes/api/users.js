@@ -159,30 +159,6 @@ router.post(
       res.status(500).send("Server Error");
    })
 });
-// @route   POST api/users/editAvatar
-// @desc    Removing avatar or Defaulting to gravatr
-// @access  Private
-
-// router.post('/editAvatar', passport.authenticate("jwt", {session: false}), (req,res) => {
-//  User.findOne({_id: req.user.id}).then(user => {
-//    console.log(req.body.avatar);
-//   if(user) {
-//      User.findOneAndUpdate(
-//        { _id: req.user.id },
-//        { $set: {avatar:"http://www.gravatar.com/avatar/3bc8768789f3edc986ada4d7a381c848?s=200&r=pg&d=mm"} },
-//        { new: true }
-//      ).then((user) => {
-//        Profile.findById(req.user.id).then((profile) => {
-//          res.json(profile);
-//        });
-//        })
-   
-//   }
-//    }).catch(error => {
-//       console.error(error.message);
-//       res.status(500).send("Server Error");
-//    })
-// });
 
 // @route   PUT api/users/avatar
 // @desc    Removing avatar or Defaulting to gravatr
