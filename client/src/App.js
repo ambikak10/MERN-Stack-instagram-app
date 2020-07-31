@@ -24,7 +24,8 @@ import { SET_CURRENT_USER } from "./actions/types";
 import { logoutUser } from "./actions/authActions";
 import { getCurrentProfile } from "./actions/profileActions";
 import NotFound from "./components/common/NotFound";
-import Gallery from './components/gallery/Gallery'
+import Gallery from './components/gallery/Gallery';
+import UploadAvatar from './components/profile/UploadAvatar'
 
 //Check for token
 if (localStorage.jwtToken) {
@@ -116,11 +117,10 @@ class App extends Component {
               <PrivateRoute exact path='/not-found' component={NotFound} />{" "}
             </Switch>
             <Switch>
-              <PrivateRoute
-                exact
-                path='/gallery'
-                component={Gallery}
-              />{" "}
+              <PrivateRoute exact path='/gallery' component={Gallery} />{" "}
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path='/upload' component={UploadAvatar} />{" "}
             </Switch>
 
             <Footer />
