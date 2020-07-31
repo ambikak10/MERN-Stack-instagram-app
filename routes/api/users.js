@@ -4,10 +4,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 const User = require('../../models/User');
+const Profile = require("../../models/Profile");
 const keys = require('../../config/keys');
 const passport = require('passport');
 const validateSignupInput = require('../../validation/sign-up');
 const validateLoginInput = require("../../validation/login");
+
 
 // @route   POST api/users/signup
 // @desc    Register user
@@ -142,22 +144,62 @@ router.post(
   "/editAvatar",
   passport.authenticate("jwt", { session: false }),
   (req, res) => { 
+    console.log("dp change")
     User.findById(req.user.id )
     .then((user) => {
-      if (user) {
-        // Update
-        User.findOneAndUpdate(
-          { _id: req.user.id },
-          { avatar: req.body.image },
-          { new : true}
-        ).then((user) => res.json(user));
-        console.log(res.data);
-      } else {
-        return res.json({ usernotfound: "No user found" });
-      }
-    })
-    .catch(err => console.log(err));
-  });
+     if(user) {
+     User.findOneAndUpdate(
+       { _id: req.user.id },
+       { $set: {avatar:req.body.avatar} },
+       { new: true }
+     ).then((user) => res.json(user.avatar));
+  }
+   }).catch(error => {
+      console.error(error.message);
+      res.status(500).send("Server Error");
+   })
+});
+// @route   POST api/users/editAvatar
+// @desc    Removing avatar or Defaulting to gravatr
+// @access  Private
 
+// router.post('/editAvatar', passport.authenticate("jwt", {session: false}), (req,res) => {
+//  User.findOne({_id: req.user.id}).then(user => {
+//    console.log(req.body.avatar);
+//   if(user) {
+//      User.findOneAndUpdate(
+//        { _id: req.user.id },
+//        { $set: {avatar:"http://www.gravatar.com/avatar/3bc8768789f3edc986ada4d7a381c848?s=200&r=pg&d=mm"} },
+//        { new: true }
+//      ).then((user) => {
+//        Profile.findById(req.user.id).then((profile) => {
+//          res.json(profile);
+//        });
+//        })
+   
+//   }
+//    }).catch(error => {
+//       console.error(error.message);
+//       res.status(500).send("Server Error");
+//    })
+// });
 
+// @route   PUT api/users/avatar
+// @desc    Removing avatar or Defaulting to gravatr
+// @access  Private
 
+router.put('/removeAvatar', passport.authenticate("jwt", {session: false}), (req,res) => {
+ User.findOne({_id: req.user.id}).then(user => {
+   console.log(req.body.avatar);
+  if(user) {
+     User.findOneAndUpdate(
+       { _id: req.user.id },
+       { $set: {avatar:"http://www.gravatar.com/avatar/3bc8768789f3edc986ada4d7a381c848?s=200&r=pg&d=mm"} },
+       { new: true }
+     ).then((user) => res.json(user.avatar));
+  }
+   }).catch(error => {
+      console.error(error.message);
+      res.status(500).send("Server Error");
+   })
+});

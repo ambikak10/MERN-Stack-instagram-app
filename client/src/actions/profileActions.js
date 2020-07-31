@@ -179,3 +179,39 @@ export const getFollowingList = () => dispatch => {
     })
     .catch(err => console.log(err));
 }
+// Upload avatar
+export const addPicture = (newPic, history) => dispatch => {
+     console.log(newPic);
+  axios.post('/api/users/editAvatar', newPic).then(res =>{
+ 
+    console.log(res);
+  // dispatch({
+  //   type: GET_PROFILE,
+  //   payload: res.data
+  // })
+  window.alert("Profile picture uploaded")
+  history.push("/profile")
+  })
+  .catch((err) => {
+      // console.log(err)
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
+// Upload avatar
+export const removeAvatar = () => (dispatch) => {
+         axios.put("/api/users/removeAvatar").then((res) =>
+           dispatch({
+             type: GET_PROFILE,
+             payload: res.data,
+           }).catch((err) => {
+             // console.log(err)
+             dispatch({
+               type: GET_ERRORS,
+               payload: err.response.data,
+             });
+           })
+         );
+       };
