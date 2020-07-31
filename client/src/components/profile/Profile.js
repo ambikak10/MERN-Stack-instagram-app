@@ -13,6 +13,7 @@ import ProfilePostItem from "./ProfilePostItem";
 import { getUserPosts } from "../../actions/postActions";
 import ProfilePicture from "./ProfilePicture";
 // import { getCurrentProfile } from "../../actions/profileActions";
+import { removeAvatar } from "../../actions/profileActions";
 
 export class Profile extends Component {
   constructor(props) {
@@ -52,6 +53,10 @@ export class Profile extends Component {
   onDelete = (e) => {
     this.props.deleteAccount(this.props.history);
   };
+
+  onRemove =(e) => {
+    this.props.removeAvatar();
+  }
   logoutUserHandle = (e) => {
     e.preventDefault();
     alert("Logging out..");
@@ -137,6 +142,7 @@ export class Profile extends Component {
                 <ProfilePicture
                   change={this.state.change}
                   close={this.changeProfilePicture}
+                  remove={this.onRemove}
                 />
               </div>
             ) : (
@@ -345,5 +351,6 @@ Profile.propTypes = {
 export default connect(mapStateToProps, {
   deleteAccount,
   logoutUser,
-  getFollowingList
+  getFollowingList,
+  removeAvatar,
 })(Profile);

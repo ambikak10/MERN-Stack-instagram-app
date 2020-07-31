@@ -115,7 +115,7 @@ class PostItem extends Component {
             <div
               className='card offset-sm-1'
               style={{
-                width: "630px",
+                width: "600px",
                 // border: "0.8px solid",
                 borderColor: "#D3D3D3",
                 position: "relative",
@@ -148,6 +148,9 @@ class PostItem extends Component {
                       borderTop: "1px solid rgba(var(--b6a,219,219,219)",
                       marginTop: "20px",
                       borderRadius: "0",
+                      width:"600px",
+                      height: "600px",
+                      objectFit: "cover"
                     }}
                     src={post.image}
                   />{" "}
@@ -220,9 +223,9 @@ class PostItem extends Component {
                 width: "300px",
                 height: "500",
                 border: "none",
-                position: "absolute",
-                right: "60px",
-                marginTop: "15px",
+                position: "fixed",
+                right: "280px",
+                marginTop: "65px",
               }}
             >
               {/* Avatar of current user */}
