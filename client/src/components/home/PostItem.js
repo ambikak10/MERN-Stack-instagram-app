@@ -140,15 +140,18 @@ class PostItem extends Component {
                            marginBottom: "10px",
                          }}
                        /> */}
-                <img
-                  className='card-img-top'
-                  style={{
-                    borderTop: "1px solid rgba(var(--b6a,219,219,219)",
-                    marginTop: "20px",
-                    borderRadius: "0",
-                  }}
-                  src={post.image}
-                />
+                <Link to={`/post/${post._id}`}>
+                  {" "}
+                  <img
+                    className='card-img-top'
+                    style={{
+                      borderTop: "1px solid rgba(var(--b6a,219,219,219)",
+                      marginTop: "20px",
+                      borderRadius: "0",
+                    }}
+                    src={post.image}
+                  />{" "}
+                </Link>
 
                 {/*  post description & comments on post */}
                 <div
@@ -192,15 +195,13 @@ class PostItem extends Component {
                     </div>
                     {/* <!-- post description end--> */}
                     {/* comments on post */}
-             
-                 
-                      <Comments
-                        comments={post.comments}
-                        postId={post._id}
-                        showAvatar={true}
-                        showDelete={true}
-                      />
-                    
+
+                    <Comments
+                      comments={post.comments}
+                      postId={post._id}
+                      showAvatar={true}
+                      showDelete={true}
+                    />
                   </section>
                   <hr />
 

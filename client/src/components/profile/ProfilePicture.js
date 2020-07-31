@@ -17,9 +17,9 @@ class profilepicture extends Component {
       
       
     };
-    //this.uploadImage = this.uploadImage.bind(this);
-    //this.inputReference = React.createRef();
-    //this.onClick = this.onClick.bind(this);
+    // this.uploadImage = this.uploadImage.bind(this);
+    // this.inputReference = React.createRef();
+    // this.onClick = this.onClick.bind(this);
   }
   
   
