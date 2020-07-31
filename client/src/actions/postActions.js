@@ -96,14 +96,14 @@ export const addCommentPosts = (commentInput, postId) => dispatch => {
   dispatch(clearErrors());
   axios
     .post(`/api/posts/comment/${postId}`, commentInput)
-    .then(res => dispatch(getPosts()))  
-    .catch(err => {
+    .then((res) => dispatch(allPostsExceptCurrentUsers()))
+    .catch((err) => {
       // console.log(err.response.data);
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
-      })
-    })
+        payload: err.response.data,
+      });
+    });
 }
 
 //Delete comment
