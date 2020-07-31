@@ -29,7 +29,7 @@ class Post extends Component {
 
   render() {
     const {post, loadingPost} = this.props.post;
-    console.log(post.saved);
+    console.log(post.user);
     const postId = this.props.match.params.id;
     let deleteIcon;
     let alreadyLiked = false;
@@ -48,8 +48,8 @@ class Post extends Component {
       alreadySaved = true;
     }
   }
-
-     if (post.user === this.props.auth.user.id) {
+ 
+     if (post.user._id === this.props.auth.user.id) {
        deleteIcon = (
          <div
            type='button'
@@ -158,10 +158,10 @@ class Post extends Component {
               src={post.image}
             />
             <div className='style d-none d-xl-block d-md-none d-lg-none d-sm-none '>
-              <Link to={`/profile/${post.handle}/${post.user}`}>
-                <img className='avatar-icon' src={post.avatar} alt='Avatar' />
+              <Link to={`/profile/${post.handle}/${post.user._id}`}>
+                <img className='avatar-icon' src={post.user.avatar} alt='Avatar' />
               </Link>
-              <Link to={`/profile/${post.handle}/${post.user}`} className='name-of-account'>
+              <Link to={`/profile/${post.handle}/${post.user._id}`} className='name-of-account'>
                 {post.name}
               </Link>
               <hr style={{ marginBottom: "10px" }} />
@@ -172,8 +172,8 @@ class Post extends Component {
                   {/* <!-- post description start--> */}
 
                   <div className='col-lg-2'>
-                    <Link to={`/profile/${post.handle}/${post.user}`}>
-                      <img className='avatar-icon' src={post.avatar} alt='Avatar' />
+                    <Link to={`/profile/${post.handle}/${post.user._id}`}>
+                      <img className='avatar-icon' src={post.user.avatar} alt='Avatar' />
                     </Link>
                   </div>
                   <div className='col-lg-10'>
@@ -244,7 +244,7 @@ class Post extends Component {
         </div>
       );
     }
-
+  
     return (
       <div className='parent'>
         {content}
