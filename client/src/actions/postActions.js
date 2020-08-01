@@ -36,7 +36,7 @@ export const getPosts = () => dispatch => {
 };
 
 //Get post by id
-export const getPost = (postId, history) => dispatch => {
+export const getPost = (postId) => dispatch => {
   dispatch(clearPost());
   dispatch(setPostLoading());
   axios
@@ -48,7 +48,31 @@ export const getPost = (postId, history) => dispatch => {
       payload: res.data
     })})
     .catch(err => {
-      history.push("/not-found")})
+      // history.push("/not-found")
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    })
+};
+
+//Get post by id
+export const refreshPost = (postId) => dispatch => {
+  axios
+    .get(`/api/posts/${postId}`)
+    .then(res => {
+      console.log(res.data);
+      dispatch({
+      type: GET_POST,
+      payload: res.data
+    })})
+    .catch(err => {
+      // history.push("/not-found")
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    })
 };
 
 //Delete post
@@ -75,12 +99,11 @@ export const addComment = (commentInput, postId) => dispatch => {
     .post(`/api/posts/comment/${postId}`, commentInput)
     .then(res => {
        console.log(res.data);
-      dispatch({
-        type: GET_POST,
-        payload: res.data
-      })
-      
-      
+      // dispatch({
+      //   type: GET_POST,
+      //   payload: res.data
+      // })
+      dispatch(refreshPost(postId));
     })
     .catch(err => {
       // console.log(err.response.data);
@@ -112,10 +135,11 @@ export const deleteComment = (postId, commentId) => dispatch => {
     .delete(`/api/posts/comment/${postId}/${commentId}`)
     .then(res => {
       // console.log(res.data);
-      dispatch({
-        type: GET_POST,
-        payload: res.data
-      })
+      // dispatch({
+      //   type: GET_POST,
+      //   payload: res.data
+      // })
+      dispatch(refreshPost(postId));
     })
     .catch(err => {
       // console.log(err.response.data);
@@ -177,10 +201,11 @@ export const addLike = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/like/${postId}`)
     .then((res) => {
-     dispatch({
-       type: GET_POST,
-       payload: res.data,
-     });
+    //  dispatch({
+    //    type: GET_POST,
+    //    payload: res.data,
+    //  });
+    dispatch(refreshPost(postId));
     })
     .catch((err) => {
       // console.log(err);
@@ -196,10 +221,11 @@ export const removeLike = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/unlike/${postId}`)
     .then((res) => {
-      dispatch({
-        type: GET_POST,
-        payload: res.data,
-      });
+      // dispatch({
+      //   type: GET_POST,
+      //   payload: res.data,
+      // });
+      dispatch(refreshPost(postId));
     })
     .catch((err) => {
       // console.log(err);
@@ -233,7 +259,7 @@ export const allPostsExceptCurrentUsers = () => (dispatch) => {
 export const addLikePosts = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/like/${postId}`)
-    .then(res => dispatch(getPosts()))
+    .then(res => dispatch(allPostsExceptCurrentUsers()))
     .catch((err) => {
       // console.log(err);
       dispatch({
@@ -247,7 +273,7 @@ export const addLikePosts = (postId) => (dispatch) => {
 export const removeLikePosts = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/unlike/${postId}`)
-    .then(res => dispatch(getPosts()))    
+    .then(res => dispatch(allPostsExceptCurrentUsers()))    
     .catch((err) => {
       // console.log(err);
       dispatch({
@@ -261,7 +287,7 @@ export const removeLikePosts = (postId) => (dispatch) => {
 export const savePosts= (postId) => (dispatch) => {
   axios
     .post(`/api/posts/save/${postId}`)
-    .then(res => dispatch(getPosts()))
+    .then(res => dispatch(allPostsExceptCurrentUsers()))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -275,7 +301,7 @@ export const savePosts= (postId) => (dispatch) => {
 export const unsavePosts = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/unsave/${postId}`)
-    .then(res => dispatch(getPosts()))
+    .then(res => dispatch(allPostsExceptCurrentUsers()))
     .catch((err) => {
       // console.log(err);
       dispatch({
@@ -290,10 +316,7 @@ export const savePost = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/save/${postId}`)
     .then((res) => {
-      dispatch({
-        type: GET_POST,
-        payload: res.data,
-      });
+      dispatch(refreshPost(postId));
     })
     .catch(err =>
       dispatch({
@@ -310,10 +333,11 @@ export const unsavePost = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/unsave/${postId}`)
     .then((res) => {
-      dispatch({
-        type: GET_POST,
-        payload: res.data,
-      });
+      // dispatch({
+      //   type: GET_POST,
+      //   payload: res.data,
+      // });
+      dispatch(refreshPost(postId));
     })
     .catch((err) => {
       // console.log(err);

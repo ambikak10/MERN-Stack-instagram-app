@@ -5,7 +5,7 @@ import { Link, withRouter} from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import Search from "../search/Search";
-
+import spinner from "../common/spinner.gif";
 
 export class Navbar extends Component {
   constructor(props) {
@@ -79,7 +79,7 @@ export class Navbar extends Component {
     const {isAuthenticated, user} = this.props.auth;
     const { currentProfile } = this.props.profile;
     //Get real avatar of user from redux store
-    const avatar = currentProfile ? currentProfile.user.avatar : user.avatar;
+    const avatar = currentProfile ? currentProfile.user.avatar : spinner;
     const {home, explore, gallery, avatarIcon} = this.state;
     //Put all navbar contents into variable "navbar" 
     const navbar = (

@@ -12,6 +12,7 @@ import { addLikePosts, removeLikePosts } from "../../actions/postActions";
 import { savePosts, unsavePosts } from "../../actions/postActions";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
+import spinner from "../common/spinner.gif";
 
 class PostItem extends Component {
 
@@ -23,7 +24,7 @@ class PostItem extends Component {
     const { auth, profile } = this.props;
     const { post, loadingPost } = this.props;
     //Get avatar from redux store
-    const avatar = profile.currentProfile ? profile.currentProfile.user.avatar : auth.user.avatar;
+    const avatar = profile.currentProfile ? profile.currentProfile.user.avatar : spinner;
 
     let suggestionList;
     if (profile.profiles && profile.profiles.length > 0) {
