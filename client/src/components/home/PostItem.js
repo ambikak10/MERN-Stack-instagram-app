@@ -208,6 +208,7 @@ class PostItem extends Component {
                       showAvatar={true}
                       showDelete={true}
                     />
+                    <Moment format="D MMM YYYY" style={{marginLeft: "25px", color: "grey", fontSize: "0.8rem"}}>{post.date}</Moment>
                   </section>
                   <hr />
 
