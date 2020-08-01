@@ -1,6 +1,7 @@
 .profile-photo {
  border-radius: 50%;
  width: 150px;
+ height: 150px;
 }
 .profileTabs {
   display: flex;
