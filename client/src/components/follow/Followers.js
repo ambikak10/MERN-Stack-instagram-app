@@ -17,7 +17,7 @@ class Followers extends Component {
      let content;
      if (followers.length > 0) {
        content = followers.map(follower => {
-        if (auth.user.id === follower.user) {
+        if (auth.user.id === follower.user._id) {
           return (<FollowItem key={follower.id} follow={follower} followingList={followingList} isCurrent={true}/>)
         } else {
           return (<FollowItem key={follower.id} follow={follower} followingList={followingList} isCurrent={false}/>)
