@@ -36,7 +36,7 @@ export const getPosts = () => dispatch => {
 };
 
 //Get post by id
-export const getPost = (postId) => dispatch => {
+export const getPost = (postId, history) => dispatch => {
   dispatch(clearPost());
   dispatch(setPostLoading());
   axios
@@ -48,11 +48,7 @@ export const getPost = (postId) => dispatch => {
       payload: res.data
     })})
     .catch(err => {
-      // history.push("/not-found")
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
+      history.push("/not-found")
     })
 };
 
