@@ -194,7 +194,9 @@ class Post extends Component {
                {/* comments on post */}
               <div className='comment-wrapper'>
                 <section>
-                  <Comments comments={post.comments} postId={postId} showAvatar={true}/>
+                  <Comments comments={post.comments} postId={postId} 
+                  // showAvatar={true}
+                  />
                 </section>
               </div>
                  

@@ -53,6 +53,7 @@ export const logoutUser = () => dispatch => {
     type: SET_CURRENT_USER,
     payload: {}
   })
+  dispatch(clearCurrentProfile());
 };
 
 //Add picture
