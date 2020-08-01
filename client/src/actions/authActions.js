@@ -3,6 +3,7 @@ import axios from 'axios';
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import {getCurrentProfile} from './profileActions'
+import { clearCurrentProfile } from "./profileActions";
 
 //Register user
 export const signupUser = (userData, history) => dispatch => {
