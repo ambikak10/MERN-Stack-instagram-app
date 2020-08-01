@@ -17,7 +17,7 @@ class Post extends Component {
   }
 
   componentDidMount() {
-    this.props.getPost(this.props.match.params.id, this.props.history);
+    this.props.getPost(this.props.match.params.id);
   }
 
   goBack() {
