@@ -34,6 +34,7 @@ export const loginUser = (userData) => (dispatch) => {
        type: SET_CURRENT_USER,
        payload: decoded
       });
+      dispatch(getCurrentProfile());
     }).catch((err) =>
       dispatch({
         type: GET_ERRORS,
