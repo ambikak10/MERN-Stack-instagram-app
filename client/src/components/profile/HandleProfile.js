@@ -6,13 +6,14 @@ import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
 import { getProfileByHandle, getFollowingList } from '../../actions/profileActions';
 
-class CurrentProfile extends Component {
+class HandleProfile extends Component {
   componentDidMount() {
-  if (this.props.match.params.user_id) {
-    this.props.getOtherUsersPosts(this.props.match.params.user_id);
-  }
+  // if (this.props.match.params.user_id) {
+  //   this.props.getOtherUsersPosts(this.props.match.params.user_id);
+  // }
    if (this.props.match.params.handle) {
     this.props.getProfileByHandle(this.props.match.params.handle);
+    this.props.getOtherUsersPosts(this.props.match.params.handle);
     }
     this.props.getFollowingList();
   }
@@ -70,4 +71,4 @@ export default connect(mapStateToProps, {
   getOtherUsersPosts,
   getProfileByHandle,
   getFollowingList
-})(CurrentProfile);
+})(HandleProfile);

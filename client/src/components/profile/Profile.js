@@ -282,8 +282,16 @@ export class Profile extends Component {
           </div>
           {/* <hr className='horizontalLine' /> */}
           <div className='profileTabs icons'>
-            <div type="button" onClick={this.getPosts.bind(this)} className={`profileTab ${postsIcon ? "activeStyle" : ""}`}>
-              <i className="fa fa-picture-o" aria-hidden='true' style={postsIcon ? {color: "black"}: {}}>
+            <div
+              type='button'
+              onClick={this.getPosts.bind(this)}
+              className={`profileTab ${postsIcon ? "activeStyle" : ""}`}
+            >
+              <i
+                className='fa fa-picture-o'
+                aria-hidden='true'
+                style={postsIcon ? { color: "black" } : {}}
+              >
                 <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
                   POSTS
                 </span>
@@ -291,7 +299,7 @@ export class Profile extends Component {
             </div>
             {addPostTab}
             {savedTab}
-            <div className="profileTab">
+            <div className='profileTab'>
               <i className='far fa-user-circle' aria-hidden='true'>
                 <span style={{ marginLeft: "5px", fontFamily: "sans-serif" }}>
                   TAGGED
@@ -304,12 +312,15 @@ export class Profile extends Component {
             //  <Fragment>
             //    {userPosts.map(post => (
             //      <ProfilePostItem key={post._id} postItem={post} id={post._id} image={post.image}/>
-            //    ))} 
+            //    ))}
             //  </Fragment>
             <Fragment>
               <section className='row responsiveness hover-effect'>
                 {/* <ProfilePostItem posts={userPosts} /> */}
-                <ProfilePostItem posts={this.state.posts} saved={this.state.saved}/>
+                <ProfilePostItem
+                  posts={this.state.posts}
+                  saved={this.state.saved}
+                />
               </section>
             </Fragment>
           ) : (

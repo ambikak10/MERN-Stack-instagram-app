@@ -79,7 +79,7 @@ class App extends Component {
               <PrivateRoute exact path='/post/:id' component={Post} />
               <PrivateRoute
                 exact
-                path='/profile/:handle/:user_id'
+                path='/profile/:handle'
                 component={HandleProfile}
               />{" "}
             </Switch>
@@ -106,11 +106,11 @@ class App extends Component {
             <Switch>
               {" "}
               <PrivateRoute exact path='/home' component={Posts} />{" "}
-              <PrivateRoute
+              {/* <PrivateRoute
                 exact
-                path='/home/:handle/:user_id'
+                path='/home/:handle'
                 component={HandleProfile}
-              />{" "}
+              />{" "} */}
             </Switch>
             <Switch>
               {" "}
