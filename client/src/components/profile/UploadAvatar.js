@@ -127,7 +127,7 @@ class UploadAvatar extends Component {
 
   render() {
     const { crop, src, croppedImageUrl } = this.state;
-    const enabled = !is_empty(this.state.croppedImageUrl);
+    const enabled = !is_empty(this.state.src);
     return (
       <div style={{width: "60%", justifyContent: "center", marginLeft: "auto", marginRight: "auto"}}>
       <div
