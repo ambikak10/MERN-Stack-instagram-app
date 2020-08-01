@@ -9,7 +9,8 @@ class Comments extends Component {
       comments = this.props.comments.map(comment => (
         <CommentItem key={comment.id} comment={comment} postId={this.props.postId}
          showAvatar={this.props.showAvatar}
-          showDelete={this.props.showDelete}/>
+          // showDelete={this.props.showDelete}
+          />
       ));
     }
     

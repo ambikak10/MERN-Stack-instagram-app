@@ -67,23 +67,23 @@ router.get("/selected",
   (req, res) => {
   
     Post.find()
-      .sort({date: -1})
-      .then(posts => {
+      .populate("user", ["avatar"])
+      .sort({ date: -1 })
+      .then((posts) => {
         if (posts) {
-       
-          let selected = posts.filter(post => 
-         
-            post.user.toString() !== req.user.id
-          )
-        
+          let selected = posts.filter(
+            (post) => post.user._id.toString() !== req.user.id
+          );
+
           return res.json(selected);
         } else {
           return res.status(404).json({ nopostsfound: "No posts found" });
         }
       })
-      .catch(err => {
-        console.log(err)
-        res.status(404).json({ nopostsfound: "No posts found" })});
+      .catch((err) => {
+        console.log(err);
+        res.status(404).json({ nopostsfound: "No posts found" });
+      });
   }
 );
 
@@ -134,12 +134,15 @@ router.get(
 
 router.get("/:id", (req, res) => {
   Post.findById(req.params.id)
+    .populate("user", ["avatar"])
+    .populate("comments.user", ["avatar"])
     .then((post) => {
       if (post) {
         res.json(post);
       } else {
-        return res.status(404).json({nopostfound: "No post found"});
-      }})
+        return res.status(404).json({ nopostfound: "No post found" });
+      }
+    })
     .catch((err) =>
       res.status(404).json({ nopostfound: "No post found with that ID" })
     );

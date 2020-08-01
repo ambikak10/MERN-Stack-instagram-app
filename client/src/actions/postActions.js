@@ -35,7 +35,7 @@ export const getPosts = () => dispatch => {
     );
 };
 
-//Get post
+//Get post by id
 export const getPost = (postId, history) => dispatch => {
   dispatch(clearPost());
   dispatch(setPostLoading());
