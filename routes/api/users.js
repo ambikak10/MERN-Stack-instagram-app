@@ -160,7 +160,7 @@ router.post(
    })
 });
 
-// @route   PUT api/users/avatar
+// @route   PUT api/users/removeAvatar
 // @desc    Removing avatar or Defaulting to gravatr
 // @access  Private
 

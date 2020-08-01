@@ -11,18 +11,18 @@ class CommentItem extends Component {
     const {comment, auth, postId} = this.props;
     let deleteIcon;
     let avatar;
-    if (this.props.showAvatar === true) {
+    // if (this.props.showAvatar === true) {
       avatar = (
         <div className='col-lg-2'>
-          <Link to={`/profile/${comment.handle}/${comment.user}`}>
-            <img className='avatar-icon' src={comment.avatar} alt='Avatar'
+          <Link to={`/profile/${comment.handle}/${comment.user._id}`}>
+            <img className='avatar-icon' src={comment.user.avatar} alt='Avatar'
            />
           </Link>
         </div>
-      );
-    }   
+    );
+    // }   
 
-    if (comment.user === auth.user.id)  {
+    if (comment.user._id === auth.user.id)  {
       deleteIcon = (
         <div type="button" className='col-lg-2' onClick={this.onDeleteComment.bind(this, postId, comment._id)}>
           <div className='delete-post'>
@@ -46,9 +46,9 @@ class CommentItem extends Component {
       // <div className="container">
         <section className='row'>      
         {avatar}
-        <div className={`${comment.user === auth.user.id ? "col-lg-8" : "col-lg-10"}`}>
+        <div className={`${comment.user._id === auth.user.id ? "col-lg-8" : "col-lg-10"}`}>
           <div id='col-space'>
-            <Link to={`/profile/${comment.handle}/${comment.user}`} className='handlename-post'>
+            <Link to={`/profile/${comment.handle}/${comment.user._id}`} className='handlename-post'>
               {comment.name}
             </Link>
             <span className='textStyle-comment'>

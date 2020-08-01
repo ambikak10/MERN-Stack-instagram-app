@@ -57,7 +57,7 @@ export default function (state = initialState, action) {
     case CLEAR_CURRENT_PROFILE:
       return {
         ...state,
-        profile: null,
+        currentProfile: null,
       };
     default:
       return state;

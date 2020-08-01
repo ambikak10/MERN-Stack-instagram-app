@@ -35,7 +35,7 @@ export const getPosts = () => dispatch => {
     );
 };
 
-//Get post
+//Get post by id
 export const getPost = (postId, history) => dispatch => {
   dispatch(clearPost());
   dispatch(setPostLoading());
@@ -178,7 +178,7 @@ export const addLike = (postId) => (dispatch) => {
     .post(`/api/posts/like/${postId}`)
     .then((res) => {
      dispatch({
-       type: GET_POSTS,
+       type: GET_POST,
        payload: res.data,
      });
     })

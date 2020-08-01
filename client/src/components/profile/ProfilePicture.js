@@ -55,41 +55,41 @@ class profilepicture extends Component {
   //         image: result.secure_url
   //       };
 
-  uploadImage = async (e) => {
-    const files = e.target.files;
-    const data = new FormData();
-    data.append("file", files[0]);
-    data.append("upload_preset", "instagram");
+  // uploadImage = async (e) => {
+  //   const files = e.target.files;
+  //   const data = new FormData();
+  //   data.append("file", files[0]);
+  //   data.append("upload_preset", "instagram");
 
-    const res = await fetch(
-      "https://api.cloudinary.com/v1_1/instagramteam/image/upload",
-      {
-        method: "POST",
-        body: data,
-      }
-    );
-    const result = await res.json();
-    const newAvatar = {
-      avatar: result.secure_url,
-    };
+  //   const res = await fetch(
+  //     "https://api.cloudinary.com/v1_1/instagramteam/image/upload",
+  //     {
+  //       method: "POST",
+  //       body: data,
+  //     }
+  //   );
+  //   const result = await res.json();
+  //   const newAvatar = {
+  //     avatar: result.secure_url,
+  //   };
 
-    this.props.addPicture(newAvatar, this.props.history);
-  };
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
-    }
-  }
+  //   this.props.addPicture(newAvatar, this.props.history);
+  // };
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.errors) {
+  //     this.setState({ errors: nextProps.errors });
+  //   }
+  // }
 
-  onChange = (e) => {
-    this.setState({ fileUploadState: e.target.value });
-  };
-  onClick = (e) => {
-    this.inputReference.current.click();
-  };
-  onRemoveImage(history) {
-    this.props.deletePicture(history);
-  }
+  // onChange = (e) => {
+  //   this.setState({ fileUploadState: e.target.value });
+  // };
+  // onClick = (e) => {
+  //   this.inputReference.current.click();
+  // };
+  // onRemoveImage(history) {
+  //   this.props.deletePicture(history);
+  // }
   render() {
     if (!this.props.change) {
       return null;

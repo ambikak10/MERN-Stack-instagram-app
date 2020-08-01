@@ -125,13 +125,13 @@ class PostItem extends Component {
             >
               <div
                 //  className='card-header'
-                style={{ position: "relative" }}
+                // style={{ position: "relative" }}
               >
-                <Link to={`/home/${post.handle}/${post.user}`}>
-                  <img className='avatar-icon' src={post.avatar} alt='Avatar' />
+                <Link to={`/home/${post.handle}/${post.user._id}`}>
+                  <img className='avatar-icon' src={post.user.avatar} alt='Avatar' />
                 </Link>
                 <Link
-                  to={`/home/${post.handle}/${post.user}`}
+                  to={`/home/${post.handle}/${post.user._id}`}
                   className='name-of-account'
                 >
                   {post.name}
@@ -189,7 +189,7 @@ class PostItem extends Component {
                       <div id='col-space'>
                         <Link
                           className='handlename-post'
-                          to={`/home/${post.handle}/${post.user}`}
+                          to={`/home/${post.handle}/${post.user._id}`}
                         >
                           {post.name}
                         </Link>
@@ -219,15 +219,15 @@ class PostItem extends Component {
             <div
               className='card sticky-top d-none d-xl-block'
               style={{
-                marginTop: "60px",
-                marginLeft: "20px",
+                // marginTop: "60px",
+                // marginLeft: "20px",
                 backgroundColor: "#fafafa",
                 width: "300px",
                 height: "500",
                 border: "none",
-                position: "fixed",
-                right: "280px",
-                marginTop: "65px",
+                position: "absolute",
+                right: "100px",
+                marginTop: "15px",
               }}
             >
               {/* Avatar of current user */}
