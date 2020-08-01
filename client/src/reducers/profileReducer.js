@@ -6,6 +6,7 @@ import {
   GET_FOLLOWING,
   GET_ALL_PROFILES,
   GET_CURRENT_PROFILE,
+  CLEAR_PROFILE,
 } from "../actions/types";
 
 const initialState = {
@@ -59,6 +60,11 @@ export default function (state = initialState, action) {
         ...state,
         currentProfile: null,
       };
+    case CLEAR_PROFILE:
+      return {
+        ...state,
+        profile: null,
+      }
     default:
       return state;
   }

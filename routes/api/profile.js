@@ -5,8 +5,8 @@ const mongoose =  require('mongoose');
 const User  = require('../../models/User');
 const passport = require('passport');
 const validateProfileInput = require('../../validation/profile');
-const profile = require('../../validation/profile');
-const { db } = require('../../models/Profile');
+// const profile = require('../../validation/profile');
+// const { db } = require('../../models/Profile');
 
 
 // @route   POST api/profile
@@ -76,6 +76,8 @@ router.get(
 
     Profile.findOne({ user: req.user.id })
       .populate("user", ["name", "avatar"])
+      .populate("following.user", ["avatar"])
+      .populate("followers.user", ["avatar"])
       .then((profile) => {
         if (!profile) {
           errors.noprofile = "There is no profile for this user";
@@ -149,6 +151,8 @@ router.get("/handle/:handle", (req, res) => {
 
   Profile.findOne({ handle: req.params.handle })
     .populate("user", ["name", "avatar"])
+    .populate("following.user", ["avatar"])
+    .populate("followers.user", ["avatar"])
     .then((profile) => {
       if (!profile) {
         errors.noprofile = "There is no profile for this user";

@@ -14,7 +14,7 @@ class FollowItem extends Component {
 
   componentDidMount() {
     const {follow, followingList} = this.props;
-    if (followingList.indexOf(follow.user) === -1) {
+    if (followingList.indexOf(follow.user._id) === -1) {
       this.setState({isFollow: false})
     } else {
       this.setState({isFollow: true})
@@ -76,10 +76,10 @@ class FollowItem extends Component {
       <div className="container" style={{marginBottom: "10px"}}>
         <div className="row">
           <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-            <Link to={`/profile/${follow.handle}/${follow.user}`}>
+            <Link to={`/profile/${follow.handle}/${follow.user._id}`}>
               <img
                 className='followers-avatar-icon'
-                src={follow.avatar}
+                src={follow.user.avatar}
                 alt='Avatar'
               />
             </Link>
@@ -87,7 +87,7 @@ class FollowItem extends Component {
 
           <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
           <Link
-            to={`/profile/${follow.handle}/${follow.user}`}
+            to={`/profile/${follow.handle}/${follow.user._id}`}
             class='fontStyleSizeColor'
             style={{ 
               marginLeft: "-50px", 

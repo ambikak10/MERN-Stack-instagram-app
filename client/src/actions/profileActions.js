@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ERRORS, SET_CURRENT_USER, GET_PROFILE, CLEAR_CURRENT_PROFILE, GET_PROFILES, PROFILE_LOADING, GET_FOLLOWING, GET_ALL_PROFILES, GET_CURRENT_PROFILE } from "./types";
+import { GET_ERRORS, SET_CURRENT_USER, GET_PROFILE, CLEAR_CURRENT_PROFILE, GET_PROFILES, PROFILE_LOADING, GET_FOLLOWING, GET_ALL_PROFILES, GET_CURRENT_PROFILE, CLEAR_PROFILE } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import {logoutUser} from "./authActions";
 
@@ -62,7 +62,7 @@ export const getCurrentProfile = () => dispatch => {
 };
 // Get profile by handle
 export const getProfileByHandle = handle => dispatch => {
-dispatch(clearCurrentProfile());
+dispatch(clearProfile());
   dispatch(setProfileLoading());
   console.log('action getProfileby handle')
   axios
@@ -111,12 +111,19 @@ export const setProfileLoading = () => {
   };
 };
 
-// Clear profile
+// Clear current profile
 export const clearCurrentProfile = () => {
   return {
     type: CLEAR_CURRENT_PROFILE
   };
 };
+
+//Clear profile
+export const clearProfile = () => {
+  return {
+    type: CLEAR_PROFILE
+  }
+}
 
 //Get suggestion list
 export const getSuggestionList = () => dispatch => {
