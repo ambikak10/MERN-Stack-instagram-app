@@ -24,14 +24,14 @@ export default function (state = initialState, action) {
         loading: true,
       };
     case GET_PROFILE:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         profile: action.payload,
         loading: false,
       };
     case GET_CURRENT_PROFILE:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         currentProfile: action.payload,
