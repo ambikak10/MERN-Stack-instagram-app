@@ -31,7 +31,13 @@ class Post extends Component {
     const {post, loadingPost} = this.props.post;
     console.log(post.user);
     const postId = this.props.match.params.id;
-    let deleteIcon;
+    
+    let content;
+    if (loadingPost || post === null) {
+      content = <Spinner />
+    } 
+    if (post && post.user) {
+      let deleteIcon;
     let alreadyLiked = false;
     if(post.likes !== undefined) {
     if(post.likes.filter(like => like.user === this.props.auth.user.id).length > 0)
@@ -139,11 +145,6 @@ class Post extends Component {
         {deleteIcon}
       </div>
     );
-
-    let content;
-    if (loadingPost) {
-      content = <Spinner />
-    } else {
       content = (
         <div className='child'>
           <span className='close'>
