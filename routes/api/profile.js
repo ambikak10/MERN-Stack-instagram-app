@@ -132,7 +132,7 @@ router.get("/followers/:profile_id", (req, res) => {
 
 // @route   GET api/profile/following
 // @desc    Get list of user's following
-// @access  Public
+// @access  Private
 router.get("/following",
 passport.authenticate("jwt", {session: false}),
 (req, res) => {
