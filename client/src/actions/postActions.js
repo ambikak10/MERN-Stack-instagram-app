@@ -295,6 +295,7 @@ export const refreshGetFollowingPosts = () => (dispatch) => {
       });
     });
 };
+
 // Like a post in PostFeed
 export const addLikePosts = (postId) => (dispatch) => {
   axios
