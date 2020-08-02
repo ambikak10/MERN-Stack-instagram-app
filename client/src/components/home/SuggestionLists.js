@@ -5,18 +5,15 @@ class SuggestionLists extends Component {
   
   render() {
     const {profiles} = this.props;
-    let suggestions;
+    let filterSuggestions = profiles.filter((profile, index) => index <= 4) // filtering to get only first 5 suggestions
+    let first5suggestions;
     if (profiles) {
-      suggestions = profiles.map(profile => (
-        <SuggestionItem key={profile._id} profile={profile}/>
-      ));
+       first5suggestions = filterSuggestions.map((profile) => (
+         <SuggestionItem key={profile._id} profile={profile} />
+       ));
     }
     
-    return (
-      <div>
-        {suggestions}
-      </div>
-    )
+    return <div>{first5suggestions}</div>;
   }
 }
 
