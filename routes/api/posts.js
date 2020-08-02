@@ -106,19 +106,40 @@ router.get(
 // @route   GET api/posts/otheruserposts/:user_id
 // @desc    get all posts of other user by their user_id
 // @access  Public
+// router.get(
+//   "/otheruserposts/:user_id",
+//   // passport.authenticate("jwt", { session: false }),
+//   (req, res) => {
+//      Post.find()
+//       .sort({ date: -1 })
+//       .then((posts) => {
+//         if(posts) {
+//       let otheruserposts;
+//         otheruserposts = posts.filter(post => 
+//         post.user.toString() === req.params.user_id)
+//         return res.json(otheruserposts);
+        
+//        } else  {
+//        return res.status(404).json({ nopostsfound: "No posts found" });
+//       }})
+//       .catch((err) =>{
+//         console.log(err); 
+//         res.status(404).json({ nopostsfound: "No posts found" })});
+//   }
+// );
+
+// @route   GET api/posts/otheruserposts/:handle
+// @desc    get all posts of other user by their handle
+// @access  Public
 router.get(
-  "/otheruserposts/:user_id",
+  "/otheruserposts/:handle",
   // passport.authenticate("jwt", { session: false }),
   (req, res) => {
-     Post.find()
+     Post.find({handle : req.params.handle})
       .sort({ date: -1 })
       .then((posts) => {
         if(posts) {
-      let otheruserposts;
-        otheruserposts = posts.filter(post => 
-        post.user.toString() === req.params.user_id)
-        return res.json(otheruserposts);
-        
+         return res.json(posts);
        } else  {
        return res.status(404).json({ nopostsfound: "No posts found" });
       }})
@@ -127,7 +148,6 @@ router.get(
         res.status(404).json({ nopostsfound: "No posts found" })});
   }
 );
-
 // @route   GET api/posts/:id
 // @desc    Get a post by id
 // @access  Public

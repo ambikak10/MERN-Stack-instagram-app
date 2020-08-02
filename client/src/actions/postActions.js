@@ -165,11 +165,12 @@ axios
     });
   });
 }
-//Get all posts of another user
-export const getOtherUsersPosts = (user_id) => dispatch => {
+//Get all posts of another user by their handle
+export const getOtherUsersPosts = (handle) => dispatch => {
+  console.log("posts by handle")
   dispatch(setPostLoading());
 axios
-  .get(`/api/posts/otheruserposts/${user_id}`)
+  .get(`/api/posts/otheruserposts/${handle}`)
   .then((res) => {
     // console.log(res);
     dispatch({

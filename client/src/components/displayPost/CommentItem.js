@@ -14,7 +14,7 @@ class CommentItem extends Component {
     // if (this.props.showAvatar === true) {
       avatar = (
         <div className='col-lg-2'>
-          <Link to={`/profile/${comment.handle}/${comment.user._id}`}>
+          <Link to={`/profile/${comment.handle}`}>
             <img className='avatar-icon' src={comment.user.avatar} alt='Avatar'
            />
           </Link>
@@ -48,7 +48,7 @@ class CommentItem extends Component {
         {avatar}
         <div className={`${comment.user._id === auth.user.id ? "col-lg-8" : "col-lg-10"}`}>
           <div id='col-space'>
-            <Link to={`/profile/${comment.handle}/${comment.user._id}`} className='handlename-post'>
+            <Link to={`/profile/${comment.handle}`} className='handlename-post'>
               {comment.name}
             </Link>
             <span className='textStyle-comment'>
