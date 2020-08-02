@@ -24,7 +24,7 @@ class SuggestionItem extends Component {
     const {profile} = this.props;
     return (
       <div style={{ marginTop: "10px", marginLeft: "10px" }}>
-        <Link to={`/profile/${profile.handle}/${profile.user._id}`}>
+        <Link to={`/profile/${profile.handle}`}>
           <img
             className='rounded-circle profile-card-avatar'
             style={{ width: "50px" }}

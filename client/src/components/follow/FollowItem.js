@@ -76,7 +76,7 @@ class FollowItem extends Component {
       <div className="container" style={{marginBottom: "10px"}}>
         <div className="row">
           <div className='col-sm-3 col-md-3 col-lg-3 col-xxs-3'>
-            <Link to={`/profile/${follow.handle}/${follow.user._id}`}>
+            <Link to={`/profile/${follow.handle}`}>
               <img
                 className='followers-avatar-icon'
                 src={follow.user.avatar}
@@ -87,7 +87,7 @@ class FollowItem extends Component {
 
           <div className='col-sm-6 col-md-6 col-lg-6 col-xxs-6'>
           <Link
-            to={`/profile/${follow.handle}/${follow.user._id}`}
+            to={`/profile/${follow.handle}`}
             class='fontStyleSizeColor'
             style={{ 
               marginLeft: "-50px", 

@@ -13,7 +13,7 @@ class CommentItem extends Component {
           <div className='col-lg-11'>
             <div id='col-space' style={{ marginLeft: "15px", marginTop: "-10px"}}>
               <Link
-                to={`/home/${comment.handle}/${comment.user}`}
+                to={`/profile/${comment.handle}`}
                 className='handlename-post'
               >
                 {comment.name}
