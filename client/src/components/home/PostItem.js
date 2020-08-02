@@ -128,11 +128,11 @@ class PostItem extends Component {
                 //  className='card-header'
                 // style={{ position: "relative" }}
               >
-                <Link to={`/home/${post.handle}/${post.user._id}`}>
+                <Link to={`/profile/${post.handle}`}>
                   <img className='avatar-icon' src={post.user.avatar} alt='Avatar' />
                 </Link>
                 <Link
-                  to={`/home/${post.handle}/${post.user._id}`}
+                  to={`/profile/${post.handle}`}
                   className='name-of-account'
                 >
                   {post.name}

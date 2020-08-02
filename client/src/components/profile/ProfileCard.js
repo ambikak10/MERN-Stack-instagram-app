@@ -66,7 +66,7 @@ class ProfileCard extends Component {
             }}
           >
             {" "}
-            <Link to={`/profile/${profile.handle}/${profile.user._id}`}>
+            <Link to={`/profile/${profile.handle}`}>
               <img
                 style={{
                   width: "100%",

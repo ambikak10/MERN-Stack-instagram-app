@@ -8,8 +8,8 @@ class Comments extends Component {
     if (this.props.comments) {
       comments = this.props.comments.map(comment => (
         <CommentItem key={comment.id} comment={comment} postId={this.props.postId}
-         showAvatar={this.props.showAvatar}
-          // showDelete={this.props.showDelete}
+        //  showAvatar={this.props.showAvatar}
+          showDelete={this.props.showDelete}
           />
       ));
     }
