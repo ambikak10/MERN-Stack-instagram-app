@@ -273,6 +273,7 @@ export const getFollowingPosts = () => (dispatch) => {
       });
     });
 };
+
 // Get all posts from following list without clearPost or setLoading
 // the reason we need 2 actions are similar: getFollowingPosts and refreshPosts are --- getFollowingPosts are used when we move from other page to Home page -- the posts list in Redux store need to be clear
 
