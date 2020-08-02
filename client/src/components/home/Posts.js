@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import PostFeed from './PostFeed';
 import Spinner from '../common/Spinner';
-import { allPostsExceptCurrentUsers } from '../../actions/postActions';
+import { allPostsExceptCurrentUsers, getFollowingPosts } from '../../actions/postActions';
 
 class Posts extends Component {
   componentDidMount() {
-    this.props.allPostsExceptCurrentUsers();
+    // this.props.allPostsExceptCurrentUsers();
+    this.props.getFollowingPosts();
   }
 
   render() {
-    const { posts, loading } = this.props.post;
+    const { posts, loadingPost } = this.props.post;
     let postContent;
 
-    if (posts === null || loading) {
+    if (loadingPost) {
       postContent = <Spinner />;
     } else {
       postContent = <PostFeed posts={posts} />;
@@ -44,4 +45,4 @@ const mapStateToProps = state => ({
   post: state.post
 });
 
-export default connect(mapStateToProps, { allPostsExceptCurrentUsers })(Posts);
+export default connect(mapStateToProps, { allPostsExceptCurrentUsers, getFollowingPosts })(Posts);

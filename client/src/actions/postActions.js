@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ERRORS, GET_POSTS, GET_POST, POST_LOADING, CLEAR_ERRORS, GET_USER_POSTS, CLEAR_POST } from "./types";
+import { GET_ERRORS, GET_POSTS, GET_POST, POST_LOADING, CLEAR_ERRORS, GET_USER_POSTS, CLEAR_POST, CLEAR_POSTS } from "./types";
 
 
 //Add post
@@ -234,10 +234,34 @@ export const removeLike = (postId) => (dispatch) => {
 };
 // Get all posts except current user's
 export const allPostsExceptCurrentUsers = () => (dispatch) => {
+  dispatch(clearPosts());
+  dispatch(setPostLoading());
   axios
     .get(`/api/posts/selected`)
     .then((res) => {
-      console.log(res);
+      // console.log(res);
+      dispatch({
+        type: GET_POSTS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      // console.log(err);
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
+
+// Get all posts from following list
+export const getFollowingPosts = () => (dispatch) => {
+  dispatch(clearPosts());
+  dispatch(setPostLoading());
+  axios
+    .get(`/api/posts/following`)
+    .then((res) => {
+      // console.log(res.data);
       dispatch({
         type: GET_POSTS,
         payload: res.data,
@@ -354,5 +378,11 @@ export const clearErrors = () => {
 export const clearPost = () => {
   return {
     type: CLEAR_POST
+  }
+}
+
+export const clearPosts = () => {
+  return {
+    type: CLEAR_POSTS
   }
 }

@@ -14,7 +14,7 @@ class Gallery extends Component {
   }
   render() {
 
-    const { posts } = this.props.post;
+    const { posts, loadingPost } = this.props.post;
     let imagesArray;
     if(posts.length > 0) {
     imagesArray = posts.map((post) => post.image);
@@ -22,7 +22,7 @@ class Gallery extends Component {
  
     return (
       <div className='container masonry'>
-        {posts.length > 0 ? (
+        {!loadingPost ? (
           <Fragment>
             {posts.map((post) => (
               <GalleryItem key={post._id} image={post.image} id={post._id} />
