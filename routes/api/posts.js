@@ -71,8 +71,10 @@ router.get("/selected",
       .sort({ date: -1 })
       .then((posts) => {
         if (posts) {
+          // console.log(posts);
           let selected = posts.filter(
-            (post) => post.user._id.toString() !== req.user.id
+            (post) => {
+              return (post.user !== null) && (post.user._id.toString() !== req.user.id)}
           );
 
           return res.json(selected);
