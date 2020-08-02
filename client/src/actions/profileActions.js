@@ -61,7 +61,7 @@ export const getCurrentProfile = () => dispatch => {
     );
 };
 // Get profile by handle
-export const getProfileByHandle = handle => dispatch => {
+export const getProfileByHandle = (handle, history) => dispatch => {
 dispatch(clearProfile());
   dispatch(setProfileLoading());
   console.log('action getProfileby handle')
@@ -76,10 +76,11 @@ dispatch(clearProfile());
      } )
     .catch(err =>{
       // console.log(err)
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
+      // dispatch({
+      //   type: GET_ERRORS,
+      //   payload: err.response.data
+      // })
+      history.push("/not-found");
     });
 };
 

@@ -59,7 +59,7 @@ class Search extends Component {
       } else {
         content = searchProfiles.map(profile =>  {
           return (
-          <Link  to={`/profile/${profile.handle}/${profile.user._id}`} className="searchOption" onClick={this.searchClick.bind(this)}>
+          <Link  to={`/profile/${profile.handle}`} className="searchOption" onClick={this.searchClick.bind(this)}>
             <div className="searchData">
               <div className="searchAvatarBox">
                 <img className="searchAvatar" src={profile.user.avatar}/>

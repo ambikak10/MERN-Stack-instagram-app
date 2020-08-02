@@ -190,7 +190,7 @@ class PostItem extends Component {
                       <div id='col-space'>
                         <Link
                           className='handlename-post'
-                          to={`/home/${post.handle}/${post.user._id}`}
+                          to={`/profile/${post.handle}`}
                         >
                           {post.name}
                         </Link>
