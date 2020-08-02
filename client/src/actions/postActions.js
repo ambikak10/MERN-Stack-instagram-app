@@ -111,11 +111,9 @@ export const addComment = (commentInput, postId) => dispatch => {
 // Add comment in postfeed
 //Add comment
 export const addCommentPosts = (commentInput, postId) => dispatch => {
-  dispatch(setPostLoading());
-  dispatch(clearErrors());
   axios
     .post(`/api/posts/comment/${postId}`, commentInput)
-    .then((res) => dispatch(allPostsExceptCurrentUsers()))
+    .then((res) => dispatch(refreshGetFollowingPosts()))
     .catch((err) => {
       // console.log(err.response.data);
       dispatch({
@@ -276,11 +274,34 @@ export const getFollowingPosts = () => (dispatch) => {
     });
 };
 
+// Get all posts from following list without clearPost or setLoading
+// the reason we need 2 actions are similar: getFollowingPosts and refreshPosts are --- getFollowingPosts are used when we move from other page to Home page -- the posts list in Redux store need to be clear
+
+export const refreshGetFollowingPosts = () => (dispatch) => {
+
+  axios
+    .get(`/api/posts/following`)
+    .then((res) => {
+      // console.log(res.data);
+      dispatch({
+        type: GET_POSTS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      // console.log(err);
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      });
+    });
+};
+
 // Like a post in PostFeed
 export const addLikePosts = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/like/${postId}`)
-    .then(res => dispatch(allPostsExceptCurrentUsers()))
+    .then((res) => dispatch(refreshGetFollowingPosts()))
     .catch((err) => {
       // console.log(err);
       dispatch({
@@ -294,7 +315,7 @@ export const addLikePosts = (postId) => (dispatch) => {
 export const removeLikePosts = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/unlike/${postId}`)
-    .then(res => dispatch(allPostsExceptCurrentUsers()))    
+    .then((res) => dispatch(refreshGetFollowingPosts()))
     .catch((err) => {
       // console.log(err);
       dispatch({
@@ -308,11 +329,11 @@ export const removeLikePosts = (postId) => (dispatch) => {
 export const savePosts= (postId) => (dispatch) => {
   axios
     .post(`/api/posts/save/${postId}`)
-    .then(res => dispatch(allPostsExceptCurrentUsers()))
-    .catch(err =>
+    .then((res) => dispatch(refreshGetFollowingPosts()))
+    .catch((err) =>
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response.data,
       })
     ); 
     
@@ -322,7 +343,7 @@ export const savePosts= (postId) => (dispatch) => {
 export const unsavePosts = (postId) => (dispatch) => {
   axios
     .post(`/api/posts/unsave/${postId}`)
-    .then(res => dispatch(allPostsExceptCurrentUsers()))
+    .then((res) => dispatch(refreshGetFollowingPosts()))
     .catch((err) => {
       // console.log(err);
       dispatch({
