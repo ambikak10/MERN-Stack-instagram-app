@@ -1,4 +1,4 @@
-import { GET_POST, GET_POSTS, POST_LOADING, GET_USER_POSTS, CLEAR_POST } from "../actions/types";
+import { GET_POST, GET_POSTS, POST_LOADING, GET_USER_POSTS, CLEAR_POST, CLEAR_POSTS } from "../actions/types";
 
 const initialState = {
   posts: [],
@@ -36,6 +36,11 @@ export default function (state=initialState, action) {
       return {
         ...state,
         post: {}
+      }
+    case CLEAR_POSTS: 
+      return {
+        ...state,
+        posts: []
       }
     // case GET_OTHER_USERS_POSTS:
     //   return {
