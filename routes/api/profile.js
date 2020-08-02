@@ -5,6 +5,7 @@ const mongoose =  require('mongoose');
 const User  = require('../../models/User');
 const passport = require('passport');
 const validateProfileInput = require('../../validation/profile');
+const Post = require('../../models/Post');
 // const profile = require('../../validation/profile');
 // const { db } = require('../../models/Profile');
 
@@ -101,8 +102,12 @@ router.delete("/",
       
         User.findOneAndRemove({ _id: req.user.id})
           .then(() => {
-            console.log('success')
-            res.json({ success: true })})
+            Post.deleteMany({user: req.user.id})
+              .then(() => {
+                console.log('success')
+                res.json({ success: true })
+              })
+          })
       }).catch(err => {
     console.error(err.message);
     res.status(500).send('Server Error');
