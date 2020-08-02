@@ -89,6 +89,56 @@ router.get("/selected",
   }
 );
 
+// @route   GET api/posts/following
+// @desc    Get  all posts from following list
+// @access  Private
+router.get("/following",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    
+    Profile.findOne({user: req.user.id})
+      .then(profile => {
+        if (profile) {
+          const following = profile.following.map(person => person.user);
+          console.log(following);
+          //Check if following list === 0
+          if (following.length === 0) {
+            Post.find()
+              .populate("user", ["avatar"])
+              .sort({ date: -1 })
+              .then((posts) => {
+                if (posts) {
+                  // console.log(posts);
+                  let selected = posts.filter(
+                    (post) => {
+                      return (post.user !== null) && (post.user._id.toString() !== req.user.id)}
+                  );
+
+                  return res.json(selected);
+                } else {
+                  return res.status(404).json({ nopostsfound: "No posts found" });
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+                res.status(404).json({ nopostsfound: "No posts found" });
+              });
+          } else {
+            //Display posts from following list only
+            Post.find({user: {$in: following}})
+            .populate("user", ["avatar"])
+            .sort({ date: -1 })
+            .then(posts => {
+              return res.json(posts);
+          })
+        }} else {
+          return res.status(404).json({ noprofilefound: "No profile found"});
+        }
+      })
+      .catch(err => res.status(404).json({ noprofilefound: "No profile found"}));
+  }
+);
+
 // @route   GET api/posts/currentUser
 // @desc    get all posts of current user
 // @access  Private
