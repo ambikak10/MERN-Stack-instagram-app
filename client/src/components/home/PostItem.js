@@ -15,7 +15,7 @@ import Spinner from "../common/Spinner";
 class PostItem extends Component {
   render() {
     const { post, loadingPost } = this.props;
-    
+    let comments = post.comments.filter(comment => comment.user !== null)
     
     let alreadyLiked = false;
     if (post.likes !== undefined) {
@@ -190,7 +190,7 @@ class PostItem extends Component {
                     {/* comments on post */}
 
                     <Comments
-                      comments={post.comments}
+                      comments={comments}
                       postId={post._id}
                       showAvatar={true}
                       showDelete={true}

@@ -180,7 +180,9 @@ export const getFollowingList = () => dispatch => {
   axios
     .get("/api/profile/following")
     .then(res => {
-      const result = res.data.map(item => item.user.toString());
+      // const result = res.data.map(item => item.user.toString());
+      let result = res.data.filter((item) => item.user !== null);
+      result = result.map(item => item.user.toString());
       dispatch({
         type: GET_FOLLOWING,
         payload: result
