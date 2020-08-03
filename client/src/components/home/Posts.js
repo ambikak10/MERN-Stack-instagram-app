@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import PostFeed from './PostFeed';
 import Spinner from '../common/Spinner';
 import { allPostsExceptCurrentUsers, getFollowingPosts } from '../../actions/postActions';
+import SuggestionsBox from './SuggestionsBox';
+import { Link } from 'react-router-dom';
 
 class Posts extends Component {
   componentDidMount() {
@@ -18,16 +20,28 @@ class Posts extends Component {
     if (loadingPost) {
       postContent = <Spinner />;
     } else {
-      postContent = <PostFeed posts={posts} />;
+      if (posts.length > 0 ) {
+        postContent = <PostFeed posts={posts} />;
+      } else {
+        postContent = (
+          <div style={{marginTop: "30px"}}>
+            <span><Link to="/explore">Follow</Link> more people to see posts</span>
+          </div>
+        );
+      }
     }
 
     return (
       <div className="feed">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-8">
               
               {postContent}
+            </div>
+            {/* Suggestions*/}
+            <div className="col-md-4"> 
+              <SuggestionsBox />
             </div>
           </div>
         </div>
