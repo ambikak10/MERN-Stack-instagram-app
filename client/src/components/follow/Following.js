@@ -17,7 +17,7 @@ class Following extends Component {
      let content;
      if (following.length > 0) {
      let filterFollowing = following.filter(follow => follow.user !== null); // check if user is null to filter out deleted profiles
-       content = filterfollowing.map((following) => {
+       content = filterFollowing.map((following) => {
          if (auth.user.id === following.user._id) {
            return (
              <FollowItem
