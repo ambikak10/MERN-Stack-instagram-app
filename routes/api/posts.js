@@ -104,7 +104,7 @@ router.get("/following",
           //Check if following list === 0
           if (following.length === 0) {
             Post.find()
-              .populate("user", ["avatar"])
+              .populate("user", ["avatar"]).populate("comments.user", ["avatar"])
               .sort({ date: -1 })
               .then((posts) => {
                 if (posts) {
@@ -125,12 +125,12 @@ router.get("/following",
               });
           } else {
             //Display posts from following list only
-            Post.find({user: {$in: following}})
-            .populate("user", ["avatar"])
-            .sort({ date: -1 })
-            .then(posts => {
-              return res.json(posts);
-          })
+            Post.find({ user: { $in: following } })
+              .populate("user", ["avatar"]).populate("comments.user", ["avatar"])
+              .sort({ date: -1 })
+              .then((posts) => {
+                return res.json(posts);
+              });
         }} else {
           return res.status(404).json({ noprofilefound: "No profile found"});
         }

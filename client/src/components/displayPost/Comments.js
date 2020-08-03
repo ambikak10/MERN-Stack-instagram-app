@@ -4,21 +4,26 @@ import CommentItem from './CommentItem';
 class Comments extends Component {
   
   render() {
-    let comments;
-    if (this.props.comments) {
-      comments = this.props.comments.map(comment => (
-        <CommentItem key={comment.id} comment={comment} postId={this.props.postId}
-        //  showAvatar={this.props.showAvatar}
+   
+    let filterComments; // to filter the deleted user's comments.
+    if(this.props.comments) {
+    filterComments = this.props.comments.filter(
+      (comment) => comment.user !== null
+    );
+    
+  
+      filterComments = filterComments.map((comment) => (
+        <CommentItem
+          key={comment.id}
+          comment={comment}
+          postId={this.props.postId}
+          //  showAvatar={this.props.showAvatar}
           showDelete={this.props.showDelete}
-          />
+        />
       ));
     }
     
-    return (
-      <div>
-        {comments}
-      </div>
-    )
+    return <div>{filterComments}</div>;
   }
 }
 

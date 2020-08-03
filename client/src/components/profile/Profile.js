@@ -93,10 +93,18 @@ export class Profile extends Component {
   
   render() {
     let profileContent;
+    let following;
+    let followers;
     const { profile, loading, followingList } = this.props;
     const { user } = this.props.auth;
     const { userPosts, loadingPost } = this.props;
     const {postsIcon, savedIcon} = this.state;
+   if(profile.following.length > 0) {
+     following = profile.following.filter(item => item.user !== null)
+   } // filtering out deleted profiles
+  if (profile.followers.length > 0) {
+     followers = profile.followers.filter(item=> item.user !== null);
+  }
     if (profile === null || loading || loadingPost || !userPosts) {
       profileContent = <Spinner />;
     } else {
@@ -195,7 +203,7 @@ export class Profile extends Component {
                   &nbsp; &nbsp; &nbsp;&nbsp;
                   {profile.followers.length > 0 ? (
                     <Link onClick={(e) => this.showFollowersList()}>
-                      <b>{profile.followers.length}</b> followers
+                      <b>{followers.length}</b> followers
                     </Link>
                   ) : (
                     <Fragment>
@@ -205,14 +213,15 @@ export class Profile extends Component {
                   )}
                   <Followers
                     showFollowers={this.state.showFollowers}
-                    followers={profile.followers}
+                    // followers={profile.followers}
                     followingList={followingList}
                     close={this.showFollowersList}
+                    followers={followers}
                   />
                   &nbsp; &nbsp; &nbsp;
                   {profile.following.length > 0 ? (
                     <Link onClick={(e) => this.showFollowingList()}>
-                      <b>{profile.following.length}</b> following
+                      <b>{following.length}</b> following
                     </Link>
                   ) : (
                     <Fragment>
@@ -222,9 +231,10 @@ export class Profile extends Component {
                   )}
                   <Following
                     showFollowing={this.state.showFollowing}
-                    following={profile.following}
+                    // following={profile.following}
                     followingList={followingList}
                     close={this.showFollowingList}
+                    following={following}
                   />
                 </span>
               </div>

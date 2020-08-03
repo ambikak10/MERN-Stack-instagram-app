@@ -30,12 +30,13 @@ class HandleProfile extends Component {
   }
 
   render() {
-    console.log(this.props.profile.profile);
+    // console.log(this.props.profile.profile);
     const { profile, loading, followingList } = this.props.profile;
     let content;
     const { userPosts, loadingPost } = this.props.post;
-    console.log(userPosts);
-    console.log(profile);
+    // console.log(userPosts);
+    // console.log(profile);
+ 
 
     if (loading || loadingPost || profile === null || userPosts === null || followingList === null) {
       content = ( <Spinner /> )
