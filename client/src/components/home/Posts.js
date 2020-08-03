@@ -40,7 +40,9 @@ class Posts extends Component {
               {postContent}
             </div>
             {/* Suggestions*/}
-            <div className="col-md-4"> 
+            <div 
+            // className="col-md-4"
+            > 
               <SuggestionsBox />
             </div>
           </div>
