@@ -16,14 +16,28 @@ class Followers extends Component {
      const {followers, followingList} = this.props;
      let content;
      if (followers.length > 0) {
-       content = followers.map(follower => {
-        if (auth.user.id === follower.user._id) {
-          return (<FollowItem key={follower.id} follow={follower} followingList={followingList} isCurrent={true}/>)
-        } else {
-          return (<FollowItem key={follower.id} follow={follower} followingList={followingList} isCurrent={false}/>)
-        }
-       }
-      )
+       let filterFollowers = followers.filter((follow) => follow.user !== null); // check if user is null to filter out deleted profiles
+       content = filterFollowers.map((follower) => {
+         if (auth.user.id === follower.user._id) {
+           return (
+             <FollowItem
+               key={follower.id}
+               follow={follower}
+               followingList={followingList}
+               isCurrent={true}
+             />
+           );
+         } else {
+           return (
+             <FollowItem
+               key={follower.id}
+               follow={follower}
+               followingList={followingList}
+               isCurrent={false}
+             />
+           );
+         }
+       });
      }
     return (
       <div className='first'>

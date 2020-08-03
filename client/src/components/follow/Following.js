@@ -16,13 +16,28 @@ class Following extends Component {
     
      let content;
      if (following.length > 0) {
-       content = following.map(following => {
-        if (auth.user.id === following.user._id) {
-          return (<FollowItem key={following.id} follow={following} followingList={followingList} isCurrent={true}/>)
-        } else {
-          return (<FollowItem key={following.id} follow={following} followingList={followingList} isCurrent={false}/>)
-        }
-       })
+     let filterFollowing = following.filter(follow => follow.user !== null); // check if user is null to filter out deleted profiles
+       content = filterFollowing.map((following) => {
+         if (auth.user.id === following.user._id) {
+           return (
+             <FollowItem
+               key={following.id}
+               follow={following}
+               followingList={followingList}
+               isCurrent={true}
+             />
+           );
+         } else {
+           return (
+             <FollowItem
+               key={following.id}
+               follow={following}
+               followingList={followingList}
+               isCurrent={false}
+             />
+           );
+         }
+       });
      }
     return (
       <div className='first'>
