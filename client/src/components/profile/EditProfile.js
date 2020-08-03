@@ -13,7 +13,7 @@ class CreateProfile extends Component {
     super(props);
     this.state = {
       displaySocialInputs: false,
-      // handle: "",
+      handle: "",
       website: "",
       bio: "",
       phone: "",
@@ -32,7 +32,7 @@ class CreateProfile extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const profileData = {
-      // handle: this.state.handle,
+      handle: this.state.handle,
       twitter: this.state.twitter,
       facebook: this.state.facebook,
       youtube: this.state.youtube,
