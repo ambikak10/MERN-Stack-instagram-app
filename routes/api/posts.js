@@ -126,7 +126,7 @@ router.get("/following",
           } else {
             //Display posts from following list only
             Post.find({ user: { $in: following } })
-              .populate("user", ["avatar"]).populate("comments.user", ["avatar"])
+              .populate("user", ["avatar"]).populate("comments.user", ["avatar"]) // populating to get latest avatar from user model and id directly from user model rather than static avatar and id. helps if commeneted user changes his dp or if he deletes account user will be == null
               .sort({ date: -1 })
               .then((posts) => {
                 return res.json(posts);
