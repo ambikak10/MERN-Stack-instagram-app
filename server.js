@@ -33,7 +33,7 @@ mongoose
   .catch((err) => console.log(err));
 
 //First route
-app.get('/', (req, res) => res.send('Hello'));
+// app.get('/', (req, res) => res.send('Hello'));
 
 //Use routes
 app.use('/api/users', users);
