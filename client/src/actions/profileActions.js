@@ -1,7 +1,8 @@
 import axios from "axios";
-import { GET_ERRORS, SET_CURRENT_USER, GET_PROFILE, CLEAR_CURRENT_PROFILE, GET_PROFILES, PROFILE_LOADING, GET_FOLLOWING, GET_ALL_PROFILES, GET_CURRENT_PROFILE } from "./types";
+import { GET_ERRORS, SET_CURRENT_USER, GET_PROFILE, CLEAR_CURRENT_PROFILE, GET_PROFILES, PROFILE_LOADING, GET_FOLLOWING, GET_ALL_PROFILES, GET_CURRENT_PROFILE, CLEAR_PROFILE } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 import {logoutUser} from "./authActions";
+
 // Create Profile
 export const createProfile = (profileData, history) => (dispatch) => {
   axios
@@ -60,8 +61,8 @@ export const getCurrentProfile = () => dispatch => {
     );
 };
 // Get profile by handle
-export const getProfileByHandle = handle => dispatch => {
-  dispatch(clearCurrentProfile());
+export const getProfileByHandle = (handle, history) => dispatch => {
+dispatch(clearProfile());
   dispatch(setProfileLoading());
   console.log('action getProfileby handle')
   axios
@@ -75,10 +76,11 @@ export const getProfileByHandle = handle => dispatch => {
      } )
     .catch(err =>{
       // console.log(err)
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
+      // dispatch({
+      //   type: GET_ERRORS,
+      //   payload: err.response.data
+      // })
+      history.push("/not-found");
     });
 };
 
@@ -110,12 +112,19 @@ export const setProfileLoading = () => {
   };
 };
 
-// Clear profile
+// Clear current profile
 export const clearCurrentProfile = () => {
   return {
     type: CLEAR_CURRENT_PROFILE
   };
 };
+
+//Clear profile
+export const clearProfile = () => {
+  return {
+    type: CLEAR_PROFILE
+  }
+}
 
 //Get suggestion list
 export const getSuggestionList = () => dispatch => {
@@ -171,7 +180,9 @@ export const getFollowingList = () => dispatch => {
   axios
     .get("/api/profile/following")
     .then(res => {
-      const result = res.data.map(item => item.user.toString());
+      // const result = res.data.map(item => item.user.toString());
+      let result = res.data.filter((item) => item.user !== null);
+      result = result.map(item => item.user.toString());
       dispatch({
         type: GET_FOLLOWING,
         payload: result

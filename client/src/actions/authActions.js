@@ -2,7 +2,8 @@ import { SET_CURRENT_USER, GET_ERRORS, GET_PROFILE } from './types';
 import axios from 'axios';
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
-
+import {getCurrentProfile} from './profileActions'
+import { clearCurrentProfile } from "./profileActions";
 
 //Register user
 export const signupUser = (userData, history) => dispatch => {
@@ -33,6 +34,7 @@ export const loginUser = (userData) => (dispatch) => {
        type: SET_CURRENT_USER,
        payload: decoded
       });
+      dispatch(getCurrentProfile());
     }).catch((err) =>
       dispatch({
         type: GET_ERRORS,
@@ -53,6 +55,7 @@ export const logoutUser = () => dispatch => {
     type: SET_CURRENT_USER,
     payload: {}
   })
+  dispatch(clearCurrentProfile());
 };
 
 //Add picture

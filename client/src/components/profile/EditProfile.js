@@ -6,6 +6,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { createProfile, getCurrentProfile } from "../../actions/profileActions";
 import isEmpty from "../../validation/is-empty";
+import Spinner from '../common/Spinner'
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -46,12 +47,11 @@ class CreateProfile extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
     }
-    if (nextProps.profile.profile) {
-      const profile = nextProps.profile.profile;
-
+    if (nextProps.profile.currentProfile) {
+      const profile = nextProps.profile.currentProfile;
 
       // If profile field doesnt exist, make empty string
-
+      profile.handle = !isEmpty(profile.handle) ? profile.handle : "";
       profile.website = !isEmpty(profile.website) ? profile.website : "";
       profile.gender = !isEmpty(profile.website) ? profile.gender : "";
       profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
@@ -62,23 +62,21 @@ class CreateProfile extends Component {
       profile.facebook = !isEmpty(profile.social.facebook)
         ? profile.social.facebook
         : "";
-   
+
       profile.youtube = !isEmpty(profile.social.youtube)
         ? profile.social.youtube
         : "";
-    
 
       // Set component fields state
       this.setState({
         handle: profile.handle,
         website: profile.website,
-        gender:profile.gender,
+        gender: profile.gender,
         bio: profile.bio,
         twitter: profile.twitter,
         facebook: profile.facebook,
         linkedin: profile.linkedin,
         youtube: profile.youtube,
-     
       });
     }
   }
@@ -87,6 +85,10 @@ class CreateProfile extends Component {
   }
   render() {
     const { errors, displaySocialInputs } = this.state;
+    const { currentProfile } = this.props.profile;
+    let content;
+    if(currentProfile){
+    console.log(currentProfile.handle)}
     let socialInputs;
     if (displaySocialInputs) {
       socialInputs = (
@@ -100,6 +102,7 @@ class CreateProfile extends Component {
                 </span>
               </div>
               <input
+                style={{ fontSize: "14px" }}
                 type='text'
                 className={classnames("form-control", {
                   "is-invalid": errors.twitter,
@@ -129,6 +132,7 @@ class CreateProfile extends Component {
                 </span>
               </div>
               <input
+                style={{ fontSize: "14px" }}
                 type='text'
                 className={classnames("form-control", {
                   "is-invalid": errors.facebook,
@@ -158,6 +162,7 @@ class CreateProfile extends Component {
                 </span>
               </div>
               <input
+                style={{ fontSize: "14px" }}
                 type='text'
                 className={classnames("form-control", {
                   "is-invalid": errors.youtube,
@@ -180,150 +185,159 @@ class CreateProfile extends Component {
         </Fragment>
       );
     }
+ if( currentProfile && currentProfile.user) {
+  content = (
+    <div className='card-body profile-form-card-body'>
+      <h3 style={{ textAlign: "center" }}>Edit Profile</h3>
+      <hr className='profile-form-horizontal-line' />
+
+      <div className='row' style={{ marginBottom: "20px" }}>
+        <div className='col-lg-3 col-sm-3 col-md-3'>
+          <img
+            className='rounded-circle editProfileAvatar'
+            src={currentProfile.user.avatar}
+            alt='avatar'
+            style={{ width: "50px" }}
+          />
+        </div>
+        <h6
+          className='col-lg-9 col-sm-9 col-md-9 nameLeftMargin'
+          style={{
+            paddingLeft: "0",
+            paddingTop: "15px",
+            textAlign: "left",
+            fontSize: "1.2rem",
+            paddingBottom: "4px",
+          }}
+        >
+          {currentProfile.handle}
+        </h6>
+      </div>
+      <form onSubmit={this.onSubmit}>
+        <div className='form-group row profile-form-row'>
+          <label className='col-lg-3 col-form-label'>Username</label>
+          <input
+            type='text'
+            className='form-control col-lg-9'
+            // className={classnames("form-control col-lg-9", {
+            //   "is-invalid": errors.handle,
+            // })}
+            name='handle'
+            disabled='disabled'
+            value={currentProfile.handle}
+            style={{ fontSize: "14px" }}
+            // onChange={this.onChange}
+          />
+          {/* {errors.handle && (
+            <div style={{ textAlign: "center" }} className='invalid-feedback'>
+              {errors.handle}
+            </div>
+          )} */}
+        </div>
+
+        <div className='form-group row profile-form-row'>
+          <label className='col-lg-3 col-form-label'>Website</label>
+          <input
+            style={{ fontSize: "14px" }}
+            type='text'
+            className={classnames("form-control col-lg-9", {
+              "is-invalid": errors.website,
+            })}
+            name='website'
+            value={this.state.website}
+            onChange={this.onChange}
+          />
+          {errors.website && (
+            <div style={{ textAlign: "center" }} className='invalid-feedback'>
+              {errors.website}
+            </div>
+          )}
+        </div>
+
+        <div className='form-group row profile-form-row'>
+          <label className='col-lg-3 col-form-label'>Bio</label>
+          <textarea
+            style={{ fontSize: "14px" }}
+            className='form-control col-lg-9'
+            name='bio'
+            value={this.state.bio}
+            onChange={this.onChange}
+          />
+        </div>
+
+        <div className='form-group row profile-form-row'>
+          <label className='col-lg-3 col-form-label'>Phone</label>
+          <input
+            style={{ fontSize: "14px" }}
+            type='tel'
+            className={classnames("form-control col-lg-9", {
+              "is-invalid": errors.phone,
+            })}
+            name='phone'
+            value={this.state.phone}
+            onChange={this.onChange}
+          />
+          {errors.phone && (
+            <div style={{ textAlign: "center" }} className='invalid-feedback'>
+              {errors.phone}
+            </div>
+          )}
+        </div>
+
+        <div className='form-group row profile-form-row'>
+          <label className='col-lg-3 col-form-label'>Gender</label>
+          <input
+            style={{ fontSize: "14px" }}
+            type='text'
+            className='form-control col-lg-9'
+            name='gender'
+            value={this.state.gender}
+            onChange={this.onChange}
+          />
+        </div>
+
+        {/* <label className='col-form-label'>Social Network Links</label> */}
+        <div className='mb-3'>
+          <button
+            type='button'
+            onClick={() => {
+              this.setState((prevState) => ({
+                displaySocialInputs: !prevState.displaySocialInputs,
+              }));
+            }}
+            className='btn btn-light'
+          >
+            Add Social Network Links
+          </button>
+          <span className='text-muted'> Optional</span>
+        </div>
+        {socialInputs}
+
+        <div style={{ marginTop: "30px", textAlign: "center" }}>
+          <input
+            type='submit'
+            value='Submit'
+            className='btn btn-primary'
+            style={{ marginRight: "10px" }}
+          />
+          <Link to='/profile' className='btn btn-secondary'>
+            Cancel
+          </Link>
+        </div>
+      </form>
+    </div>
+  );
+} else {
+  content = <Spinner />
+}
     return (
       <div className='profile-form-container'>
         <div className='card profile-form-card'>
-          <div className='card-body profile-form-card-body'>
-            <h3 style={{ textAlign: "center" }}>Edit Profile</h3>
-            <hr className='profile-form-horizontal-line' />
-
-            <div className='row' style={{ marginBottom: "20px" }}>
-              <div className='col-lg-3 col-sm-3 col-md-3 nameLeftMargin'>
-                <img
-                  className='rounded-circle'
-                  src={this.props.auth.user.avatar}
-                  alt='avatar'
-                  style={{ width: "50px" }}
-                />
-              </div>
-              <h6
-                className='col-lg-9 col-sm-9 col-md-9 nameLeftMargin'
-                style={{
-                  paddingLeft: "0",
-                  paddingTop: "15px",
-                  textAlign: "left",
-                }}
-              >
-                {this.state.handle}
-              </h6>
-            </div>
-            <form onSubmit={this.onSubmit}>
-              <div className='form-group row profile-form-row'>
-                <label className='col-lg-3 col-form-label'>Username</label>
-                <input
-                  type='text'
-                  className={classnames("form-control col-lg-9", {
-                    "is-invalid": errors.handle,
-                  })}
-                  name='handle'
-                  value={this.state.handle}
-                  onChange={this.onChange}
-                />
-                {errors.handle && (
-                  <div
-                    style={{ textAlign: "center" }}
-                    className='invalid-feedback'
-                  >
-                    {errors.handle}
-                  </div>
-                )}
-              </div>
-
-              <div className='form-group row profile-form-row'>
-                <label className='col-lg-3 col-form-label'>Website</label>
-                <input
-                  type='text'
-                  className={classnames("form-control col-lg-9", {
-                    "is-invalid": errors.website,
-                  })}
-                  name='website'
-                  value={this.state.website}
-                  onChange={this.onChange}
-                />
-                {errors.website && (
-                  <div
-                    style={{ textAlign: "center" }}
-                    className='invalid-feedback'
-                  >
-                    {errors.website}
-                  </div>
-                )}
-              </div>
-
-              <div className='form-group row profile-form-row'>
-                <label className='col-lg-3 col-form-label'>Bio</label>
-                <textarea
-                  className='form-control col-lg-9'
-                  name='bio'
-                  value={this.state.bio}
-                  onChange={this.onChange}
-                />
-              </div>
-
-              <div className='form-group row profile-form-row'>
-                <label className='col-lg-3 col-form-label'>Phone</label>
-                <input
-                  type='tel'
-                  className={classnames("form-control col-lg-9", {
-                    "is-invalid": errors.phone,
-                  })}
-                  name='phone'
-                  value={this.state.phone}
-                  onChange={this.onChange}
-                />
-                {errors.phone && (
-                  <div
-                    style={{ textAlign: "center" }}
-                    className='invalid-feedback'
-                  >
-                    {errors.phone}
-                  </div>
-                )}
-              </div>
-
-              <div className='form-group row profile-form-row'>
-                <label className='col-lg-3 col-form-label'>Gender</label>
-                <input
-                  type='text'
-                  className='form-control col-lg-9'
-                  name='gender'
-                  value={this.state.gender}
-                  onChange={this.onChange}
-                />
-              </div>
-
-              {/* <label className='col-form-label'>Social Network Links</label> */}
-              <div className='mb-3'>
-                <button
-                  type='button'
-                  onClick={() => {
-                    this.setState((prevState) => ({
-                      displaySocialInputs: !prevState.displaySocialInputs,
-                    }));
-                  }}
-                  className='btn btn-light'
-                >
-                  Add Social Network Links
-                </button>
-                <span className='text-muted'> Optional</span>
-              </div>
-              {socialInputs}
-
-              <div style={{ marginTop: "30px", textAlign: "center" }}>
-                <input
-                  type='submit'
-                  value='Submit'
-                  className='btn btn-primary'
-                  style={{ marginRight: "10px" }}
-                />
-                <Link to='/profile' className='btn btn-secondary'>
-                  Cancel
-                </Link>
-              </div>
-            </form>
-          </div>
+         {content}
         </div>
       </div>
+
+
     );
   }
 }

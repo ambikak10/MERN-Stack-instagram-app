@@ -67,23 +67,75 @@ router.get("/selected",
   (req, res) => {
   
     Post.find()
-      .sort({date: -1})
-      .then(posts => {
+      .populate("user", ["avatar"])
+      .sort({ date: -1 })
+      .then((posts) => {
         if (posts) {
-       
-          let selected = posts.filter(post => 
-         
-            post.user.toString() !== req.user.id
-          )
-        
+          // console.log(posts);
+          let selected = posts.filter(
+            (post) => {
+              return (post.user !== null) && (post.user._id.toString() !== req.user.id)}
+          );
+
           return res.json(selected);
         } else {
           return res.status(404).json({ nopostsfound: "No posts found" });
         }
       })
-      .catch(err => {
-        console.log(err)
-        res.status(404).json({ nopostsfound: "No posts found" })});
+      .catch((err) => {
+        console.log(err);
+        res.status(404).json({ nopostsfound: "No posts found" });
+      });
+  }
+);
+
+// @route   GET api/posts/following
+// @desc    Get  all posts from following list
+// @access  Private
+router.get("/following",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    
+    Profile.findOne({user: req.user.id})
+      .then(profile => {
+        if (profile) {
+          const following = profile.following.map(person => person.user);
+          console.log(following);
+          //Check if following list === 0
+          if (following.length === 0) {
+            Post.find()
+              .populate("user", ["avatar"]).populate("comments.user", ["avatar"])
+              .sort({ date: -1 })
+              .then((posts) => {
+                if (posts) {
+                  // console.log(posts);
+                  let selected = posts.filter(
+                    (post) => {
+                      return (post.user !== null) && (post.user._id.toString() !== req.user.id)}
+                  );
+
+                  return res.json(selected);
+                } else {
+                  return res.status(404).json({ nopostsfound: "No posts found" });
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+                res.status(404).json({ nopostsfound: "No posts found" });
+              });
+          } else {
+            //Display posts from following list only
+            Post.find({ user: { $in: following } })
+              .populate("user", ["avatar"]).populate("comments.user", ["avatar"]) // populating to get latest avatar from user model and id directly from user model rather than static avatar and id. helps if commeneted user changes his dp or if he deletes account user will be == null
+              .sort({ date: -1 })
+              .then((posts) => {
+                return res.json(posts);
+              });
+        }} else {
+          return res.status(404).json({ noprofilefound: "No profile found"});
+        }
+      })
+      .catch(err => res.status(404).json({ noprofilefound: "No profile found"}));
   }
 );
 
@@ -106,19 +158,40 @@ router.get(
 // @route   GET api/posts/otheruserposts/:user_id
 // @desc    get all posts of other user by their user_id
 // @access  Public
+// router.get(
+//   "/otheruserposts/:user_id",
+//   // passport.authenticate("jwt", { session: false }),
+//   (req, res) => {
+//      Post.find()
+//       .sort({ date: -1 })
+//       .then((posts) => {
+//         if(posts) {
+//       let otheruserposts;
+//         otheruserposts = posts.filter(post => 
+//         post.user.toString() === req.params.user_id)
+//         return res.json(otheruserposts);
+        
+//        } else  {
+//        return res.status(404).json({ nopostsfound: "No posts found" });
+//       }})
+//       .catch((err) =>{
+//         console.log(err); 
+//         res.status(404).json({ nopostsfound: "No posts found" })});
+//   }
+// );
+
+// @route   GET api/posts/otheruserposts/:handle
+// @desc    get all posts of other user by their handle
+// @access  Public
 router.get(
-  "/otheruserposts/:user_id",
+  "/otheruserposts/:handle",
   // passport.authenticate("jwt", { session: false }),
   (req, res) => {
-     Post.find()
+     Post.find({handle : req.params.handle})
       .sort({ date: -1 })
       .then((posts) => {
         if(posts) {
-      let otheruserposts;
-        otheruserposts = posts.filter(post => 
-        post.user.toString() === req.params.user_id)
-        return res.json(otheruserposts);
-        
+         return res.json(posts);
        } else  {
        return res.status(404).json({ nopostsfound: "No posts found" });
       }})
@@ -127,19 +200,21 @@ router.get(
         res.status(404).json({ nopostsfound: "No posts found" })});
   }
 );
-
 // @route   GET api/posts/:id
 // @desc    Get a post by id
 // @access  Public
 
 router.get("/:id", (req, res) => {
   Post.findById(req.params.id)
+    .populate("user", ["avatar"])
+    .populate("comments.user", ["avatar"])
     .then((post) => {
       if (post) {
         res.json(post);
       } else {
-        return res.status(404).json({nopostfound: "No post found"});
-      }})
+        return res.status(404).json({ nopostfound: "No post found" });
+      }
+    })
     .catch((err) =>
       res.status(404).json({ nopostfound: "No post found with that ID" })
     );

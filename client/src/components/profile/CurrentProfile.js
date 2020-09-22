@@ -17,8 +17,8 @@ class CurrentProfile extends Component {
     // console.log(this.props.profile.profile);
     const {currentProfile, loading, followingList } = this.props.profile;
     let content;
-        const { userPosts, loadingPost } = this.props.post;
-        console.log(userPosts)
+     const { userPosts, loadingPost } = this.props.post;
+        // console.log(userPosts)
           if (loading || loadingPost || currentProfile === null || userPosts === null || followingList === null) {
             content = ( <Spinner /> )
           } else {

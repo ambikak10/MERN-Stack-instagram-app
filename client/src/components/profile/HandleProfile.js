@@ -5,14 +5,16 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
 import { getProfileByHandle, getFollowingList } from '../../actions/profileActions';
+import { withRouter } from "react-router-dom";
 
-class CurrentProfile extends Component {
+class HandleProfile extends Component {
   componentDidMount() {
-  if (this.props.match.params.user_id) {
-    this.props.getOtherUsersPosts(this.props.match.params.user_id);
-  }
+  // if (this.props.match.params.user_id) {
+  //   this.props.getOtherUsersPosts(this.props.match.params.user_id);
+  // }
    if (this.props.match.params.handle) {
-    this.props.getProfileByHandle(this.props.match.params.handle);
+    this.props.getProfileByHandle(this.props.match.params.handle, this.props.history);
+    this.props.getOtherUsersPosts(this.props.match.params.handle);
     }
     this.props.getFollowingList();
   }
@@ -20,20 +22,21 @@ class CurrentProfile extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.match && nextProps.match.params && this.props.match && this.props.match.params) {
       if (nextProps.match.params.handle !== this.props.match.params.handle) {
-        console.log(nextProps.match.params.handle);
-        console.log(this.props.match.params.handle)
+        // console.log(nextProps.match.params.handle);
+        // console.log(this.props.match.params.handle)
         window.location.reload(true);
       }
     }
   }
 
   render() {
-    console.log(this.props.profile.profile);
+    // console.log(this.props.profile.profile);
     const { profile, loading, followingList } = this.props.profile;
     let content;
     const { userPosts, loadingPost } = this.props.post;
-    console.log(userPosts);
-    console.log(profile);
+    // console.log(userPosts);
+    // console.log(profile);
+ 
 
     if (loading || loadingPost || profile === null || userPosts === null || followingList === null) {
       content = ( <Spinner /> )
@@ -70,4 +73,4 @@ export default connect(mapStateToProps, {
   getOtherUsersPosts,
   getProfileByHandle,
   getFollowingList
-})(CurrentProfile);
+})(withRouter(HandleProfile));

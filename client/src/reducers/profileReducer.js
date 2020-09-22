@@ -6,6 +6,7 @@ import {
   GET_FOLLOWING,
   GET_ALL_PROFILES,
   GET_CURRENT_PROFILE,
+  CLEAR_PROFILE,
 } from "../actions/types";
 
 const initialState = {
@@ -24,14 +25,14 @@ export default function (state = initialState, action) {
         loading: true,
       };
     case GET_PROFILE:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         profile: action.payload,
         loading: false,
       };
     case GET_CURRENT_PROFILE:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         currentProfile: action.payload,
@@ -57,8 +58,13 @@ export default function (state = initialState, action) {
     case CLEAR_CURRENT_PROFILE:
       return {
         ...state,
-        profile: null,
+        currentProfile: null,
       };
+    case CLEAR_PROFILE:
+      return {
+        ...state,
+        profile: null,
+      }
     default:
       return state;
   }

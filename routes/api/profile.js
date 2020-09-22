@@ -5,8 +5,9 @@ const mongoose =  require('mongoose');
 const User  = require('../../models/User');
 const passport = require('passport');
 const validateProfileInput = require('../../validation/profile');
-const profile = require('../../validation/profile');
-const { db } = require('../../models/Profile');
+const Post = require('../../models/Post');
+// const profile = require('../../validation/profile');
+// const { db } = require('../../models/Profile');
 
 
 // @route   POST api/profile
@@ -76,6 +77,8 @@ router.get(
 
     Profile.findOne({ user: req.user.id })
       .populate("user", ["name", "avatar"])
+      .populate("following.user", ["avatar"])
+      .populate("followers.user", ["avatar"])
       .then((profile) => {
         if (!profile) {
           errors.noprofile = "There is no profile for this user";
@@ -99,8 +102,12 @@ router.delete("/",
       
         User.findOneAndRemove({ _id: req.user.id})
           .then(() => {
-            console.log('success')
-            res.json({ success: true })})
+            Post.deleteMany({user: req.user.id})
+              .then(() => {
+                console.log('success')
+                res.json({ success: true })
+              })
+          })
       }).catch(err => {
     console.error(err.message);
     res.status(500).send('Server Error');
@@ -125,7 +132,7 @@ router.get("/followers/:profile_id", (req, res) => {
 
 // @route   GET api/profile/following
 // @desc    Get list of user's following
-// @access  Public
+// @access  Private
 router.get("/following",
 passport.authenticate("jwt", {session: false}),
 (req, res) => {
@@ -149,6 +156,8 @@ router.get("/handle/:handle", (req, res) => {
 
   Profile.findOne({ handle: req.params.handle })
     .populate("user", ["name", "avatar"])
+    .populate("following.user", ["avatar"])
+    .populate("followers.user", ["avatar"])
     .then((profile) => {
       if (!profile) {
         errors.noprofile = "There is no profile for this user";
@@ -341,7 +350,7 @@ router.post('/unfollow/:profile_id', passport.authenticate("jwt", { session: fal
   });
 });
 
-// @route   GET api/efilopr / suggestions;
+// @route   GET api/profile/ suggestions;
 // @desc    Get suggestion list for current profile
 // @access  Private
 router.get(
@@ -384,24 +393,4 @@ router.get(
   }
 );
 
-// @route   GET api/profile/find/:value
-// @desc    Get all cdocuments which matches the value
-// @access  Private
-router.get(
-  "/find/:value",
-  // passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    console.log()
-  Profile.find({ handle: req.params.value })
-    .then((profiles) => {
-      console.log(profiles)
-        return res.json(profiles)
-    })
-
-    .catch((err) =>
-      // res.status(404).json({ profile: "There is no profile for this user" })
-      console.log(err)
-    );
-  }
-);
 module.exports = router;
